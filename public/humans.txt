@@ -1,0 +1,21 @@
+/* TEAM */
+
+Gleitschirm-Tandemflug.com
+Tandempiloten-Team
+Airpark Lienzer Dolomiten, Osttirol
+
+/* MISSION */
+
+Sichere und unvergessliche Tandem-Gleitschirmflüge über den Lienzer
+Dolomiten – begleitet von staatlich geprüften Tandempiloten, die
+ruhige und verantwortungsvolle Entscheidungen treffen.
+
+/* CONTACT */
+
+WhatsApp / Anruf: +43 676 7293888
+E-Mail: info@Gleitschirm-Tandemflug.com
+Web: https://www.gleitschirm-tandemflug.com
+
+/* TECH */
+
+Next.js, TypeScript, Tailwind CSS

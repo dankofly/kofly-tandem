@@ -1,0 +1,54 @@
+{
+  "slots": {
+    "hero": {
+      "label": "Hero Hintergrund",
+      "filename": "hero-1771181753990.jpg",
+      "description": "Hauptbild oben auf der Startseite (empfohlen: 1920x1080)"
+    },
+    "about": {
+      "label": "Über uns / Warum wir",
+      "filename": null,
+      "description": "Bild in der Warum-wir-Sektion (empfohlen: 800x600)"
+    },
+    "ablauf-hero": {
+      "label": "Ablauf Hero",
+      "filename": null,
+      "description": "Bild oben auf der Ablauf-Seite (empfohlen: 1920x800)"
+    },
+    "ablauf-flug": {
+      "label": "Ablauf: Der Flug",
+      "filename": null,
+      "description": "Bild bei Schritt 08 – Der Flug (empfohlen: 800x600)"
+    },
+    "ablauf-landing": {
+      "label": "Ablauf: Landung",
+      "filename": null,
+      "description": "Bild bei Schritt 09 – Landung (empfohlen: 800x600)"
+    },
+    "packages": {
+      "label": "Flugpakete",
+      "filename": null,
+      "description": "Bild in der Pakete-Sektion (empfohlen: 800x600)"
+    },
+    "whyus-bg": {
+      "label": "Wir garantieren: Hintergrund",
+      "filename": "whyus-bg-1771151717063.jpg",
+      "description": "Parallax-Hintergrundbild für die Sektion 'Ein Flugerlebnis' (empfohlen: 1920x1080)"
+    },
+    "tile-einfach": {
+      "label": "Kachel: Einfach",
+      "filename": "tile-einfach-1771152460060.jpg",
+      "description": "Bildkachel für EINFACH (empfohlen: 600x800, Hochformat 3:4)"
+    },
+    "tile-sicher": {
+      "label": "Kachel: Sicher",
+      "filename": "tile-sicher-1771152464661.jpg",
+      "description": "Bildkachel für SICHER (empfohlen: 600x800, Hochformat 3:4)"
+    },
+    "tile-unvergesslich": {
+      "label": "Kachel: Unvergesslich",
+      "filename": "tile-unvergesslich-1771152470076.jpg",
+      "description": "Bildkachel für UNVERGESSLICH (empfohlen: 600x800, Hochformat 3:4)"
+    }
+  }
+}
