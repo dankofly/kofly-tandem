@@ -114,7 +114,7 @@ export default async function WhyUs() {
         </div>
 
         {/* Signature phrase */}
-        <ScrollReveal animation="fade-in" className={`mt-12 text-center text-xl sm:text-2xl font-light italic tracking-wide ${bgImage ? "text-white/50" : "text-content-faint"}`}>
+        <ScrollReveal animation="fade-in" className={`mt-12 text-center text-2xl sm:text-3xl font-light italic tracking-wide ${bgImage ? "text-white/90 drop-shadow-lg" : "text-content-muted"}`}>
           {t("signature")}
         </ScrollReveal>
       </div>

@@ -2,7 +2,7 @@
   "slots": {
     "hero": {
       "label": "Hero Hintergrund",
-      "filename": "hero-1771245511732.jpg",
+      "filename": "hero-1771273007982.jpg",
       "description": "Hauptbild oben auf der Startseite (empfohlen: 1920x1080)"
     },
     "about": {
@@ -37,12 +37,12 @@
     },
     "tile-einfach": {
       "label": "Kachel: Einfach",
-      "filename": "tile-einfach-1771152460060.jpg",
+      "filename": "tile-einfach-1771271518971.jpg",
       "description": "Bildkachel für EINFACH (empfohlen: 600x800, Hochformat 3:4)"
     },
     "tile-sicher": {
       "label": "Kachel: Sicher",
-      "filename": "tile-sicher-1771152464661.jpg",
+      "filename": "tile-sicher-1771271876468.jpg",
       "description": "Bildkachel für SICHER (empfohlen: 600x800, Hochformat 3:4)"
     },
     "tile-unvergesslich": {
