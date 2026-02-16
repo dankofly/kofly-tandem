@@ -25,7 +25,7 @@ export function organizationSchema(locale: string = "de") {
     telephone: PHONE,
     email: EMAIL,
     description:
-      "Gleitschirm Tandemflüge & Paragleiten im Airpark Lienzer Dolomiten mit staatlich geprüften Tandempiloten. Tandemflug & Tandemsprung in Osttirol – Lienz, Sillian, Matrei, St. Jakob im Defereggental & Kals am Großglockner. Ab €150.",
+      "Gleitschirm Tandemflüge & Paragleiten im Airpark Lienzer Dolomiten mit erfahrenen zertifizierten Tandempiloten. Tandemflug & Tandemsprung in Osttirol – Lienz, Sillian, Matrei, St. Jakob im Defereggental & Kals am Großglockner. Ab €150.",
     foundingDate: "2015",
     priceRange: "€150–€250",
     currenciesAccepted: "EUR",
@@ -207,7 +207,7 @@ export function serviceSchema(locale: string = "de") {
       { "@type": "AdministrativeArea", name: "Osttirol" },
     ],
     description:
-      "Tandem-Gleitschirmflüge & Paragleiten im Airpark Lienzer Dolomiten. Start ab Zettersfeld oder Hochstein mit staatlich geprüften Tandempiloten. Tandemflug ab €150 – Lienz, Sillian, Matrei, St. Jakob, Kals & ganz Osttirol.",
+      "Tandem-Gleitschirmflüge & Paragleiten im Airpark Lienzer Dolomiten. Start ab Zettersfeld oder Hochstein mit erfahrenen zertifizierten Tandempiloten. Tandemflug ab €150 – Lienz, Sillian, Matrei, St. Jakob, Kals & ganz Osttirol.",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Flugpakete",
@@ -332,7 +332,7 @@ export function faqSchema() {
         name: "Ist Paragleiten und Tandemfliegen sicher?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Ja. Wir fliegen nur bei passenden, flugtechnisch sicheren Wetterbedingungen und ausschließlich mit erfahrenen, staatlich geprüften Tandempiloten. Unsere Ausrüstung wird regelmäßig nach gesetzlichen Vorgaben geprüft. Zusätzlich verfügen wir über die vorgeschriebene gewerbliche Haftpflichtversicherung über Air & More.",
+          text: "Ja. Wir fliegen nur bei passenden, flugtechnisch sicheren Wetterbedingungen und ausschließlich mit erfahrenen, erfahrenen zertifizierten Tandempiloten. Unsere Ausrüstung wird regelmäßig nach gesetzlichen Vorgaben geprüft. Zusätzlich verfügen wir über die vorgeschriebene gewerbliche Haftpflichtversicherung über Air & More.",
         },
       },
       {
@@ -396,7 +396,7 @@ export function faqSchema() {
         name: "Wo ist der nächste Tandemflug-Anbieter bei Kals am Großglockner?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Der nächste Tandemflug-Anbieter bei Kals am Großglockner ist Gleitschirm-Tandemflug.com (KOFLY) im Airpark Lienzer Dolomiten bei Lienz. Die Anfahrt von Kals dauert ca. 40 Minuten. Wir bieten Tandemflüge ab €150 mit staatlich geprüften Piloten – Terminvereinbarung telefonisch oder per WhatsApp unter +43 676 7293888.",
+          text: "Der nächste Tandemflug-Anbieter bei Kals am Großglockner ist Gleitschirm-Tandemflug.com (KOFLY) im Airpark Lienzer Dolomiten bei Lienz. Die Anfahrt von Kals dauert ca. 40 Minuten. Wir bieten Tandemflüge ab €150 mit erfahrenen zertifizierten Tandempiloten – Terminvereinbarung telefonisch oder per WhatsApp unter +43 676 7293888.",
         },
       },
       {

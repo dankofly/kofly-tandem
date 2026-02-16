@@ -65,7 +65,7 @@ function ReviewCard({ review, locale }: { review: Review; locale: string }) {
       : review.text;
 
   return (
-    <article className="glass-card card-hover-glow rounded-2xl p-8 flex flex-col">
+    <article className="glass-card card-hover-glow rounded-2xl p-5 sm:p-8 flex flex-col">
       {/* Stars */}
       <div className="flex gap-0.5 mb-4">
         {Array.from({ length: 5 }).map((_, i) => (
@@ -191,7 +191,7 @@ export default function Reviews() {
   const locale = useLocale();
 
   return (
-    <section id="bewertungen" className="relative py-16 lg:py-24 overflow-hidden scroll-mt-20">
+    <section id="bewertungen" className="relative py-12 sm:py-16 lg:py-24 overflow-hidden scroll-mt-20">
       {/* Glow orb */}
       <div className="glow-orb glow-orb-sky w-[500px] h-[500px] top-20 right-0 animate-glow-pulse" aria-hidden="true" />
 
@@ -201,7 +201,7 @@ export default function Reviews() {
           <p className="text-sm tracking-premium uppercase text-accent-500 font-semibold">
             {t("tagline")}
           </p>
-          <h2 className="mt-3 text-4xl sm:text-5xl font-black text-content-primary tracking-tight">
+          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-content-primary tracking-tight">
             {t("title")}
           </h2>
           <div className="mt-4 section-divider" />

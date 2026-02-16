@@ -168,13 +168,24 @@ body {
   box-shadow: 0 0 16px var(--glow-section-divider);
 }
 
-/* Ambient glow orb – reusable */
+/* Ambient glow orb – reusable, lighter on mobile */
 .glow-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(60px);
   pointer-events: none;
   z-index: 0;
+}
+
+@media (min-width: 640px) {
+  .glow-orb {
+    filter: blur(80px);
+  }
+}
+
+/* Safe area for iOS notch / home indicator */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .glow-orb-accent {
@@ -404,7 +415,19 @@ body {
 }
 
 .ticker-track {
-  animation: ticker-scroll 30s linear infinite;
+  animation: ticker-scroll 15s linear infinite;
+}
+
+@media (min-width: 640px) {
+  .ticker-track {
+    animation-duration: 22s;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ticker-track {
+    animation-duration: 30s;
+  }
 }
 
 /* Reduced motion: respect user preference */

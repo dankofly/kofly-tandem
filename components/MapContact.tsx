@@ -153,18 +153,18 @@ export default function MapContact() {
   const openLabel = t("openInMaps");
 
   return (
-    <section id="kontakt" className="relative py-16 lg:py-24 overflow-hidden scroll-mt-20">
+    <section id="kontakt" className="relative py-12 sm:py-16 lg:py-24 overflow-hidden scroll-mt-20">
       {/* Glow orbs */}
       <div className="glow-orb glow-orb-accent w-[500px] h-[500px] -bottom-40 right-0 animate-glow-pulse" aria-hidden="true" />
       <div className="glow-orb glow-orb-sky w-[400px] h-[400px] top-20 -left-40 animate-glow-pulse" aria-hidden="true" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <ScrollReveal className="text-center mb-10">
           <p className="text-sm tracking-premium uppercase text-accent-500 font-semibold">
             {t("tagline")}
           </p>
-          <h2 className="mt-3 text-4xl sm:text-5xl font-black text-content-primary tracking-tight">
+          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-content-primary tracking-tight">
             {t("title")}
           </h2>
           <div className="mt-5 section-divider" />
@@ -178,13 +178,13 @@ export default function MapContact() {
           <iframe
             src={buildMapEmbedUrl()}
             width="100%"
-            height="450"
+            height="350"
+            className="w-full sm:h-[450px]"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title={t("mapTitle")}
-            className="w-full"
           />
           {/* Bottom gradient overlay */}
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[var(--bg-primary)] to-transparent pointer-events-none" />
@@ -263,8 +263,8 @@ export default function MapContact() {
           {/* Top accent line */}
           <span className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-500 to-transparent" aria-hidden="true" />
 
-          <div className="p-8 sm:p-10">
-            <h3 className="text-sm font-semibold tracking-premium uppercase text-accent-400 mb-8">
+          <div className="p-5 sm:p-8 lg:p-10">
+            <h3 className="text-sm font-semibold tracking-premium uppercase text-accent-400 mb-6 sm:mb-8">
               {t("contactTitle")}
             </h3>
 

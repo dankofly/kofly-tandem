@@ -113,10 +113,10 @@ function StatItem({ stat, label, visible, delay }: { stat: StatConfig; label: st
       style={{ transitionDelay: `${delay}ms` }}
     >
       <span className="text-accent-500">{stat.icon}</span>
-      <span className="text-3xl sm:text-4xl font-black text-content-primary tracking-tight tabular-nums">
+      <span className="text-2xl sm:text-3xl lg:text-4xl font-black text-content-primary tracking-tight tabular-nums">
         {count}{stat.suffix}
       </span>
-      <span className="text-[13px] text-content-muted font-semibold tracking-wide uppercase whitespace-nowrap">
+      <span className="text-[11px] sm:text-[13px] text-content-muted font-semibold tracking-wide uppercase whitespace-nowrap">
         {label}
       </span>
     </div>
@@ -147,14 +147,14 @@ export default function StatsBar() {
   return (
     <section
       ref={ref}
-      className="relative py-10 lg:py-14 bg-surface-secondary overflow-hidden"
+      className="relative py-8 sm:py-10 lg:py-14 bg-surface-secondary overflow-hidden"
     >
       {/* Subtle top/bottom borders */}
       <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-edge-subtle to-transparent" />
       <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-edge-subtle to-transparent" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-y-12 gap-x-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-y-8 sm:gap-y-12 gap-x-4 sm:gap-x-6">
           {statConfigs.map((stat, i) => (
             <StatItem
               key={stat.labelKey}

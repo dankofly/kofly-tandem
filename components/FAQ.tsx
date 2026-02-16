@@ -79,17 +79,17 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative py-16 lg:py-24 bg-surface-secondary overflow-hidden scroll-mt-20">
+    <section id="faq" className="relative py-12 sm:py-16 lg:py-24 bg-surface-secondary overflow-hidden scroll-mt-20">
       {/* Glow orb */}
       <div className="glow-orb glow-orb-sky w-[400px] h-[400px] top-1/2 -left-40 animate-glow-pulse" aria-hidden="true" />
 
-      <div className="relative z-10 max-w-3xl mx-auto px-6">
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <ScrollReveal className="text-center mb-10">
           <p className="text-sm tracking-premium uppercase text-accent-500 font-semibold">
             {t("tagline")}
           </p>
-          <h2 className="mt-3 text-4xl sm:text-5xl font-black text-content-primary tracking-tight">
+          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-content-primary tracking-tight">
             {t("title")}
           </h2>
           <p className="mt-3 text-sm text-content-muted font-normal max-w-xl mx-auto leading-relaxed">
@@ -114,7 +114,7 @@ export default function FAQ() {
                 {/* Category header */}
                 <button
                   onClick={() => toggleCategory(gi)}
-                  className="w-full flex items-center justify-between px-6 py-5 text-left group cursor-pointer"
+                  className="w-full flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 text-left group cursor-pointer"
                   aria-expanded={isCatOpen}
                 >
                   <div className="flex items-center gap-3">
@@ -144,7 +144,7 @@ export default function FAQ() {
                     isCatOpen ? "max-h-[3000px] opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <div className="px-6 pb-4 divide-y divide-edge-subtle">
+                  <div className="px-4 sm:px-6 pb-4 divide-y divide-edge-subtle">
                     {group.items.map((faq, fi) => {
                       const key = `${gi}-${fi}`;
                       const isOpen = openItem === key;

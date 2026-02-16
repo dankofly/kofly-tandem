@@ -13,7 +13,7 @@ export default async function Packages() {
       name: t("classicName"),
       price: "150",
       note: t("classicNote"),
-      features: [t("classicFeature1"), t("classicFeature2"), t("classicFeature3")],
+      features: [t("classicFeature1"), t("classicFeature2"), t("classicFeature3"), t("classicFeature4")],
       highlighted: false,
     },
     {
@@ -27,20 +27,21 @@ export default async function Packages() {
       name: t("premiumName"),
       price: "190",
       note: t("premiumNote"),
-      features: [t("premiumFeature1"), t("premiumFeature2"), t("premiumFeature3")],
+      features: [t("premiumFeature1"), t("premiumFeature2"), t("premiumFeature3"), t("premiumFeature4")],
       highlighted: true,
     },
     {
       name: t("thermikName"),
       price: "250",
+      pricePrefix: "ab ",
       note: t("thermikNote"),
-      features: [t("thermikFeature1"), t("thermikFeature2"), t("thermikFeature3")],
+      features: [t("thermikFeature1"), t("thermikFeature2"), t("thermikFeature3"), t("thermikFeature4")],
       highlighted: false,
     },
   ];
 
   return (
-    <section id="pakete" className="relative py-16 lg:py-24 overflow-hidden scroll-mt-20">
+    <section id="pakete" className="relative py-12 sm:py-16 lg:py-24 overflow-hidden scroll-mt-20">
       {/* Glow orb */}
       <div className="glow-orb glow-orb-accent w-[500px] h-[500px] -bottom-40 left-1/4 animate-glow-pulse" aria-hidden="true" />
 
@@ -50,7 +51,7 @@ export default async function Packages() {
           <p className="text-sm tracking-premium uppercase text-accent-500 font-semibold">
             {t("tagline")}
           </p>
-          <h2 className="mt-3 text-4xl sm:text-5xl font-black text-content-primary tracking-tight">
+          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-content-primary tracking-tight">
             {t("title")}
           </h2>
           <div className="mt-5 section-divider" />
@@ -76,7 +77,7 @@ export default async function Packages() {
             <ScrollReveal
               key={pkg.name}
               delay={i * 100}
-              className={`relative flex flex-col rounded-2xl p-8 transition-all duration-400 ${
+              className={`relative flex flex-col rounded-2xl p-5 sm:p-8 transition-all duration-400 ${
                 pkg.highlighted
                   ? "glass-card border-accent-500/30 shadow-glow-accent lg:-my-4 lg:py-12"
                   : "glass-card card-hover-glow"
@@ -89,11 +90,14 @@ export default async function Packages() {
               <p className="text-[13px] text-content-subtle font-medium tracking-wide uppercase">
                 {pkg.note}
               </p>
-              <h3 className="mt-2 text-sm font-bold text-content-strong leading-snug min-h-[2.5rem]">
+              <h3 className="mt-2 text-sm font-bold text-content-strong leading-snug min-h-[2.5rem] whitespace-pre-line">
                 {pkg.name}
               </h3>
 
               <div className="mt-5 flex items-baseline gap-1">
+                {pkg.pricePrefix && (
+                  <span className="text-sm font-medium text-content-subtle">{pkg.pricePrefix}</span>
+                )}
                 <span className="text-4xl font-black text-content-primary tracking-tight">
                   {"\u20AC"}{pkg.price}
                 </span>
