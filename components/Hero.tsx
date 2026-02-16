@@ -5,7 +5,10 @@ import { getImageUrl } from "@/lib/images-config";
 import { getTranslations } from "next-intl/server";
 
 export default async function Hero() {
-  const heroImage = await getImageUrl("hero");
+  const [heroImage, heroMobileImage] = await Promise.all([
+    getImageUrl("hero"),
+    getImageUrl("hero-mobile"),
+  ]);
   const t = await getTranslations("Hero");
   const tNav = await getTranslations("Navigation");
 
@@ -17,13 +20,24 @@ export default async function Hero() {
       aria-label={t("ariaLabel")}
       className="relative min-h-screen flex items-center overflow-hidden"
     >
-      {/* Background */}
+      {/* Background — separate images for mobile (9:16) and desktop (16:9) */}
+      {heroMobileImage && (
+        <Image
+          src={heroMobileImage}
+          alt={t("heroImageAlt")}
+          fill
+          className="object-cover sm:hidden"
+          priority
+          sizes="100vw"
+          quality={85}
+        />
+      )}
       {heroImage ? (
         <Image
           src={heroImage}
           alt={t("heroImageAlt")}
           fill
-          className="object-cover"
+          className={`object-cover ${heroMobileImage ? "hidden sm:block" : ""}`}
           priority
           sizes="100vw"
           quality={90}
@@ -49,21 +63,21 @@ export default async function Hero() {
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-6 text-center sm:text-left">
         {/* Slogan */}
-        <p className="hero-enter hero-enter-1 text-[11px] sm:text-sm tracking-[0.2em] sm:tracking-premium uppercase text-hero-secondary font-semibold">
+        <p className="hero-enter hero-enter-1 text-xs sm:text-sm tracking-[0.25em] sm:tracking-premium uppercase text-hero-secondary font-semibold">
           {t("tagline")}
         </p>
 
-        <h1 className="hero-enter hero-enter-2 mt-4 sm:mt-5 leading-[1.08] tracking-tight">
-          <span className="block text-[2.25rem] sm:text-5xl lg:text-7xl font-black uppercase">
+        <h1 className="hero-enter hero-enter-2 mt-5 sm:mt-5 leading-[1.05] tracking-tight">
+          <span className="block text-5xl sm:text-5xl lg:text-7xl font-black uppercase">
             {t("titleLine1")}{t("titleLine2")}
           </span>
-          <span className="block mt-2 sm:mt-3 text-lg sm:text-xl lg:text-2xl font-bold text-hero-secondary">
+          <span className="block mt-3 sm:mt-3 text-xl sm:text-xl lg:text-2xl font-bold text-hero-secondary">
             {t("subtitle")}
           </span>
         </h1>
 
         {/* Description — short on mobile, full on desktop */}
-        <p className="hero-enter hero-enter-3 mt-4 sm:mt-6 text-[15px] sm:text-lg text-hero-secondary leading-relaxed font-light max-w-md sm:max-w-2xl mx-auto sm:mx-0">
+        <p className="hero-enter hero-enter-3 mt-5 sm:mt-6 text-base sm:text-lg text-hero-secondary leading-relaxed font-light max-w-sm sm:max-w-2xl mx-auto sm:mx-0">
           <span className="sm:hidden">{t("descLine1")} {t("descLine2")}</span>
           <span className="hidden sm:inline">
             {t("descLine1")} {t("descLine2")}{" "}

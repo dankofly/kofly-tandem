@@ -1,9 +1,14 @@
 {
   "slots": {
     "hero": {
-      "label": "Hero Hintergrund",
+      "label": "Hero Hintergrund (Desktop)",
       "filename": "hero-1771273007982.jpg",
-      "description": "Hauptbild oben auf der Startseite (empfohlen: 1920x1080)"
+      "description": "Hauptbild oben auf der Startseite – Desktop/Tablet (empfohlen: 1920x1080, Querformat 16:9)"
+    },
+    "hero-mobile": {
+      "label": "Hero Hintergrund (Mobile)",
+      "filename": null,
+      "description": "Hauptbild oben auf der Startseite – Handy (empfohlen: 1080x1920, Hochformat 9:16)"
     },
     "about": {
       "label": "Über uns / Warum wir",
