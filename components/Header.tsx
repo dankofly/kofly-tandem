@@ -40,7 +40,7 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link
@@ -86,7 +86,7 @@ export default function Header() {
           <div className="flex items-center gap-1 lg:hidden">
             <button
               onClick={() => window.dispatchEvent(new Event("open-chat"))}
-              className="relative p-2 text-accent-500 hover:text-accent-400 transition-colors"
+              className="relative p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center text-accent-500 hover:text-accent-400 transition-colors"
               aria-label="Kofly KI öffnen"
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 animate-[pulse_3s_ease-in-out_infinite]">
@@ -98,7 +98,7 @@ export default function Header() {
             </button>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="p-2 text-hero transition-colors"
+            className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center text-hero transition-colors"
             aria-label={menuOpen ? t("menuClose") : t("menuOpen")}
             aria-expanded={menuOpen}
           >
@@ -131,13 +131,13 @@ export default function Header() {
         }`}
       >
         <div className="bg-[var(--bg-header-mobile)] backdrop-blur-xl border-t border-edge-faint">
-          <nav className="max-w-6xl mx-auto px-6 py-6 space-y-0.5" aria-label={t("mobileNavigation")}>
+          <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-6" aria-label={t("mobileNavigation")}>
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="block py-3 text-base text-content-body font-semibold hover:text-accent-400 transition-colors border-b border-edge-faint"
+                className="block py-3.5 text-base text-content-body font-semibold hover:text-accent-400 transition-colors border-b border-edge-faint min-h-[44px]"
               >
                 {item.label}
               </Link>

@@ -152,6 +152,16 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Eliminate 300ms tap delay on mobile for interactive elements */
+a,
+button,
+input,
+select,
+textarea,
+[role="button"] {
+  touch-action: manipulation;
+}
+
 /* Focus states */
 *:focus-visible {
   outline: 2px solid var(--focus-ring);

@@ -79,7 +79,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative py-12 sm:py-16 lg:py-24 bg-surface-secondary overflow-hidden scroll-mt-20">
+    <section id="faq" className="relative py-14 sm:py-16 lg:py-24 bg-surface-secondary overflow-hidden scroll-mt-20">
       {/* Glow orb */}
       <div className="glow-orb glow-orb-sky w-[400px] h-[400px] top-1/2 -left-40 animate-glow-pulse" aria-hidden="true" />
 
@@ -114,11 +114,11 @@ export default function FAQ() {
                 {/* Category header */}
                 <button
                   onClick={() => toggleCategory(gi)}
-                  className="w-full flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 text-left group cursor-pointer"
+                  className="w-full flex items-center justify-between px-4 sm:px-6 py-5 text-left group cursor-pointer min-h-[48px]"
                   aria-expanded={isCatOpen}
                 >
                   <div className="flex items-center gap-3">
-                    <span className={`w-2 h-2 rounded-full transition-colors duration-300 ${isCatOpen ? "bg-accent-500" : "bg-content-subtle"}`} />
+                    <span className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${isCatOpen ? "bg-accent-500" : "bg-content-subtle"}`} />
                     <span className="text-base font-bold text-content-primary group-hover:text-accent-400 transition-colors">
                       {group.category}
                     </span>
@@ -127,7 +127,7 @@ export default function FAQ() {
                     </span>
                   </div>
                   <svg
-                    className={`w-4 h-4 text-content-subtle transition-transform duration-300 flex-shrink-0 ${
+                    className={`w-5 h-5 text-content-subtle transition-transform duration-300 flex-shrink-0 ${
                       isCatOpen ? "rotate-180" : ""
                     }`}
                     fill="none"
@@ -152,7 +152,7 @@ export default function FAQ() {
                         <div key={key}>
                           <button
                             onClick={() => setOpenItem(isOpen ? null : key)}
-                            className="w-full flex items-center justify-between py-4 text-left group cursor-pointer"
+                            className="w-full flex items-center justify-between py-4 text-left group cursor-pointer min-h-[44px]"
                             aria-expanded={isOpen}
                           >
                             <span className="text-sm font-semibold text-content-strong pr-6 group-hover:text-accent-400 transition-colors leading-snug">
@@ -163,7 +163,7 @@ export default function FAQ() {
                                 isOpen ? "rotate-45" : ""
                               }`}
                             >
-                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.5v15m7.5-7.5h-15" />
                               </svg>
                             </span>

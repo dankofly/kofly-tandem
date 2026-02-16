@@ -65,13 +65,13 @@ function ReviewCard({ review, locale }: { review: Review; locale: string }) {
       : review.text;
 
   return (
-    <article className="glass-card card-hover-glow rounded-2xl p-5 sm:p-8 flex flex-col">
+    <article className="glass-card card-hover-glow rounded-2xl p-6 sm:p-8 flex flex-col">
       {/* Stars */}
       <div className="flex gap-0.5 mb-4">
         {Array.from({ length: 5 }).map((_, i) => (
           <svg
             key={i}
-            className="w-3.5 h-3.5 text-accent-500"
+            className="w-4 h-4 text-accent-500"
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -85,7 +85,7 @@ function ReviewCard({ review, locale }: { review: Review; locale: string }) {
       {long && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="mt-3 text-xs font-medium text-accent-400 hover:text-accent-500 self-start transition-colors cursor-pointer tracking-wide uppercase"
+          className="mt-3 text-sm font-medium text-accent-400 hover:text-accent-500 self-start transition-colors cursor-pointer tracking-wide uppercase py-1"
         >
           {expanded ? t("readLess") : t("readMore")}
         </button>
@@ -149,7 +149,7 @@ function RatingBadge() {
     <div className="mb-8 flex justify-center">
       <div
         ref={ref}
-        className={`inline-flex items-center gap-4 glass-card rounded-full px-8 py-4 border border-accent-500/20 shadow-[0_0_30px_rgba(232,104,48,0.1)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`inline-flex items-center flex-wrap justify-center gap-3 sm:gap-4 glass-card rounded-full px-5 sm:px-8 py-3 sm:py-4 border border-accent-500/20 shadow-[0_0_30px_rgba(232,104,48,0.1)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           visible ? "opacity-100 scale-100" : "opacity-0 scale-[0.92]"
         }`}
       >
@@ -169,7 +169,7 @@ function RatingBadge() {
         </div>
 
         {/* Score */}
-        <span className="text-2xl font-bold text-accent-500 tracking-tight">5,0</span>
+        <span className="text-xl sm:text-2xl font-bold text-accent-500 tracking-tight">5,0</span>
 
         {/* Divider */}
         <span className="w-px h-6 bg-[var(--border-default)]" aria-hidden="true" />
@@ -191,9 +191,9 @@ export default function Reviews() {
   const locale = useLocale();
 
   return (
-    <section id="bewertungen" className="relative py-12 sm:py-16 lg:py-24 overflow-hidden scroll-mt-20">
+    <section id="bewertungen" className="relative py-14 sm:py-16 lg:py-24 overflow-hidden scroll-mt-20">
       {/* Glow orb */}
-      <div className="glow-orb glow-orb-sky w-[500px] h-[500px] top-20 right-0 animate-glow-pulse" aria-hidden="true" />
+      <div className="glow-orb glow-orb-sky w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] top-20 right-0 animate-glow-pulse" aria-hidden="true" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         {/* Header */}

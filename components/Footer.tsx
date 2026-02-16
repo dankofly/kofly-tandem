@@ -6,7 +6,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-surface-primary border-t border-edge-faint">
-      <div className="max-w-5xl mx-auto px-6 py-16 lg:py-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16 lg:py-20">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
@@ -26,7 +26,7 @@ export default function Footer() {
             <h4 className="text-[13px] font-semibold uppercase tracking-premium text-content-faint mb-4">
               {t("navigation")}
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {[
                 { label: t("erlebnis"), href: "/#erlebnis" },
                 { label: t("ablauf"), href: "/ablauf" },
@@ -52,7 +52,7 @@ export default function Footer() {
             <h4 className="text-[13px] font-semibold uppercase tracking-premium text-content-faint mb-4">
               {t("buchen")}
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               <li>
                 <Link
                   href="/buchen"
@@ -77,7 +77,7 @@ export default function Footer() {
             <h4 className="text-[13px] font-semibold uppercase tracking-premium text-content-faint mb-4">
               {t("kontakt")}
             </h4>
-            <div className="space-y-2.5">
+            <div className="space-y-3">
               <a
                 href="tel:+436767293888"
                 className="block text-sm text-content-muted hover:text-accent-400 transition-colors font-light"

@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getImageUrl } from "@/lib/images-config";
 
 const SITE_URL = "https://www.gleitschirm-tandemflug.com";
+
+const rich = {
+  b: (chunks: ReactNode) => (
+    <strong className="font-semibold text-content-strong">{chunks}</strong>
+  ),
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");
@@ -24,6 +31,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function AblaufPage() {
   const t = await getTranslations("Ablauf");
+
+  const r = (key: string) => t.rich(key, rich);
 
   const [ablaufHero, ablaufFlug, ablaufLanding] = await Promise.all([
     getImageUrl("ablauf-hero"),
@@ -77,9 +86,9 @@ export default async function AblaufPage() {
           <div className="mt-6 section-divider !mx-0" />
 
           <div className="mt-8 space-y-5 text-base sm:text-lg text-content-body leading-relaxed font-light">
-            <p>{t("heroP1")}</p>
-            <p>{t("heroP2")}</p>
-            <p>{t("heroP3")}</p>
+            <p>{r("heroP1")}</p>
+            <p>{r("heroP2")}</p>
+            <p>{r("heroP3")}</p>
           </div>
         </div>
       </section>
@@ -96,10 +105,10 @@ export default async function AblaufPage() {
             </h2>
             <div className="mt-6 section-divider !mx-0" />
 
-            <div className="mt-8 space-y-4 text-sm text-content-body leading-relaxed font-light">
-              <p>{t("safetyP1")}</p>
-              <p>{t("safetyP2")}</p>
-              <p>{t("safetyP3")}</p>
+            <div className="mt-8 space-y-5 text-base text-content-body leading-relaxed font-light">
+              <p>{r("safetyP1")}</p>
+              <p>{r("safetyP2")}</p>
+              <p>{r("safetyP3")}</p>
             </div>
           </div>
         </div>
@@ -122,13 +131,13 @@ export default async function AblaufPage() {
                     {t("step01Title")}
                   </h2>
                 </div>
-                <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
-                  <p>{t("step01P1")}</p>
-                  <p>{t("step01P2")}</p>
+                <div className="mt-4 space-y-4 text-base text-content-body leading-relaxed font-light">
+                  <p>{r("step01P1")}</p>
+                  <p>{r("step01P2")}</p>
                 </div>
 
                 <div className="highlight-glow mt-6 bg-accent-500/5 border border-accent-500/20 rounded-sm px-5 py-4 text-sm text-content-body">
-                  <p>{t("step01Hint")}</p>
+                  <p>{r("step01Hint")}</p>
                 </div>
               </div>
             </div>
@@ -153,11 +162,11 @@ export default async function AblaufPage() {
                     {t("step02Title")}
                   </h2>
                 </div>
-                <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
-                  <p>{t("step02P1")}</p>
-                  <p>{t("step02P2")}</p>
-                  <p>{t("step02P3")}</p>
-                  <p>{t("step02P4")}</p>
+                <div className="mt-4 space-y-4 text-base text-content-body leading-relaxed font-light">
+                  <p>{r("step02P1")}</p>
+                  <p>{r("step02P2")}</p>
+                  <p>{r("step02P3")}</p>
+                  <p>{r("step02P4")}</p>
                 </div>
               </div>
             </div>
@@ -182,10 +191,10 @@ export default async function AblaufPage() {
                     {t("step03Title")}
                   </h2>
                 </div>
-                <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
-                  <p>{t("step03P1")}</p>
-                  <p>{t("step03P2")}</p>
-                  <p>{t("step03P3")}</p>
+                <div className="mt-4 space-y-4 text-base text-content-body leading-relaxed font-light">
+                  <p>{r("step03P1")}</p>
+                  <p>{r("step03P2")}</p>
+                  <p>{r("step03P3")}</p>
                 </div>
 
                 <div className="highlight-glow mt-6 bg-accent-500/5 border border-accent-500/20 rounded-sm px-5 py-4 text-sm text-content-body">
@@ -231,13 +240,13 @@ export default async function AblaufPage() {
                     {t("step04Title")}
                   </h2>
                 </div>
-                <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
-                  <p>{t("step04P1")}</p>
-                  <p>{t("step04P2")}</p>
+                <div className="mt-4 space-y-4 text-base text-content-body leading-relaxed font-light">
+                  <p>{r("step04P1")}</p>
+                  <p>{r("step04P2")}</p>
                 </div>
 
                 <div className="highlight-glow mt-6 bg-accent-500/5 border border-accent-500/20 rounded-sm px-5 py-4 text-sm text-content-body">
-                  <p>{t("step04Hint")}</p>
+                  <p>{r("step04Hint")}</p>
                 </div>
               </div>
             </div>
@@ -262,10 +271,10 @@ export default async function AblaufPage() {
                     {t("step05Title")}
                   </h2>
                 </div>
-                <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
-                  <p>{t("step05P1")}</p>
-                  <p>{t("step05P2")}</p>
-                  <p>{t("step05P3")}</p>
+                <div className="mt-4 space-y-4 text-base text-content-body leading-relaxed font-light">
+                  <p>{r("step05P1")}</p>
+                  <p>{r("step05P2")}</p>
+                  <p>{r("step05P3")}</p>
                 </div>
               </div>
             </div>
@@ -290,13 +299,13 @@ export default async function AblaufPage() {
                     {t("step06Title")}
                   </h2>
                 </div>
-                <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
-                  <p>{t("step06P1")}</p>
-                  <p>{t("step06P2")}</p>
+                <div className="mt-4 space-y-4 text-base text-content-body leading-relaxed font-light">
+                  <p>{r("step06P1")}</p>
+                  <p>{r("step06P2")}</p>
                 </div>
 
                 <div className="highlight-glow mt-6 bg-accent-500/5 border border-accent-500/20 rounded-sm px-5 py-4 text-sm text-content-body">
-                  <p>{t("step06Hint")}</p>
+                  <p>{r("step06Hint")}</p>
                 </div>
               </div>
             </div>
@@ -321,10 +330,10 @@ export default async function AblaufPage() {
                     {t("step07Title")}
                   </h2>
                 </div>
-                <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
-                  <p>{t("step07P1")}</p>
-                  <p>{t("step07P2")}</p>
-                  <p>{t("step07P3")}</p>
+                <div className="mt-4 space-y-4 text-base text-content-body leading-relaxed font-light">
+                  <p>{r("step07P1")}</p>
+                  <p>{r("step07P2")}</p>
+                  <p>{r("step07P3")}</p>
                 </div>
               </div>
             </div>
@@ -351,10 +360,10 @@ export default async function AblaufPage() {
                     {t("step08Title")}
                   </h2>
                 </div>
-                <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
-                  <p>{t("step08P1")}</p>
-                  <p>{t("step08P2")}</p>
-                  <p>{t("step08P3")}</p>
+                <div className="mt-4 space-y-4 text-base text-content-body leading-relaxed font-light">
+                  <p>{r("step08P1")}</p>
+                  <p>{r("step08P2")}</p>
+                  <p>{r("step08P3")}</p>
                 </div>
                 {ablaufFlug && (
                   <div className="mt-6 rounded-xl overflow-hidden border border-edge-faint">
@@ -390,10 +399,10 @@ export default async function AblaufPage() {
                     {t("step09Title")}
                   </h2>
                 </div>
-                <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
-                  <p>{t("step09P1")}</p>
-                  <p>{t("step09P2")}</p>
-                  <p className="text-content-subtle text-xs">{t("step09P3")}</p>
+                <div className="mt-4 space-y-4 text-base text-content-body leading-relaxed font-light">
+                  <p>{r("step09P1")}</p>
+                  <p>{r("step09P2")}</p>
+                  <p className="text-content-subtle text-xs">{r("step09P3")}</p>
                 </div>
                 {ablaufLanding && (
                   <div className="mt-6 rounded-xl overflow-hidden border border-edge-faint">
@@ -429,13 +438,13 @@ export default async function AblaufPage() {
                     {t("step10Title")}
                   </h2>
                 </div>
-                <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
-                  <p>{t("step10P1")}</p>
-                  <p>{t("step10P2")}</p>
+                <div className="mt-4 space-y-4 text-base text-content-body leading-relaxed font-light">
+                  <p>{r("step10P1")}</p>
+                  <p>{r("step10P2")}</p>
                 </div>
 
                 <div className="highlight-glow mt-6 bg-accent-500/5 border border-accent-500/20 rounded-sm px-5 py-4 text-sm text-content-body">
-                  <p>{t("step10Hint")}</p>
+                  <p>{r("step10Hint")}</p>
                 </div>
               </div>
             </div>
@@ -452,8 +461,8 @@ export default async function AblaufPage() {
             {t("closeQuote")}
           </p>
           <div className="mt-8 space-y-5 text-base sm:text-lg text-content-body leading-relaxed font-light">
-            <p>{t("closeP1")}</p>
-            <p>{t("closeP2")}</p>
+            <p>{r("closeP1")}</p>
+            <p>{r("closeP2")}</p>
           </div>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">

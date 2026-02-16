@@ -149,9 +149,9 @@ export default function ChatBot() {
             {isLoading && (
               <div className="flex justify-start">
                 <div className="bg-surface-secondary rounded-2xl rounded-bl-md px-4 py-3 flex gap-1">
-                  <span className="w-2 h-2 rounded-full bg-content-muted animate-bounce [animation-delay:0ms]" />
-                  <span className="w-2 h-2 rounded-full bg-content-muted animate-bounce [animation-delay:150ms]" />
-                  <span className="w-2 h-2 rounded-full bg-content-muted animate-bounce [animation-delay:300ms]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-content-muted animate-bounce [animation-delay:0ms]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-content-muted animate-bounce [animation-delay:150ms]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-content-muted animate-bounce [animation-delay:300ms]" />
                 </div>
               </div>
             )}
@@ -224,7 +224,7 @@ export default function ChatBot() {
                 <button
                   type="submit"
                   disabled={!input.trim() || isLoading}
-                  className="w-9 h-9 flex items-center justify-center rounded-xl bg-accent-500 hover:bg-accent-400 text-white disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 flex-shrink-0"
+                  className="w-10 h-10 sm:w-9 sm:h-9 flex items-center justify-center rounded-xl bg-accent-500 hover:bg-accent-400 text-white disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 flex-shrink-0"
                   aria-label={t("sendLabel")}
                 >
                   <svg
