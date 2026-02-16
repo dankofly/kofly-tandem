@@ -22,7 +22,7 @@ const statConfigs: StatConfig[] = [
     ),
   },
   {
-    value: 1000,
+    value: 10000,
     suffix: "+",
     labelKey: "tandemFlights",
     icon: (

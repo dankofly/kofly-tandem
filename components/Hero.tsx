@@ -26,7 +26,7 @@ export default async function Hero() {
           className="object-cover"
           priority
           sizes="100vw"
-          quality={85}
+          quality={90}
         />
       ) : (
         <div

@@ -60,8 +60,8 @@
 
   /* Hero gradient */
   --hero-gradient: linear-gradient(160deg, #0a1a22 0%, #142832 40%, #1e3a48 100%);
-  --hero-overlay-from: rgba(10, 26, 34, 0.9);
-  --hero-overlay-to: rgba(10, 26, 34, 0.6);
+  --hero-overlay-from: rgba(10, 26, 34, 0.7);
+  --hero-overlay-to: rgba(10, 26, 34, 0.4);
 
   /* Focus */
   --focus-ring: #e86830;
@@ -126,8 +126,8 @@
 
   /* Hero gradient – light version */
   --hero-gradient: linear-gradient(160deg, #eef3f6 0%, #dfe8ed 40%, #d0dde5 100%);
-  --hero-overlay-from: rgba(248, 250, 251, 0.7);
-  --hero-overlay-to: rgba(248, 250, 251, 0.4);
+  --hero-overlay-from: rgba(248, 250, 251, 0.5);
+  --hero-overlay-to: rgba(248, 250, 251, 0.25);
 
   /* Hero / Header overlay text */
   --hero-text: #0a1a22;
@@ -415,7 +415,7 @@ body {
 }
 
 .ticker-track {
-  animation: ticker-scroll 15s linear infinite;
+  animation: ticker-scroll 8s linear infinite;
 }
 
 @media (min-width: 640px) {
