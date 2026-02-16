@@ -37,8 +37,11 @@ export default function ChatBot() {
     },
   ];
 
-  const { messages, sendMessage, status } = useChat({
+  const { messages, sendMessage, status, error } = useChat({
     messages: initialMessages,
+    onError: (err) => {
+      console.error("Chat error:", err);
+    },
   });
 
   const isLoading = status === "submitted" || status === "streaming";
@@ -149,6 +152,15 @@ export default function ChatBot() {
                   <span className="w-2 h-2 rounded-full bg-content-muted animate-bounce [animation-delay:0ms]" />
                   <span className="w-2 h-2 rounded-full bg-content-muted animate-bounce [animation-delay:150ms]" />
                   <span className="w-2 h-2 rounded-full bg-content-muted animate-bounce [animation-delay:300ms]" />
+                </div>
+              </div>
+            )}
+
+            {/* Error message */}
+            {error && (
+              <div className="flex justify-start">
+                <div className="max-w-[85%] px-3 py-2 rounded-2xl text-sm leading-relaxed bg-red-100 text-red-700 rounded-bl-md">
+                  Etwas ist schiefgelaufen. Bitte versuche es erneut.
                 </div>
               </div>
             )}
