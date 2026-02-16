@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     const modelMessages = await convertToModelMessages(messages);
 
     const result = streamText({
-      model: openrouter("openai/gpt-4o-mini"),
+      model: openrouter.chat("openai/gpt-4o-mini"),
       system: systemPrompt,
       messages: modelMessages,
     });
