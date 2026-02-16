@@ -79,7 +79,7 @@ export default async function Packages() {
               delay={i * 100}
               className={`relative flex flex-col rounded-2xl p-6 sm:p-8 transition-all duration-400 ${
                 pkg.highlighted
-                  ? "glass-card border-accent-500/30 shadow-glow-accent lg:-my-4 lg:py-12"
+                  ? "glass-card premium-shimmer border-accent-500/30 shadow-glow-accent lg:-my-4 lg:py-12"
                   : "glass-card card-hover-glow"
               }`}
             >
@@ -115,7 +115,7 @@ export default async function Packages() {
 
               <Link
                 href="/buchen"
-                className={`mt-6 block text-center px-6 py-3.5 rounded-lg text-sm font-semibold tracking-wide uppercase transition-all duration-300 min-h-[44px] ${
+                className={`btn-press mt-6 block text-center px-6 py-3.5 rounded-lg text-sm font-semibold tracking-wide uppercase transition-all duration-300 min-h-[44px] ${
                   pkg.highlighted
                     ? "bg-accent-500 hover:bg-accent-400 text-white btn-glow"
                     : "border border-edge-secondary hover:border-accent-500/50 text-content-body hover:text-content-primary"

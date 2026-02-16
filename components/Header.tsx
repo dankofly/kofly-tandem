@@ -45,7 +45,7 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="text-base font-extrabold tracking-premium uppercase text-hero transition-colors duration-300"
+            className="text-base font-extrabold tracking-premium uppercase text-hero transition-all duration-300 hover:scale-105"
           >
             KOFLY
           </Link>
@@ -56,7 +56,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[13px] font-semibold tracking-wide uppercase text-hero-secondary hover:text-hero transition-colors duration-300"
+                className="nav-underline text-[13px] font-semibold tracking-wide uppercase text-hero-secondary hover:text-hero transition-colors duration-300"
               >
                 {item.label}
               </Link>
@@ -132,12 +132,13 @@ export default function Header() {
       >
         <div className="bg-[var(--bg-header-mobile)] backdrop-blur-xl border-t border-edge-faint">
           <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-6" aria-label={t("mobileNavigation")}>
-            {navItems.map((item) => (
+            {navItems.map((item, i) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="block py-3.5 text-base text-content-body font-semibold hover:text-accent-400 transition-colors border-b border-edge-faint min-h-[44px]"
+                className={`block py-3.5 text-base text-content-body font-semibold hover:text-accent-400 transition-colors border-b border-edge-faint min-h-[44px] ${menuOpen ? "menu-stagger" : ""}`}
+                style={menuOpen ? { animationDelay: `${i * 60}ms` } : undefined}
               >
                 {item.label}
               </Link>

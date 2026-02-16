@@ -136,8 +136,8 @@ export default function ChatBot() {
                 <div
                   className={`max-w-[85%] px-3 py-2 rounded-2xl text-sm leading-relaxed ${
                     message.role === "user"
-                      ? "bg-accent-500 text-white rounded-br-md"
-                      : "bg-surface-secondary text-content-body rounded-bl-md"
+                      ? "bg-accent-500 text-white rounded-br-md msg-in-right"
+                      : "bg-surface-secondary text-content-body rounded-bl-md msg-in-left"
                   }`}
                 >
                   {getMessageText(message)}

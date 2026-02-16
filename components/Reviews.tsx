@@ -65,7 +65,7 @@ function ReviewCard({ review, locale }: { review: Review; locale: string }) {
       : review.text;
 
   return (
-    <article className="glass-card card-hover-glow rounded-2xl p-6 sm:p-8 flex flex-col">
+    <article className="glass-card card-hover-glow rounded-2xl p-6 sm:p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
       {/* Stars */}
       <div className="flex gap-0.5 mb-4">
         {Array.from({ length: 5 }).map((_, i) => (

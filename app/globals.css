@@ -440,6 +440,167 @@ textarea,
   }
 }
 
+/* ===== Whimsy: Micro-interaction utilities ===== */
+
+/* Nav-Link animated underline (Desktop) */
+.nav-underline {
+  position: relative;
+}
+
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-500);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Social icon hover — playful scale + rotate */
+.social-hover {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.social-hover:hover {
+  transform: scale(1.15) rotate(6deg);
+}
+
+/* Theme toggle spin */
+.theme-spin {
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-spin:hover {
+  transform: rotate(15deg);
+}
+
+/* Scroll indicator bounce */
+@keyframes scroll-hint {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.3); }
+}
+
+.animate-scroll-hint {
+  animation: scroll-hint 2s ease-in-out infinite;
+}
+
+/* Chat message slide-in */
+@keyframes msg-slide-left {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes msg-slide-right {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.msg-in-left {
+  animation: msg-slide-left 0.3s ease-out both;
+}
+
+.msg-in-right {
+  animation: msg-slide-right 0.3s ease-out both;
+}
+
+/* Booking success checkmark pop */
+@keyframes check-pop {
+  0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+  60% { transform: scale(1.2) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+.check-pop {
+  animation: check-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Glow pulse for orbs */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* Button press — tactile active feedback */
+.btn-press {
+  transition: transform 0.1s ease;
+}
+
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+/* Mobile menu stagger slide-in */
+@keyframes menu-slide-in {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.menu-stagger {
+  animation: menu-slide-in 0.4s ease-out both;
+}
+
+/* Premium card shimmer sweep */
+@keyframes card-shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+.premium-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(232, 104, 48, 0.06), transparent);
+  animation: card-shimmer 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Stats icon bounce on count finish */
+@keyframes icon-pop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.icon-pop {
+  animation: icon-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Review card expand text */
+.review-expand {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.review-expand.open {
+  grid-template-rows: 1fr;
+}
+
+.review-expand > div {
+  overflow: hidden;
+}
+
 /* Reduced motion: respect user preference */
 @media (prefers-reduced-motion: reduce) {
   .shimmer-text,
@@ -448,8 +609,20 @@ textarea,
   .glow-orb,
   .ticker-track,
   .hero-enter,
-  .star-pop-in {
+  .star-pop-in,
+  .msg-in-left,
+  .msg-in-right,
+  .check-pop,
+  .animate-glow-pulse,
+  .menu-stagger,
+  .icon-pop,
+  .animate-scroll-hint {
     animation: none !important;
+  }
+
+  .premium-shimmer::after {
+    animation: none !important;
+    display: none;
   }
 
   .star-init {
@@ -464,8 +637,15 @@ textarea,
   }
 
   .flight-card:hover,
-  .cta-lift:hover {
+  .cta-lift:hover,
+  .social-hover:hover,
+  .theme-spin:hover,
+  .btn-press:active {
     transform: none !important;
+  }
+
+  .nav-underline::after {
+    transition: none;
   }
 
   .step-card::before {

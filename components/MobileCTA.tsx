@@ -11,7 +11,7 @@ export default function MobileCTA() {
       <div className="flex gap-2.5 max-w-lg mx-auto">
         <Link
           href="/buchen"
-          className="btn-glow flex-1 inline-flex items-center justify-center px-4 py-3 rounded-lg bg-accent-500 hover:bg-accent-400 text-white text-sm font-bold tracking-wide uppercase transition-colors min-h-[44px]"
+          className="btn-glow btn-press flex-1 inline-flex items-center justify-center px-4 py-3 rounded-lg bg-accent-500 hover:bg-accent-400 text-white text-sm font-bold tracking-wide uppercase transition-colors min-h-[44px]"
         >
           {t("anfragen")}
         </Link>
@@ -19,7 +19,7 @@ export default function MobileCTA() {
           href="https://wa.me/436767293888"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[#25D366]/10 border border-[#25D366]/30 hover:bg-[#25D366]/20 hover:border-[#25D366]/50 text-[#25D366] text-sm font-bold tracking-wide uppercase transition-all min-h-[44px]"
+          className="btn-press flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[#25D366]/10 border border-[#25D366]/30 hover:bg-[#25D366]/20 hover:border-[#25D366]/50 text-[#25D366] text-sm font-bold tracking-wide uppercase transition-all min-h-[44px]"
           aria-label={t("whatsappLabel")}
         >
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

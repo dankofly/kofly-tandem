@@ -18,7 +18,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="p-2 text-content-muted hover:text-accent-400 transition-colors duration-300 cursor-pointer"
+      className="theme-spin p-2 text-content-muted hover:text-accent-400 transition-colors duration-300 cursor-pointer"
       aria-label={
         isDark
           ? "Zum hellen Modus wechseln"

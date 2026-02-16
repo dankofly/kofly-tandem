@@ -98,6 +98,7 @@ function useCountUp(target: number, duration: number, started: boolean) {
 function StatItem({ stat, label, visible, delay }: { stat: StatConfig; label: string; visible: boolean; delay: number }) {
   const [started, setStarted] = useState(false);
   const count = useCountUp(stat.value, 2000, started);
+  const finished = started && count === stat.value;
 
   useEffect(() => {
     if (!visible) return;
@@ -112,7 +113,7 @@ function StatItem({ stat, label, visible, delay }: { stat: StatConfig; label: st
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <span className="text-accent-500">{stat.icon}</span>
+      <span className={`text-accent-500 ${finished ? "icon-pop" : ""}`}>{stat.icon}</span>
       <span className="text-2xl sm:text-3xl lg:text-4xl font-black text-content-primary tracking-tight tabular-nums">
         {count}{stat.suffix}
       </span>
