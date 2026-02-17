@@ -264,7 +264,8 @@
     "fotoNein": "Nee, bedankt",
     "nachricht": "Bericht (optioneel)",
     "nachrichtPlaceholder": "Bijzondere wensen, vragen of opmerkingen ...",
-    "voraussetzungen": "Ik heb de voorwaarden gelezen (ideaal tot 110 kg, BMI-richtwaarde 27, kinderen onder 40 kg op aanvraag). *",
+    "agbConsent": "Ik heb de <link>Algemene Voorwaarden</link> gelezen en accepteer deze. *",
+    "datenschutzConsent": "Ik stem in met de verwerking van mijn gegevens conform de <link>Privacyverklaring</link> voor de afhandeling van mijn aanvraag. *",
     "submitting": "Wordt verzonden \u2026",
     "submit": "Afspraak aanvragen",
     "successTitle": "Aanvraag ontvangen",
@@ -298,7 +299,9 @@
     "successTitle": "Cadeaubonbestelling ontvangen",
     "successText": "Wij sturen je een bevestiging met de betalingsgegevens. Na ontvangst van de betaling ontvang je de cadeaubon incl. informatiemateriaal.",
     "errorText": "Er is een fout opgetreden. Probeer het opnieuw of neem rechtstreeks contact met ons op via WhatsApp.",
-    "paymentNote": "Betaling per overschrijving. Na ontvangst van de betaling ontvang je een bevestiging en de cadeaubon incl. informatiemateriaal."
+    "paymentNote": "Betaling per overschrijving. Na ontvangst van de betaling ontvang je een bevestiging en de cadeaubon incl. informatiemateriaal.",
+    "agbConsent": "Ik heb de <link>Algemene Voorwaarden</link> gelezen en accepteer deze. *",
+    "datenschutzConsent": "Ik stem in met de verwerking van mijn gegevens conform de <link>Privacyverklaring</link> voor de afhandeling van mijn bestelling. *"
   },
   "ChatBot": {
     "openChat": "Kofly KI openen",

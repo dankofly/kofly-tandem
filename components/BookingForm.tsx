@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 const weightRanges = [
   "40\u201350 kg",
@@ -15,6 +15,7 @@ const weightRanges = [
 
 export default function BookingForm() {
   const t = useTranslations("BookingForm");
+  const locale = useLocale();
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -238,17 +239,43 @@ export default function BookingForm() {
         />
       </div>
 
-      {/* Checkbox */}
+      {/* AGB Checkbox */}
       <div className="flex items-start gap-3">
         <input
           type="checkbox"
-          id="voraussetzungen"
-          name="voraussetzungen"
+          id="agb"
+          name="agb"
           required
           className="mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
         />
-        <label htmlFor="voraussetzungen" className="text-sm text-content-muted">
-          {t("voraussetzungen")}
+        <label htmlFor="agb" className="text-sm text-content-muted">
+          {t.rich("agbConsent", {
+            link: (chunks) => (
+              <a href={`/${locale}/agb`} target="_blank" rel="noopener noreferrer" className="text-accent-500 hover:text-accent-400 underline underline-offset-2">
+                {chunks}
+              </a>
+            ),
+          })}
+        </label>
+      </div>
+
+      {/* Datenschutz Checkbox */}
+      <div className="flex items-start gap-3">
+        <input
+          type="checkbox"
+          id="datenschutz"
+          name="datenschutz"
+          required
+          className="mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
+        />
+        <label htmlFor="datenschutz" className="text-sm text-content-muted">
+          {t.rich("datenschutzConsent", {
+            link: (chunks) => (
+              <a href={`/${locale}/datenschutz`} target="_blank" rel="noopener noreferrer" className="text-accent-500 hover:text-accent-400 underline underline-offset-2">
+                {chunks}
+              </a>
+            ),
+          })}
         </label>
       </div>
 

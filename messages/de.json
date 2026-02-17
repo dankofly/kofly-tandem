@@ -264,7 +264,8 @@
     "fotoNein": "Nein, danke",
     "nachricht": "Nachricht (optional)",
     "nachrichtPlaceholder": "Besondere Wünsche, Fragen oder Anmerkungen ...",
-    "voraussetzungen": "Ich habe die Voraussetzungen gelesen (ideal bis 110 kg, BMI-Richtwert 28, Kinder unter 30 kg auf Anfrage). *",
+    "agbConsent": "Ich habe die <link>AGB</link> gelesen und akzeptiere diese. *",
+    "datenschutzConsent": "Ich stimme der Verarbeitung meiner Daten gem\u00e4\u00df der <link>Datenschutzerkl\u00e4rung</link> zur Bearbeitung meiner Anfrage zu. *",
     "submitting": "Wird gesendet …",
     "submit": "Termin anfragen",
     "successTitle": "Anfrage erhalten",
@@ -298,7 +299,9 @@
     "successTitle": "Gutschein-Bestellung erhalten",
     "successText": "Wir senden dir eine Bestätigung mit den Zahlungsinformationen. Nach Zahlungseingang erhältst du den Gutschein inkl. Informationsmaterial.",
     "errorText": "Es ist ein Fehler aufgetreten. Bitte versuche es erneut oder kontaktiere uns direkt per WhatsApp.",
-    "paymentNote": "Zahlung per Überweisung. Nach Zahlungseingang erhältst du eine Bestätigung und den Gutschein inkl. Informationsmaterial."
+    "paymentNote": "Zahlung per Überweisung. Nach Zahlungseingang erhältst du eine Bestätigung und den Gutschein inkl. Informationsmaterial.",
+    "agbConsent": "Ich habe die <link>AGB</link> gelesen und akzeptiere diese. *",
+    "datenschutzConsent": "Ich stimme der Verarbeitung meiner Daten gem\u00e4\u00df der <link>Datenschutzerkl\u00e4rung</link> zur Bearbeitung meiner Bestellung zu. *"
   },
   "ChatBot": {
     "openChat": "Kofly KI öffnen",

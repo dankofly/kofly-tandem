@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 const showMediaAddon = (paket: string) =>
   paket === "premium" || paket === "thermik" || paket === "classic";
 
 export default function VoucherForm() {
   const t = useTranslations("VoucherForm");
+  const locale = useLocale();
   const [paket, setPaket] = useState("premium");
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -227,6 +228,46 @@ export default function VoucherForm() {
           className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors resize-y"
           placeholder={t("nachrichtPlaceholder")}
         />
+      </div>
+
+      {/* AGB Checkbox */}
+      <div className="flex items-start gap-3">
+        <input
+          type="checkbox"
+          id="voucher_agb"
+          name="agb"
+          required
+          className="mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
+        />
+        <label htmlFor="voucher_agb" className="text-sm text-content-muted">
+          {t.rich("agbConsent", {
+            link: (chunks) => (
+              <a href={`/${locale}/agb`} target="_blank" rel="noopener noreferrer" className="text-accent-500 hover:text-accent-400 underline underline-offset-2">
+                {chunks}
+              </a>
+            ),
+          })}
+        </label>
+      </div>
+
+      {/* Datenschutz Checkbox */}
+      <div className="flex items-start gap-3">
+        <input
+          type="checkbox"
+          id="voucher_datenschutz"
+          name="datenschutz"
+          required
+          className="mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
+        />
+        <label htmlFor="voucher_datenschutz" className="text-sm text-content-muted">
+          {t.rich("datenschutzConsent", {
+            link: (chunks) => (
+              <a href={`/${locale}/datenschutz`} target="_blank" rel="noopener noreferrer" className="text-accent-500 hover:text-accent-400 underline underline-offset-2">
+                {chunks}
+              </a>
+            ),
+          })}
+        </label>
       </div>
 
       {error && (

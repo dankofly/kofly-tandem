@@ -264,7 +264,8 @@
     "fotoNein": "No, thank you",
     "nachricht": "Message (optional)",
     "nachrichtPlaceholder": "Special requests, questions, or notes ...",
-    "voraussetzungen": "I have read the requirements (ideal up to 110 kg, BMI guideline 27, children under 40 kg upon request). *",
+    "agbConsent": "I have read and accept the <link>Terms & Conditions</link>. *",
+    "datenschutzConsent": "I consent to the processing of my data in accordance with the <link>Privacy Policy</link> to handle my enquiry. *",
     "submitting": "Sending \u2026",
     "submit": "Request an appointment",
     "successTitle": "Enquiry received",
@@ -298,7 +299,9 @@
     "successTitle": "Voucher order received",
     "successText": "We\u2019ll send you a confirmation with the payment details. Upon receipt of payment, you\u2019ll receive the voucher including information material.",
     "errorText": "An error occurred. Please try again or contact us directly via WhatsApp.",
-    "paymentNote": "Payment by bank transfer. Upon receipt of payment, you\u2019ll receive a confirmation and the voucher including information material."
+    "paymentNote": "Payment by bank transfer. Upon receipt of payment, you\u2019ll receive a confirmation and the voucher including information material.",
+    "agbConsent": "I have read and accept the <link>Terms & Conditions</link>. *",
+    "datenschutzConsent": "I consent to the processing of my data in accordance with the <link>Privacy Policy</link> to handle my order. *"
   },
   "ChatBot": {
     "openChat": "Open Kofly AI",
