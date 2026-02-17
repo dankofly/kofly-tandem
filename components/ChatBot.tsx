@@ -44,6 +44,7 @@ export default function ChatBot() {
 
   const isLoading = status === "submitted" || status === "streaming";
   const userMessageCount = messages.filter((m) => m.role === "user").length;
+  const showQuickReplies = userMessageCount === 0 && !isLoading;
   const showWhatsAppCTA = userMessageCount >= 2;
   const isRateLimited = messageCount >= MAX_MESSAGES;
 
@@ -142,6 +143,24 @@ export default function ChatBot() {
                 </div>
               </div>
             ))}
+
+            {/* Quick-reply buttons */}
+            {showQuickReplies && (
+              <div className="flex flex-col gap-2 px-1">
+                {[t("quickReply1"), t("quickReply2"), t("quickReply3")].map((text) => (
+                  <button
+                    key={text}
+                    onClick={() => {
+                      sendMessage({ text });
+                      setMessageCount((c) => c + 1);
+                    }}
+                    className="text-left text-sm px-3 py-2 rounded-xl border border-edge-subtle text-content-body hover:border-accent-500 hover:text-accent-500 transition-colors cursor-pointer"
+                  >
+                    {text}
+                  </button>
+                ))}
+              </div>
+            )}
 
             {/* Typing indicator */}
             {isLoading && (
