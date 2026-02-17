@@ -51,12 +51,11 @@ function validateGutschein(data: GutscheinPayload): string | null {
   return null;
 }
 
-async function sendTelegram(body: LeadPayload) {
+async function sendTelegram(body: LeadPayload): Promise<{ sent: boolean; debug?: string }> {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) {
-    console.warn("[TELEGRAM] Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID");
-    return;
+    return { sent: false, debug: `missing env: token=${!!token} chatId=${!!chatId}` };
   }
 
   let text: string;
@@ -110,10 +109,11 @@ async function sendTelegram(body: LeadPayload) {
     });
     const result = await res.json();
     if (!result.ok) {
-      console.error("[TELEGRAM] API error:", JSON.stringify(result));
+      return { sent: false, debug: JSON.stringify(result) };
     }
+    return { sent: true };
   } catch (err) {
-    console.error("[TELEGRAM] Failed to send notification", err);
+    return { sent: false, debug: String(err) };
   }
 }
 
@@ -150,7 +150,7 @@ export async function POST(request: NextRequest) {
     );
 
     // --- Telegram notification ---
-    await sendTelegram(body);
+    const tg = await sendTelegram(body);
 
     return NextResponse.json({
       success: true,
@@ -158,6 +158,7 @@ export async function POST(request: NextRequest) {
         body.type === "termin"
           ? "Deine Terminanfrage wurde erfolgreich gesendet."
           : "Deine Gutschein-Bestellung wurde erfolgreich gesendet.",
+      _tg: tg, // TODO: remove after debugging
     });
   } catch (err) {
     console.error("[LEAD] Error processing request", err);
