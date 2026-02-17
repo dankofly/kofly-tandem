@@ -601,6 +601,71 @@ textarea,
   overflow: hidden;
 }
 
+/* ===== Form Whimsy: Micro-delights for inputs ===== */
+
+/* Input focus glow — subtle accent shadow on focus */
+.input-glow:focus {
+  box-shadow: 0 0 0 3px rgba(232, 104, 48, 0.1), 0 0 16px rgba(232, 104, 48, 0.06);
+}
+
+/* Radio card — selection pop with scale + shadow */
+.radio-card {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.radio-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.radio-card.selected {
+  box-shadow: 0 0 0 1px rgba(232, 104, 48, 0.4), 0 4px 20px rgba(232, 104, 48, 0.1);
+}
+
+/* Popular badge shimmer sweep */
+@keyframes badge-shimmer {
+  0% { background-position: -100% center; }
+  100% { background-position: 200% center; }
+}
+
+.badge-shimmer {
+  background: linear-gradient(
+    110deg,
+    var(--accent-500) 0%,
+    var(--accent-500) 35%,
+    #f5a070 50%,
+    var(--accent-500) 65%,
+    var(--accent-500) 100%
+  );
+  background-size: 200% auto;
+  animation: badge-shimmer 3s ease-in-out infinite;
+}
+
+/* Error message shake */
+@keyframes error-shake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-6px); }
+  30% { transform: translateX(5px); }
+  45% { transform: translateX(-4px); }
+  60% { transform: translateX(3px); }
+  75% { transform: translateX(-2px); }
+}
+
+.error-shake {
+  animation: error-shake 0.5s ease-out;
+}
+
+/* Checkbox tick pop */
+@keyframes tick-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.checkbox-pop:checked {
+  animation: tick-pop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 /* Reduced motion: respect user preference */
 @media (prefers-reduced-motion: reduce) {
   .shimmer-text,
@@ -616,7 +681,10 @@ textarea,
   .animate-glow-pulse,
   .menu-stagger,
   .icon-pop,
-  .animate-scroll-hint {
+  .animate-scroll-hint,
+  .badge-shimmer,
+  .error-shake,
+  .checkbox-pop:checked {
     animation: none !important;
   }
 
@@ -640,7 +708,8 @@ textarea,
   .cta-lift:hover,
   .social-hover:hover,
   .theme-spin:hover,
-  .btn-press:active {
+  .btn-press:active,
+  .radio-card:hover {
     transform: none !important;
   }
 

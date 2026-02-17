@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import { useTranslations, useLocale } from "next-intl";
 
 const INPUT_CLS =
-  "w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors";
+  "w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 input-glow transition-colors";
 const LABEL_CLS =
   "block text-xs font-medium text-content-body mb-2 tracking-wide";
 
@@ -207,11 +207,11 @@ export default function VoucherForm() {
             ] as const).map((opt) => (
               <label
                 key={opt.value}
-                className={`flex items-center gap-4 p-4 border cursor-pointer transition-all ${
+                className={`radio-card flex items-center gap-4 p-4 border cursor-pointer ${
                   paket === opt.value
-                    ? "border-accent-500 bg-accent-500/5"
+                    ? "selected border-accent-500 bg-accent-500/5"
                     : "border-edge-input bg-surface-input hover:border-edge-secondary"
-                }`}
+                }${paket === opt.value && opt.value === "premium" ? " premium-shimmer" : ""}`}
               >
                 <input
                   type="radio"
@@ -227,7 +227,7 @@ export default function VoucherForm() {
                       {t(opt.name)}
                     </span>
                     {opt.popular && (
-                      <span className="text-[10px] font-semibold uppercase tracking-wider bg-accent-500 text-white px-2 py-0.5 rounded-sm">
+                      <span className="badge-shimmer text-[10px] font-semibold uppercase tracking-wider text-white px-2 py-0.5 rounded-sm">
                         {t("popularBadge")}
                       </span>
                     )}
@@ -257,9 +257,9 @@ export default function VoucherForm() {
           ] as const).map((opt) => (
             <label
               key={opt.value}
-              className={`flex-1 flex items-center gap-3 p-4 border cursor-pointer transition-all ${
+              className={`radio-card flex-1 flex items-center gap-3 p-4 border cursor-pointer ${
                 versand === opt.value
-                  ? "border-accent-500 bg-accent-500/5"
+                  ? "selected border-accent-500 bg-accent-500/5"
                   : "border-edge-input bg-surface-input hover:border-edge-secondary"
               }`}
             >
@@ -312,7 +312,7 @@ export default function VoucherForm() {
       </fieldset>
 
       {/* AGB Warning + Checkbox */}
-      <div className="bg-accent-500/10 border border-accent-500/30 p-4">
+      <div className="highlight-glow bg-accent-500/10 border border-accent-500/30 p-4">
         <p className="text-sm font-medium text-accent-500 mb-3">
           {t("agbWarning")}
         </p>
@@ -322,7 +322,7 @@ export default function VoucherForm() {
             id="voucher_agb"
             name="agb"
             required
-            className="mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
+            className="checkbox-pop mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
           />
           <label htmlFor="voucher_agb" className="text-sm text-content-muted">
             {t.rich("agbConsent", {
@@ -343,7 +343,7 @@ export default function VoucherForm() {
           id="voucher_datenschutz"
           name="datenschutz"
           required
-          className="mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
+          className="checkbox-pop mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
         />
         <label htmlFor="voucher_datenschutz" className="text-sm text-content-muted">
           {t.rich("datenschutzConsent", {
@@ -357,7 +357,7 @@ export default function VoucherForm() {
       </div>
 
       {error && (
-        <p className="text-sm text-red-400 bg-red-900/20 border border-red-800/50 px-4 py-3">
+        <p className="error-shake text-sm text-red-400 bg-red-900/20 border border-red-800/50 px-4 py-3">
           {error}
         </p>
       )}
@@ -365,7 +365,7 @@ export default function VoucherForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="btn-glow btn-press w-full px-8 py-4 bg-accent-500 hover:bg-accent-400 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-medium tracking-wide uppercase transition-colors flex items-center justify-center gap-2"
+        className="btn-glow btn-press cta-lift w-full px-8 py-4 bg-accent-500 hover:bg-accent-400 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-medium tracking-wide uppercase transition-colors flex items-center justify-center gap-2"
       >
         {submitting && (
           <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
