@@ -4,12 +4,14 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileCTA from "@/components/MobileCTA";
-import ChatBot from "@/components/ChatBot";
-import CookieBanner from "@/components/CookieBanner";
 import ThemeProvider from "@/components/ThemeProvider";
+
+const ChatBot = dynamic(() => import("@/components/ChatBot"), { loading: () => null });
+const CookieBanner = dynamic(() => import("@/components/CookieBanner"), { loading: () => null });
 import {
   organizationSchema,
   serviceSchema,
@@ -58,7 +60,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       locale: ogLocaleMap[locale] || "de_AT",
-      url: `${SITE_URL}/${locale}`,
+      url: locale === "de" ? SITE_URL : `${SITE_URL}/${locale}`,
       siteName: "Gleitschirm-Tandemflug.com",
       title: t("homeOgTitle"),
       description: t("homeOgDescription"),
@@ -78,12 +80,12 @@ export async function generateMetadata({
       images: [`${SITE_URL}/images/hero-1771273007982.jpg`],
     },
     alternates: {
-      canonical: `${SITE_URL}/${locale}`,
+      canonical: locale === "de" ? SITE_URL : `${SITE_URL}/${locale}`,
       languages: {
-        de: `${SITE_URL}/de`,
+        de: SITE_URL,
         en: `${SITE_URL}/en`,
         nl: `${SITE_URL}/nl`,
-        "x-default": `${SITE_URL}/de`,
+        "x-default": SITE_URL,
       },
     },
     robots: { index: true, follow: true },

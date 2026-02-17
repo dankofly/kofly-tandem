@@ -179,8 +179,7 @@ export default function MapContact() {
             src={buildMapEmbedUrl()}
             width="100%"
             height="350"
-            className="w-full sm:h-[450px]"
-            style={{ border: 0 }}
+            className="w-full sm:h-[450px] border-0"
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

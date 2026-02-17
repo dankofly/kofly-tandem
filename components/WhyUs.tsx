@@ -42,7 +42,7 @@ export default async function WhyUs() {
       {bgImage ? (
         <>
           <ParallaxBg src={bgImage} alt={t("bgAlt")} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, var(--hero-overlay-from), transparent, var(--hero-overlay-to))" }} />
+          <div className="absolute inset-0 hero-overlay" />
         </>
       ) : (
         <div className="absolute inset-0 bg-[var(--bg-secondary)]" />

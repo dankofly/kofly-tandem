@@ -72,7 +72,7 @@ export default function BookingForm() {
   if (success) {
     return (
       <div className="glass-card p-10 text-center hero-enter hero-enter-1">
-        <span className="check-pop block text-accent-500 text-4xl mb-4" style={{ textShadow: "0 0 20px rgba(232, 104, 48, 0.3)" }}>{"\u2713"}</span>
+        <span className="check-pop check-glow block text-accent-500 text-4xl mb-4">{"\u2713"}</span>
         <h3 className="hero-enter hero-enter-2 text-lg font-semibold text-content-primary mb-3">
           {t("successTitle")}
         </h3>

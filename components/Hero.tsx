@@ -50,10 +50,7 @@ export default async function Hero() {
         />
       )}
       <div
-        className="absolute inset-0"
-        style={{
-          background: `linear-gradient(to top, var(--hero-overlay-from), transparent, var(--hero-overlay-to))`,
-        }}
+        className="absolute inset-0 hero-overlay"
         aria-hidden="true"
       />
 

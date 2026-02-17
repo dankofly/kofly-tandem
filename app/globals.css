@@ -407,6 +407,14 @@ textarea,
   }
 }
 
+.hero-overlay {
+  background: linear-gradient(to top, var(--hero-overlay-from), transparent, var(--hero-overlay-to));
+}
+
+.check-glow {
+  text-shadow: 0 0 20px rgba(232, 104, 48, 0.3);
+}
+
 .hero-enter {
   animation: hero-entrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
