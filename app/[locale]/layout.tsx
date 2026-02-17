@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -12,9 +13,14 @@ import {
   organizationSchema,
   serviceSchema,
   voucherServiceSchema,
-  faqSchema,
   webSiteSchema,
 } from "@/lib/schema";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 const SITE_URL = "https://www.gleitschirm-tandemflug.com";
 
@@ -55,11 +61,20 @@ export async function generateMetadata({
       siteName: "Gleitschirm-Tandemflug.com",
       title: t("homeOgTitle"),
       description: t("homeOgDescription"),
+      images: [
+        {
+          url: `${SITE_URL}/images/hero-1771273007982.jpg`,
+          width: 1200,
+          height: 630,
+          alt: t("homeOgTitle"),
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: t("homeOgTitle"),
       description: t("homeOgDescription"),
+      images: [`${SITE_URL}/images/hero-1771273007982.jpg`],
     },
     alternates: {
       canonical: `${SITE_URL}/${locale}`,
@@ -88,46 +103,42 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationSchema(locale)),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(serviceSchema(locale)),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(voucherServiceSchema(locale)),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema()),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(webSiteSchema(locale)),
-        }}
-      />
-      <ThemeProvider>
-        <NextIntlClientProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <MobileCTA />
-          <ChatBot />
-        </NextIntlClientProvider>
-      </ThemeProvider>
-    </>
+    <html lang={locale} className={inter.variable} suppressHydrationWarning>
+      <body className="font-sans antialiased bg-surface-primary text-content-base">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema(locale)),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(serviceSchema(locale)),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(voucherServiceSchema(locale)),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(webSiteSchema(locale)),
+          }}
+        />
+        <ThemeProvider>
+          <NextIntlClientProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <MobileCTA />
+            <ChatBot />
+          </NextIntlClientProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
