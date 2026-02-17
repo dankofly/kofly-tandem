@@ -101,6 +101,7 @@ export default async function WhyUs() {
                 </p>
                 <Link
                   href={tile.href}
+                  aria-label={`${t("learnMore")} – ${tile.title}`}
                   className="inline-flex items-center gap-1.5 text-[13px] font-bold tracking-wide uppercase text-accent-400 hover:text-white transition-colors"
                 >
                   {t("learnMore")}
