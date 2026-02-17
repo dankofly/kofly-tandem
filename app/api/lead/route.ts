@@ -51,12 +51,15 @@ function validateGutschein(data: GutscheinPayload): string | null {
   return null;
 }
 
-async function sendTelegram(body: LeadPayload): Promise<{ sent: boolean; debug?: string }> {
+async function sendTelegram(body: LeadPayload): Promise<{ sent: boolean; debug?: string; chatId?: string; token?: string }> {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) {
     return { sent: false, debug: `missing env: token=${!!token} chatId=${!!chatId}` };
   }
+  // Temporary debug: show masked env values
+  const tokenPreview = token.slice(0, 6) + "..." + token.slice(-4);
+  const chatIdFull = chatId;
 
   let text: string;
 
@@ -109,7 +112,7 @@ async function sendTelegram(body: LeadPayload): Promise<{ sent: boolean; debug?:
     });
     const result = await res.json();
     if (!result.ok) {
-      return { sent: false, debug: JSON.stringify(result) };
+      return { sent: false, debug: JSON.stringify(result), chatId: chatIdFull, token: tokenPreview };
     }
     return { sent: true };
   } catch (err) {
