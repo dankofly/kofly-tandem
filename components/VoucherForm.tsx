@@ -3,23 +3,19 @@
 import { useState, type FormEvent } from "react";
 import { useTranslations, useLocale } from "next-intl";
 
-const showMediaAddon = (paket: string) =>
-  paket === "premium" || paket === "thermik" || paket === "classic";
+const INPUT_CLS =
+  "w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors";
+const LABEL_CLS =
+  "block text-xs font-medium text-content-body mb-2 tracking-wide";
 
 export default function VoucherForm() {
   const t = useTranslations("VoucherForm");
   const locale = useLocale();
   const [paket, setPaket] = useState("premium");
+  const [versand, setVersand] = useState("abholung");
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
-
-  const paketOptions = [
-    { value: "premium", label: t("premiumOption") },
-    { value: "thermik", label: t("thermikOption") },
-    { value: "classic-media", label: t("classicMediaOption") },
-    { value: "classic", label: t("classicOption") },
-  ];
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -37,15 +33,17 @@ export default function VoucherForm() {
 
     const payload = {
       type: "gutschein",
-      paket: data.get("paket"),
-      mediaAddon: data.get("media_addon") === "ja",
-      versandart: data.get("versandart"),
-      rechnungsname: data.get("rechnungsname"),
-      rechnungsemail: data.get("rechnungsemail"),
-      rechnungstelefon: data.get("rechnungstelefon"),
+      vorname: data.get("vorname"),
+      nachname: data.get("nachname"),
+      telefon: data.get("telefon"),
+      email: data.get("email"),
+      nachricht: data.get("nachricht"),
       empfaengername: data.get("empfaengername"),
       widmung: data.get("widmung"),
-      nachricht: data.get("nachricht"),
+      paket: data.get("paket"),
+      versandart: data.get("versandart"),
+      postStrasse: data.get("post_strasse"),
+      postPlzOrt: data.get("post_plz_ort"),
     };
 
     try {
@@ -65,12 +63,12 @@ export default function VoucherForm() {
 
   if (success) {
     return (
-      <div className="glass-card p-10 text-center">
-        <span className="block text-accent-500 text-2xl mb-4">{"\u2713"}</span>
-        <h3 className="text-lg font-semibold text-content-primary mb-3">
+      <div className="glass-card p-10 text-center hero-enter hero-enter-1">
+        <span className="check-pop block text-accent-500 text-4xl mb-4" style={{ textShadow: "0 0 20px rgba(232, 104, 48, 0.3)" }}>{"\u2713"}</span>
+        <h3 className="hero-enter hero-enter-2 text-lg font-semibold text-content-primary mb-3">
           {t("successTitle")}
         </h3>
-        <p className="text-sm text-content-muted leading-relaxed font-light max-w-md mx-auto">
+        <p className="hero-enter hero-enter-3 text-sm text-content-muted leading-relaxed font-light max-w-md mx-auto">
           {t("successText")}
         </p>
       </div>
@@ -85,169 +83,257 @@ export default function VoucherForm() {
         <input type="text" id="company" name="company" tabIndex={-1} autoComplete="off" />
       </div>
 
-      {/* Paket */}
-      <div>
-        <label htmlFor="paket" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-          {t("paketLabel")}
-        </label>
-        <select
-          id="paket"
-          name="paket"
-          required
-          value={paket}
-          onChange={(e) => setPaket(e.target.value)}
-          className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-        >
-          {paketOptions.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* Media Addon – shown if not already included */}
-      {showMediaAddon(paket) && (
-        <div className="bg-accent-500/5 border border-accent-500/20 p-4">
-          <div className="flex items-start gap-3">
-            <input
-              type="checkbox"
-              id="media_addon"
-              name="media_addon"
-              value="ja"
-              className="mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
-            />
-            <label htmlFor="media_addon" className="text-sm text-content-body">
-              <strong>{t("mediaAddon")}</strong> {t("mediaAddonAdd")}
-            </label>
-          </div>
-        </div>
-      )}
-
-      {/* Versandart */}
-      <div>
-        <label htmlFor="versandart" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-          {t("versandart")}
-        </label>
-        <select
-          id="versandart"
-          name="versandart"
-          required
-          className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-        >
-          <option value="abholung">{t("abholung")}</option>
-          <option value="post">{t("post")}</option>
-        </select>
-      </div>
-
-      {/* Rechnungsdaten */}
-      <fieldset className="space-y-4">
-        <legend className="text-sm font-semibold text-content-strong mb-2">
-          {t("rechnungsdaten")}
-        </legend>
-        <div>
-          <label htmlFor="rechnungsname" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-            {t("rechnungsname")}
-          </label>
-          <input
-            type="text"
-            id="rechnungsname"
-            name="rechnungsname"
-            required
-            className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-            placeholder={t("rechnungsnamePlaceholder")}
-          />
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div>
-            <label htmlFor="rechnungsemail" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-              {t("rechnungsemail")}
-            </label>
-            <input
-              type="email"
-              id="rechnungsemail"
-              name="rechnungsemail"
-              required
-              className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-              placeholder="deine@email.at"
-            />
-          </div>
-          <div>
-            <label htmlFor="rechnungstelefon" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-              {t("rechnungstelefon")}
-            </label>
-            <input
-              type="tel"
-              id="rechnungstelefon"
-              name="rechnungstelefon"
-              required
-              className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-              placeholder="+43 ..."
-            />
-          </div>
-        </div>
-      </fieldset>
-
-      {/* Optional fields */}
+      {/* Vorname + Nachname */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="empfaengername" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-            {t("empfaengername")}
+          <label htmlFor="v_vorname" className={LABEL_CLS}>
+            {t("vorname")}
           </label>
           <input
             type="text"
-            id="empfaengername"
-            name="empfaengername"
-            className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-            placeholder={t("empfaengerPlaceholder")}
+            id="v_vorname"
+            name="vorname"
+            required
+            className={INPUT_CLS}
+            placeholder={t("vornamePlaceholder")}
           />
         </div>
         <div>
-          <label htmlFor="widmung" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-            {t("widmung")}
+          <label htmlFor="v_nachname" className={LABEL_CLS}>
+            {t("nachname")}
           </label>
           <input
             type="text"
-            id="widmung"
-            name="widmung"
-            className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-            placeholder={t("widmungPlaceholder")}
+            id="v_nachname"
+            name="nachname"
+            required
+            className={INPUT_CLS}
+            placeholder={t("nachnamePlaceholder")}
           />
         </div>
       </div>
 
-      {/* Nachricht */}
+      {/* Telefon + Email */}
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor="v_telefon" className={LABEL_CLS}>
+            {t("telefon")}
+          </label>
+          <input
+            type="tel"
+            id="v_telefon"
+            name="telefon"
+            required
+            className={INPUT_CLS}
+            placeholder={t("telefonPlaceholder")}
+          />
+        </div>
+        <div>
+          <label htmlFor="v_email" className={LABEL_CLS}>
+            {t("email")}
+          </label>
+          <input
+            type="email"
+            id="v_email"
+            name="email"
+            required
+            className={INPUT_CLS}
+            placeholder={t("emailPlaceholder")}
+          />
+        </div>
+      </div>
+
+      {/* Anmerkung */}
       <div>
-        <label htmlFor="gutschein_nachricht" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
+        <label htmlFor="v_nachricht" className={LABEL_CLS}>
           {t("nachricht")}
         </label>
         <textarea
-          id="gutschein_nachricht"
+          id="v_nachricht"
           name="nachricht"
           rows={3}
-          className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors resize-y"
+          className={`${INPUT_CLS} resize-y`}
           placeholder={t("nachrichtPlaceholder")}
         />
       </div>
 
-      {/* AGB Checkbox */}
-      <div className="flex items-start gap-3">
-        <input
-          type="checkbox"
-          id="voucher_agb"
-          name="agb"
-          required
-          className="mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
-        />
-        <label htmlFor="voucher_agb" className="text-sm text-content-muted">
-          {t.rich("agbConsent", {
-            link: (chunks) => (
-              <a href={`/${locale}/agb`} target="_blank" rel="noopener noreferrer" className="text-accent-500 hover:text-accent-400 underline underline-offset-2">
-                {chunks}
-              </a>
-            ),
-          })}
-        </label>
+      {/* === Gutschein-Optionen Section === */}
+      <fieldset className="space-y-6 border-t border-edge-subtle pt-8">
+        <legend className="text-sm font-semibold text-content-primary uppercase tracking-wide">
+          {t("sectionGutschein")}
+        </legend>
+
+        {/* Empfängername */}
+        <div>
+          <label htmlFor="v_empfaengername" className={LABEL_CLS}>
+            {t("empfaengername")}
+          </label>
+          <input
+            type="text"
+            id="v_empfaengername"
+            name="empfaengername"
+            className={INPUT_CLS}
+            placeholder={t("empfaengerPlaceholder")}
+          />
+        </div>
+
+        {/* Widmung */}
+        <div>
+          <label htmlFor="v_widmung" className={LABEL_CLS}>
+            {t("widmung")}
+          </label>
+          <textarea
+            id="v_widmung"
+            name="widmung"
+            rows={2}
+            maxLength={200}
+            className={`${INPUT_CLS} resize-y`}
+            placeholder={t("widmungPlaceholder")}
+          />
+          <p className="mt-1 text-xs text-content-subtle font-light">{t("widmungHint")}</p>
+        </div>
+
+        {/* Flugpaket Radio Cards */}
+        <div>
+          <span className={LABEL_CLS}>{t("paketLabel")}</span>
+          <input type="hidden" name="paket" value={paket} />
+          <div className="space-y-2">
+            {([
+              { value: "classic", name: "classicName", detail: "classicDetail", price: "classicPrice", popular: false },
+              { value: "classic-media", name: "classicMediaName", detail: "classicMediaDetail", price: "classicMediaPrice", popular: false },
+              { value: "premium", name: "premiumName", detail: "premiumDetail", price: "premiumPrice", popular: true },
+              { value: "thermik", name: "thermikName", detail: "thermikDetail", price: "thermikPrice", popular: false },
+              { value: "individuell", name: "individuellName", detail: "individuellDetail", price: "individuellPrice", popular: false },
+            ] as const).map((opt) => (
+              <label
+                key={opt.value}
+                className={`flex items-center gap-4 p-4 border cursor-pointer transition-all ${
+                  paket === opt.value
+                    ? "border-accent-500 bg-accent-500/5"
+                    : "border-edge-input bg-surface-input hover:border-edge-secondary"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="paket_radio"
+                  value={opt.value}
+                  checked={paket === opt.value}
+                  onChange={() => setPaket(opt.value)}
+                  className="w-4 h-4 text-accent-500 border-edge-secondary focus:ring-accent-500 shrink-0"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className={`text-sm font-medium ${paket === opt.value ? "text-content-primary" : "text-content-strong"}`}>
+                      {t(opt.name)}
+                    </span>
+                    {opt.popular && (
+                      <span className="text-[10px] font-semibold uppercase tracking-wider bg-accent-500 text-white px-2 py-0.5 rounded-sm">
+                        {t("popularBadge")}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-xs text-content-muted font-light">{t(opt.detail)}</span>
+                </div>
+                <span className={`text-sm font-semibold shrink-0 ${paket === opt.value ? "text-accent-500" : "text-content-strong"}`}>
+                  {t(opt.price)}
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+      </fieldset>
+
+      {/* === Zustellung Section === */}
+      <fieldset className="space-y-4 border-t border-edge-subtle pt-8">
+        <legend className="text-sm font-semibold text-content-primary uppercase tracking-wide">
+          {t("sectionZustellung")}
+        </legend>
+
+        {/* Zustellung Radio */}
+        <div className="flex gap-4">
+          {([
+            { value: "abholung", label: "abholung" },
+            { value: "post", label: "post" },
+          ] as const).map((opt) => (
+            <label
+              key={opt.value}
+              className={`flex-1 flex items-center gap-3 p-4 border cursor-pointer transition-all ${
+                versand === opt.value
+                  ? "border-accent-500 bg-accent-500/5"
+                  : "border-edge-input bg-surface-input hover:border-edge-secondary"
+              }`}
+            >
+              <input
+                type="radio"
+                name="versandart"
+                value={opt.value}
+                checked={versand === opt.value}
+                onChange={() => setVersand(opt.value)}
+                className="w-4 h-4 text-accent-500 border-edge-secondary focus:ring-accent-500 shrink-0"
+              />
+              <span className={`text-sm font-medium ${versand === opt.value ? "text-content-primary" : "text-content-strong"}`}>
+                {t(opt.label)}
+              </span>
+            </label>
+          ))}
+        </div>
+
+        {/* Postadresse – conditional */}
+        <div className={`accordion-content ${versand === "post" ? "open" : ""}`}>
+          <div>
+            <div className="space-y-4 pt-2">
+              <div>
+                <label htmlFor="v_post_strasse" className={LABEL_CLS}>
+                  {t("postStrasse")}
+                </label>
+                <input
+                  type="text"
+                  id="v_post_strasse"
+                  name="post_strasse"
+                  className={INPUT_CLS}
+                  placeholder={t("postStrassePlaceholder")}
+                />
+              </div>
+              <div>
+                <label htmlFor="v_post_plz_ort" className={LABEL_CLS}>
+                  {t("postPlzOrt")}
+                </label>
+                <input
+                  type="text"
+                  id="v_post_plz_ort"
+                  name="post_plz_ort"
+                  className={INPUT_CLS}
+                  placeholder={t("postPlzOrtPlaceholder")}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      {/* AGB Warning + Checkbox */}
+      <div className="bg-accent-500/10 border border-accent-500/30 p-4">
+        <p className="text-sm font-medium text-accent-500 mb-3">
+          {t("agbWarning")}
+        </p>
+        <div className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="voucher_agb"
+            name="agb"
+            required
+            className="mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
+          />
+          <label htmlFor="voucher_agb" className="text-sm text-content-muted">
+            {t.rich("agbConsent", {
+              link: (chunks) => (
+                <a href={`/${locale}/agb`} target="_blank" rel="noopener noreferrer" className="text-accent-500 hover:text-accent-400 underline underline-offset-2">
+                  {chunks}
+                </a>
+              ),
+            })}
+          </label>
+        </div>
       </div>
 
       {/* Datenschutz Checkbox */}
@@ -279,14 +365,22 @@ export default function VoucherForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="btn-glow w-full px-8 py-4 bg-accent-500 hover:bg-accent-400 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-medium tracking-wide uppercase transition-colors"
+        className="btn-glow btn-press w-full px-8 py-4 bg-accent-500 hover:bg-accent-400 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-medium tracking-wide uppercase transition-colors flex items-center justify-center gap-2"
       >
+        {submitting && (
+          <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+          </svg>
+        )}
         {submitting ? t("submitting") : t("submit")}
       </button>
 
-      <p className="text-xs text-content-subtle text-center font-light">
-        {t("paymentNote")}
-      </p>
+      {/* Payment Note with Bank Details */}
+      <div className="text-xs text-content-subtle text-center font-light space-y-1">
+        <p>{t("paymentNote")}</p>
+        <p className="font-mono text-content-muted">{t("bankDetails")}</p>
+      </div>
     </form>
   );
 }
