@@ -40,9 +40,6 @@ export default function ChatBot() {
 
   const { messages, sendMessage, status, error } = useChat({
     messages: initialMessages,
-    onError: (err) => {
-      console.error("Chat error:", err);
-    },
   });
 
   const isLoading = status === "submitted" || status === "streaming";

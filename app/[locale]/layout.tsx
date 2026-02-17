@@ -25,7 +25,8 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const SITE_URL = "https://www.gleitschirm-tandemflug.com";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.gleitschirm-tandemflug.com";
 
 type Props = {
   children: React.ReactNode;

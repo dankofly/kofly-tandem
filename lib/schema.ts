@@ -1,7 +1,13 @@
-const SITE_URL = "https://www.gleitschirm-tandemflug.com";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.gleitschirm-tandemflug.com";
 const BUSINESS_NAME = "Gleitschirm-Tandemflug.com";
 const PHONE = "+43 676 7293888";
 const EMAIL = "info@Gleitschirm-Tandemflug.com";
+
+/** Locale-aware base path: de → SITE_URL, en → SITE_URL/en */
+function localeBase(locale: string): string {
+  return locale === "de" ? SITE_URL : `${SITE_URL}/${locale}`;
+}
 
 export function organizationSchema(locale: string = "de") {
   return {
@@ -21,7 +27,7 @@ export function organizationSchema(locale: string = "de") {
       "Tandemflug Kals",
       "Tandemflug Defereggental",
     ],
-    url: `${SITE_URL}/${locale}`,
+    url: `${localeBase(locale)}`,
     telephone: PHONE,
     email: EMAIL,
     image: `${SITE_URL}/images/hero-1771273007982.jpg`,
@@ -271,7 +277,7 @@ export function serviceSchema(locale: string = "de") {
           priceCurrency: "EUR",
           description:
             "Ausgedehnter Tandemflug mit verlängerter Flugzeit und Premium-Erlebnis im Airpark Lienzer Dolomiten.",
-          url: `${SITE_URL}/${locale}/buchen`,
+          url: `${localeBase(locale)}/buchen`,
         },
         {
           "@type": "Offer",
@@ -280,7 +286,7 @@ export function serviceSchema(locale: string = "de") {
           priceCurrency: "EUR",
           description:
             "Thermikflug mit längerer Flugzeit, Aufwindnutzung und intensivem Flugerlebnis im Airpark Lienzer Dolomiten.",
-          url: `${SITE_URL}/${locale}/buchen`,
+          url: `${localeBase(locale)}/buchen`,
         },
         {
           "@type": "Offer",
@@ -289,7 +295,7 @@ export function serviceSchema(locale: string = "de") {
           priceCurrency: "EUR",
           description:
             "Klassischer Tandemflug inklusive Foto- und Video-Dokumentation im Airpark Lienzer Dolomiten.",
-          url: `${SITE_URL}/${locale}/buchen`,
+          url: `${localeBase(locale)}/buchen`,
         },
         {
           "@type": "Offer",
@@ -298,7 +304,7 @@ export function serviceSchema(locale: string = "de") {
           priceCurrency: "EUR",
           description:
             "Klassischer Tandemflug im Airpark Lienzer Dolomiten. Foto- und Video-Paket optional buchbar.",
-          url: `${SITE_URL}/${locale}/buchen`,
+          url: `${localeBase(locale)}/buchen`,
         },
         {
           "@type": "Offer",
@@ -307,7 +313,7 @@ export function serviceSchema(locale: string = "de") {
           priceCurrency: "EUR",
           description:
             "Foto- und Video-Paket als Ergänzung zu jedem Flugpaket. Aufnahmen werden digital bereitgestellt.",
-          url: `${SITE_URL}/${locale}/buchen`,
+          url: `${localeBase(locale)}/buchen`,
         },
       ],
     },
@@ -322,7 +328,7 @@ export function voucherServiceSchema(locale: string = "de") {
     provider: { "@id": `${SITE_URL}/#organization` },
     description:
       "Gutschein für einen Gleitschirm Tandemflug im Airpark Lienzer Dolomiten. Persönliche Abholung oder Postversand möglich. Zahlung per Überweisung.",
-    url: `${SITE_URL}/${locale}/buchen#gutschein`,
+    url: `${localeBase(locale)}/buchen#gutschein`,
   };
 }
 
@@ -347,12 +353,12 @@ export function webSiteSchema(locale: string = "de") {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     name: BUSINESS_NAME,
-    url: `${SITE_URL}/${locale}`,
+    url: `${localeBase(locale)}`,
     publisher: { "@id": `${SITE_URL}/#organization` },
     inLanguage: locale === "nl" ? "nl-NL" : locale === "en" ? "en-US" : "de-AT",
     potentialAction: {
       "@type": "SearchAction",
-      target: `${SITE_URL}/${locale}/buchen?q={search_term_string}`,
+      target: `${localeBase(locale)}/buchen?q={search_term_string}`,
       "query-input": "required name=search_term_string",
     },
   };

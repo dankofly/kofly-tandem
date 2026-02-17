@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { breadcrumbSchema } from "@/lib/schema";
 
-const SITE_URL = "https://www.gleitschirm-tandemflug.com";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.gleitschirm-tandemflug.com";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");
@@ -15,10 +16,10 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     alternates: {
       languages: {
-        de: `${SITE_URL}/de/buchen`,
+        de: `${SITE_URL}/buchen`,
         en: `${SITE_URL}/en/buchen`,
         nl: `${SITE_URL}/nl/buchen`,
-        "x-default": `${SITE_URL}/de/buchen`,
+        "x-default": `${SITE_URL}/buchen`,
       },
     },
   };
@@ -31,9 +32,10 @@ export default async function BuchenLayout({
 }) {
   const locale = await getLocale();
   const t = await getTranslations("Buchen");
+  const localePath = locale === "de" ? "" : `/${locale}`;
   const breadcrumbs = breadcrumbSchema([
-    { name: "Home", url: `${SITE_URL}/${locale}` },
-    { name: t("breadcrumbCurrent"), url: `${SITE_URL}/${locale}/buchen` },
+    { name: "Home", url: `${SITE_URL}${localePath}` || SITE_URL },
+    { name: t("breadcrumbCurrent"), url: `${SITE_URL}${localePath}/buchen` },
   ]);
 
   return (

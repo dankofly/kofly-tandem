@@ -560,10 +560,10 @@ textarea,
   animation: menu-slide-in 0.4s ease-out both;
 }
 
-/* Premium card shimmer sweep */
+/* Premium card shimmer sweep – GPU-composited via transform */
 @keyframes card-shimmer {
-  0% { left: -100%; }
-  100% { left: 200%; }
+  0% { transform: translateX(-200%); }
+  100% { transform: translateX(400%); }
 }
 
 .premium-shimmer {
@@ -575,11 +575,12 @@ textarea,
   content: "";
   position: absolute;
   top: 0;
-  left: -100%;
+  left: 0;
   width: 50%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(232, 104, 48, 0.06), transparent);
   animation: card-shimmer 4s ease-in-out infinite;
+  will-change: transform;
   pointer-events: none;
   z-index: 1;
 }
