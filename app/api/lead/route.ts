@@ -1,53 +1,53 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// TODO: Wire up email sending (e.g. Resend, Nodemailer) or CRM integration
-// TODO: Add rate limiting for production
-
 interface TerminPayload {
   type: "termin";
-  name: string;
+  vorname: string;
+  nachname: string;
   telefon: string;
+  whatsapp?: string;
   email: string;
-  zeitraumVon: string;
-  zeitraumBis: string;
-  flexibilitaet?: string;
+  wunschtermin?: string;
+  anreise: string;
+  abreise: string;
   personenanzahl?: string;
-  gewicht?: string;
-  fotoVideo?: string;
+  paket?: string;
   nachricht?: string;
 }
 
 interface GutscheinPayload {
   type: "gutschein";
-  paket: string;
-  mediaAddon?: boolean;
-  versandart: string;
-  rechnungsname: string;
-  rechnungsemail: string;
-  rechnungstelefon: string;
+  vorname: string;
+  nachname: string;
+  telefon: string;
+  email: string;
+  nachricht?: string;
   empfaengername?: string;
   widmung?: string;
-  nachricht?: string;
+  paket: string;
+  versandart: string;
+  postStrasse?: string;
+  postPlzOrt?: string;
 }
 
 type LeadPayload = TerminPayload | GutscheinPayload;
 
 function validateTermin(data: TerminPayload): string | null {
-  if (!data.name?.trim()) return "Name ist erforderlich.";
+  if (!data.vorname?.trim()) return "Vorname ist erforderlich.";
+  if (!data.nachname?.trim()) return "Nachname ist erforderlich.";
   if (!data.telefon?.trim()) return "Telefon ist erforderlich.";
   if (!data.email?.trim()) return "E-Mail ist erforderlich.";
-  if (!data.zeitraumVon) return "Zeitraum (von) ist erforderlich.";
-  if (!data.zeitraumBis) return "Zeitraum (bis) ist erforderlich.";
+  if (!data.anreise) return "Anreise ist erforderlich.";
+  if (!data.abreise) return "Abreise ist erforderlich.";
   return null;
 }
 
 function validateGutschein(data: GutscheinPayload): string | null {
+  if (!data.vorname?.trim()) return "Vorname ist erforderlich.";
+  if (!data.nachname?.trim()) return "Nachname ist erforderlich.";
+  if (!data.telefon?.trim()) return "Telefon ist erforderlich.";
+  if (!data.email?.trim()) return "E-Mail ist erforderlich.";
   if (!data.paket?.trim()) return "Paket ist erforderlich.";
-  if (!data.versandart?.trim()) return "Versandart ist erforderlich.";
-  if (!data.rechnungsname?.trim()) return "Rechnungsname ist erforderlich.";
-  if (!data.rechnungsemail?.trim()) return "Rechnungs-E-Mail ist erforderlich.";
-  if (!data.rechnungstelefon?.trim())
-    return "Rechnungstelefon ist erforderlich.";
   return null;
 }
 
@@ -59,33 +59,34 @@ async function sendTelegram(body: LeadPayload) {
   let text: string;
 
   if (body.type === "termin") {
-    const d = body as TerminPayload;
+    const d = body;
     text = [
       `✈️ *Neue Terminanfrage*`,
       ``,
-      `👤 *Name:* ${esc(d.name)}`,
+      `👤 *Name:* ${esc(d.vorname)} ${esc(d.nachname)}`,
       `📞 *Telefon:* ${esc(d.telefon)}`,
-      `📧 *E-Mail:* ${esc(d.email)}`,
-      `📅 *Zeitraum:* ${esc(d.zeitraumVon)} – ${esc(d.zeitraumBis)}`,
-      `🔄 *Flexibilität:* ${esc(d.flexibilitaet || "–")}`,
+      `📱 *WhatsApp:* ${esc(d.whatsapp || "–")}`,
+      `📧 *E\\-Mail:* ${esc(d.email)}`,
+      d.wunschtermin ? `🎯 *Wunschtermin:* ${esc(d.wunschtermin)}` : "",
+      `📅 *Anreise:* ${esc(d.anreise)}`,
+      `📅 *Abreise:* ${esc(d.abreise)}`,
       `👥 *Personen:* ${esc(d.personenanzahl || "1")}`,
-      `⚖️ *Gewicht:* ${esc(d.gewicht || "–")}`,
-      `📸 *Foto/Video:* ${esc(d.fotoVideo || "–")}`,
+      d.paket ? `🎒 *Paket:* ${esc(d.paket)}` : "",
       d.nachricht ? `\n💬 *Nachricht:*\n${esc(d.nachricht)}` : "",
     ]
       .filter(Boolean)
       .join("\n");
   } else {
-    const d = body as GutscheinPayload;
+    const d = body;
     text = [
-      `🎁 *Neue Gutschein-Bestellung*`,
+      `🎁 *Neue Gutschein\\-Bestellung*`,
       ``,
+      `👤 *Name:* ${esc(d.vorname)} ${esc(d.nachname)}`,
+      `📞 *Telefon:* ${esc(d.telefon)}`,
+      `📧 *E\\-Mail:* ${esc(d.email)}`,
       `📦 *Paket:* ${esc(d.paket)}`,
-      `🎬 *Media-Addon:* ${d.mediaAddon ? "Ja" : "Nein"}`,
       `📮 *Versandart:* ${esc(d.versandart)}`,
-      `👤 *Rechnungsname:* ${esc(d.rechnungsname)}`,
-      `📧 *E-Mail:* ${esc(d.rechnungsemail)}`,
-      `📞 *Telefon:* ${esc(d.rechnungstelefon)}`,
+      d.postStrasse ? `🏠 *Adresse:* ${esc(d.postStrasse)}, ${esc(d.postPlzOrt || "")}` : "",
       d.empfaengername ? `🎯 *Empfänger:* ${esc(d.empfaengername)}` : "",
       d.widmung ? `✍️ *Widmung:* ${esc(d.widmung)}` : "",
       d.nachricht ? `\n💬 *Nachricht:*\n${esc(d.nachricht)}` : "",
@@ -101,7 +102,7 @@ async function sendTelegram(body: LeadPayload) {
       body: JSON.stringify({
         chat_id: chatId,
         text,
-        parse_mode: "Markdown",
+        parse_mode: "MarkdownV2",
       }),
     });
   } catch (err) {
@@ -151,8 +152,8 @@ export async function POST(request: NextRequest) {
           ? "Deine Terminanfrage wurde erfolgreich gesendet."
           : "Deine Gutschein-Bestellung wurde erfolgreich gesendet.",
     });
-  } catch {
-    console.error("[LEAD] Error processing request");
+  } catch (err) {
+    console.error("[LEAD] Error processing request", err);
     return NextResponse.json(
       { error: "Ein Fehler ist aufgetreten. Bitte versuche es erneut." },
       { status: 500 }
