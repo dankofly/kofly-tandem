@@ -51,15 +51,13 @@ function validateGutschein(data: GutscheinPayload): string | null {
   return null;
 }
 
-async function sendTelegram(body: LeadPayload): Promise<{ sent: boolean; debug?: string; chatId?: string; token?: string }> {
+async function sendTelegram(body: LeadPayload) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) {
-    return { sent: false, debug: `missing env: token=${!!token} chatId=${!!chatId}` };
+    console.warn("[TELEGRAM] Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID");
+    return;
   }
-  // Temporary debug: show masked env values
-  const tokenPreview = token.slice(0, 6) + "..." + token.slice(-4);
-  const chatIdFull = chatId;
 
   let text: string;
 
@@ -112,11 +110,10 @@ async function sendTelegram(body: LeadPayload): Promise<{ sent: boolean; debug?:
     });
     const result = await res.json();
     if (!result.ok) {
-      return { sent: false, debug: JSON.stringify(result), chatId: chatIdFull, token: tokenPreview };
+      console.error("[TELEGRAM] API error:", JSON.stringify(result));
     }
-    return { sent: true };
   } catch (err) {
-    return { sent: false, debug: String(err) };
+    console.error("[TELEGRAM] Failed to send notification", err);
   }
 }
 
@@ -153,7 +150,7 @@ export async function POST(request: NextRequest) {
     );
 
     // --- Telegram notification ---
-    const tg = await sendTelegram(body);
+    await sendTelegram(body);
 
     return NextResponse.json({
       success: true,
@@ -161,7 +158,6 @@ export async function POST(request: NextRequest) {
         body.type === "termin"
           ? "Deine Terminanfrage wurde erfolgreich gesendet."
           : "Deine Gutschein-Bestellung wurde erfolgreich gesendet.",
-      _tg: tg, // TODO: remove after debugging
     });
   } catch (err) {
     console.error("[LEAD] Error processing request", err);
