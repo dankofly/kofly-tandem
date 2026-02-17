@@ -3,16 +3,6 @@
 import { useState, type FormEvent } from "react";
 import { useTranslations, useLocale } from "next-intl";
 
-const weightRanges = [
-  "40\u201350 kg",
-  "50\u201360 kg",
-  "60\u201370 kg",
-  "70\u201380 kg",
-  "80\u201390 kg",
-  "90\u2013100 kg",
-  "100\u2013110 kg",
-];
-
 const INPUT_CLS =
   "w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors";
 const LABEL_CLS =
@@ -21,7 +11,6 @@ const LABEL_CLS =
 export default function BookingForm() {
   const t = useTranslations("BookingForm");
   const locale = useLocale();
-  const [paket, setPaket] = useState("premium");
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -52,9 +41,6 @@ export default function BookingForm() {
       abreise: data.get("abreise"),
       personenanzahl: data.get("personenanzahl"),
       paket: data.get("paket"),
-      mediaAddon: data.get("media_addon") === "ja",
-      fotoVideo: data.get("foto_video"),
-      gewicht: data.get("gewicht"),
       nachricht: data.get("nachricht"),
     };
 
@@ -232,59 +218,14 @@ export default function BookingForm() {
           id="paket"
           name="paket"
           required
-          value={paket}
-          onChange={(e) => setPaket(e.target.value)}
           className={INPUT_CLS}
         >
-          <option value="premium">{t("premiumOption")}</option>
           <option value="classic">{t("classicOption")}</option>
+          <option value="classic-media">{t("classicMediaOption")}</option>
+          <option value="premium">{t("premiumOption")}</option>
           <option value="thermik">{t("thermikOption")}</option>
+          <option value="individuell">{t("individuellOption")}</option>
         </select>
-      </div>
-
-      {/* Media Addon – only shown when Classic is selected */}
-      {paket === "classic" && (
-        <div className="bg-accent-500/5 border border-accent-500/20 p-4">
-          <div className="flex items-start gap-3">
-            <input
-              type="checkbox"
-              id="media_addon"
-              name="media_addon"
-              value="ja"
-              className="mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
-            />
-            <label htmlFor="media_addon" className="text-sm text-content-body">
-              <strong>{t("mediaAddon")}</strong> {t("mediaAddonAdd")}
-            </label>
-          </div>
-        </div>
-      )}
-
-      {/* Foto & Video + Gewicht */}
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label htmlFor="foto_video" className={LABEL_CLS}>
-            {t("fotoVideo")}
-          </label>
-          <select id="foto_video" name="foto_video" className={INPUT_CLS}>
-            <option value="ja">{t("fotoJa")}</option>
-            <option value="nein">{t("fotoNein")}</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="gewicht" className={LABEL_CLS}>
-            {t("gewicht")}
-          </label>
-          <select id="gewicht" name="gewicht" className={INPUT_CLS}>
-            <option value="">{t("gewichtPlaceholder")}</option>
-            {weightRanges.map((range) => (
-              <option key={range} value={range}>
-                {range}
-              </option>
-            ))}
-            <option value="110\u2013120 kg">{t("gewichtOnRequest")}</option>
-          </select>
-        </div>
       </div>
 
       {/* Anmerkungen & Fragen */}
