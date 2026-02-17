@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getImageUrl } from "@/lib/images-config";
+import { breadcrumbSchema } from "@/lib/schema";
 
 const SITE_URL = "https://www.gleitschirm-tandemflug.com";
 
@@ -31,6 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function AblaufPage() {
   const t = await getTranslations("Ablauf");
+  const locale = await getLocale();
 
   const r = (key: string) => t.rich(key, rich);
 
@@ -40,8 +42,17 @@ export default async function AblaufPage() {
     getImageUrl("ablauf-landing"),
   ]);
 
+  const breadcrumbs = breadcrumbSchema([
+    { name: "Home", url: `${SITE_URL}/${locale}` },
+    { name: t("breadcrumbCurrent"), url: `${SITE_URL}/${locale}/ablauf` },
+  ]);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
       {/* -- Hero: Emotion & Sehnsucht -- */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
         {ablaufHero && (

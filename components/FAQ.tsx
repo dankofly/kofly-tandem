@@ -66,6 +66,15 @@ export default function FAQ() {
         { q: t("q5_2"), a: t("a5_2") },
       ],
     },
+    {
+      category: t("cat6"),
+      items: [
+        { q: t("q6_1"), a: t("a6_1") },
+        { q: t("q6_2"), a: t("a6_2") },
+        { q: t("q6_3"), a: t("a6_3") },
+        { q: t("q6_4"), a: t("a6_4") },
+      ],
+    },
   ];
 
   const toggleCategory = (gi: number) => {

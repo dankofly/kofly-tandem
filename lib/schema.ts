@@ -174,12 +174,62 @@ export function organizationSchema(locale: string = "de") {
       contactType: "customer service",
       availableLanguage: ["German", "English", "Dutch"],
     },
+    review: [
+      {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+        author: { "@type": "Person", name: "Tripadvisor-Gast" },
+        datePublished: "2024-07-01",
+        reviewBody:
+          "Awesome experience! Daniel and Rene are awesome instructors who are happy to explain every detail of the experience! The flight itself was on a beautiful day, the takeoff was smooth as butter and the same goes for the landing.",
+      },
+      {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+        author: { "@type": "Person", name: "Tripadvisor-Gast" },
+        datePublished: "2023-09-01",
+        reviewBody:
+          "Dieses wunderbare Erlebnis wurde von Anfang bis Ende sehr professionell und sehr freundlich auf unsere Bedürfnisse zugeschnitten. Die Fotos und kleinen Videos sind eine Erinnerung fürs Leben.",
+      },
+      {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+        author: { "@type": "Person", name: "Tripadvisor-Gast" },
+        datePublished: "2023-06-01",
+        reviewBody:
+          "Hervorragende Betreuung, super sympathisch. Jederzeit wieder. Absolut empfehlenswert. Bei Daniel fühlt man sich absolut sicher und optimal aufgehoben.",
+      },
+      {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+        author: { "@type": "Person", name: "Tripadvisor-Gast" },
+        datePublished: "2023-03-01",
+        reviewBody:
+          "Me and my kids had a lifetime experience – we will never forget this. The team is very keen on safety so it felt all very good to go up the mountain and fly.",
+      },
+    ],
     sameAs: [
       "https://www.instagram.com/tandemfluglienz/",
       "https://www.tripadvisor.com/Attraction_Review-g190432-d12963049-Reviews-Gleitschirm_Tandemflug-Lienz_Tirol_Austrian_Alps.html",
     ],
     keywords:
-      "Paragleiten, Tandemflug, Gleitschirmfliegen, Osttirol, Lienz, Sillian, Matrei, St. Jakob im Defereggental, Kals am Großglockner, Defereggental, KOFLY, Tandemsprung, Flugschule Osttirol, Airtime Austria, Tandemfliegen, Tandem Paragliding",
+      "Paragleiten, Tandemflug, Gleitschirmfliegen, Osttirol, Lienz, Sillian, Matrei, St. Jakob im Defereggental, Kals am Großglockner, Defereggental, KOFLY, Tandemsprung, Flugschule Osttirol, Airtime Austria, Tandemfliegen, Tandem Paragliding, Urlaub Osttirol, Aktivitäten Osttirol, Outdoor Aktivitäten Osttirol, Erlebnisse Osttirol, Freizeit Osttirol, Bruno Girstmair, Flugschule Tirol, Landeplatz Postleite, Tandemsprung Lienz, Paragliding Austria",
   };
 }
 
@@ -405,6 +455,46 @@ export function faqSchema() {
         acceptedAnswer: {
           "@type": "Answer",
           text: "Direkt im Defereggental gibt es kein kommerzielles Tandem-Paragleiten. Der nächste Anbieter ist Gleitschirm-Tandemflug.com (KOFLY) im Airpark Lienzer Dolomiten. Von St. Jakob im Defereggental sind es ca. 35 Minuten Fahrzeit. Wir fliegen bei geeignetem Wetter mit Start ab Zettersfeld oder Hochstein – Tandemflüge ab €150.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Was sind die besten Aktivitäten und Erlebnisse in Osttirol?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Osttirol bietet zahlreiche Outdoor-Aktivitäten: Gleitschirm-Tandemfliegen im Airpark Lienzer Dolomiten (ab €150 bei Gleitschirm-Tandemflug.com), Wandern in den Lienzer Dolomiten und am Großglockner, Rafting auf der Isel, Klettern, Mountainbiken und im Winter Skifahren. Ein Tandemflug ist das beliebteste Urlaubs-Highlight – mit 5,0 Sternen aus über 250 Bewertungen auf Tripadvisor die Top-Aktivität in Lienz.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Was kann man im Urlaub in Osttirol machen?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Osttirol ist ein Paradies für Naturliebhaber und Abenteurer. Highlights: Tandem-Paragleiten über die Lienzer Dolomiten (Gleitschirm-Tandemflug.com – Nr. 1 auf Tripadvisor in Lienz), Wandern im Nationalpark Hohe Tauern, Besuch der Altstadt von Lienz, Erholung an den Osttiroler Bergseen, Klettersteige und Radtouren. Ein Tandemflug bietet die einzigartige Perspektive, Osttirol aus der Vogelperspektive zu erleben.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Welche Tandemflug-Anbieter gibt es in Osttirol und Tirol?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "In Osttirol ist Gleitschirm-Tandemflug.com (KOFLY) der führende Anbieter für Tandem-Paragleiten im Airpark Lienzer Dolomiten – mit 5,0 Sternen aus über 250 Bewertungen auf Tripadvisor. In Tirol gibt es weitere Anbieter wie Airtime Austria und verschiedene Flugschulen. Wir unterscheiden uns durch persönliche Betreuung, erfahrene zertifizierte Piloten und faire Preise ab €150.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Wo ist der Landeplatz für Gleitschirmfliegen in Lienz?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: 'Der offizielle Landeplatz im Airpark Lienzer Dolomiten ist der Landeplatz „Touch Heaven" (GPS: 46.8177, 12.748). Alternativ ist der Treffpunkt an der Kasse der Lienzer Bergbahnen in Gaimberg. Je nach Windverhältnissen starten wir am Zettersfeld oder am Hochstein. Kontakt: +43 676 7293888.',
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Was kostet Paragliding in Österreich?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Ein Tandem-Paragliding-Flug in Österreich kostet je nach Region und Anbieter zwischen €120 und €300. Bei Gleitschirm-Tandemflug.com in Osttirol beginnen die Preise bei €150 für den Classic-Tandemflug. Der Premium-Flug kostet €190, der Thermikflug €250. Im Vergleich zu anderen Anbietern in Tirol und Salzburg bieten wir eines der besten Preis-Leistungs-Verhältnisse mit persönlicher Betreuung und 5,0 Sternen auf Tripadvisor.",
         },
       },
     ],
