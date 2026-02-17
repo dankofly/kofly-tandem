@@ -1,0 +1,51 @@
+<!--
+  Hidden page for Netlify form detection.
+  Netlify's deploy crawler reads this at build time to register form names + fields.
+  These forms are never shown to users — the actual UI is in React components.
+-->
+<html>
+<head><title>Forms</title></head>
+<body>
+
+<!-- Terminanfrage / Booking -->
+<form name="termin" netlify netlify-honeypot="website" hidden>
+  <input name="form-name" type="hidden" value="termin" />
+  <input name="website" />
+  <input name="vorname" />
+  <input name="nachname" />
+  <input name="telefon" />
+  <input name="whatsapp" />
+  <input name="email" />
+  <input name="wunschtermin" />
+  <input name="anreise" />
+  <input name="abreise" />
+  <input name="personenanzahl" />
+  <input name="paket" />
+  <input name="paket_radio" />
+  <input name="nachricht" />
+  <input name="agb" />
+  <input name="datenschutz" />
+</form>
+
+<!-- Gutschein-Bestellung / Voucher -->
+<form name="gutschein" netlify netlify-honeypot="company" hidden>
+  <input name="form-name" type="hidden" value="gutschein" />
+  <input name="company" />
+  <input name="vorname" />
+  <input name="nachname" />
+  <input name="telefon" />
+  <input name="email" />
+  <input name="nachricht" />
+  <input name="empfaengername" />
+  <input name="widmung" />
+  <input name="paket" />
+  <input name="paket_radio" />
+  <input name="versandart" />
+  <input name="post_strasse" />
+  <input name="post_plz_ort" />
+  <input name="agb" />
+  <input name="datenschutz" />
+</form>
+
+</body>
+</html>

@@ -47,11 +47,20 @@ export default function VoucherForm() {
     };
 
     try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      // Submit to Telegram API + Netlify Forms in parallel
+      const [res] = await Promise.all([
+        fetch("/api/lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }),
+        // Netlify form submission (fire-and-forget)
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
+        }).catch(() => {}),
+      ]);
       if (!res.ok) throw new Error("Request failed");
       setSuccess(true);
     } catch {
@@ -76,7 +85,8 @@ export default function VoucherForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+    <form name="gutschein" onSubmit={handleSubmit} className="space-y-6" noValidate data-netlify="true" netlify-honeypot="company">
+      <input type="hidden" name="form-name" value="gutschein" />
       {/* Honeypot */}
       <div className="hp-field" aria-hidden="true">
         <label htmlFor="company">Firma</label>
