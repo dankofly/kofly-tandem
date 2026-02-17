@@ -63,7 +63,7 @@ export default async function Hero() {
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-6 text-center sm:text-left">
         {/* Desktop: constrained wrapper so title + buttons share same width */}
-        <div className="sm:w-fit">
+        <div className="sm:w-min">
           {/* Slogan */}
           <p className="hero-enter hero-enter-1 text-xs sm:text-sm tracking-[0.25em] sm:tracking-premium uppercase text-hero-secondary font-semibold">
             {t("tagline")}
