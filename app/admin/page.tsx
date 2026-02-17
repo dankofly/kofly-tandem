@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 interface ImageSlot {
   label: string;
@@ -11,6 +12,7 @@ interface ImageSlot {
 type Tab = "prompt" | "images" | "ticker";
 
 export default function AdminPage() {
+  const router = useRouter();
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authToken, setAuthToken] = useState("");
@@ -252,6 +254,7 @@ export default function AdminPage() {
               setAuthToken("");
               setPrompt("");
               setSlots({});
+              router.push("/");
             }}
             className="px-4 py-2 rounded-xl border border-edge-default text-content-muted hover:text-content-strong hover:border-edge-secondary transition-colors text-sm"
           >
