@@ -54,64 +54,71 @@ function validateGutschein(data: GutscheinPayload): string | null {
 async function sendTelegram(body: LeadPayload) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chatId) return;
+  if (!token || !chatId) {
+    console.warn("[TELEGRAM] Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID");
+    return;
+  }
 
   let text: string;
 
   if (body.type === "termin") {
     const d = body;
     text = [
-      `✈️ *Neue Terminanfrage*`,
+      `✈️ <b>Neue Terminanfrage</b>`,
       ``,
-      `👤 *Name:* ${esc(d.vorname)} ${esc(d.nachname)}`,
-      `📞 *Telefon:* ${esc(d.telefon)}`,
-      `📱 *WhatsApp:* ${esc(d.whatsapp || "–")}`,
-      `📧 *E\\-Mail:* ${esc(d.email)}`,
-      d.wunschtermin ? `🎯 *Wunschtermin:* ${esc(d.wunschtermin)}` : "",
-      `📅 *Anreise:* ${esc(d.anreise)}`,
-      `📅 *Abreise:* ${esc(d.abreise)}`,
-      `👥 *Personen:* ${esc(d.personenanzahl || "1")}`,
-      d.paket ? `🎒 *Paket:* ${esc(d.paket)}` : "",
-      d.nachricht ? `\n💬 *Nachricht:*\n${esc(d.nachricht)}` : "",
+      `👤 <b>Name:</b> ${esc(d.vorname)} ${esc(d.nachname)}`,
+      `📞 <b>Telefon:</b> ${esc(d.telefon)}`,
+      `📱 <b>WhatsApp:</b> ${esc(d.whatsapp || "–")}`,
+      `📧 <b>E-Mail:</b> ${esc(d.email)}`,
+      d.wunschtermin ? `🎯 <b>Wunschtermin:</b> ${esc(d.wunschtermin)}` : "",
+      `📅 <b>Anreise:</b> ${esc(d.anreise)}`,
+      `📅 <b>Abreise:</b> ${esc(d.abreise)}`,
+      `👥 <b>Personen:</b> ${esc(d.personenanzahl || "1")}`,
+      d.paket ? `🎒 <b>Paket:</b> ${esc(d.paket)}` : "",
+      d.nachricht ? `\n💬 <b>Nachricht:</b>\n${esc(d.nachricht)}` : "",
     ]
       .filter(Boolean)
       .join("\n");
   } else {
     const d = body;
     text = [
-      `🎁 *Neue Gutschein\\-Bestellung*`,
+      `🎁 <b>Neue Gutschein-Bestellung</b>`,
       ``,
-      `👤 *Name:* ${esc(d.vorname)} ${esc(d.nachname)}`,
-      `📞 *Telefon:* ${esc(d.telefon)}`,
-      `📧 *E\\-Mail:* ${esc(d.email)}`,
-      `📦 *Paket:* ${esc(d.paket)}`,
-      `📮 *Versandart:* ${esc(d.versandart)}`,
-      d.postStrasse ? `🏠 *Adresse:* ${esc(d.postStrasse)}, ${esc(d.postPlzOrt || "")}` : "",
-      d.empfaengername ? `🎯 *Empfänger:* ${esc(d.empfaengername)}` : "",
-      d.widmung ? `✍️ *Widmung:* ${esc(d.widmung)}` : "",
-      d.nachricht ? `\n💬 *Nachricht:*\n${esc(d.nachricht)}` : "",
+      `👤 <b>Name:</b> ${esc(d.vorname)} ${esc(d.nachname)}`,
+      `📞 <b>Telefon:</b> ${esc(d.telefon)}`,
+      `📧 <b>E-Mail:</b> ${esc(d.email)}`,
+      `📦 <b>Paket:</b> ${esc(d.paket)}`,
+      `📮 <b>Versandart:</b> ${esc(d.versandart)}`,
+      d.postStrasse ? `🏠 <b>Adresse:</b> ${esc(d.postStrasse)}, ${esc(d.postPlzOrt || "")}` : "",
+      d.empfaengername ? `🎯 <b>Empfänger:</b> ${esc(d.empfaengername)}` : "",
+      d.widmung ? `✍️ <b>Widmung:</b> ${esc(d.widmung)}` : "",
+      d.nachricht ? `\n💬 <b>Nachricht:</b>\n${esc(d.nachricht)}` : "",
     ]
       .filter(Boolean)
       .join("\n");
   }
 
   try {
-    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         chat_id: chatId,
         text,
-        parse_mode: "MarkdownV2",
+        parse_mode: "HTML",
       }),
     });
+    const result = await res.json();
+    if (!result.ok) {
+      console.error("[TELEGRAM] API error:", JSON.stringify(result));
+    }
   } catch (err) {
     console.error("[TELEGRAM] Failed to send notification", err);
   }
 }
 
 function esc(s: string): string {
-  return s.replace(/[_*[\]()~`>#+\-=|{}.!]/g, "\\$&");
+  return s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c] || c);
 }
 
 export async function POST(request: NextRequest) {
