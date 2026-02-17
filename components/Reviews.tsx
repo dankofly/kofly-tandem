@@ -7,43 +7,58 @@ import ScrollReveal from "./ScrollReveal";
 interface Review {
   name: string;
   rating: number;
-  text: string;
+  text: Record<string, string>;
   date: string;
   sourceUrl: string;
 }
 
+const TRIPADVISOR_URL =
+  "https://www.tripadvisor.com/Attraction_Review-g230011-d8720066-Reviews-Gleitschirm_Tandemflug_com-Lienz_Tirol_Austrian_Alps.html";
+
 const reviews: Review[] = [
   {
-    name: "Tripadvisor-Gast",
+    name: "Carmen S.",
     rating: 5,
-    text: "Awesome experience! Daniel and Rene are awesome instructors who are happy to explain every detail of the experience! The flight itself was on a beautiful day, the takeoff was smooth as butter and the same goes for the landing. Whilst we were flying we got a whole tour of Lienz and the surroundings.",
-    date: "2024-07-01",
-    sourceUrl:
-      "https://www.tripadvisor.com/ShowUserReviews-g230011-d8720066-r966364553-Gleitschirm_Tandemflug_com-Lienz_Tirol_Austrian_Alps.html",
+    text: {
+      de: "Der Tandemflug war einfach traumhaft! Schon der Start und der Weg dorthin waren ein Erlebnis, und dann dieses Gef\u00fchl, hoch oben \u00fcber der Region zu gleiten \u2013 unbeschreiblich. Die Aussicht war atemberaubend, man konnte die Landschaft in voller Sch\u00f6nheit genie\u00dfen. Alles war super organisiert, ich habe mich die ganze Zeit sicher und bestens betreut gef\u00fchlt. Absolute Empfehlung f\u00fcr alle, die etwas Besonderes erleben wollen \u2013 ein echtes Wow-Erlebnis!",
+      en: "The tandem flight was simply amazing! Even the start and the way up were an experience, and then that feeling of gliding high above the region \u2013 indescribable. The view was breathtaking, you could enjoy the landscape in all its beauty. Everything was perfectly organized, I felt safe and well looked after the entire time. Absolute recommendation for anyone who wants to experience something special \u2013 a true wow experience!",
+      nl: "De tandemvlucht was gewoon fantastisch! Al de start en de weg ernaartoe waren een belevenis, en dan dat gevoel om hoog boven de regio te zweven \u2013 onbeschrijflijk. Het uitzicht was adembenemend, je kon het landschap in al zijn schoonheid bewonderen. Alles was perfect georganiseerd, ik voelde me de hele tijd veilig en uitstekend begeleid. Absolute aanrader voor iedereen die iets bijzonders wil beleven \u2013 een echt wow-erlebnis!",
+    },
+    date: "2025-09-01",
+    sourceUrl: TRIPADVISOR_URL,
   },
   {
-    name: "Tripadvisor-Gast",
+    name: "Georg K.",
     rating: 5,
-    text: "Dieses wunderbare Erlebnis wurde von Anfang bis Ende sehr professionell und sehr freundlich auf unsere Bed\u00FCrfnisse zugeschnitten. Alles wurde im Detail erkl\u00E4rt, sodass keine Fragen offen blieben. Der Flug war ein Traum und sehr informativ. Die Fotos und kleinen Videos, die Daniel Kofler w\u00E4hrend des Fluges gemacht hat, sind eine Erinnerung f\u00FCrs Leben.",
-    date: "2023-09-01",
-    sourceUrl:
-      "https://www.tripadvisor.de/ShowUserReviews-g230011-d8720066-r509188385-Gleitschirm_Tandemflug-Lienz_Tirol_Austrian_Alps.html",
+    text: {
+      de: "Einfach unvergesslich! Die Tandempiloten waren super lieb, mega erfahren und haben einem vom ersten Moment an ein absolut sicheres Gef\u00fchl gegeben. Bei traumhaftem Wetter durch die L\u00fcfte zu gleiten war der Wahnsinn \u2013 k\u00f6nnen wir jedem nur empfehlen!",
+      en: "Simply unforgettable! The tandem pilots were incredibly kind, hugely experienced and gave you an absolutely safe feeling from the very first moment. Gliding through the skies in perfect weather was incredible \u2013 we can only recommend it to everyone!",
+      nl: "Gewoon onvergetelijk! De tandempiloten waren super lief, enorm ervaren en gaven je vanaf het eerste moment een absoluut veilig gevoel. Bij prachtig weer door de lucht zweven was waanzinnig \u2013 we kunnen het iedereen aanbevelen!",
+    },
+    date: "2025-08-01",
+    sourceUrl: TRIPADVISOR_URL,
   },
   {
-    name: "Tripadvisor-Gast",
+    name: "Familie \u00d6vermann",
     rating: 5,
-    text: "Voll de Honisch! Hervorragende Betreuung, super sympathisch. Jederzeit wieder. Absolut empfehlenswert. Bei Daniel f\u00FChlt man sich absolut sicher und optimal aufgehoben. Danke danke danke!!!",
-    date: "2023-06-01",
-    sourceUrl:
-      "https://www.tripadvisor.de/ShowUserReviews-g230011-d8720066-r488133272-Gleitschirm_Tandemflug-Lienz_Tirol_Austrian_Alps.html",
+    text: {
+      de: "Alles hat wunderbar gepasst!! Angefangen mit dem sch\u00f6nen Gutschein, der zu uns nach Hause punktgenau zum Geburtstag unseres Sohnes geschickt wurde bis hin zur pers\u00f6nlichen Termin-Absprache vor Ort war es durchweg eine sehr sympathische und verl\u00e4ssliche Absprache. Der Flug verlief dann sehr feinf\u00fchlig und empathisch, anf\u00e4ngliche Nervosit\u00e4t war schnell verflogen. Digital begleitet mit Live-Standort, Bild vom Abflugsort sowie Kurzvideo w\u00e4hrend des Fluges. Der Blick \u00fcber Lienz und die umliegenden Bergketten sind ein Traum!! Ganz herzlichen Dank f\u00fcr dieses tolle Erlebnis!!",
+      en: "Everything came together wonderfully!! Starting with the beautiful voucher that was sent to our home right on time for our son\u2019s birthday, through to the personal appointment arrangements on site \u2013 it was a consistently friendly and reliable experience. The flight itself was very sensitive and empathetic, initial nervousness quickly disappeared. Digitally accompanied with live location, a photo from the launch site and a short video during the flight. The view over Lienz and the surrounding mountain ranges is a dream!! Heartfelt thanks for this amazing experience!!",
+      nl: "Alles klopte perfect!! Vanaf de mooie cadeaubon die precies op tijd voor de verjaardag van onze zoon naar huis werd gestuurd tot de persoonlijke afspraak ter plaatse \u2013 het was een door en door sympathieke en betrouwbare ervaring. De vlucht verliep zeer gevoelig en empathisch, de aanvankelijke zenuwen waren snel verdwenen. Digitaal begeleid met live locatie, foto van de startplaats en een kort filmpje tijdens de vlucht. Het uitzicht over Lienz en de omliggende bergketens is een droom!! Heel hartelijk dank voor deze geweldige ervaring!!",
+    },
+    date: "2025-08-01",
+    sourceUrl: TRIPADVISOR_URL,
   },
   {
-    name: "Tripadvisor-Gast",
+    name: "Christina S.",
     rating: 5,
-    text: "Einfach klasse! Die Piloten sind gut drauf und machen gleichzeitig einen professionellen Eindruck. Me and my kids had a lifetime experience \u2013 we will never forget this. The team is very keen on safety so it felt all very good to go up the mountain and fly.",
-    date: "2023-03-01",
-    sourceUrl:
-      "https://www.tripadvisor.de/ShowUserReviews-g230011-d8720066-r377728147-Gleitschirm_Tandemflug-Lienz_Tirol_Austrian_Alps.html",
+    text: {
+      de: "Ein voller Erfolg, bin dem ganzen Team echt dankbar. Aber nicht nur wegen dem Flug sondern auch weil ich vom Bahnhof geholt, wieder zur\u00fcckgebracht wurde und sch\u00f6ne Fotos gemacht wurden. Aber eine gro\u00dfe positive \u00dcberraschung war, da ich gerne dichte, dass die Piloten nach dem Flug mit mir gereimt haben. All das sind keine Witze \u2013 euer ganzes Team ist spitze. So komme ich gerne ein weiteres Mal, weil durch viel Spa\u00df und Freude seid ihr genial.",
+      en: "A complete success, I\u2019m truly grateful to the whole team. Not just because of the flight, but also because I was picked up from the train station, brought back, and beautiful photos were taken. But a big positive surprise was that, since I love writing poetry, the pilots rhymed with me after the flight. None of this is a joke \u2013 your whole team is top-notch. I\u2019ll gladly come again, because with so much fun and joy, you\u2019re simply brilliant.",
+      nl: "Een volledig succes, ik ben het hele team echt dankbaar. Niet alleen vanwege de vlucht, maar ook omdat ik van het station werd gehaald, weer teruggebracht en er mooie foto\u2019s werden gemaakt. Maar een grote positieve verrassing was dat, omdat ik graag dicht, de piloten na de vlucht met mij hebben gerijmd. Dit alles is geen grap \u2013 jullie hele team is top. Zo kom ik graag nog een keer, want met zoveel plezier en vreugde zijn jullie geniaal.",
+    },
+    date: "2025-08-01",
+    sourceUrl: TRIPADVISOR_URL,
   },
 ];
 
@@ -58,11 +73,12 @@ const dateLocaleMap: Record<string, string> = {
 function ReviewCard({ review, locale }: { review: Review; locale: string }) {
   const t = useTranslations("Reviews");
   const [expanded, setExpanded] = useState(false);
-  const long = review.text.length > TRUNCATE;
+  const fullText = review.text[locale] || review.text.de;
+  const long = fullText.length > TRUNCATE;
   const text =
     !expanded && long
-      ? review.text.slice(0, TRUNCATE).trimEnd() + "\u2026"
-      : review.text;
+      ? fullText.slice(0, TRUNCATE).trimEnd() + "\u2026"
+      : fullText;
 
   return (
     <article className="glass-card card-hover-glow rounded-2xl p-6 sm:p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
