@@ -3,6 +3,7 @@
 import { useChat, type UIMessage } from "@ai-sdk/react";
 import { useState, useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 const MAX_MESSAGES = 20;
 const MAX_INPUT_LENGTH = 500;
@@ -192,6 +193,15 @@ export default function ChatBot() {
 
           {/* Input Area */}
           <div className="px-4 py-3 border-t border-edge-faint bg-surface-secondary/30">
+            <p className="text-[10px] text-content-subtle text-center mb-2 leading-relaxed">
+              {t.rich("dsgvoHint", {
+                link: (chunks) => (
+                  <Link href="/datenschutz" className="text-accent-500 hover:text-accent-400 underline underline-offset-2">
+                    {chunks}
+                  </Link>
+                ),
+              })}
+            </p>
             {isRateLimited ? (
               <div className="text-center text-sm text-content-muted py-2">
                 <p>

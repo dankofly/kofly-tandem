@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileCTA from "@/components/MobileCTA";
 import ChatBot from "@/components/ChatBot";
+import CookieBanner from "@/components/CookieBanner";
 import ThemeProvider from "@/components/ThemeProvider";
 import {
   organizationSchema,
@@ -136,6 +137,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             <Footer />
             <MobileCTA />
             <ChatBot />
+            <CookieBanner />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
