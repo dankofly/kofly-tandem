@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "fs/promises";
 import { join } from "path";
+import { SYSTEM_PROMPT } from "./system-prompt";
 
 const CONFIG_PATH = join(process.cwd(), "data", "chat-config.json");
 
@@ -9,11 +10,13 @@ interface ChatConfig {
 
 export async function getSystemPrompt(): Promise<string> {
   try {
+    // Try filesystem read first (works in dev, supports admin edits)
     const raw = await readFile(CONFIG_PATH, "utf-8");
     const config: ChatConfig = JSON.parse(raw);
     return config.systemPrompt;
   } catch {
-    return "Du bist ein freundlicher Assistent.";
+    // Fallback to build-time constant (works on Netlify serverless)
+    return SYSTEM_PROMPT;
   }
 }
 
