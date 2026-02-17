@@ -13,9 +13,15 @@ const weightRanges = [
   "100\u2013110 kg",
 ];
 
+const INPUT_CLS =
+  "w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors";
+const LABEL_CLS =
+  "block text-xs font-medium text-content-body mb-2 tracking-wide";
+
 export default function BookingForm() {
   const t = useTranslations("BookingForm");
   const locale = useLocale();
+  const [paket, setPaket] = useState("premium");
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -36,15 +42,19 @@ export default function BookingForm() {
 
     const payload = {
       type: "termin",
-      name: data.get("name"),
+      vorname: data.get("vorname"),
+      nachname: data.get("nachname"),
       telefon: data.get("telefon"),
+      whatsapp: data.get("whatsapp"),
       email: data.get("email"),
-      zeitraumVon: data.get("zeitraum_von"),
-      zeitraumBis: data.get("zeitraum_bis"),
-      flexibilitaet: data.get("flexibilitaet"),
+      wunschtermin: data.get("wunschtermin"),
+      anreise: data.get("anreise"),
+      abreise: data.get("abreise"),
       personenanzahl: data.get("personenanzahl"),
-      gewicht: data.get("gewicht"),
+      paket: data.get("paket"),
+      mediaAddon: data.get("media_addon") === "ja",
       fotoVideo: data.get("foto_video"),
+      gewicht: data.get("gewicht"),
       nachricht: data.get("nachricht"),
     };
 
@@ -85,25 +95,40 @@ export default function BookingForm() {
         <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
-      {/* Name */}
-      <div>
-        <label htmlFor="name" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-          {t("name")}
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          required
-          className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-          placeholder={t("namePlaceholder")}
-        />
-      </div>
-
-      {/* Telefon + Email */}
+      {/* Vorname + Nachname */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="telefon" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
+          <label htmlFor="vorname" className={LABEL_CLS}>
+            {t("vorname")}
+          </label>
+          <input
+            type="text"
+            id="vorname"
+            name="vorname"
+            required
+            className={INPUT_CLS}
+            placeholder={t("vornamePlaceholder")}
+          />
+        </div>
+        <div>
+          <label htmlFor="nachname" className={LABEL_CLS}>
+            {t("nachname")}
+          </label>
+          <input
+            type="text"
+            id="nachname"
+            name="nachname"
+            required
+            className={INPUT_CLS}
+            placeholder={t("nachnamePlaceholder")}
+          />
+        </div>
+      </div>
+
+      {/* Telefon + WhatsApp */}
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor="telefon" className={LABEL_CLS}>
             {t("telefon")}
           </label>
           <input
@@ -111,152 +136,194 @@ export default function BookingForm() {
             id="telefon"
             name="telefon"
             required
-            className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-            placeholder="+43 ..."
+            className={INPUT_CLS}
+            placeholder={t("telefonPlaceholder")}
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-            {t("email")}
+          <label htmlFor="whatsapp" className={LABEL_CLS}>
+            {t("whatsapp")}
+          </label>
+          <select id="whatsapp" name="whatsapp" className={INPUT_CLS}>
+            <option value="ja">{t("whatsappJa")}</option>
+            <option value="nein">{t("whatsappNein")}</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Email */}
+      <div>
+        <label htmlFor="email" className={LABEL_CLS}>
+          {t("email")}
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          className={INPUT_CLS}
+          placeholder={t("emailPlaceholder")}
+        />
+      </div>
+
+      {/* Wunschtermin */}
+      <div>
+        <label htmlFor="wunschtermin" className={LABEL_CLS}>
+          {t("wunschtermin")}
+        </label>
+        <input
+          type="date"
+          id="wunschtermin"
+          name="wunschtermin"
+          className={INPUT_CLS}
+        />
+      </div>
+
+      {/* Anreise + Abreise */}
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor="anreise" className={LABEL_CLS}>
+            {t("anreise")}
           </label>
           <input
-            type="email"
-            id="email"
-            name="email"
+            type="date"
+            id="anreise"
+            name="anreise"
             required
-            className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-            placeholder={t("emailPlaceholder")}
+            className={INPUT_CLS}
+          />
+        </div>
+        <div>
+          <label htmlFor="abreise" className={LABEL_CLS}>
+            {t("abreise")}
+          </label>
+          <input
+            type="date"
+            id="abreise"
+            name="abreise"
+            required
+            className={INPUT_CLS}
           />
         </div>
       </div>
 
-      {/* Zeitraum */}
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label htmlFor="zeitraum_von" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-            {t("zeitraumVon")}
-          </label>
-          <input
-            type="date"
-            id="zeitraum_von"
-            name="zeitraum_von"
-            required
-            className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-          />
-        </div>
-        <div>
-          <label htmlFor="zeitraum_bis" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-            {t("zeitraumBis")}
-          </label>
-          <input
-            type="date"
-            id="zeitraum_bis"
-            name="zeitraum_bis"
-            required
-            className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-          />
-        </div>
+      {/* Personenanzahl */}
+      <div>
+        <label htmlFor="personenanzahl" className={LABEL_CLS}>
+          {t("personenanzahl")}
+        </label>
+        <input
+          type="number"
+          id="personenanzahl"
+          name="personenanzahl"
+          min="1"
+          max="10"
+          defaultValue="1"
+          className={INPUT_CLS}
+        />
       </div>
 
-      {/* Flexibilität + Personenanzahl */}
+      {/* Flugpaket */}
+      <div>
+        <label htmlFor="paket" className={LABEL_CLS}>
+          {t("paketLabel")}
+        </label>
+        <select
+          id="paket"
+          name="paket"
+          required
+          value={paket}
+          onChange={(e) => setPaket(e.target.value)}
+          className={INPUT_CLS}
+        >
+          <option value="premium">{t("premiumOption")}</option>
+          <option value="classic">{t("classicOption")}</option>
+          <option value="thermik">{t("thermikOption")}</option>
+        </select>
+      </div>
+
+      {/* Media Addon – only shown when Classic is selected */}
+      {paket === "classic" && (
+        <div className="bg-accent-500/5 border border-accent-500/20 p-4">
+          <div className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="media_addon"
+              name="media_addon"
+              value="ja"
+              className="mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
+            />
+            <label htmlFor="media_addon" className="text-sm text-content-body">
+              <strong>{t("mediaAddon")}</strong> {t("mediaAddonAdd")}
+            </label>
+          </div>
+        </div>
+      )}
+
+      {/* Foto & Video + Gewicht */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="flexibilitaet" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-            {t("flexibilitaet")}
+          <label htmlFor="foto_video" className={LABEL_CLS}>
+            {t("fotoVideo")}
           </label>
-          <select
-            id="flexibilitaet"
-            name="flexibilitaet"
-            className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-          >
-            <option value="hoch">{t("flexHoch")}</option>
-            <option value="mittel">{t("flexMittel")}</option>
-            <option value="gering">{t("flexGering")}</option>
+          <select id="foto_video" name="foto_video" className={INPUT_CLS}>
+            <option value="ja">{t("fotoJa")}</option>
+            <option value="nein">{t("fotoNein")}</option>
           </select>
         </div>
         <div>
-          <label htmlFor="personenanzahl" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-            {t("personenanzahl")}
-          </label>
-          <input
-            type="number"
-            id="personenanzahl"
-            name="personenanzahl"
-            min="1"
-            max="10"
-            defaultValue="1"
-            className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-          />
-        </div>
-      </div>
-
-      {/* Gewicht + Foto/Video */}
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label htmlFor="gewicht" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
+          <label htmlFor="gewicht" className={LABEL_CLS}>
             {t("gewicht")}
           </label>
-          <select
-            id="gewicht"
-            name="gewicht"
-            className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-          >
+          <select id="gewicht" name="gewicht" className={INPUT_CLS}>
             <option value="">{t("gewichtPlaceholder")}</option>
             {weightRanges.map((range) => (
               <option key={range} value={range}>
                 {range}
               </option>
             ))}
-            <option value="110–120 kg">{t("gewichtOnRequest")}</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="foto_video" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
-            {t("fotoVideo")}
-          </label>
-          <select
-            id="foto_video"
-            name="foto_video"
-            className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors"
-          >
-            <option value="ja">{t("fotoJa")}</option>
-            <option value="nein">{t("fotoNein")}</option>
+            <option value="110\u2013120 kg">{t("gewichtOnRequest")}</option>
           </select>
         </div>
       </div>
 
-      {/* Nachricht */}
+      {/* Anmerkungen & Fragen */}
       <div>
-        <label htmlFor="nachricht" className="block text-xs font-medium text-content-body mb-2 tracking-wide">
+        <label htmlFor="nachricht" className={LABEL_CLS}>
           {t("nachricht")}
         </label>
         <textarea
           id="nachricht"
           name="nachricht"
           rows={3}
-          className="w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 transition-colors resize-y"
+          className={`${INPUT_CLS} resize-y`}
           placeholder={t("nachrichtPlaceholder")}
         />
       </div>
 
-      {/* AGB Checkbox */}
-      <div className="flex items-start gap-3">
-        <input
-          type="checkbox"
-          id="agb"
-          name="agb"
-          required
-          className="mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
-        />
-        <label htmlFor="agb" className="text-sm text-content-muted">
-          {t.rich("agbConsent", {
-            link: (chunks) => (
-              <a href={`/${locale}/agb`} target="_blank" rel="noopener noreferrer" className="text-accent-500 hover:text-accent-400 underline underline-offset-2">
-                {chunks}
-              </a>
-            ),
-          })}
-        </label>
+      {/* AGB Warning + Checkbox */}
+      <div className="bg-accent-500/10 border border-accent-500/30 p-4">
+        <p className="text-sm font-medium text-accent-500 mb-3">
+          {t("agbWarning")}
+        </p>
+        <div className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="agb"
+            name="agb"
+            required
+            className="mt-1 w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
+          />
+          <label htmlFor="agb" className="text-sm text-content-muted">
+            {t.rich("agbConsent", {
+              link: (chunks) => (
+                <a href={`/${locale}/agb`} target="_blank" rel="noopener noreferrer" className="text-accent-500 hover:text-accent-400 underline underline-offset-2">
+                  {chunks}
+                </a>
+              ),
+            })}
+          </label>
+        </div>
       </div>
 
       {/* Datenschutz Checkbox */}

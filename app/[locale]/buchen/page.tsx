@@ -12,6 +12,7 @@ type TabId = (typeof tabIds)[number];
 export default function BuchenPage() {
   const t = useTranslations("Buchen");
   const [activeTab, setActiveTab] = useState<TabId>("termin");
+  const [infoOpen, setInfoOpen] = useState(false);
 
   useEffect(() => {
     if (window.location.hash === "#gutschein") {
@@ -62,6 +63,37 @@ export default function BuchenPage() {
           <p className="mt-8 text-sm text-content-muted leading-relaxed font-light">
             {t("intro")}
           </p>
+
+          {/* Collapsible Info */}
+          <div className="mt-8 border border-edge-subtle">
+            <button
+              type="button"
+              onClick={() => setInfoOpen(!infoOpen)}
+              className="w-full flex items-center justify-between px-5 py-4 text-sm font-medium text-content-strong hover:text-accent-500 transition-colors cursor-pointer"
+              aria-expanded={infoOpen}
+            >
+              {t("infoToggle")}
+              <svg
+                className={`w-4 h-4 transition-transform duration-300 ${infoOpen ? "rotate-180" : ""}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div className={`accordion-content ${infoOpen ? "open" : ""}`}>
+              <div>
+                <div className="px-5 pb-5">
+                  <p className="text-sm text-content-muted leading-relaxed font-light whitespace-pre-line">
+                    {t("infoContent")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Tabs */}
           <div className="mt-12 flex border-b border-edge-subtle" role="tablist">
