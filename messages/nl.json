@@ -193,7 +193,9 @@
     "readMore": "Meer lezen",
     "readLess": "Minder",
     "allReviews": "Alle beoordelingen op Tripadvisor",
-    "allReviewsLabel": "Alle beoordelingen op Tripadvisor bekijken (opent in nieuw tabblad)"
+    "allReviewsLabel": "Alle beoordelingen op Tripadvisor bekijken (opent in nieuw tabblad)",
+    "googleReviews": "Beoordeling op Google schrijven",
+    "googleReviewsLabel": "Beoordeling op Google schrijven (opent in nieuw tabblad)"
   },
   "MapContact": {
     "tagline": "Contact",

@@ -220,7 +220,7 @@ export default function Reviews() {
         </div>
 
         {/* CTA */}
-        <ScrollReveal className="mt-8 text-center">
+        <ScrollReveal className="mt-8 flex flex-col items-center gap-3">
           <a
             href="https://www.tripadvisor.com/Attraction_Review-g230011-d8720066-Reviews-Gleitschirm_Tandemflug_com-Lienz_Tirol_Austrian_Alps.html"
             target="_blank"
@@ -229,6 +229,18 @@ export default function Reviews() {
             className="inline-flex items-center gap-2 text-[13px] font-semibold tracking-wide uppercase text-content-subtle hover:text-accent-400 transition-colors"
           >
             {t("allReviews")}
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+            </svg>
+          </a>
+          <a
+            href="https://g.page/r/CaGNb8TkNHIKEAE/review"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t("googleReviewsLabel")}
+            className="inline-flex items-center gap-2 text-[13px] font-semibold tracking-wide uppercase text-content-subtle hover:text-accent-400 transition-colors"
+          >
+            {t("googleReviews")}
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
             </svg>
