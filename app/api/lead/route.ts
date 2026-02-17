@@ -51,6 +51,68 @@ function validateGutschein(data: GutscheinPayload): string | null {
   return null;
 }
 
+async function sendTelegram(body: LeadPayload) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) return;
+
+  let text: string;
+
+  if (body.type === "termin") {
+    const d = body as TerminPayload;
+    text = [
+      `✈️ *Neue Terminanfrage*`,
+      ``,
+      `👤 *Name:* ${esc(d.name)}`,
+      `📞 *Telefon:* ${esc(d.telefon)}`,
+      `📧 *E-Mail:* ${esc(d.email)}`,
+      `📅 *Zeitraum:* ${esc(d.zeitraumVon)} – ${esc(d.zeitraumBis)}`,
+      `🔄 *Flexibilität:* ${esc(d.flexibilitaet || "–")}`,
+      `👥 *Personen:* ${esc(d.personenanzahl || "1")}`,
+      `⚖️ *Gewicht:* ${esc(d.gewicht || "–")}`,
+      `📸 *Foto/Video:* ${esc(d.fotoVideo || "–")}`,
+      d.nachricht ? `\n💬 *Nachricht:*\n${esc(d.nachricht)}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+  } else {
+    const d = body as GutscheinPayload;
+    text = [
+      `🎁 *Neue Gutschein-Bestellung*`,
+      ``,
+      `📦 *Paket:* ${esc(d.paket)}`,
+      `🎬 *Media-Addon:* ${d.mediaAddon ? "Ja" : "Nein"}`,
+      `📮 *Versandart:* ${esc(d.versandart)}`,
+      `👤 *Rechnungsname:* ${esc(d.rechnungsname)}`,
+      `📧 *E-Mail:* ${esc(d.rechnungsemail)}`,
+      `📞 *Telefon:* ${esc(d.rechnungstelefon)}`,
+      d.empfaengername ? `🎯 *Empfänger:* ${esc(d.empfaengername)}` : "",
+      d.widmung ? `✍️ *Widmung:* ${esc(d.widmung)}` : "",
+      d.nachricht ? `\n💬 *Nachricht:*\n${esc(d.nachricht)}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+  }
+
+  try {
+    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text,
+        parse_mode: "Markdown",
+      }),
+    });
+  } catch (err) {
+    console.error("[TELEGRAM] Failed to send notification", err);
+  }
+}
+
+function esc(s: string): string {
+  return s.replace(/[_*[\]()~`>#+\-=|{}.!]/g, "\\$&");
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body: LeadPayload = await request.json();
@@ -73,16 +135,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: validationError }, { status: 400 });
     }
 
-    // --- Server-side logging (placeholder) ---
-    // In production, replace with email notification, CRM write, or database insert.
+    // --- Server-side logging ---
     console.log(
       `[LEAD] ${new Date().toISOString()} | type=${body.type}`,
       JSON.stringify(body, null, 2)
     );
 
-    // TODO: Send confirmation email to customer
-    // TODO: Send notification to team (email / WhatsApp Business API)
-    // TODO: Store in database or CRM
+    // --- Telegram notification ---
+    await sendTelegram(body);
 
     return NextResponse.json({
       success: true,
