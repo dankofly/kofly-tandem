@@ -94,7 +94,7 @@ function ReviewCard({ review, locale }: { review: Review; locale: string }) {
         <p className="text-xs font-medium text-content-strong tracking-wide">
           {review.name}
         </p>
-        <time className="text-[11px] text-content-subtle" dateTime={review.date}>
+        <time className="text-[11px] text-content-subtle" dateTime={review.date} suppressHydrationWarning>
           {new Date(review.date).toLocaleDateString(dateLocaleMap[locale] || locale, {
             year: "numeric",
             month: "long",

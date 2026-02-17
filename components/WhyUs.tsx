@@ -101,10 +101,10 @@ export default async function WhyUs() {
                 </p>
                 <Link
                   href={tile.href}
-                  aria-label={`${t("learnMore")} – ${tile.title}`}
                   className="inline-flex items-center gap-1.5 text-[13px] font-bold tracking-wide uppercase text-accent-400 hover:text-white transition-colors"
                 >
                   {t("learnMore")}
+                  <span className="sr-only"> – {tile.title}</span>
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
