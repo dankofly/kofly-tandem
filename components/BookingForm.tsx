@@ -11,6 +11,7 @@ const LABEL_CLS =
 export default function BookingForm() {
   const t = useTranslations("BookingForm");
   const locale = useLocale();
+  const [paket, setPaket] = useState("premium");
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -210,23 +211,53 @@ export default function BookingForm() {
       </div>
 
       {/* Flugpaket */}
-      <div>
-        <label htmlFor="paket" className={LABEL_CLS}>
-          {t("paketLabel")}
-        </label>
-        <select
-          id="paket"
-          name="paket"
-          required
-          className={INPUT_CLS}
-        >
-          <option value="classic">{t("classicOption")}</option>
-          <option value="classic-media">{t("classicMediaOption")}</option>
-          <option value="premium">{t("premiumOption")}</option>
-          <option value="thermik">{t("thermikOption")}</option>
-          <option value="individuell">{t("individuellOption")}</option>
-        </select>
-      </div>
+      <fieldset>
+        <legend className={LABEL_CLS}>{t("paketLabel")}</legend>
+        <input type="hidden" name="paket" value={paket} />
+        <div className="space-y-2">
+          {([
+            { value: "classic", name: "classicName", detail: "classicDetail", price: "classicPrice", popular: false },
+            { value: "classic-media", name: "classicMediaName", detail: "classicMediaDetail", price: "classicMediaPrice", popular: false },
+            { value: "premium", name: "premiumName", detail: "premiumDetail", price: "premiumPrice", popular: true },
+            { value: "thermik", name: "thermikName", detail: "thermikDetail", price: "thermikPrice", popular: false },
+            { value: "individuell", name: "individuellName", detail: "individuellDetail", price: "individuellPrice", popular: false },
+          ] as const).map((opt) => (
+            <label
+              key={opt.value}
+              className={`flex items-center gap-4 p-4 border cursor-pointer transition-all ${
+                paket === opt.value
+                  ? "border-accent-500 bg-accent-500/5"
+                  : "border-edge-input bg-surface-input hover:border-edge-secondary"
+              }`}
+            >
+              <input
+                type="radio"
+                name="paket_radio"
+                value={opt.value}
+                checked={paket === opt.value}
+                onChange={() => setPaket(opt.value)}
+                className="w-4 h-4 text-accent-500 border-edge-secondary focus:ring-accent-500 shrink-0"
+              />
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <span className={`text-sm font-medium ${paket === opt.value ? "text-content-primary" : "text-content-strong"}`}>
+                    {t(opt.name)}
+                  </span>
+                  {opt.popular && (
+                    <span className="text-[10px] font-semibold uppercase tracking-wider bg-accent-500 text-white px-2 py-0.5 rounded-sm">
+                      {t("popularBadge")}
+                    </span>
+                  )}
+                </div>
+                <span className="text-xs text-content-muted font-light">{t(opt.detail)}</span>
+              </div>
+              <span className={`text-sm font-semibold shrink-0 ${paket === opt.value ? "text-accent-500" : "text-content-strong"}`}>
+                {t(opt.price)}
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
 
       {/* Anmerkungen & Fragen */}
       <div>
