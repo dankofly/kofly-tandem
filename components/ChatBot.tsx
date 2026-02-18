@@ -15,6 +15,33 @@ function getMessageText(message: { parts: Array<{ type: string; text?: string }>
     .join("");
 }
 
+const URL_RE = /(https?:\/\/[^\s),]+)/g;
+
+function Linkify({ text, isUser }: { text: string; isUser: boolean }) {
+  const parts = text.split(URL_RE);
+  return (
+    <>
+      {parts.map((part, i) =>
+        URL_RE.test(part) ? (
+          <a
+            key={i}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`underline underline-offset-2 break-all ${
+              isUser ? "text-white/90 hover:text-white" : "text-accent-500 hover:text-accent-400"
+            }`}
+          >
+            {part.replace(/^https?:\/\//, "")}
+          </a>
+        ) : (
+          <span key={i}>{part}</span>
+        ),
+      )}
+    </>
+  );
+}
+
 export default function ChatBot() {
   const t = useTranslations("ChatBot");
   const [isOpen, setIsOpen] = useState(false);
@@ -139,7 +166,7 @@ export default function ChatBot() {
                       : "bg-surface-secondary text-content-body rounded-bl-md msg-in-left"
                   }`}
                 >
-                  {getMessageText(message)}
+                  <Linkify text={getMessageText(message)} isUser={message.role === "user"} />
                 </div>
               </div>
             ))}
