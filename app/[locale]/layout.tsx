@@ -69,7 +69,7 @@ export async function generateMetadata({
       description: t("homeOgDescription"),
       images: [
         {
-          url: `${SITE_URL}/images/hero-1771273007982.jpg`,
+          url: `${SITE_URL}/images/hero-1771273007982.webp`,
           width: 1200,
           height: 630,
           alt: t("homeOgTitle"),
@@ -80,7 +80,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("homeOgTitle"),
       description: t("homeOgDescription"),
-      images: [`${SITE_URL}/images/hero-1771273007982.jpg`],
+      images: [`${SITE_URL}/images/hero-1771273007982.webp`],
     },
     alternates: {
       canonical: locale === "de" ? SITE_URL : `${SITE_URL}/${locale}`,

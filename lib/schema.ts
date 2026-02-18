@@ -30,7 +30,7 @@ export function organizationSchema(locale: string = "de") {
     url: `${localeBase(locale)}`,
     telephone: PHONE,
     email: EMAIL,
-    image: `${SITE_URL}/images/hero-1771273007982.jpg`,
+    image: `${SITE_URL}/images/hero-1771273007982.webp`,
     logo: `${SITE_URL}/icon.png`,
     description:
       "Gleitschirm Tandemflüge & Paragleiten im Airpark Lienzer Dolomiten mit erfahrenen zertifizierten Tandempiloten. Tandemflug & Tandemsprung in Osttirol – Lienz, Sillian, Matrei, St. Jakob im Defereggental & Kals am Großglockner. Ab €150.",
@@ -371,7 +371,7 @@ export function productSchema() {
     name: "Gleitschirm Tandemflug Lienz - KOFLY",
     description:
       "Tandem-Gleitschirmflug im Airpark Lienzer Dolomiten mit zertifizierten Tandempiloten. Nr. 1 Outdoor-Aktivität in Lienz – 5.0/5 Sterne auf Tripadvisor.",
-    image: `${SITE_URL}/images/hero-1771273007982.jpg`,
+    image: `${SITE_URL}/images/hero-1771273007982.webp`,
     url: SITE_URL,
     brand: {
       "@type": "Brand",
@@ -410,7 +410,7 @@ export function touristAttractionSchema() {
     description:
       "Tandem-Paragliding im Airpark Lienzer Dolomiten – Start ab Zettersfeld (1.750 m) oder Hochstein (2.057 m) mit Panoramablick auf über 100 Alpengipfel. Nr. 1 Outdoor-Aktivität in Lienz.",
     url: SITE_URL,
-    image: `${SITE_URL}/images/hero-1771273007982.jpg`,
+    image: `${SITE_URL}/images/hero-1771273007982.webp`,
     geo: {
       "@type": "GeoCoordinates",
       latitude: 46.8298,

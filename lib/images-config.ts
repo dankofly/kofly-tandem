@@ -18,7 +18,7 @@ interface ImagesConfig {
 const DEFAULT_SLOTS: Record<string, ImageSlot> = {
   hero: {
     label: "Hero Hintergrund (Desktop)",
-    filename: "hero-1771273007982.jpg",
+    filename: "hero-1771273007982.webp",
     description: "Hauptbild oben auf der Startseite – Desktop/Tablet (empfohlen: 1920x1080, Querformat 16:9)",
   },
   "hero-mobile": {
