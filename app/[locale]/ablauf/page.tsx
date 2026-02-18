@@ -6,7 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { getImageUrl } from "@/lib/images-config";
 import { breadcrumbSchema } from "@/lib/schema";
 
-const SITE_URL = "https://www.gleitschirm-tandemflug.com";
+const SITE_URL = "https://gleitschirm-tandemflug.com";
 
 const rich = {
   b: (chunks: ReactNode) => (
@@ -21,10 +21,10 @@ export async function generateMetadata(): Promise<Metadata> {
     description: t("ablaufDescription"),
     alternates: {
       languages: {
-        de: `${SITE_URL}/de/ablauf`,
+        de: `${SITE_URL}/ablauf`,
         en: `${SITE_URL}/en/ablauf`,
         nl: `${SITE_URL}/nl/ablauf`,
-        "x-default": `${SITE_URL}/de/ablauf`,
+        "x-default": `${SITE_URL}/ablauf`,
       },
     },
   };
@@ -42,9 +42,10 @@ export default async function AblaufPage() {
     getImageUrl("ablauf-landing"),
   ]);
 
+  const localePath = locale === "de" ? "" : `/${locale}`;
   const breadcrumbs = breadcrumbSchema([
-    { name: "Home", url: `${SITE_URL}/${locale}` },
-    { name: t("breadcrumbCurrent"), url: `${SITE_URL}/${locale}/ablauf` },
+    { name: "Home", url: `${SITE_URL}${localePath || "/"}` },
+    { name: t("breadcrumbCurrent"), url: `${SITE_URL}${localePath}/ablauf` },
   ]);
 
   return (

@@ -26,7 +26,7 @@ const inter = Inter({
 });
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.gleitschirm-tandemflug.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://gleitschirm-tandemflug.com";
 
 type Props = {
   children: React.ReactNode;

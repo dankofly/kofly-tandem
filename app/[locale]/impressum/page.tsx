@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 
-const SITE_URL = "https://www.gleitschirm-tandemflug.com";
+const SITE_URL = "https://gleitschirm-tandemflug.com";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");
@@ -12,10 +12,10 @@ export async function generateMetadata(): Promise<Metadata> {
     robots: { index: false, follow: true },
     alternates: {
       languages: {
-        de: `${SITE_URL}/de/impressum`,
+        de: `${SITE_URL}/impressum`,
         en: `${SITE_URL}/en/impressum`,
         nl: `${SITE_URL}/nl/impressum`,
-        "x-default": `${SITE_URL}/de/impressum`,
+        "x-default": `${SITE_URL}/impressum`,
       },
     },
   };
@@ -88,8 +88,8 @@ export default function ImpressumPage() {
               </p>
               <p>
                 Internet:{" "}
-                <a href="https://www.gleitschirm-tandemflug.com" className="text-accent-400 hover:text-accent-500 transition-colors">
-                  www.gleitschirm-tandemflug.com
+                <a href="https://gleitschirm-tandemflug.com" className="text-accent-400 hover:text-accent-500 transition-colors">
+                  gleitschirm-tandemflug.com
                 </a>
               </p>
             </div>

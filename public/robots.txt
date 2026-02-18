@@ -25,4 +25,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://www.gleitschirm-tandemflug.com/sitemap.xml
+Sitemap: https://gleitschirm-tandemflug.com/sitemap.xml

@@ -3,7 +3,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { breadcrumbSchema } from "@/lib/schema";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.gleitschirm-tandemflug.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://gleitschirm-tandemflug.com";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");

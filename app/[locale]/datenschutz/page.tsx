@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 
-const SITE_URL = "https://www.gleitschirm-tandemflug.com";
+const SITE_URL = "https://gleitschirm-tandemflug.com";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");
@@ -12,10 +12,10 @@ export async function generateMetadata(): Promise<Metadata> {
     robots: { index: false, follow: true },
     alternates: {
       languages: {
-        de: `${SITE_URL}/de/datenschutz`,
+        de: `${SITE_URL}/datenschutz`,
         en: `${SITE_URL}/en/datenschutz`,
         nl: `${SITE_URL}/nl/datenschutz`,
-        "x-default": `${SITE_URL}/de/datenschutz`,
+        "x-default": `${SITE_URL}/datenschutz`,
       },
     },
   };

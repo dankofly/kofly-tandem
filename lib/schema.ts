@@ -1,5 +1,5 @@
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.gleitschirm-tandemflug.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://gleitschirm-tandemflug.com";
 const BUSINESS_NAME = "Gleitschirm-Tandemflug.com";
 const PHONE = "+43 676 7293888";
 const EMAIL = "info@Gleitschirm-Tandemflug.com";

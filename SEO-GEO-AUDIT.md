@@ -1,7 +1,7 @@
 # SEO & GEO Audit – Gleitschirm-Tandemflug.com
 
 **Datum:** 17. Februar 2026
-**Domain:** https://www.gleitschirm-tandemflug.com
+**Domain:** https://gleitschirm-tandemflug.com
 **Neue Seite (Next.js):** Netlify Deployment (in Entwicklung)
 
 ---
