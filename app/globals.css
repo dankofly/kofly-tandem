@@ -90,27 +90,27 @@
 
   /* Text */
   --text-primary: #0a1a22;
-  --text-base: #142832;
-  --text-strong: #1e3a48;
-  --text-body: #3d6478;
-  --text-muted: #4e7a92;
-  --text-subtle: #6a96ad;
-  --text-faint: #89b4c8;
-  --text-ghost: #b0d0df;
+  --text-base: #122630;
+  --text-strong: #1a3544;
+  --text-body: #355b6d;
+  --text-muted: #476f88;
+  --text-subtle: #5f8ca2;
+  --text-faint: #7fadc2;
+  --text-ghost: #a5c9d9;
 
   /* Borders */
-  --border-default: #d8e8f0;
-  --border-subtle: rgba(176, 208, 223, 0.6);
-  --border-faint: rgba(176, 208, 223, 0.4);
-  --border-input: #b0d0df;
-  --border-secondary: #89b4c8;
+  --border-default: #cde2ec;
+  --border-subtle: rgba(166, 201, 217, 0.66);
+  --border-faint: rgba(166, 201, 217, 0.46);
+  --border-input: #a5c9d9;
+  --border-secondary: #7fadc2;
 
   /* Placeholder */
-  --text-placeholder: #b0d0df;
+  --text-placeholder: #a5c9d9;
 
   /* Glass card – frosted white */
   --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(176, 208, 223, 0.3);
+  --glass-border: rgba(166, 201, 217, 0.36);
 
   /* Glow effects – softened for light */
   --glow-orb-accent: rgba(232, 104, 48, 0.08);
