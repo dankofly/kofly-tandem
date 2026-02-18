@@ -364,6 +364,20 @@ export function webSiteSchema(locale: string = "de") {
   };
 }
 
+export function productSchema() {
+  return {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    name: "Gleitschirm Tandemflug Lienz - KOFLY",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      bestRating: "5",
+      ratingCount: "250",
+    },
+  };
+}
+
 export function breadcrumbSchema(
   items: { name: string; url: string }[]
 ) {
