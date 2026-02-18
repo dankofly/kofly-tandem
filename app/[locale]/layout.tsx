@@ -18,6 +18,7 @@ import {
   voucherServiceSchema,
   webSiteSchema,
   productSchema,
+  touristAttractionSchema,
 } from "@/lib/schema";
 
 const inter = Inter({
@@ -138,6 +139,12 @@ export default async function LocaleLayout({ children, params }: Props) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(productSchema()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(touristAttractionSchema()),
           }}
         />
         <ThemeProvider>

@@ -3,26 +3,53 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 
-# AI Search Engine Bots
+# Google & Google AI (Gemini)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Bing & Microsoft Copilot
+User-agent: Bingbot
+Allow: /
+
+# OpenAI (ChatGPT)
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: PerplexityBot
-Allow: /
-
+# Anthropic (Claude)
 User-agent: ClaudeBot
 Allow: /
 
 User-agent: anthropic-ai
 Allow: /
 
-User-agent: Googlebot
+# Perplexity
+User-agent: PerplexityBot
 Allow: /
 
-User-agent: Bingbot
+# Apple (Siri / Apple Intelligence)
+User-agent: Applebot
+Allow: /
+
+# Brave Search (used by Claude)
+User-agent: Brave
+Allow: /
+
+# Common Crawl (AI training data)
+User-agent: CCBot
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+# ByteDance (TikTok Search)
+User-agent: Bytespider
 Allow: /
 
 Sitemap: https://gleitschirm-tandemflug.com/sitemap.xml

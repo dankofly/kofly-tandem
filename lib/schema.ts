@@ -369,12 +369,67 @@ export function productSchema() {
     "@context": "https://schema.org/",
     "@type": "Product",
     name: "Gleitschirm Tandemflug Lienz - KOFLY",
+    description:
+      "Tandem-Gleitschirmflug im Airpark Lienzer Dolomiten mit zertifizierten Tandempiloten. Nr. 1 Outdoor-Aktivität in Lienz – 5.0/5 Sterne auf Tripadvisor.",
+    image: `${SITE_URL}/images/hero-1771273007982.jpg`,
+    url: SITE_URL,
+    brand: {
+      "@type": "Brand",
+      name: "KOFLY",
+    },
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "5.0",
       bestRating: "5",
+      worstRating: "1",
       ratingCount: "250",
+      reviewCount: "250",
     },
+    offers: {
+      "@type": "AggregateOffer",
+      lowPrice: "150.00",
+      highPrice: "250.00",
+      priceCurrency: "EUR",
+      offerCount: "4",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/buchen`,
+    },
+  };
+}
+
+export function touristAttractionSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    name: "Tandem Paragliding Airpark Lienzer Dolomiten",
+    alternateName: [
+      "Gleitschirm Tandemflug Lienz",
+      "Paragleiten Osttirol",
+      "Tandemflug Lienzer Dolomiten",
+    ],
+    description:
+      "Tandem-Paragliding im Airpark Lienzer Dolomiten – Start ab Zettersfeld (1.750 m) oder Hochstein (2.057 m) mit Panoramablick auf über 100 Alpengipfel. Nr. 1 Outdoor-Aktivität in Lienz.",
+    url: SITE_URL,
+    image: `${SITE_URL}/images/hero-1771273007982.jpg`,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 46.8298,
+      longitude: 12.7693,
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Lienz",
+      addressRegion: "Osttirol",
+      addressCountry: "AT",
+    },
+    touristType: [
+      "Adventure travelers",
+      "Outdoor enthusiasts",
+      "Families",
+      "Couples",
+    ],
+    isAccessibleForFree: false,
+    availableLanguage: ["German", "English", "Dutch"],
   };
 }
 
