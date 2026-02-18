@@ -387,7 +387,7 @@ export default function AdminPage() {
                 {slot.filename && (
                   <div className="mt-4">
                     <img
-                      src={slot.blobbed ? `/api/images/${slotId}` : `/images/${slot.filename}`}
+                      src={slot.blobbed ? `/api/images/${slotId}?v=${slot.filename?.match(/-(\d+)\./)?.[1] || ""}` : `/images/${slot.filename}`}
                       alt={slot.label}
                       className="rounded-xl border border-edge-faint max-h-48 object-cover w-full"
                     />

@@ -96,9 +96,10 @@ export async function getImageUrl(slot: string): Promise<string | null> {
   const s = slots[slot];
   if (!s?.filename) return null;
 
-  // If image was uploaded to Blobs, serve via API route
+  // If image was uploaded to Blobs, serve via API route with cache-busting
   if (s.blobbed) {
-    return `/api/images/${slot}`;
+    const ts = s.filename?.match(/-(\d+)\./)?.[1] || "";
+    return `/api/images/${slot}?v=${ts}`;
   }
 
   // Otherwise use build-time static image
