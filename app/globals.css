@@ -99,18 +99,18 @@
   --text-ghost: #a5c9d9;
 
   /* Borders */
-  --border-default: #cde2ec;
-  --border-subtle: rgba(166, 201, 217, 0.66);
-  --border-faint: rgba(166, 201, 217, 0.46);
-  --border-input: #a5c9d9;
-  --border-secondary: #7fadc2;
+  --border-default: #b8d4e2;
+  --border-subtle: rgba(150, 190, 210, 0.75);
+  --border-faint: rgba(150, 190, 210, 0.52);
+  --border-input: #99c0d2;
+  --border-secondary: #74a5b8;
 
   /* Placeholder */
   --text-placeholder: #a5c9d9;
 
   /* Glass card – frosted white */
   --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(166, 201, 217, 0.36);
+  --glass-border: rgba(150, 190, 210, 0.45);
 
   /* Glow effects – softened for light */
   --glow-orb-accent: rgba(232, 104, 48, 0.08);
