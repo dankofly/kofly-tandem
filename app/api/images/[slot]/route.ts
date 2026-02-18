@@ -1,5 +1,7 @@
 import { getImageBlob } from "@/lib/images-config";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(
   _req: Request,
   { params }: { params: Promise<{ slot: string }> }
@@ -14,7 +16,7 @@ export async function GET(
   return new Response(blob.data, {
     headers: {
       "Content-Type": blob.contentType,
-      "Cache-Control": "public, max-age=31536000, immutable",
+      "Cache-Control": "public, s-maxage=60, stale-while-revalidate=86400",
     },
   });
 }

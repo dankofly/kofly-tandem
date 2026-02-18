@@ -122,11 +122,11 @@ export async function updateSlotFilename(
 
 export async function saveImageBlob(
   slot: string,
-  data: Blob,
+  data: ArrayBuffer,
   contentType: string
 ): Promise<void> {
   const store = getImagesStore();
-  await store.set(`${IMAGE_KEY_PREFIX}${slot}`, data, {
+  await store.set(`${IMAGE_KEY_PREFIX}${slot}`, new Blob([data], { type: contentType }), {
     metadata: { contentType },
   });
 }

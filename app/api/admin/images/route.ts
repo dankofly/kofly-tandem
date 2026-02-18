@@ -6,6 +6,8 @@ import {
   deleteImageBlob,
 } from "@/lib/images-config";
 
+export const dynamic = "force-dynamic";
+
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif"];
@@ -23,7 +25,10 @@ export async function GET(req: Request) {
   }
 
   const slots = await getImagesConfig();
-  return NextResponse.json({ slots });
+  return NextResponse.json(
+    { slots },
+    { headers: { "Cache-Control": "no-store" } }
+  );
 }
 
 // POST: Upload image and assign to slot
@@ -57,15 +62,16 @@ export async function POST(req: Request) {
     );
   }
 
-  // Build filename for reference
+  // Build filename for reference (timestamp used for cache-busting)
   const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
   const filename = `${slot}-${Date.now()}.${ext}`;
 
   // Delete old blob if exists
   await deleteImageBlob(slot);
 
-  // Save image to Netlify Blobs
-  await saveImageBlob(slot, file, file.type);
+  // Convert File to ArrayBuffer for reliable blob storage
+  const arrayBuffer = await file.arrayBuffer();
+  await saveImageBlob(slot, arrayBuffer, file.type);
 
   // Update config in Blobs (blobbed = true)
   await updateSlotFilename(slot, filename, true);
