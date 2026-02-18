@@ -4,6 +4,10 @@ import ScrollIndicator from "./ScrollIndicator";
 import { getImageUrl } from "@/lib/images-config";
 import { getTranslations } from "next-intl/server";
 
+/* Tiny 16×9 JPEG blur – generated from the default hero image via sharp */
+const HERO_BLUR =
+  "data:image/jpeg;base64,/9j/2wBDACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo+AjIqgtObDoKrarYqMyP/L2u71////m8H////6/+b9//j/2wBDASstLTw1PHZBQXb4pYyl+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj/wAARCAAJABADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAwEE/8QAGhAAAgIDAAAAAAAAAAAAAAAAAAECAyEyQf/EABQBAQAAAAAAAAAAAAAAAAAAAAH/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDTBpFdsU8sHoNmwF//2Q==";
+
 export default async function Hero() {
   const [heroImage, heroMobileImage] = await Promise.all([
     getImageUrl("hero"),
@@ -29,7 +33,9 @@ export default async function Hero() {
           className="object-cover sm:hidden"
           priority
           sizes="100vw"
-          quality={85}
+          quality={70}
+          placeholder="blur"
+          blurDataURL={HERO_BLUR}
         />
       )}
       {heroImage ? (
@@ -40,7 +46,9 @@ export default async function Hero() {
           className={`object-cover ${heroMobileImage ? "hidden sm:block" : ""}`}
           priority
           sizes="100vw"
-          quality={90}
+          quality={75}
+          placeholder="blur"
+          blurDataURL={HERO_BLUR}
         />
       ) : (
         <div
