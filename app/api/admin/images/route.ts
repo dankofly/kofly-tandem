@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server";
-import { writeFile, unlink } from "fs/promises";
-import { join } from "path";
-import { getImagesConfig, updateSlotFilename } from "@/lib/images-config";
+import {
+  getImagesConfig,
+  updateSlotFilename,
+  saveImageBlob,
+  deleteImageBlob,
+} from "@/lib/images-config";
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
-const IMAGES_DIR = join(process.cwd(), "public", "images");
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif"];
 
@@ -55,28 +57,18 @@ export async function POST(req: Request) {
     );
   }
 
-  // Build filename: slot-timestamp.ext
+  // Build filename for reference
   const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
   const filename = `${slot}-${Date.now()}.${ext}`;
-  const filepath = join(IMAGES_DIR, filename);
 
-  // Delete old image if exists
-  const slots = await getImagesConfig();
-  const oldFilename = slots[slot]?.filename;
-  if (oldFilename) {
-    try {
-      await unlink(join(IMAGES_DIR, oldFilename));
-    } catch {
-      // Old file may not exist
-    }
-  }
+  // Delete old blob if exists
+  await deleteImageBlob(slot);
 
-  // Save new image
-  const buffer = Buffer.from(await file.arrayBuffer());
-  await writeFile(filepath, buffer);
+  // Save image to Netlify Blobs
+  await saveImageBlob(slot, file, file.type);
 
-  // Update config
-  await updateSlotFilename(slot, filename);
+  // Update config in Blobs (blobbed = true)
+  await updateSlotFilename(slot, filename, true);
 
   return NextResponse.json({ success: true, filename });
 }
@@ -93,17 +85,11 @@ export async function DELETE(req: Request) {
     return NextResponse.json({ error: "Slot is required" }, { status: 400 });
   }
 
-  const slots = await getImagesConfig();
-  const filename = slots[slot]?.filename;
+  // Delete blob image
+  await deleteImageBlob(slot);
 
-  if (filename) {
-    try {
-      await unlink(join(IMAGES_DIR, filename));
-    } catch {
-      // File may not exist
-    }
-    await updateSlotFilename(slot, null);
-  }
+  // Reset config (blobbed = false, filename = null)
+  await updateSlotFilename(slot, null, false);
 
   return NextResponse.json({ success: true });
 }

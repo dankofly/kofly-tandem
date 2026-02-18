@@ -7,6 +7,7 @@ interface ImageSlot {
   label: string;
   filename: string | null;
   description: string;
+  blobbed?: boolean;
 }
 
 type Tab = "prompt" | "images" | "ticker";
@@ -386,7 +387,7 @@ export default function AdminPage() {
                 {slot.filename && (
                   <div className="mt-4">
                     <img
-                      src={`/images/${slot.filename}`}
+                      src={slot.blobbed ? `/api/images/${slotId}` : `/images/${slot.filename}`}
                       alt={slot.label}
                       className="rounded-xl border border-edge-faint max-h-48 object-cover w-full"
                     />
