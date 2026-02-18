@@ -23,6 +23,7 @@ export default function FAQ() {
     {
       category: t("cat1"),
       items: [
+        { q: t("q1_0"), a: t("a1_0") },
         { q: t("q1_1"), a: t("a1_1") },
         { q: t("q1_2"), a: t("a1_2") },
         { q: t("q1_3"), a: t("a1_3") },
