@@ -12,6 +12,51 @@ interface ImageSlot {
 
 type Tab = "prompt" | "images" | "ticker";
 
+const SLOT_DIMENSIONS: Record<string, { w: number; h: number }> = {
+  hero:                 { w: 1920, h: 1080 },
+  "hero-mobile":        { w: 1080, h: 1920 },
+  "whyus-bg":           { w: 1920, h: 1080 },
+  "ablauf-hero":        { w: 1920, h: 800  },
+  "tile-einfach":       { w: 600,  h: 800  },
+  "tile-sicher":        { w: 600,  h: 800  },
+  "tile-unvergesslich": { w: 600,  h: 800  },
+  about:                { w: 800,  h: 600  },
+  "ablauf-flug":        { w: 800,  h: 600  },
+  "ablauf-landing":     { w: 800,  h: 600  },
+  packages:             { w: 800,  h: 600  },
+  "og-image":           { w: 1200, h: 630  },
+};
+
+async function optimizeImage(file: File, slot: string): Promise<File> {
+  const dim = SLOT_DIMENSIONS[slot] || { w: 1920, h: 1080 };
+
+  const img = new window.Image();
+  const url = URL.createObjectURL(file);
+  await new Promise<void>((resolve, reject) => {
+    img.onload = () => resolve();
+    img.onerror = reject;
+    img.src = url;
+  });
+  URL.revokeObjectURL(url);
+
+  let { naturalWidth: w, naturalHeight: h } = img;
+  const scale = Math.min(dim.w / w, dim.h / h, 1);
+  w = Math.round(w * scale);
+  h = Math.round(h * scale);
+
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  canvas.getContext("2d")!.drawImage(img, 0, 0, w, h);
+
+  const blob = await new Promise<Blob>((resolve) =>
+    canvas.toBlob((b) => resolve(b!), "image/webp", 0.82)
+  );
+
+  const name = file.name.replace(/\.[^.]+$/, ".webp");
+  return new File([blob], name, { type: "image/webp" });
+}
+
 export default function AdminPage() {
   const router = useRouter();
   const [password, setPassword] = useState("");
@@ -136,8 +181,10 @@ export default function AdminPage() {
     setUploadingSlot(slot);
     setMessage(null);
 
+    const optimized = await optimizeImage(file, slot);
+
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("file", optimized);
     formData.append("slot", slot);
 
     try {
@@ -342,7 +389,7 @@ export default function AdminPage() {
           <div className="space-y-4">
             <p className="text-xs text-content-muted">
               Lade Bilder hoch und weise sie einer Position auf der Website zu.
-              Erlaubt: JPG, PNG, WebP, AVIF (max. 5 MB).
+              Bilder werden automatisch in WebP konvertiert und auf die optimale Gr&ouml;&szlig;e skaliert.
             </p>
 
             {Object.entries(slots).map(([slotId, slot]) => (
