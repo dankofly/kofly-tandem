@@ -18,7 +18,19 @@ const FAQ_KEYS = [
   ...Array.from({ length: 4 }, (_, i) => `6_${i + 1}`),
 ];
 
-export default async function HomePage() {
+/* ──────────────────────────────────────────────────────────
+   DEBUG: ?only=hero|ticker|stats|reviews|whyus|packages|faq|map|none
+   Renders only the specified component. Omit param for all.
+   ────────────────────────────────────────────────────────── */
+type Props = {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
+
+export default async function HomePage({ searchParams }: Props) {
+  const sp = await searchParams;
+  const only = typeof sp?.only === "string" ? sp.only : undefined;
+  const show = (name: string) => !only || only === name;
+
   const locale = await getLocale();
   const t = await getTranslations({ locale, namespace: "FAQ" });
 
@@ -29,36 +41,23 @@ export default async function HomePage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema(faqItems)),
-        }}
-      />
+      {show("schema") && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema(faqItems)),
+          }}
+        />
+      )}
 
-      {/* 1. Hero / Erlebnis */}
-      <Hero />
-
-      {/* Scrolling ticker */}
-      <Ticker />
-
-      {/* Stats bar */}
-      <StatsBar />
-
-      {/* 2. Bewertungen (Tripadvisor) */}
-      <Reviews />
-
-      {/* 3. Warum wir / About */}
-      <WhyUs />
-
-      {/* 4. Flugpakete */}
-      <Packages />
-
-      {/* 5. FAQ */}
-      <FAQ />
-
-      {/* 6. Google Maps + Kontakt */}
-      <MapContact />
+      {show("hero") && <Hero />}
+      {show("ticker") && <Ticker />}
+      {show("stats") && <StatsBar />}
+      {show("reviews") && <Reviews />}
+      {show("whyus") && <WhyUs />}
+      {show("packages") && <Packages />}
+      {show("faq") && <FAQ />}
+      {show("map") && <MapContact />}
     </>
   );
 }
