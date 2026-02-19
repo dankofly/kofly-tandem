@@ -18,19 +18,7 @@ const FAQ_KEYS = [
   ...Array.from({ length: 4 }, (_, i) => `6_${i + 1}`),
 ];
 
-/* ──────────────────────────────────────────────────────────
-   DEBUG: ?only=hero|ticker|stats|reviews|whyus|packages|faq|map|none
-   Renders only the specified component. Omit param for all.
-   ────────────────────────────────────────────────────────── */
-type Props = {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-};
-
-export default async function HomePage({ searchParams }: Props) {
-  const sp = await searchParams;
-  const only = typeof sp?.only === "string" ? sp.only : undefined;
-  const show = (name: string) => !only || only === name;
-
+export default async function HomePage() {
   const locale = await getLocale();
   const t = await getTranslations({ locale, namespace: "FAQ" });
 
@@ -41,23 +29,21 @@ export default async function HomePage({ searchParams }: Props) {
 
   return (
     <>
-      {show("schema") && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqSchema(faqItems)),
-          }}
-        />
-      )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema(faqItems)),
+        }}
+      />
 
-      {show("hero") && <Hero />}
-      {show("ticker") && <Ticker />}
-      {show("stats") && <StatsBar />}
-      {show("reviews") && <Reviews />}
-      {show("whyus") && <WhyUs />}
-      {show("packages") && <Packages />}
-      {show("faq") && <FAQ />}
-      {show("map") && <MapContact />}
+      <Hero />
+      <Ticker />
+      <StatsBar />
+      <Reviews />
+      <WhyUs />
+      <Packages />
+      <FAQ />
+      <MapContact />
     </>
   );
 }
