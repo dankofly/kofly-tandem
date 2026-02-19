@@ -12,7 +12,6 @@ export default function ParallaxBg({ src, alt }: Props) {
         src={src}
         alt={alt}
         fill
-        unoptimized
         className="object-cover"
         loading="lazy"
         sizes="100vw"

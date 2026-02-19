@@ -2,6 +2,7 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import ScrollIndicator from "./ScrollIndicator";
 import { getImageUrl } from "@/lib/images-config";
+import { getOptimizedUrl } from "@/lib/image-loader";
 import { getTranslations } from "next-intl/server";
 
 /* Tiny 16×9 JPEG blur – generated from the default hero image via sharp */
@@ -26,10 +27,10 @@ export default async function Hero() {
     >
       {/* Preload only the image matching the viewport (React 19 hoists to <head>) */}
       {heroMobileImage && (
-        <link rel="preload" as="image" href={heroMobileImage} media="(max-width: 639px)" fetchPriority="high" />
+        <link rel="preload" as="image" href={getOptimizedUrl(heroMobileImage, 828)} media="(max-width: 639px)" fetchPriority="high" />
       )}
       {heroImage && (
-        <link rel="preload" as="image" href={heroImage} media="(min-width: 640px)" fetchPriority="high" />
+        <link rel="preload" as="image" href={getOptimizedUrl(heroImage, 1920)} media="(min-width: 640px)" fetchPriority="high" />
       )}
 
       {/* Background — separate images for mobile (9:16) and desktop (16:9) */}
@@ -38,7 +39,6 @@ export default async function Hero() {
           src={heroMobileImage}
           alt={t("heroImageAlt")}
           fill
-          unoptimized
           className="object-cover sm:hidden"
           loading="eager"
           sizes="100vw"
@@ -51,7 +51,6 @@ export default async function Hero() {
           src={heroImage}
           alt={t("heroImageAlt")}
           fill
-          unoptimized
           className={`object-cover ${heroMobileImage ? "hidden sm:block" : ""}`}
           loading="eager"
           sizes="100vw"

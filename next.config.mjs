@@ -7,11 +7,12 @@ const nextConfig = {
   serverExternalPackages: ["@netlify/blobs", "@netlify/neon"],
   experimental: {
     optimizePackageImports: ["@ai-sdk/react", "next-intl", "ai"],
+    optimizeCss: true,
   },
   images: {
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    formats: ["image/avif", "image/webp"],
-    minimumCacheTTL: 31536000,
+    loader: "custom",
+    loaderFile: "./lib/image-loader.ts",
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },
   async headers() {
     const csp = [
