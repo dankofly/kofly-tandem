@@ -30,6 +30,7 @@ export default async function Hero() {
           src={heroMobileImage}
           alt={t("heroImageAlt")}
           fill
+          unoptimized
           className="object-cover sm:hidden"
           priority
           sizes="100vw"
@@ -42,6 +43,7 @@ export default async function Hero() {
           src={heroImage}
           alt={t("heroImageAlt")}
           fill
+          unoptimized
           className={`object-cover ${heroMobileImage ? "hidden sm:block" : ""}`}
           priority
           sizes="100vw"
