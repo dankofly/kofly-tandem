@@ -433,6 +433,58 @@ export function touristAttractionSchema() {
   };
 }
 
+export function siteNavigationSchema(locale: string = "de") {
+  const base = localeBase(locale);
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: [
+      {
+        "@type": "SiteNavigationElement",
+        position: 1,
+        name: "Erlebnis",
+        description: "Gleitschirm Tandemflug Erlebnis im Airpark Lienzer Dolomiten",
+        url: `${base}/#erlebnis`,
+      },
+      {
+        "@type": "SiteNavigationElement",
+        position: 2,
+        name: "Ablauf",
+        description: "So läuft dein Tandemflug ab – Schritt für Schritt erklärt",
+        url: `${base}/ablauf`,
+      },
+      {
+        "@type": "SiteNavigationElement",
+        position: 3,
+        name: "Bewertungen",
+        description: "5.0/5 Sterne auf Tripadvisor – über 250 Bewertungen",
+        url: `${base}/#bewertungen`,
+      },
+      {
+        "@type": "SiteNavigationElement",
+        position: 4,
+        name: "Flugpakete & Preise",
+        description: "Tandemflug-Pakete von Classic bis Thermik – ab €150",
+        url: `${base}/#pakete`,
+      },
+      {
+        "@type": "SiteNavigationElement",
+        position: 5,
+        name: "Buchen",
+        description: "Tandemflug buchen oder Gutschein bestellen",
+        url: `${base}/buchen`,
+      },
+      {
+        "@type": "SiteNavigationElement",
+        position: 6,
+        name: "Gutschein",
+        description: "Geschenkgutschein für einen Gleitschirm Tandemflug bestellen",
+        url: `${base}/buchen#gutschein`,
+      },
+    ],
+  };
+}
+
 export function breadcrumbSchema(
   items: { name: string; url: string }[]
 ) {
