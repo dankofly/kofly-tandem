@@ -2,7 +2,6 @@ import type { MetadataRoute } from "next";
 
 const SITE_URL = "https://gleitschirm-tandemflug.com";
 const locales = ["de", "en", "nl"] as const;
-const defaultLocale = "de";
 
 const pages = [
   { path: "", changeFrequency: "weekly" as const, priority: 1.0 },
@@ -14,9 +13,7 @@ const pages = [
 ];
 
 function localeUrl(locale: string, path: string): string {
-  return locale === defaultLocale
-    ? `${SITE_URL}${path || "/"}`
-    : `${SITE_URL}/${locale}${path}`;
+  return `${SITE_URL}/${locale}${path}`;
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {

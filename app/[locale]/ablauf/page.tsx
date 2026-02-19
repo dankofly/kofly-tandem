@@ -21,10 +21,10 @@ export async function generateMetadata(): Promise<Metadata> {
     description: t("ablaufDescription"),
     alternates: {
       languages: {
-        de: `${SITE_URL}/ablauf`,
+        de: `${SITE_URL}/de/ablauf`,
         en: `${SITE_URL}/en/ablauf`,
         nl: `${SITE_URL}/nl/ablauf`,
-        "x-default": `${SITE_URL}/ablauf`,
+        "x-default": `${SITE_URL}/de/ablauf`,
       },
     },
   };
@@ -42,10 +42,9 @@ export default async function AblaufPage() {
     getImageUrl("ablauf-landing"),
   ]);
 
-  const localePath = locale === "de" ? "" : `/${locale}`;
   const breadcrumbs = breadcrumbSchema([
-    { name: "Home", url: `${SITE_URL}${localePath || "/"}` },
-    { name: t("breadcrumbCurrent"), url: `${SITE_URL}${localePath}/ablauf` },
+    { name: "Home", url: `${SITE_URL}/${locale}` },
+    { name: t("breadcrumbCurrent"), url: `${SITE_URL}/${locale}/ablauf` },
   ]);
 
   return (

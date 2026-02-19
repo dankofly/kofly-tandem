@@ -12,10 +12,10 @@ export async function generateMetadata(): Promise<Metadata> {
     robots: { index: false, follow: true },
     alternates: {
       languages: {
-        de: `${SITE_URL}/impressum`,
+        de: `${SITE_URL}/de/impressum`,
         en: `${SITE_URL}/en/impressum`,
         nl: `${SITE_URL}/nl/impressum`,
-        "x-default": `${SITE_URL}/impressum`,
+        "x-default": `${SITE_URL}/de/impressum`,
       },
     },
   };

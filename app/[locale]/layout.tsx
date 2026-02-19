@@ -70,7 +70,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       locale: ogLocaleMap[locale] || "de_AT",
-      url: locale === "de" ? SITE_URL : `${SITE_URL}/${locale}`,
+      url: `${SITE_URL}/${locale}`,
       siteName: "Gleitschirm-Tandemflug.com",
       title: t("homeOgTitle"),
       description: t("homeOgDescription"),
@@ -90,12 +90,12 @@ export async function generateMetadata({
       images: [ogImage],
     },
     alternates: {
-      canonical: locale === "de" ? SITE_URL : `${SITE_URL}/${locale}`,
+      canonical: `${SITE_URL}/${locale}`,
       languages: {
-        de: SITE_URL,
+        de: `${SITE_URL}/de`,
         en: `${SITE_URL}/en`,
         nl: `${SITE_URL}/nl`,
-        "x-default": SITE_URL,
+        "x-default": `${SITE_URL}/de`,
       },
     },
     robots: { index: true, follow: true },

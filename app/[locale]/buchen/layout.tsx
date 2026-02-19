@@ -16,10 +16,10 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     alternates: {
       languages: {
-        de: `${SITE_URL}/buchen`,
+        de: `${SITE_URL}/de/buchen`,
         en: `${SITE_URL}/en/buchen`,
         nl: `${SITE_URL}/nl/buchen`,
-        "x-default": `${SITE_URL}/buchen`,
+        "x-default": `${SITE_URL}/de/buchen`,
       },
     },
   };
@@ -32,10 +32,9 @@ export default async function BuchenLayout({
 }) {
   const locale = await getLocale();
   const t = await getTranslations("Buchen");
-  const localePath = locale === "de" ? "" : `/${locale}`;
   const breadcrumbs = breadcrumbSchema([
-    { name: "Home", url: `${SITE_URL}${localePath}` || SITE_URL },
-    { name: t("breadcrumbCurrent"), url: `${SITE_URL}${localePath}/buchen` },
+    { name: "Home", url: `${SITE_URL}/${locale}` },
+    { name: t("breadcrumbCurrent"), url: `${SITE_URL}/${locale}/buchen` },
   ]);
 
   return (

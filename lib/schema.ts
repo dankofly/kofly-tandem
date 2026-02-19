@@ -4,9 +4,9 @@ const BUSINESS_NAME = "Gleitschirm-Tandemflug.com";
 const PHONE = "+43 676 7293888";
 const EMAIL = "info@Gleitschirm-Tandemflug.com";
 
-/** Locale-aware base path: de → SITE_URL, en → SITE_URL/en */
+/** Locale-aware base path: de → SITE_URL/de, en → SITE_URL/en */
 function localeBase(locale: string): string {
-  return locale === "de" ? SITE_URL : `${SITE_URL}/${locale}`;
+  return `${SITE_URL}/${locale}`;
 }
 
 export function organizationSchema(locale: string = "de") {
@@ -372,7 +372,7 @@ export function productSchema() {
     description:
       "Tandem-Gleitschirmflug im Airpark Lienzer Dolomiten mit zertifizierten Tandempiloten. Nr. 1 Outdoor-Aktivität in Lienz – 5.0/5 Sterne auf Tripadvisor.",
     image: `${SITE_URL}/images/hero-1771273007982.webp`,
-    url: SITE_URL,
+    url: `${SITE_URL}/de`,
     brand: {
       "@type": "Brand",
       name: "KOFLY",
@@ -392,7 +392,7 @@ export function productSchema() {
       priceCurrency: "EUR",
       offerCount: "4",
       availability: "https://schema.org/InStock",
-      url: `${SITE_URL}/buchen`,
+      url: `${SITE_URL}/de/buchen`,
     },
   };
 }
@@ -409,7 +409,7 @@ export function touristAttractionSchema() {
     ],
     description:
       "Tandem-Paragliding im Airpark Lienzer Dolomiten – Start ab Zettersfeld (1.750 m) oder Hochstein (2.057 m) mit Panoramablick auf über 100 Alpengipfel. Nr. 1 Outdoor-Aktivität in Lienz.",
-    url: SITE_URL,
+    url: `${SITE_URL}/de`,
     image: `${SITE_URL}/images/hero-1771273007982.webp`,
     geo: {
       "@type": "GeoCoordinates",

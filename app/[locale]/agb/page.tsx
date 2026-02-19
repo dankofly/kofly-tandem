@@ -11,10 +11,10 @@ export async function generateMetadata(): Promise<Metadata> {
     description: t("agbDescription"),
     alternates: {
       languages: {
-        de: `${SITE_URL}/agb`,
+        de: `${SITE_URL}/de/agb`,
         en: `${SITE_URL}/en/agb`,
         nl: `${SITE_URL}/nl/agb`,
-        "x-default": `${SITE_URL}/agb`,
+        "x-default": `${SITE_URL}/de/agb`,
       },
     },
   };
