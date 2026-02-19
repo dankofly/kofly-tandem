@@ -71,6 +71,11 @@ const DEFAULT_SLOTS: Record<string, ImageSlot> = {
     filename: "tile-unvergesslich-1771152470076.jpg",
     description: "Bildkachel für UNVERGESSLICH (empfohlen: 600x800, Hochformat 3:4)",
   },
+  "og-image": {
+    label: "Open Graph Bild (Social Media)",
+    filename: null,
+    description: "Vorschaubild beim Teilen auf WhatsApp, Facebook, Twitter etc. (1200x630 px, JPG, max 1 MB)",
+  },
 };
 
 function getImagesStore() {

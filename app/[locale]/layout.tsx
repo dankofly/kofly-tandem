@@ -20,6 +20,7 @@ import {
   productSchema,
   touristAttractionSchema,
 } from "@/lib/schema";
+import { getImageUrl } from "@/lib/images-config";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -51,6 +52,11 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
 
+  const ogImagePath = await getImageUrl("og-image");
+  const ogImage = ogImagePath
+    ? `${SITE_URL}${ogImagePath}`
+    : `${SITE_URL}/images/hero-1771273007982.webp`;
+
   return {
     metadataBase: new URL(SITE_URL),
     title: {
@@ -69,7 +75,7 @@ export async function generateMetadata({
       description: t("homeOgDescription"),
       images: [
         {
-          url: `${SITE_URL}/images/hero-1771273007982.webp`,
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: t("homeOgTitle"),
@@ -80,7 +86,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("homeOgTitle"),
       description: t("homeOgDescription"),
-      images: [`${SITE_URL}/images/hero-1771273007982.webp`],
+      images: [ogImage],
     },
     alternates: {
       canonical: locale === "de" ? SITE_URL : `${SITE_URL}/${locale}`,
