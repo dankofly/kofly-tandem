@@ -24,6 +24,14 @@ export default async function Hero() {
       aria-label={t("ariaLabel")}
       className="relative min-h-screen flex items-center overflow-hidden"
     >
+      {/* Preload only the image matching the viewport (React 19 hoists to <head>) */}
+      {heroMobileImage && (
+        <link rel="preload" as="image" href={heroMobileImage} media="(max-width: 639px)" fetchPriority="high" />
+      )}
+      {heroImage && (
+        <link rel="preload" as="image" href={heroImage} media="(min-width: 640px)" fetchPriority="high" />
+      )}
+
       {/* Background — separate images for mobile (9:16) and desktop (16:9) */}
       {heroMobileImage && (
         <Image
@@ -32,7 +40,7 @@ export default async function Hero() {
           fill
           unoptimized
           className="object-cover sm:hidden"
-          priority
+          loading="eager"
           sizes="100vw"
           placeholder="blur"
           blurDataURL={HERO_BLUR}
@@ -45,7 +53,7 @@ export default async function Hero() {
           fill
           unoptimized
           className={`object-cover ${heroMobileImage ? "hidden sm:block" : ""}`}
-          priority
+          loading="eager"
           sizes="100vw"
           placeholder="blur"
           blurDataURL={HERO_BLUR}
