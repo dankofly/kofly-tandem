@@ -15,7 +15,7 @@ const rich = {
 
 const TANDEM_AREAS = ["zettersfeld", "hochstein"] as const;
 const PILOT_PUSTERTAL = ["thurntaler", "golzentipp"] as const;
-const PILOT_ISELTAL = ["goldried", "praegraten", "virgen"] as const;
+const PILOT_ISELTAL = ["goldried", "virgen", "praegraten", "alkus"] as const;
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");
@@ -257,7 +257,7 @@ export default async function ParagleitenPage() {
             </p>
           </ScrollReveal>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {PILOT_ISELTAL.map((area, i) => (
               <ScrollReveal key={area} delay={i * 100}>
                 <div className="glass-card card-hover-glow p-6 sm:p-8 h-full">
