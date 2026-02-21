@@ -279,12 +279,12 @@ export default async function AnreisePage() {
             </ScrollReveal>
             <ScrollReveal>
               <div className="highlight-glow bg-accent-500/5 border border-accent-500/20 rounded-sm px-5 py-4 text-sm text-content-body">
-                <p>{r("parkingHochstein")}</p>
+                <p>{r("parkingTouchHeaven")}</p>
               </div>
             </ScrollReveal>
             <ScrollReveal>
               <div className="highlight-glow bg-accent-500/5 border border-accent-500/20 rounded-sm px-5 py-4 text-sm text-content-body">
-                <p>{r("parkingTouchHeaven")}</p>
+                <p>{r("parkingGirstmair")}</p>
               </div>
             </ScrollReveal>
           </div>

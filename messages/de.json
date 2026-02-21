@@ -713,10 +713,10 @@
     "midCtaP1": "Sichere dir jetzt deinen Tandemflug in Lienz – auch kurzfristige Anfragen sind möglich. Kostenlose Umbuchung bei Schlechtwetter.",
 
     "parkingTitle": "Parken & Treffpunkt am Zettersfeld",
-    "parkingP1": "Bei uns ist alles kostenlos: Parken, Treffpunkt, Einweisung. Du brauchst kein Ticket vorab – nur feste Schuhe und gute Laune. Der genaue Treffpunkt hängt vom gewählten Startplatz ab:",
-    "parkingZettersfeld": "<b>Zettersfeld (Gaimberg):</b> Treffpunkt an der Talstation der Zettersfeld-Bergbahnen. Große, kostenlose Parkplätze direkt vor der Bahn. Nur 5 Gehminuten vom Kassenhäuschen zum Startplatz.",
-    "parkingHochstein": "<b>Hochstein:</b> Treffpunkt am Landeplatz \u201ETouch Heaven\u201C oder an der Hochstein-Bergbahn. Parken ebenfalls kostenlos. Die Auffahrt zum Startplatz erfolgt per Shuttle.",
-    "parkingTouchHeaven": "<b>Landeplatz \u201ETouch Heaven\u201C:</b> Unser Landeplatz im Lienzer Talboden – hier landest du nach dem Flug. Auch als alternativer Treffpunkt möglich.",
+    "parkingP1": "Je nach Vereinbarung treffen wir uns an den Landeplätzen Touch Heaven oder bei der Flugschule Bruno Girstmair, meist aber direkt bei der Kassa der Lienzer Bergbahnen an der Talstation der Zettersfeld-Gondelbahn in Gaimberg oder an einem abgestimmten Treffpunkt. Parken ist überall kostenlos.",
+    "parkingZettersfeld": "<b>Kassa Lienzer Bergbahnen (Gaimberg):</b> Unser häufigster Treffpunkt – direkt an der Talstation der Zettersfeld-Gondelbahn. Große, kostenlose Parkplätze vor der Bahn. Von hier geht es gemeinsam mit der Gondel zum Startplatz.",
+    "parkingTouchHeaven": "<b>Landeplatz \u201ETouch Heaven\u201C:</b> Unser Landeplatz im Lienzer Talboden – hier landest du nach dem Flug. Wird auch als Treffpunkt genutzt, z. B. bei Flügen vom Hochstein.",
+    "parkingGirstmair": "<b>Flugschule Bruno Girstmair:</b> Treffpunkt bei der Flugschule, je nach Fluggebiet und Absprache. Kostenlose Parkmöglichkeiten in der Nähe.",
     "meetingTitle": "Erkennungszeichen & Ablauf vor Ort",
     "meetingP1": "Du erkennst uns am farbigen Gurtzeug und dem KOFLY-Logo. Nach der Terminvereinbarung bekommst du von uns eine WhatsApp-Nachricht mit dem genauen Treffpunkt, einem Google-Maps-Link und der Uhrzeit. Vor Ort erklären wir dir alles – vom richtigen Anlegen des Gurtzeugs bis zum Start. Das dauert ca. 10 Minuten und ist völlig stressfrei.",
     "mapsLink": "Treffpunkt auf Google Maps anzeigen",
@@ -741,7 +741,7 @@
 
     "faqTitle": "Häufige Fragen zur Anreise",
     "faqMeetingQ": "Wo genau ist der Treffpunkt für den Tandemflug?",
-    "faqMeetingA": "In der Regel treffen wir uns an der Talstation der Zettersfeld-Bergbahnen in Gaimberg bei Lienz. Bei Flügen vom Hochstein am Landeplatz \u201ETouch Heaven\u201C. Den genauen Treffpunkt inkl. Google-Maps-Link bekommst du nach der Terminvereinbarung per WhatsApp.",
+    "faqMeetingA": "Meist treffen wir uns direkt bei der Kassa der Lienzer Bergbahnen an der Talstation der Zettersfeld-Gondelbahn in Gaimberg. Alternativ am Landeplatz \u201ETouch Heaven\u201C oder bei der Flugschule Bruno Girstmair – je nach Fluggebiet und Absprache. Den genauen Treffpunkt inkl. Google-Maps-Link bekommst du nach der Terminvereinbarung per WhatsApp.",
     "faqParkingQ": "Gibt es kostenlose Parkplätze am Treffpunkt?",
     "faqParkingA": "Ja! Sowohl an der Talstation Zettersfeld als auch am Landeplatz \u201ETouch Heaven\u201C gibt es ausreichend <b>kostenlose Parkplätze</b>. Einfach vor der Bergbahn parken und zum Kassenhäuschen laufen.",
     "faqTrainQ": "Kann ich mit dem Zug zum Tandemflug anreisen?",
