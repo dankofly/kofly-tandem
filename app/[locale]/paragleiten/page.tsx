@@ -13,7 +13,9 @@ const rich = {
   ),
 };
 
-const AREAS = ["zettersfeld", "hochstein", "thurntaler", "golzentipp"] as const;
+const TANDEM_AREAS = ["zettersfeld", "hochstein"] as const;
+const PILOT_PUSTERTAL = ["thurntaler", "golzentipp"] as const;
+const PILOT_ISELTAL = ["goldried", "praegraten", "virgen"] as const;
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");
@@ -164,21 +166,60 @@ export default async function ParagleitenPage() {
         </div>
       </section>
 
-      {/* 4 Fluggebiete */}
+      {/* Tandemfluggebiete */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
         <div className="max-w-3xl mx-auto px-6">
           <ScrollReveal>
             <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
-              {t("areasTitle")}
+              {t("tandemAreasTitle")}
             </h2>
             <div className="mt-5 section-divider !mx-0" />
             <p className="mt-6 text-base text-content-body leading-relaxed font-light">
-              {t("areasIntro")}
+              {t("tandemAreasIntro")}
             </p>
           </ScrollReveal>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {AREAS.map((area, i) => (
+            {TANDEM_AREAS.map((area, i) => (
+              <ScrollReveal key={area} delay={i * 100}>
+                <div className="glass-card card-hover-glow p-6 sm:p-8 h-full border-accent-500/20">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xl font-bold text-content-primary">
+                      {t(`${area}Name`)}
+                    </h3>
+                    <span className="text-xs font-medium text-accent-500 bg-accent-500/10 px-2 py-1 rounded">
+                      {t(`${area}Alt`)}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-xs tracking-premium uppercase text-content-muted font-medium">
+                    {t(`${area}Tag`)}
+                  </p>
+                  <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
+                    <p>{r(`${area}P1`)}</p>
+                    <p>{r(`${area}P2`)}</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Fluggebiete Pustertal */}
+      <section className="py-16 lg:py-24">
+        <div className="max-w-3xl mx-auto px-6">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+              {t("pilotPustertalTitle")}
+            </h2>
+            <div className="mt-5 section-divider !mx-0" />
+            <p className="mt-6 text-base text-content-body leading-relaxed font-light">
+              {t("pilotPustertalIntro")}
+            </p>
+          </ScrollReveal>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            {PILOT_PUSTERTAL.map((area, i) => (
               <ScrollReveal key={area} delay={i * 100}>
                 <div className="glass-card card-hover-glow p-6 sm:p-8 h-full">
                   <div className="flex items-center justify-between">
@@ -200,6 +241,80 @@ export default async function ParagleitenPage() {
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Fluggebiete Iseltal */}
+      <section className="py-16 lg:py-24 bg-surface-secondary">
+        <div className="max-w-3xl mx-auto px-6">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+              {t("pilotIseltalTitle")}
+            </h2>
+            <div className="mt-5 section-divider !mx-0" />
+            <p className="mt-6 text-base text-content-body leading-relaxed font-light">
+              {t("pilotIseltalIntro")}
+            </p>
+          </ScrollReveal>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {PILOT_ISELTAL.map((area, i) => (
+              <ScrollReveal key={area} delay={i * 100}>
+                <div className="glass-card card-hover-glow p-6 sm:p-8 h-full">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xl font-bold text-content-primary">
+                      {t(`${area}Name`)}
+                    </h3>
+                    <span className="text-xs font-medium text-accent-500 bg-accent-500/10 px-2 py-1 rounded">
+                      {t(`${area}Alt`)}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-xs tracking-premium uppercase text-content-muted font-medium">
+                    {t(`${area}Tag`)}
+                  </p>
+                  <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
+                    <p>{r(`${area}P1`)}</p>
+                    <p>{r(`${area}P2`)}</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Weitere Fluggebiete + Tandem-CTA */}
+      <section className="py-16 lg:py-24">
+        <div className="max-w-3xl mx-auto px-6">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+              {t("moreAreasTitle")}
+            </h2>
+            <div className="mt-5 section-divider !mx-0" />
+            <div className="mt-6 space-y-5 text-base text-content-body leading-relaxed font-light">
+              <p>{t("moreAreasP1")}</p>
+              <p>{t("moreAreasP2")}</p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <div className="mt-12 glass-card border-accent-500/20 p-6 sm:p-10">
+              <h3 className="text-xl font-bold text-content-primary">
+                {t("tandemFromAreasTitle")}
+              </h3>
+              <p className="mt-4 text-sm text-content-body leading-relaxed font-light">
+                {t("tandemFromAreasP")}
+              </p>
+              <div className="mt-6">
+                <Link
+                  href="/buchen"
+                  className="cta-lift btn-glow inline-flex items-center justify-center px-8 py-4 bg-accent-500 hover:bg-accent-400 text-white text-xs font-medium tracking-wide uppercase transition-colors"
+                >
+                  {t("ctaTermin")}
+                </Link>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

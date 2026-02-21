@@ -598,6 +598,45 @@ export function flightAreaSchemas() {
       maximumAttendeeCapacity: 2,
       publicAccess: true,
     },
+    {
+      "@context": "https://schema.org",
+      "@type": "Place",
+      name: "Goldried Glocknerblick – Paragliding Startplatz Matrei",
+      description:
+        "Fluggebiet in Matrei i. O. mit Großglockner-Panorama, Ausgangspunkt der weitesten XC-Flüge Österreichs. Höhenunterschied 1.200 m.",
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 47.0,
+        longitude: 12.5333,
+      },
+      publicAccess: true,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Place",
+      name: "Sajathütte – Paragliding Startplatz Prägraten",
+      description:
+        "Hochalpines Fluggebiet auf 2.600 m im Iseltal mit Blick auf den Großvenediger. Geheimtipp für erfahrene Piloten.",
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 47.0167,
+        longitude: 12.3833,
+      },
+      publicAccess: true,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Place",
+      name: "Goldplan – Paragliding Startplatz Virgen",
+      description:
+        "Fluggebiet auf 2.200 m in Virgen im Iseltal mit leidenschaftlicher lokaler Piloten-Community. Höhenunterschied 1.000 m.",
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 47.0,
+        longitude: 12.45,
+      },
+      publicAccess: true,
+    },
   ];
 }
 
