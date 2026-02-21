@@ -544,6 +544,13 @@
     "finalP2": "By paying the invoice amount, by orally agreeing to a transportation order or by buying a flight ticket, the tandem passenger has entered into an air carrier contract with the relevant tandem pilot of Gleitschirm-Tandemflug.com. This contract is subject to Austrian law. The court of jurisdiction and place of fulfillment of all obligations is Lienz in East Tyrol.",
     "backToHome": "Back to home"
   },
+  "NotFound": {
+    "title": "Caught some turbulence!",
+    "subtitle": "This page didn't quite stick the landing.",
+    "description": "No worries – our digital tandem pilot KOFLY AI knows every thermal. Just ask him, he'll get you where you need to go!",
+    "backHome": "Fly back to home",
+    "askKofly": "Ask KOFLY AI"
+  },
   "Common": {
     "backToHome": "Back to home",
     "startseite": "Home"

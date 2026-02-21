@@ -544,6 +544,13 @@
     "finalP2": "Met de betaling van het factuurbedrag, door mondeling een vervoersopdracht te geven of door het inwisselen van het vliegticket heeft de tandempassagier met de betreffende tandempiloot van Gleitschirm-Tandemflug.com een luchtvervoersovereenkomst gesloten. Op deze overeenkomst is Oostenrijks recht van toepassing. De bevoegde rechtbank en plaats van nakoming van alle verplichtingen is Lienz in Oost-Tirol.",
     "backToHome": "Terug naar de startpagina"
   },
+  "NotFound": {
+    "title": "Turbulentie gevangen!",
+    "subtitle": "Deze pagina heeft helaas geen zachte landing gemaakt.",
+    "description": "Geen zorgen – onze digitale tandempiloot KOFLY AI kent elke thermiek. Vraag het hem gewoon, hij brengt je veilig op je bestemming!",
+    "backHome": "Terug naar de startpagina vliegen",
+    "askKofly": "Vraag KOFLY AI"
+  },
   "Common": {
     "backToHome": "Terug naar de startpagina",
     "startseite": "Startpagina"

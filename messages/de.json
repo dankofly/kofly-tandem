@@ -544,6 +544,13 @@
     "finalP2": "Mit der Bezahlung des Rechnungsbetrages, durch m\u00FCndliches Erteilen eines Bef\u00F6rderungsauftrages oder durch die Einl\u00F6sung des Flugtickets hat der Tandempassagier mit dem jeweiligen Tandempilot von Gleitschirm-Tandemflug.com einen Luftbef\u00F6rderungsvertrag abgeschlossen. Auf diesen Vertrag ist \u00F6sterreichisches Recht anzuwenden. Gerichtsstand und Erf\u00FCllungsort aller Verpflichtungen ist Lienz in Osttirol.",
     "backToHome": "Zur\u00FCck zur Startseite"
   },
+  "NotFound": {
+    "title": "Turbulenz erwischt!",
+    "subtitle": "Diese Seite hat leider keine sanfte Landung hingelegt.",
+    "description": "Keine Sorge – unser digitaler Tandempilot KOFLY AI kennt jeden Aufwind. Frag ihn einfach, er bringt dich sicher ans Ziel!",
+    "backHome": "Zur Startseite fliegen",
+    "askKofly": "KOFLY AI fragen"
+  },
   "Common": {
     "backToHome": "Zurück zur Startseite",
     "startseite": "Startseite"

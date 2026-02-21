@@ -1,0 +1,39 @@
+# === Alte WordPress-URLs → Neue Next.js-Seiten (301 permanent) ===
+
+# Deutsche Seiten
+/tandemflug-buchen    /de/buchen    301
+/faq                  /de           301
+/faq-items/*          /de           301
+/ueber-uns            /de           301
+/kontakt              /de/buchen    301
+/galerie              /de           301
+/preise               /de/buchen    301
+/gutschein            /de/buchen#gutschein  301
+
+# Englische Seiten
+/en/tandem-flight     /en           301
+/en/booking           /en/buchen    301
+/en/about-us          /en           301
+/en/faq               /en           301
+/en/gallery           /en           301
+/en/contact           /en/buchen    301
+/en/prices            /en/buchen    301
+
+# WordPress Junk-URLs
+/test                 /de           301
+/test2                /de           301
+/element_category/*   /de           301
+/fusion_template/*    /de           301
+/category/*           /de           301
+/feed                 /de           301
+/feed/*               /de           301
+
+# WordPress System-Pfade (Security + SEO Cleanup)
+/wp-admin             /de           301
+/wp-admin/*           /de           301
+/wp-login.php         /de           301
+/wp-content/*         /de           301
+/wp-includes/*        /de           301
+/wp-json/*            /de           301
+/xmlrpc.php           /de           301
+/wp-cron.php          /de           301
