@@ -69,6 +69,30 @@ export default function Footer() {
                   {t("gutscheinBestellen")}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/urlaub"
+                  className="text-sm text-content-muted hover:text-accent-400 transition-colors font-light"
+                >
+                  {t("urlaubOsttirol")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/anreise"
+                  className="text-sm text-content-muted hover:text-accent-400 transition-colors font-light"
+                >
+                  {t("anreise")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/paragleiten"
+                  className="text-sm text-content-muted hover:text-accent-400 transition-colors font-light"
+                >
+                  {t("paragleiten")}
+                </Link>
+              </li>
             </ul>
           </div>
 

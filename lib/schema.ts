@@ -481,8 +481,124 @@ export function siteNavigationSchema(locale: string = "de") {
         description: "Geschenkgutschein für einen Gleitschirm Tandemflug bestellen",
         url: `${base}/buchen#gutschein`,
       },
+      {
+        "@type": "SiteNavigationElement",
+        position: 7,
+        name: "Urlaub in Osttirol",
+        description: "Osttirol-Urlaub mit Tandemflug als Outdoor-Highlight",
+        url: `${base}/urlaub`,
+      },
+      {
+        "@type": "SiteNavigationElement",
+        position: 8,
+        name: "Anreise",
+        description: "Fahrzeiten und Anreise zum Tandemflug nach Lienz",
+        url: `${base}/anreise`,
+      },
+      {
+        "@type": "SiteNavigationElement",
+        position: 9,
+        name: "Paragleiten in Osttirol",
+        description: "Fluggebiete und Tandem-Optionen für Urlauber",
+        url: `${base}/paragleiten`,
+      },
     ],
   };
+}
+
+export function touristTripSchema(locale: string = "de") {
+  const base = localeBase(locale);
+  return {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    name: "Tandem Paragliding Osttirol",
+    description:
+      "Gleitschirm Tandemflug über die Lienzer Dolomiten – das ultimative Urlaubserlebnis in Osttirol mit zertifizierten Tandempiloten.",
+    touristType: ["Adventure travelers", "Families", "Couples"],
+    provider: { "@id": `${SITE_URL}/#organization` },
+    offers: {
+      "@type": "AggregateOffer",
+      lowPrice: "150",
+      highPrice: "250",
+      priceCurrency: "EUR",
+      url: `${base}/buchen`,
+    },
+    itinerary: {
+      "@type": "ItemList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          item: {
+            "@type": "TouristAttraction",
+            name: "Tandem Paragliding Airpark Lienzer Dolomiten",
+            url: `${base}/buchen`,
+          },
+        },
+      ],
+    },
+  };
+}
+
+export function flightAreaSchemas() {
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "Place",
+      name: "Zettersfeld – Paragliding Startplatz",
+      description:
+        "Fluggebiet auf 2.220 m mit 360-Grad-Panoramablick auf die Lienzer Dolomiten, Schobergruppe und Hohe Tauern.",
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 46.8167,
+        longitude: 12.7833,
+      },
+      maximumAttendeeCapacity: 2,
+      publicAccess: true,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Place",
+      name: "Hochstein – Paragliding Startplatz",
+      description:
+        "Fluggebiet auf 2.057 m direkt über Lienz mit dramatischem Flug entlang der Dolomiten-Felswände.",
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 46.8333,
+        longitude: 12.75,
+      },
+      maximumAttendeeCapacity: 2,
+      publicAccess: true,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Place",
+      name: "Thurntaler – Paragliding Startplatz Sillian",
+      description:
+        "Fluggebiet bei Sillian mit Panoramablick ins Pustertal und auf die Karnischen Alpen.",
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 46.7333,
+        longitude: 12.4167,
+      },
+      maximumAttendeeCapacity: 2,
+      publicAccess: true,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Place",
+      name: "Golzentipp – Paragliding Startplatz Obertilliach",
+      description:
+        "Abgeschiedenes Fluggebiet in Obertilliach – maximale Weite, unberührte Berglandschaft.",
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 46.7167,
+        longitude: 12.5833,
+      },
+      maximumAttendeeCapacity: 2,
+      publicAccess: true,
+    },
+  ];
 }
 
 export function breadcrumbSchema(
