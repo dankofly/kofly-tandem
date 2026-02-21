@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { breadcrumbSchema, touristTripSchema } from "@/lib/schema";
+import { breadcrumbSchema, touristTripSchema, faqSchema } from "@/lib/schema";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const SITE_URL = "https://gleitschirm-tandemflug.com";
@@ -12,6 +12,17 @@ const rich = {
     <strong className="font-semibold text-content-strong">{chunks}</strong>
   ),
 };
+
+const FAQ_TOPICS = [
+  "Clothing",
+  "Weather",
+  "Weight",
+  "Kids",
+  "Media",
+  "Voucher",
+  "Season",
+  "Price",
+] as const;
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");
@@ -43,6 +54,11 @@ export default async function UrlaubPage() {
     { name: t("breadcrumbCurrent"), url: `${SITE_URL}/${locale}/urlaub` },
   ]);
 
+  const faqItems = FAQ_TOPICS.map((topic) => ({
+    name: t(`faq${topic}Q`),
+    text: t(`faq${topic}A`),
+  }));
+
   return (
     <>
       <script
@@ -53,6 +69,12 @@ export default async function UrlaubPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(touristTripSchema(locale)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema(faqItems)),
         }}
       />
 
@@ -118,7 +140,19 @@ export default async function UrlaubPage() {
             </p>
           </ScrollReveal>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+          {/* Panorama H3 */}
+          <ScrollReveal>
+            <div className="mt-10 glass-card card-hover-glow p-6 sm:p-8 border-l-2 border-accent-500/40">
+              <h3 className="text-lg font-semibold text-content-primary">
+                {t("whyPanoramaTitle")}
+              </h3>
+              <p className="mt-3 text-sm text-content-body leading-relaxed font-light">
+                {t("whyPanoramaP1")}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="mt-8 grid gap-6 sm:grid-cols-3">
             <ScrollReveal delay={0}>
               <div className="glass-card card-hover-glow p-6">
                 <h3 className="text-lg font-semibold text-content-primary">
@@ -153,58 +187,48 @@ export default async function UrlaubPage() {
         </div>
       </section>
 
-      {/* Zielgruppen */}
-      <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+      {/* Mid-CTA */}
+      <section className="relative py-16 lg:py-20 overflow-hidden">
+        <div
+          className="glow-orb glow-orb-accent w-[350px] h-[350px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 animate-glow-pulse"
+          aria-hidden="true"
+        />
+        <div className="relative max-w-2xl mx-auto px-6 text-center">
           <ScrollReveal>
-            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
-              {t("targetTitle")}
+            <h2 className="text-xl sm:text-2xl font-bold text-content-primary">
+              {t("midCtaTitle")}
             </h2>
-            <div className="mt-5 section-divider !mx-0" />
+            <p className="mt-3 text-sm text-content-body font-light">
+              {t("midCtaP1")}
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/buchen"
+                className="cta-lift btn-glow w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-accent-500 hover:bg-accent-400 text-white text-xs font-medium tracking-wide uppercase transition-colors"
+              >
+                {t("ctaTermin")}
+              </Link>
+              <Link
+                href="/buchen#gutschein"
+                className="cta-lift w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-accent-500/40 hover:border-accent-500 text-accent-500 text-xs font-medium tracking-wide uppercase transition-colors"
+              >
+                {t("ctaGutschein")}
+              </Link>
+            </div>
           </ScrollReveal>
-
-          <div className="mt-10 space-y-6">
-            <ScrollReveal>
-              <div className="glass-card card-hover-glow p-6 sm:p-8">
-                <h3 className="text-lg font-semibold text-content-primary">
-                  {t("targetFamilyTitle")}
-                </h3>
-                <p className="mt-3 text-sm text-content-body leading-relaxed font-light">
-                  {t("targetFamilyP1")}
-                </p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal>
-              <div className="glass-card card-hover-glow p-6 sm:p-8">
-                <h3 className="text-lg font-semibold text-content-primary">
-                  {t("targetCoupleTitle")}
-                </h3>
-                <p className="mt-3 text-sm text-content-body leading-relaxed font-light">
-                  {t("targetCoupleP1")}
-                </p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal>
-              <div className="glass-card card-hover-glow p-6 sm:p-8">
-                <h3 className="text-lg font-semibold text-content-primary">
-                  {t("targetSoloTitle")}
-                </h3>
-                <p className="mt-3 text-sm text-content-body leading-relaxed font-light">
-                  {t("targetSoloP1")}
-                </p>
-              </div>
-            </ScrollReveal>
-          </div>
         </div>
       </section>
 
-      {/* So laufts ab (Kurzversion) */}
+      {/* So laufts ab */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
         <div className="max-w-3xl mx-auto px-6">
           <ScrollReveal>
             <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("processTitle")}
             </h2>
+            <p className="mt-2 text-sm text-content-subtle font-light">
+              {t("processSubtitle")}
+            </p>
             <div className="mt-5 section-divider !mx-0" />
           </ScrollReveal>
 
@@ -261,8 +285,168 @@ export default async function UrlaubPage() {
         </div>
       </section>
 
-      {/* FAQ inline */}
+      {/* Zielgruppen */}
       <section className="py-16 lg:py-24">
+        <div className="max-w-3xl mx-auto px-6">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+              {t("targetTitle")}
+            </h2>
+            <div className="mt-5 section-divider !mx-0" />
+          </ScrollReveal>
+
+          <div className="mt-10 space-y-6">
+            <ScrollReveal>
+              <div className="glass-card card-hover-glow p-6 sm:p-8">
+                <h3 className="text-lg font-semibold text-content-primary">
+                  {t("targetFamilyTitle")}
+                </h3>
+                <p className="mt-3 text-sm text-content-body leading-relaxed font-light">
+                  {t("targetFamilyP1")}
+                </p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal>
+              <div className="glass-card card-hover-glow p-6 sm:p-8">
+                <h3 className="text-lg font-semibold text-content-primary">
+                  {t("targetCoupleTitle")}
+                </h3>
+                <p className="mt-3 text-sm text-content-body leading-relaxed font-light">
+                  {t("targetCoupleP1")}
+                </p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal>
+              <div className="glass-card card-hover-glow p-6 sm:p-8">
+                <h3 className="text-lg font-semibold text-content-primary">
+                  {t("targetSoloTitle")}
+                </h3>
+                <p className="mt-3 text-sm text-content-body leading-relaxed font-light">
+                  {t("targetSoloP1")}
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust / Reviews */}
+      <section className="py-16 lg:py-24 bg-surface-secondary">
+        <div className="max-w-3xl mx-auto px-6">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+              {t("trustTitle")}
+            </h2>
+            <p className="mt-2 text-sm text-accent-500 font-medium">
+              {t("trustSubtitle")}
+            </p>
+            <div className="mt-5 section-divider !mx-0" />
+          </ScrollReveal>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {(["1", "2", "3"] as const).map((num, i) => (
+              <ScrollReveal key={num} delay={i * 100}>
+                <div className="glass-card p-6 h-full flex flex-col">
+                  <svg
+                    className="w-6 h-6 text-accent-500/40 shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                  <p className="mt-4 text-sm text-content-body leading-relaxed font-light italic flex-1">
+                    {t(`trustReview${num}`)}
+                  </p>
+                  <p className="mt-4 text-xs text-content-subtle font-medium">
+                    — {t(`trustReview${num}Author`)}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal>
+            <div className="mt-10 glass-card p-6 sm:p-8 border-l-2 border-accent-500/40">
+              <h3 className="text-lg font-semibold text-content-primary">
+                {t("trustCertTitle")}
+              </h3>
+              <p className="mt-3 text-sm text-content-body leading-relaxed font-light">
+                {r("trustCertP1")}
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Tips & Highlights */}
+      <section className="py-16 lg:py-24">
+        <div className="max-w-3xl mx-auto px-6">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+              {t("tipsTitle")}
+            </h2>
+            <div className="mt-5 section-divider !mx-0" />
+            <p className="mt-6 text-base sm:text-lg text-content-body leading-relaxed font-light">
+              {t("tipsP1")}
+            </p>
+          </ScrollReveal>
+
+          <div className="mt-10 space-y-6">
+            <ScrollReveal>
+              <div className="glass-card card-hover-glow p-6 sm:p-8">
+                <h3 className="text-lg font-semibold text-content-primary">
+                  {t("tipsOutdoorTitle")}
+                </h3>
+                <p className="mt-3 text-sm text-content-body leading-relaxed font-light">
+                  {t("tipsOutdoorP1")}
+                </p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal>
+              <div className="glass-card card-hover-glow p-6 sm:p-8">
+                <h3 className="text-lg font-semibold text-content-primary">
+                  {t("tipsArrivalTitle")}
+                </h3>
+                <p className="mt-3 text-sm text-content-body leading-relaxed font-light">
+                  {t("tipsArrivalP1")}
+                </p>
+                <Link
+                  href="/anreise"
+                  className="mt-3 inline-flex items-center gap-1.5 text-sm text-accent-400 hover:text-accent-500 transition-colors font-medium"
+                >
+                  {t("crosslinkAnreiseTitle")}
+                  <svg
+                    className="w-3.5 h-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </Link>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal>
+              <div className="glass-card card-hover-glow p-6 sm:p-8">
+                <h3 className="text-lg font-semibold text-content-primary">
+                  {t("tipsFamilyTitle")}
+                </h3>
+                <p className="mt-3 text-sm text-content-body leading-relaxed font-light">
+                  {t("tipsFamilyP1")}
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-16 lg:py-24 bg-surface-secondary">
         <div className="max-w-3xl mx-auto px-6">
           <ScrollReveal>
             <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
@@ -272,16 +456,7 @@ export default async function UrlaubPage() {
           </ScrollReveal>
 
           <div className="mt-10 space-y-4">
-            {(
-              [
-                "Clothing",
-                "Weather",
-                "Weight",
-                "Kids",
-                "Media",
-                "Voucher",
-              ] as const
-            ).map((topic) => (
+            {FAQ_TOPICS.map((topic) => (
               <ScrollReveal key={topic}>
                 <div className="glass-card p-6">
                   <h3 className="text-sm font-semibold text-content-primary">
@@ -298,7 +473,7 @@ export default async function UrlaubPage() {
       </section>
 
       {/* Cross-Links */}
-      <section className="py-12 lg:py-16 bg-surface-secondary">
+      <section className="py-12 lg:py-16">
         <div className="max-w-3xl mx-auto px-6">
           <div className="grid gap-6 sm:grid-cols-2">
             <Link href="/anreise" className="block group">
