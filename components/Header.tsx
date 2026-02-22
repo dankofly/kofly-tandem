@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import ThemeToggle from "@/components/ThemeToggle";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Header() {
   const t = useTranslations("Navigation");
+  const locale = useLocale();
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(!isHome);
@@ -16,7 +17,7 @@ export default function Header() {
   const navItems = [
     { label: t("erlebnis"), href: "/#erlebnis" },
     { label: t("ablauf"), href: "/ablauf" },
-    { label: t("bewertungen"), href: "/#bewertungen" },
+    ...(locale !== "nl" ? [{ label: t("bewertungen"), href: "/#bewertungen" }] : []),
     { label: t("pakete"), href: "/#pakete" },
     { label: t("agb"), href: "/agb" },
   ];
