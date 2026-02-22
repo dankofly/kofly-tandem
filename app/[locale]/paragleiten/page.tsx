@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { breadcrumbSchema, flightAreaSchemas } from "@/lib/schema";
+import { breadcrumbSchema, flightAreaSchemas, faqSchema } from "@/lib/schema";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const SITE_URL = "https://gleitschirm-tandemflug.com";
@@ -16,6 +16,15 @@ const rich = {
 const TANDEM_AREAS = ["zettersfeld", "hochstein"] as const;
 const PILOT_PUSTERTAL = ["thurntaler", "golzentipp"] as const;
 const PILOT_ISELTAL = ["goldried", "virgen", "praegraten", "alkus"] as const;
+
+const FAQ_TOPICS = [
+  "Safety",
+  "Clothing",
+  "Media",
+  "Weight",
+  "Kids",
+  "Season",
+] as const;
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");
@@ -52,11 +61,22 @@ export default async function ParagleitenPage() {
 
   const areaSchemas = flightAreaSchemas();
 
+  const faqItems = FAQ_TOPICS.map((topic) => ({
+    name: t(`faq${topic}Q`),
+    text: t(`faq${topic}A`),
+  }));
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema(faqItems)),
+        }}
       />
       {areaSchemas.map((schema, i) => (
         <script
@@ -363,7 +383,7 @@ export default async function ParagleitenPage() {
           </ScrollReveal>
 
           <div className="mt-10 space-y-4">
-            {(["Safety", "Clothing", "Media"] as const).map((topic) => (
+            {FAQ_TOPICS.map((topic) => (
               <ScrollReveal key={topic}>
                 <div className="glass-card p-6">
                   <h3 className="text-sm font-semibold text-content-primary">
@@ -400,7 +420,7 @@ export default async function ParagleitenPage() {
       {/* Cross-Links */}
       <section className="py-12 lg:py-16">
         <div className="max-w-3xl mx-auto px-6">
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-3">
             <Link href="/urlaub" className="block group">
               <div className="glass-card card-hover-glow p-6 h-full">
                 <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
@@ -418,6 +438,16 @@ export default async function ParagleitenPage() {
                 </h3>
                 <p className="mt-2 text-sm text-content-body font-light">
                   {t("crosslinkAnreiseP")}
+                </p>
+              </div>
+            </Link>
+            <Link href="/ablauf" className="block group">
+              <div className="glass-card card-hover-glow p-6 h-full">
+                <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
+                  {t("crosslinkAblaufTitle")}
+                </h3>
+                <p className="mt-2 text-sm text-content-body font-light">
+                  {t("crosslinkAblaufP")}
                 </p>
               </div>
             </Link>

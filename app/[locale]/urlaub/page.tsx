@@ -475,7 +475,7 @@ export default async function UrlaubPage() {
       {/* Cross-Links */}
       <section className="py-12 lg:py-16">
         <div className="max-w-3xl mx-auto px-6">
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-3">
             <Link href="/anreise" className="block group">
               <div className="glass-card card-hover-glow p-6 h-full">
                 <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
@@ -493,6 +493,16 @@ export default async function UrlaubPage() {
                 </h3>
                 <p className="mt-2 text-sm text-content-body font-light">
                   {t("crosslinkParagleitenP")}
+                </p>
+              </div>
+            </Link>
+            <Link href="/ablauf" className="block group">
+              <div className="glass-card card-hover-glow p-6 h-full">
+                <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
+                  {t("crosslinkAblaufTitle")}
+                </h3>
+                <p className="mt-2 text-sm text-content-body font-light">
+                  {t("crosslinkAblaufP")}
                 </p>
               </div>
             </Link>
