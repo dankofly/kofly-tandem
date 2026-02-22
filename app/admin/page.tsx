@@ -25,6 +25,16 @@ const SLOT_DIMENSIONS: Record<string, { w: number; h: number }> = {
   "ablauf-landing":     { w: 800,  h: 600  },
   packages:             { w: 800,  h: 600  },
   "og-image":           { w: 1200, h: 630  },
+  "gallery-1":          { w: 800,  h: 800  },
+  "gallery-2":          { w: 800,  h: 800  },
+  "gallery-3":          { w: 800,  h: 800  },
+  "gallery-4":          { w: 800,  h: 800  },
+  "gallery-5":          { w: 800,  h: 800  },
+  "gallery-6":          { w: 800,  h: 800  },
+  "gallery-7":          { w: 800,  h: 800  },
+  "gallery-8":          { w: 800,  h: 800  },
+  "gallery-9":          { w: 800,  h: 800  },
+  "gallery-10":         { w: 800,  h: 800  },
 };
 
 async function optimizeImage(file: File, slot: string): Promise<File> {

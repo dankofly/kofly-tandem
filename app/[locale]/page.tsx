@@ -6,6 +6,7 @@ import Reviews from "@/components/Reviews";
 import WhyUs from "@/components/WhyUs";
 import Packages from "@/components/Packages";
 import FAQ from "@/components/FAQ";
+import Gallery from "@/components/Gallery";
 import MapContact from "@/components/MapContact";
 import { faqSchema } from "@/lib/schema";
 
@@ -42,6 +43,7 @@ export default async function HomePage() {
       <Reviews />
       <WhyUs />
       <Packages />
+      <Gallery />
       <FAQ />
       <MapContact />
     </>

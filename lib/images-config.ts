@@ -76,6 +76,56 @@ const DEFAULT_SLOTS: Record<string, ImageSlot> = {
     filename: null,
     description: "Vorschaubild beim Teilen auf WhatsApp, Facebook, Twitter etc. (1200x630 px, JPG, max 1 MB)",
   },
+  "gallery-1": {
+    label: "Galerie Bild 1",
+    filename: null,
+    description: "Quadratisches Galeriebild (empfohlen: 800×800, 1:1)",
+  },
+  "gallery-2": {
+    label: "Galerie Bild 2",
+    filename: null,
+    description: "Quadratisches Galeriebild (empfohlen: 800×800, 1:1)",
+  },
+  "gallery-3": {
+    label: "Galerie Bild 3",
+    filename: null,
+    description: "Quadratisches Galeriebild (empfohlen: 800×800, 1:1)",
+  },
+  "gallery-4": {
+    label: "Galerie Bild 4",
+    filename: null,
+    description: "Quadratisches Galeriebild (empfohlen: 800×800, 1:1)",
+  },
+  "gallery-5": {
+    label: "Galerie Bild 5",
+    filename: null,
+    description: "Quadratisches Galeriebild (empfohlen: 800×800, 1:1)",
+  },
+  "gallery-6": {
+    label: "Galerie Bild 6",
+    filename: null,
+    description: "Quadratisches Galeriebild (empfohlen: 800×800, 1:1)",
+  },
+  "gallery-7": {
+    label: "Galerie Bild 7",
+    filename: null,
+    description: "Quadratisches Galeriebild (empfohlen: 800×800, 1:1)",
+  },
+  "gallery-8": {
+    label: "Galerie Bild 8",
+    filename: null,
+    description: "Quadratisches Galeriebild (empfohlen: 800×800, 1:1)",
+  },
+  "gallery-9": {
+    label: "Galerie Bild 9",
+    filename: null,
+    description: "Quadratisches Galeriebild (empfohlen: 800×800, 1:1)",
+  },
+  "gallery-10": {
+    label: "Galerie Bild 10",
+    filename: null,
+    description: "Quadratisches Galeriebild (empfohlen: 800×800, 1:1)",
+  },
 };
 
 function getImagesStore() {
