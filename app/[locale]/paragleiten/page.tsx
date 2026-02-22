@@ -174,9 +174,14 @@ export default async function ParagleitenPage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6">
           <ScrollReveal>
-            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
-              {t("seasonTitle")}
-            </h2>
+            <div className="flex items-center gap-3">
+              <svg className="w-6 h-6 text-accent-500 shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+              </svg>
+              <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+                {t("seasonTitle")}
+              </h2>
+            </div>
             <div className="mt-5 section-divider !mx-0" />
             <div className="mt-6 space-y-5 text-base text-content-body leading-relaxed font-light">
               <p>{r("seasonP1")}</p>
@@ -190,9 +195,14 @@ export default async function ParagleitenPage() {
       <section className="py-16 lg:py-24 bg-surface-secondary">
         <div className="max-w-3xl mx-auto px-6">
           <ScrollReveal>
-            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
-              {t("tandemAreasTitle")}
-            </h2>
+            <div className="flex items-center gap-3">
+              <svg className="w-6 h-6 text-accent-500 shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
+              </svg>
+              <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+                {t("tandemAreasTitle")}
+              </h2>
+            </div>
             <div className="mt-5 section-divider !mx-0" />
             <p className="mt-6 text-base text-content-body leading-relaxed font-light">
               {t("tandemAreasIntro")}
@@ -385,7 +395,7 @@ export default async function ParagleitenPage() {
           <div className="mt-10 space-y-4">
             {FAQ_TOPICS.map((topic) => (
               <ScrollReveal key={topic}>
-                <div className="glass-card p-6">
+                <div className="glass-card p-6 border-l-2 border-accent-500/20 hover:border-accent-500/50 transition-colors">
                   <h3 className="text-sm font-semibold text-content-primary">
                     {t(`faq${topic}Q`)}
                   </h3>
@@ -423,9 +433,14 @@ export default async function ParagleitenPage() {
           <div className="grid gap-6 sm:grid-cols-3">
             <Link href="/urlaub" className="block group">
               <div className="glass-card card-hover-glow p-6 h-full">
-                <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
-                  {t("crosslinkUrlaubTitle")}
-                </h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
+                    {t("crosslinkUrlaubTitle")}
+                  </h3>
+                  <svg className="w-4 h-4 text-accent-500 shrink-0 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
                 <p className="mt-2 text-sm text-content-body font-light">
                   {t("crosslinkUrlaubP")}
                 </p>
@@ -433,9 +448,14 @@ export default async function ParagleitenPage() {
             </Link>
             <Link href="/anreise" className="block group">
               <div className="glass-card card-hover-glow p-6 h-full">
-                <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
-                  {t("crosslinkAnreiseTitle")}
-                </h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
+                    {t("crosslinkAnreiseTitle")}
+                  </h3>
+                  <svg className="w-4 h-4 text-accent-500 shrink-0 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
                 <p className="mt-2 text-sm text-content-body font-light">
                   {t("crosslinkAnreiseP")}
                 </p>
@@ -443,9 +463,14 @@ export default async function ParagleitenPage() {
             </Link>
             <Link href="/ablauf" className="block group">
               <div className="glass-card card-hover-glow p-6 h-full">
-                <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
-                  {t("crosslinkAblaufTitle")}
-                </h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
+                    {t("crosslinkAblaufTitle")}
+                  </h3>
+                  <svg className="w-4 h-4 text-accent-500 shrink-0 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
                 <p className="mt-2 text-sm text-content-body font-light">
                   {t("crosslinkAblaufP")}
                 </p>
@@ -456,12 +481,12 @@ export default async function ParagleitenPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-28 lg:py-40 overflow-hidden bg-surface-secondary">
+      <section className="relative py-28 lg:py-40 overflow-hidden bg-surface-secondary premium-shimmer">
         <div
           className="glow-orb glow-orb-accent w-[400px] h-[400px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 animate-glow-pulse"
           aria-hidden="true"
         />
-        <div className="relative max-w-2xl mx-auto px-6 text-center">
+        <div className="relative z-10 max-w-2xl mx-auto px-6 text-center">
           <ScrollReveal>
             <h2 className="text-2xl sm:text-3xl font-bold text-content-primary">
               {t("ctaTitle")}
