@@ -138,7 +138,8 @@ export async function getImagesConfig(): Promise<Record<string, ImageSlot>> {
     const raw = await store.get(CONFIG_KEY, { type: "text" });
     if (raw) {
       const config: ImagesConfig = JSON.parse(raw);
-      return config.slots;
+      // Merge: neue DEFAULT_SLOTS die noch nicht im Store sind hinzufügen
+      return { ...DEFAULT_SLOTS, ...config.slots };
     }
   } catch {
     // Blob store not available (local dev or first deploy)
