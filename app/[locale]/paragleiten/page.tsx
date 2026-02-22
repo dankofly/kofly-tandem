@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { breadcrumbSchema, flightAreaSchemas, faqSchema } from "@/lib/schema";
-import ScrollReveal from "@/components/ScrollReveal";
 
 const SITE_URL = "https://gleitschirm-tandemflug.com";
 
@@ -138,16 +137,13 @@ export default async function ParagleitenPage() {
       {/* Tandem vs. Solo */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
         <div className="max-w-3xl mx-auto px-6">
-          <ScrollReveal>
-            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("tandemVsSoloTitle")}
             </h2>
             <div className="mt-5 section-divider !mx-0" />
-          </ScrollReveal>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
-            <ScrollReveal delay={0}>
-              <div className="glass-card card-hover-glow p-6 h-full border-accent-500/20">
+            <div className="glass-card card-hover-glow p-6 h-full border-accent-500/20">
                 <span className="text-xs tracking-premium uppercase text-accent-500 font-medium">
                   Tandem
                 </span>
@@ -155,9 +151,7 @@ export default async function ParagleitenPage() {
                   {r("tandemVsSoloP1")}
                 </p>
               </div>
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
-              <div className="glass-card card-hover-glow p-6 h-full">
+            <div className="glass-card card-hover-glow p-6 h-full">
                 <span className="text-xs tracking-premium uppercase text-content-muted font-medium">
                   Solo
                 </span>
@@ -165,7 +159,6 @@ export default async function ParagleitenPage() {
                   {r("tandemVsSoloP2")}
                 </p>
               </div>
-            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -173,46 +166,31 @@ export default async function ParagleitenPage() {
       {/* Beste Jahreszeit */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6">
-          <ScrollReveal>
-            <div className="flex items-center gap-3">
-              <svg className="w-6 h-6 text-accent-500 shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-              </svg>
-              <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
                 {t("seasonTitle")}
               </h2>
-            </div>
             <div className="mt-5 section-divider !mx-0" />
             <div className="mt-6 space-y-5 text-base text-content-body leading-relaxed font-light">
               <p>{r("seasonP1")}</p>
               <p>{r("seasonP2")}</p>
             </div>
-          </ScrollReveal>
         </div>
       </section>
 
       {/* Tandemfluggebiete */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
         <div className="max-w-3xl mx-auto px-6">
-          <ScrollReveal>
-            <div className="flex items-center gap-3">
-              <svg className="w-6 h-6 text-accent-500 shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
-              </svg>
-              <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
                 {t("tandemAreasTitle")}
               </h2>
-            </div>
             <div className="mt-5 section-divider !mx-0" />
             <p className="mt-6 text-base text-content-body leading-relaxed font-light">
               {t("tandemAreasIntro")}
             </p>
-          </ScrollReveal>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {TANDEM_AREAS.map((area, i) => (
-              <ScrollReveal key={area} delay={i * 100}>
-                <div className="glass-card card-hover-glow p-6 sm:p-8 h-full border-accent-500/20">
+            {TANDEM_AREAS.map((area) => (
+              <div key={area} className="glass-card card-hover-glow p-6 sm:p-8 h-full border-accent-500/20">
                   <div className="flex items-center justify-between">
                     <h3 className="text-xl font-bold text-content-primary">
                       {t(`${area}Name`)}
@@ -229,7 +207,6 @@ export default async function ParagleitenPage() {
                     <p>{r(`${area}P2`)}</p>
                   </div>
                 </div>
-              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -238,20 +215,17 @@ export default async function ParagleitenPage() {
       {/* Fluggebiete Pustertal */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6">
-          <ScrollReveal>
-            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("pilotPustertalTitle")}
             </h2>
             <div className="mt-5 section-divider !mx-0" />
             <p className="mt-6 text-base text-content-body leading-relaxed font-light">
               {t("pilotPustertalIntro")}
             </p>
-          </ScrollReveal>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {PILOT_PUSTERTAL.map((area, i) => (
-              <ScrollReveal key={area} delay={i * 100}>
-                <div className="glass-card card-hover-glow p-6 sm:p-8 h-full">
+            {PILOT_PUSTERTAL.map((area) => (
+              <div key={area} className="glass-card card-hover-glow p-6 sm:p-8 h-full">
                   <div className="flex items-center justify-between">
                     <h3 className="text-xl font-bold text-content-primary">
                       {t(`${area}Name`)}
@@ -268,7 +242,6 @@ export default async function ParagleitenPage() {
                     <p>{r(`${area}P2`)}</p>
                   </div>
                 </div>
-              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -277,20 +250,17 @@ export default async function ParagleitenPage() {
       {/* Fluggebiete Iseltal */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
         <div className="max-w-3xl mx-auto px-6">
-          <ScrollReveal>
-            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("pilotIseltalTitle")}
             </h2>
             <div className="mt-5 section-divider !mx-0" />
             <p className="mt-6 text-base text-content-body leading-relaxed font-light">
               {t("pilotIseltalIntro")}
             </p>
-          </ScrollReveal>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {PILOT_ISELTAL.map((area, i) => (
-              <ScrollReveal key={area} delay={i * 100}>
-                <div className="glass-card card-hover-glow p-6 sm:p-8 h-full">
+            {PILOT_ISELTAL.map((area) => (
+              <div key={area} className="glass-card card-hover-glow p-6 sm:p-8 h-full">
                   <div className="flex items-center justify-between">
                     <h3 className="text-xl font-bold text-content-primary">
                       {t(`${area}Name`)}
@@ -307,7 +277,6 @@ export default async function ParagleitenPage() {
                     <p>{r(`${area}P2`)}</p>
                   </div>
                 </div>
-              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -316,8 +285,7 @@ export default async function ParagleitenPage() {
       {/* Weitere Fluggebiete + Tandem-CTA */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6">
-          <ScrollReveal>
-            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("moreAreasTitle")}
             </h2>
             <div className="mt-5 section-divider !mx-0" />
@@ -325,10 +293,8 @@ export default async function ParagleitenPage() {
               <p>{t("moreAreasP1")}</p>
               <p>{t("moreAreasP2")}</p>
             </div>
-          </ScrollReveal>
 
-          <ScrollReveal>
-            <div className="mt-12 relative overflow-hidden glass-card border-accent-500/30 p-8 sm:p-12">
+          <div className="mt-12 relative overflow-hidden glass-card border-accent-500/30 p-8 sm:p-12">
               <div
                 className="glow-orb glow-orb-accent w-[300px] h-[300px] -top-20 -right-20 opacity-20 animate-glow-pulse"
                 aria-hidden="true"
@@ -371,31 +337,27 @@ export default async function ParagleitenPage() {
                   </Link>
                   <Link
                     href="/buchen#gutschein"
-                    className="cta-lift inline-flex items-center justify-center px-8 py-4 border border-accent-500/40 hover:border-accent-500 text-accent-500 text-xs font-medium tracking-wide uppercase transition-colors"
+                    className="cta-lift inline-flex items-center justify-center px-8 py-4 border border-edge-secondary text-content-body hover:text-accent-400 hover:border-accent-500 text-xs font-medium tracking-wide uppercase transition-colors"
                   >
                     {t("ctaGutschein")}
                   </Link>
                 </div>
               </div>
             </div>
-          </ScrollReveal>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6">
-          <ScrollReveal>
-            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("faqTitle")}
             </h2>
             <div className="mt-5 section-divider !mx-0" />
-          </ScrollReveal>
 
           <div className="mt-10 space-y-4">
             {FAQ_TOPICS.map((topic) => (
-              <ScrollReveal key={topic}>
-                <div className="glass-card p-6 border-l-2 border-accent-500/20 hover:border-accent-500/50 transition-colors">
+              <div key={topic} className="glass-card p-6 border-l-2 border-accent-500/20 hover:border-accent-500/50 transition-colors">
                   <h3 className="text-sm font-semibold text-content-primary">
                     {t(`faq${topic}Q`)}
                   </h3>
@@ -403,7 +365,6 @@ export default async function ParagleitenPage() {
                     {r(`faq${topic}A`)}
                   </p>
                 </div>
-              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -412,8 +373,7 @@ export default async function ParagleitenPage() {
       {/* E-E-A-T: Sicherheit & Transparenz */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
         <div className="max-w-3xl mx-auto px-6">
-          <ScrollReveal>
-            <div className="glass-card border-accent-500/20 p-6 sm:p-10">
+          <div className="glass-card border-accent-500/20 p-6 sm:p-10">
               <h2 className="text-2xl font-bold text-content-primary tracking-tight">
                 {t("eeatTitle")}
               </h2>
@@ -423,7 +383,6 @@ export default async function ParagleitenPage() {
                 <p>{r("eeatP2")}</p>
               </div>
             </div>
-          </ScrollReveal>
         </div>
       </section>
 
@@ -481,14 +440,13 @@ export default async function ParagleitenPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-28 lg:py-40 overflow-hidden bg-surface-secondary premium-shimmer">
+      <section className="relative py-28 lg:py-40 overflow-hidden bg-surface-secondary">
         <div
-          className="glow-orb glow-orb-accent w-[400px] h-[400px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 animate-glow-pulse"
+          className="glow-orb glow-orb-accent w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 animate-glow-pulse"
           aria-hidden="true"
         />
-        <div className="relative z-10 max-w-2xl mx-auto px-6 text-center">
-          <ScrollReveal>
-            <h2 className="text-2xl sm:text-3xl font-bold text-content-primary">
+        <div className="relative max-w-2xl mx-auto px-6 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-content-primary">
               {t("ctaTitle")}
             </h2>
             <p className="mt-4 text-base text-content-body font-light">
@@ -504,7 +462,7 @@ export default async function ParagleitenPage() {
               </Link>
               <Link
                 href="/buchen#gutschein"
-                className="cta-lift w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-accent-500/40 hover:border-accent-500 text-accent-500 text-xs font-medium tracking-wide uppercase transition-colors"
+                className="cta-lift w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-edge-secondary text-content-body hover:text-accent-400 hover:border-accent-500 text-xs font-medium tracking-wide uppercase transition-colors"
               >
                 {t("ctaGutschein")}
               </Link>
@@ -513,7 +471,6 @@ export default async function ParagleitenPage() {
             <p className="mt-6 text-xs text-content-muted">
               {t("ctaWhatsapp")}
             </p>
-          </ScrollReveal>
         </div>
       </section>
     </>
