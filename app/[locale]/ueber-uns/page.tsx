@@ -78,6 +78,7 @@ function ImagePlaceholder({ label, icon = "photo" }: { label: string; icon?: "ph
 
 export default async function UeberUnsPage() {
   const locale = await getLocale();
+  const t = await getTranslations("UeberUns");
 
   /* Fetch all über-uns images in parallel */
   const [ueberHero, ueberGruender, pilot1, pilot2, pilot3, pilot4] =
@@ -113,7 +114,7 @@ export default async function UeberUnsPage() {
 
   const breadcrumbs = breadcrumbSchema([
     { name: "Home", url: `${SITE_URL}/${locale}` },
-    { name: "Über Uns", url: `${SITE_URL}/${locale}/ueber-uns` },
+    { name: t("breadcrumb"), url: `${SITE_URL}/${locale}/ueber-uns` },
   ]);
 
   return (
@@ -149,26 +150,26 @@ export default async function UeberUnsPage() {
                 </Link>
               </li>
               <li aria-hidden="true" className="text-white/30">/</li>
-              <li className="text-white/80 font-medium">Über Uns</li>
+              <li className="text-white/80 font-medium">{t("breadcrumb")}</li>
             </ol>
           </nav>
 
           {/* Staggered hero content */}
           <p className="hero-enter hero-enter-2 text-xs tracking-premium uppercase text-accent-500 font-medium">
-            Tandem Paragleiten mit KOFLY
+            {t("heroOverline")}
           </p>
 
           <h1 className="hero-enter hero-enter-3 mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1]">
-            Nur Fliegen ist{" "}
+            {t("heroHighlight1")}{" "}
             <span className="shimmer-text text-transparent bg-clip-text bg-gradient-to-r from-accent-400 via-accent-500 to-accent-400">
-              schöner…!
+              {t("heroHighlight2")}
             </span>
           </h1>
 
           <div className="hero-enter hero-enter-4 mt-8 section-divider !mx-0" />
 
           <p className="hero-enter hero-enter-5 mt-8 text-lg sm:text-xl text-white/80 leading-relaxed font-light max-w-2xl">
-            Tandem Paragleiten mit KOFLY ohne Vorkenntnisse, mit einem Gleitschirm-Tandemflug im Airpark Lienzer Dolomiten. Erlebe mit uns Osttirol von oben – einfach, sicher und unvergesslich.
+            {t("heroDescription")}
           </p>
 
           {/* Hero Image with entrance animation */}
@@ -176,7 +177,7 @@ export default async function UeberUnsPage() {
             {ueberHero ? (
               <Image
                 src={ueberHero}
-                alt="Panorama Airpark Lienzer Dolomiten"
+                alt={t("heroImageAlt")}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 900px"
@@ -187,7 +188,7 @@ export default async function UeberUnsPage() {
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-16 h-16 text-white/20 mx-auto">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
                   </svg>
-                  <p className="mt-3 text-sm text-white/30 font-light">Hero-Bild: Panorama Airpark Lienzer Dolomiten</p>
+                  <p className="mt-3 text-sm text-white/30 font-light">{t("heroImagePlaceholder")}</p>
                 </div>
               </div>
             )}
@@ -210,10 +211,10 @@ export default async function UeberUnsPage() {
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-16">
               <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
-                Über Uns – Gleitschirm-Tandemflug.com
+                {t("geschichteOverline")}
               </p>
               <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
-                Unsere Geschichte
+                {t("geschichteTitle")}
               </h2>
               <div className="mt-6 section-divider" />
             </div>
@@ -222,15 +223,9 @@ export default async function UeberUnsPage() {
           <div className="grid lg:grid-cols-5 gap-12 items-start">
             {/* Story text – spans 3 columns */}
             <ScrollReveal animation="fade-right" className="lg:col-span-3 space-y-6 text-base text-content-body leading-relaxed font-light">
-              <p>
-                Gleitschirm-Tandemflug.com wurde 2012 von mir, Daniel Kofler, gegründet – aus einer einfachen Überzeugung heraus: Fliegen ist die schönste Sache der Welt. Und Freude wird größer, wenn man sie teilt.
-              </p>
-              <p>
-                Seit 2006 bin ich als Tandempilot unterwegs. Mit jedem Flug ist mir klarer geworden, dass wir hier in Osttirol ein Geschenk vorfinden, das seinesgleichen sucht. Unser Startplatz am Zettersfeld – mit Blick auf das markante Steinermandl – öffnet eine Arena, die beeindruckender kaum sein könnte. Vor uns das Panorama der Lienzer Dolomiten, umgeben von 268 Dreitausendern. Nicht weit entfernt erhebt sich der Großglockner mit seinen 3.798 Metern – der höchste Berg Österreichs.
-              </p>
-              <p>
-                Wir nennen dieses Fluggebiet den Airpark Lienzer Dolomiten. Ein Spielplatz für viele Sportarten – und doch sagt man: Nur Fliegen ist schöner. Genau aus diesem Gefühl heraus ist Gleitschirm-Tandemflug.com entstanden.
-              </p>
+              <p>{t("geschichteP1")}</p>
+              <p>{t("geschichteP2")}</p>
+              <p>{t("geschichteP3")}</p>
             </ScrollReveal>
 
             {/* Gründer-Bild – spans 2 columns */}
@@ -239,13 +234,13 @@ export default async function UeberUnsPage() {
                 {ueberGruender ? (
                   <Image
                     src={ueberGruender}
-                    alt="Daniel Kofler – Gründer von Gleitschirm-Tandemflug.com"
+                    alt={t("geschichteImageAlt")}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 360px"
                   />
                 ) : (
-                  <ImagePlaceholder label="Daniel Kofler – Gründer" icon="person" />
+                  <ImagePlaceholder label={t("geschichteImageLabel")} icon="person" />
                 )}
               </div>
             </ScrollReveal>
@@ -253,20 +248,16 @@ export default async function UeberUnsPage() {
 
           {/* Continuation of story */}
           <ScrollReveal animation="fade-up" className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light">
-            <p>
-              Osttirol steht für authentischen, nachhaltigen und bewusst moderaten Tourismus. Kein Massentrubel, sondern echte Natur, echte Begegnungen und ehrliche Erlebnisse. Beste Voraussetzungen also für einen Tandemflug, der dem freien Flug der Steinadler hier im Herzen der Alpen wohl am nächsten kommt.
-            </p>
-            <p>
-              Unser Fluggebiet hat Charakter. Es verlangt Erfahrung, Feingefühl und Respekt vor Wind und Wetter. Deshalb fliegen wir nicht im Takt eines Fließbands. Wir setzen auf Qualität, Sicherheit und Zeit für dich. Jeder Fluggast ist für uns ein Premiumpassagier – und genau so behandeln wir dich auch.
-            </p>
+            <p>{t("geschichteP4")}</p>
+            <p>{t("geschichteP5")}</p>
           </ScrollReveal>
 
           {/* KOFLY Rebrand Callout */}
           <ScrollReveal animation="scale-in" delay={100}>
             <div className="glass-card premium-shimmer border-accent-500/30 p-8 sm:p-10 mt-8">
-              <p className="text-xs tracking-premium uppercase text-accent-500 font-medium mb-3">Neuer Name, gleiche Leidenschaft</p>
+              <p className="text-xs tracking-premium uppercase text-accent-500 font-medium mb-3">{t("rebrandTitle")}</p>
               <p className="text-base text-content-body leading-relaxed font-light">
-                Ab 1.1.2026 nennen wir uns nun KOFLY, da unser alter Name Gleitschirm-Tandemflug.com und zugleich unsere Domain immer wieder zu Verwirrungen führten. Natürlich sind wir über beide Namen in Zukunft aus dem Internet erreichbar.
+                {t("rebrandText")}
               </p>
             </div>
           </ScrollReveal>
@@ -280,7 +271,7 @@ export default async function UeberUnsPage() {
                 rel="noopener noreferrer"
                 className="text-accent-400 hover:text-accent-500 transition-colors underline underline-offset-4 text-base font-medium"
               >
-                TripAdvisor Bewertungen
+                {t("tripAdvisorTitle")}
               </a>
             </div>
           </ScrollReveal>
@@ -306,14 +297,14 @@ export default async function UeberUnsPage() {
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-16">
               <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
-                Das Team
+                {t("teamOverline")}
               </p>
               <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
-                Unsere Tandempiloten
+                {t("teamTitle")}
               </h2>
               <div className="mt-6 section-divider" />
               <p className="mt-8 text-base text-content-body leading-relaxed font-light max-w-2xl mx-auto">
-                Wir sind ein engagiertes Team aus leidenschaftlichen, lizenzierten und erfahrenen Piloten im Fliegen mit dem Tandem-Gleitschirm. Jeder von uns kennt den Airpark Lienzer Dolomiten in- und auswendig.
+                {t("teamDescription")}
               </p>
             </div>
           </ScrollReveal>
@@ -341,7 +332,7 @@ export default async function UeberUnsPage() {
 
           <ScrollReveal animation="fade-up">
             <p className="text-base text-content-body leading-relaxed font-light mb-10">
-              Was uns verbindet, ist nicht nur die Leidenschaft fürs Fliegen, sondern auch unser Anspruch:
+              {t("teamValuesIntro")}
             </p>
           </ScrollReveal>
 
@@ -394,10 +385,10 @@ export default async function UeberUnsPage() {
                 {/* Row 1: Sicherheit + Kommunikation */}
                 <div className="grid grid-cols-2 gap-5">
                   <ScrollReveal animation="fade-up" delay={0}>
-                    <ValueCard icon={shieldIcon} title="Sicherheit" text="Höchste Sicherheitsstandards" />
+                    <ValueCard icon={shieldIcon} title={t("valueSafetyTitle")} text={t("valueSafetyDesc")} />
                   </ScrollReveal>
                   <ScrollReveal animation="fade-up" delay={100}>
-                    <ValueCard icon={chatIcon} title="Kommunikation" text="Ruhig, klar und auf Augenhöhe" />
+                    <ValueCard icon={chatIcon} title={t("valueCommunicationTitle")} text={t("valueCommunicationDesc")} />
                   </ScrollReveal>
                 </div>
 
@@ -405,7 +396,7 @@ export default async function UeberUnsPage() {
                 <div className="flex justify-center">
                   <ScrollReveal animation="scale-in" delay={200}>
                     <div className="w-full max-w-xs">
-                      <ValueCard icon={heartIcon} title="Leidenschaft" text="Paragleiten als Berufung und sehr viel Erfahrung" center />
+                      <ValueCard icon={heartIcon} title={t("valuePassionTitle")} text={t("valuePassionDesc")} center />
                     </div>
                   </ScrollReveal>
                 </div>
@@ -413,10 +404,10 @@ export default async function UeberUnsPage() {
                 {/* Row 3: Betreuung + Einzigartigkeit */}
                 <div className="grid grid-cols-2 gap-5">
                   <ScrollReveal animation="fade-up" delay={300}>
-                    <ValueCard icon={handIcon} title="Betreuung" text="Persönlich vom ersten Kontakt bis zur Landung" />
+                    <ValueCard icon={handIcon} title={t("valueCareTitle")} text={t("valueCareDesc")} />
                   </ScrollReveal>
                   <ScrollReveal animation="fade-up" delay={400}>
-                    <ValueCard icon={sparklesIcon} title="Einzigartigkeit" text="Höchste Flexibilität – individuell auf dich angepasst" />
+                    <ValueCard icon={sparklesIcon} title={t("valueUniquenessTitle")} text={t("valueUniquenessDesc")} />
                   </ScrollReveal>
                 </div>
               </div>
@@ -424,12 +415,8 @@ export default async function UeberUnsPage() {
           })()}
 
           <ScrollReveal animation="fade-up" className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light">
-            <p>
-              Wir nehmen uns Zeit für dich. Vor dem Start erklären wir dir jeden Schritt. Während des Fluges führen wir dich ruhig durch das Erlebnis. Und bei der Landung bringen wir dich sicher und mit einem Lächeln zurück auf festen Boden.
-            </p>
-            <p>
-              Der Flug ist bei uns erst zu Ende, wenn die Passagiere die Fotos und Videos gesehen haben und wir das Erlebte ausführlich besprochen haben. Weitere Tipps für den Urlaub und die Region sind selbstverständlich. So sind wir auch weiterhin per WhatsApp jederzeit für Tipps und Tricks erreichbar.
-            </p>
+            <p>{t("teamAfterP1")}</p>
+            <p>{t("teamAfterP2")}</p>
           </ScrollReveal>
         </div>
       </section>
@@ -445,10 +432,10 @@ export default async function UeberUnsPage() {
             <ScrollReveal animation="fade-up">
               <div className="text-center mb-12">
                 <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
-                  Unsere Flüge erleben
+                  {t("videoOverline")}
                 </p>
                 <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
-                  Video-Galerie
+                  {t("videoTitle")}
                 </h2>
                 <div className="mt-6 section-divider" />
               </div>
@@ -486,10 +473,10 @@ export default async function UeberUnsPage() {
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-16">
               <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
-                Woran wir glauben
+                {t("philosophieOverline")}
               </p>
               <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
-                Unsere Philosophie
+                {t("philosophieTitle")}
               </h2>
               <div className="mt-6 section-divider" />
             </div>
@@ -499,17 +486,17 @@ export default async function UeberUnsPage() {
           <ScrollReveal animation="scale-in">
             <div className="text-center mb-16">
               <p className="quote-float text-2xl sm:text-3xl font-bold text-content-primary italic">
-                Einfach. Sicher. Unvergesslich.
+                {t("philosophieTagline")}
               </p>
               <p className="mt-6 text-base text-content-body leading-relaxed font-light max-w-2xl mx-auto">
-                Wir glauben daran, dass ein Tandemflug mit dem Paragleiter mehr ist als ein Freizeitangebot. Es ist ein Perspektivenwechsel, etwas, das für viele unserer Passagiere ein unvergesslicher Moment der Freiheit war. Ein Erlebnis, das bleibt.
+                {t("philosophieIntro")}
               </p>
             </div>
           </ScrollReveal>
 
           <ScrollReveal animation="fade-up">
             <p className="text-base text-content-body leading-relaxed font-light mb-10">
-              Unsere Philosophie basiert auf drei Säulen:
+              {t("philosophiePillarsIntro")}
             </p>
           </ScrollReveal>
 
@@ -518,18 +505,18 @@ export default async function UeberUnsPage() {
             {[
               {
                 icon: <ShieldIcon />,
-                title: "1. Sicherheit vor allem",
-                text: "Das Wetter entscheidet. Nicht der Kalender. Wir planen flexibel und bestätigen Flugtermine immer wetterabhängig. Verschieben oder stornieren ist bei uns unkompliziert möglich, wenn die Bedingungen nicht passen.",
+                title: t("pillar1Title"),
+                text: t("pillar1Text"),
               },
               {
                 icon: <SparklesIcon />,
-                title: "2. Qualität statt Masse",
-                text: "Wir fliegen bewusst in einem Rahmen, der persönliche Betreuung ermöglicht. Keine Massenabfertigung, sondern individuelle Erlebnisse. Jeder Flug ist einzigartig – so wie jeder Mensch, der mit uns startet.",
+                title: t("pillar2Title"),
+                text: t("pillar2Text"),
               },
               {
                 icon: <GlobeIcon />,
-                title: "3. Nachhaltigkeit und Verantwortung",
-                text: "Wir leben und arbeiten in einer Region, die von ihrer Natur lebt. Deshalb handeln wir respektvoll gegenüber Umwelt, Partnern und Gästen. Unser Anspruch ist es, einen Beitrag zu hochwertigem, nachhaltigem Tourismus in Osttirol zu leisten.",
+                title: t("pillar3Title"),
+                text: t("pillar3Text"),
               },
             ].map((pillar, i) => (
               <ScrollReveal key={i} animation="fade-up" delay={i * 150}>
@@ -550,7 +537,7 @@ export default async function UeberUnsPage() {
 
           <ScrollReveal animation="fade-in" delay={300}>
             <p className="mt-12 text-center text-lg text-content-body italic font-light">
-              Nur Fliegen ist schöner – und das spürt man bei jedem Start.
+              {t("philosophieClosing")}
             </p>
           </ScrollReveal>
         </div>
@@ -564,10 +551,10 @@ export default async function UeberUnsPage() {
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-16">
               <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
-                Regionale Stärke
+                {t("partnerOverline")}
               </p>
               <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
-                Unsere Partner
+                {t("partnerTitle")}
               </h2>
               <div className="mt-6 section-divider" />
             </div>
@@ -575,19 +562,17 @@ export default async function UeberUnsPage() {
 
           <ScrollReveal animation="fade-up">
             <div className="space-y-6 text-base text-content-body leading-relaxed font-light">
-              <p>
-                Ein starkes regionales Netzwerk macht Qualität möglich. Wir arbeiten mit ausgewählten Partnerbetrieben in Osttirol zusammen – Hotels, Tourismusbetrieben, Bergbahnen und regionalen Dienstleistern, die unsere Werte teilen:
-              </p>
+              <p>{t("partnerIntro")}</p>
             </div>
           </ScrollReveal>
 
           {/* Partner values with stagger */}
           <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
-              { label: "Verlässlichkeit" },
-              { label: "Regionalität" },
-              { label: "Nachhaltigkeit" },
-              { label: "Qualitätsbewusstsein" },
+              { label: t("partnerValue1") },
+              { label: t("partnerValue2") },
+              { label: t("partnerValue3") },
+              { label: t("partnerValue4") },
             ].map((item, i) => (
               <ScrollReveal key={i} animation="scale-in" delay={i * 100}>
                 <div className="glass-card card-hover-glow p-5 text-center flex flex-col items-center gap-2">
@@ -599,9 +584,7 @@ export default async function UeberUnsPage() {
           </div>
 
           <ScrollReveal animation="fade-up" className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light">
-            <p>
-              Gemeinsam gestalten wir ein Urlaubserlebnis, das über den Flug hinausgeht. Gerne stellen wir unseren Partnern Informationsmaterial zur Verfügung oder entwickeln individuelle Angebote wie Firmen-Events, Gruppenflüge oder besondere Erlebnispakete – etwa unseren „Ski & Fly"-Tandemflug im Winter.
-            </p>
+            <p>{t("partnerOutro")}</p>
           </ScrollReveal>
 
           {/* Partner Logo Placeholders */}
@@ -628,17 +611,13 @@ export default async function UeberUnsPage() {
         <div className="relative max-w-3xl mx-auto px-6 text-center">
           <ScrollReveal animation="scale-in">
             <p className="quote-float text-2xl sm:text-3xl font-bold text-content-primary italic">
-              Nur Fliegen ist schöner…!
+              {t("ctaHeadline")}
             </p>
           </ScrollReveal>
 
           <ScrollReveal animation="fade-up" delay={150} className="mt-8 space-y-5 text-base sm:text-lg text-content-body leading-relaxed font-light">
-            <p>
-              Wir von Gleitschirm-Tandemflug.com haben es uns zur Aufgabe gemacht, dir den Traum vom Fliegen zu erfüllen – im Airpark Lienzer Dolomiten, inmitten einer der eindrucksvollsten Bergwelten Österreichs.
-            </p>
-            <p>
-              Ein Erlebnis für dich – jung bis alt – in sicheren Händen erfahrener Profi-Tandempiloten.
-            </p>
+            <p>{t("ctaText")}</p>
+            <p>{t("ctaSubtext")}</p>
           </ScrollReveal>
 
           <ScrollReveal animation="fade-up" delay={300}>
@@ -647,27 +626,27 @@ export default async function UeberUnsPage() {
                 href="/buchen"
                 className="cta-lift btn-glow w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-accent-500 hover:bg-accent-400 text-white text-xs font-medium tracking-wide uppercase transition-colors"
               >
-                Jetzt Termin anfragen
+                {t("ctaBooking")}
               </Link>
               <Link
                 href="/buchen#gutschein"
                 className="cta-lift w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-edge-secondary text-content-body hover:text-accent-400 hover:border-accent-500 text-xs font-medium tracking-wide uppercase transition-colors"
               >
-                Gutschein bestellen
+                {t("ctaVoucher")}
               </Link>
             </div>
           </ScrollReveal>
 
           <ScrollReveal animation="fade-in" delay={450}>
             <p className="mt-8 text-sm text-content-muted font-light">
-              Du erreichst uns auch jederzeit direkt per{" "}
+              {t("ctaContactIntro")}{" "}
               <a
                 href="https://wa.me/436767293888"
                 className="text-accent-400 hover:text-accent-500 transition-colors"
               >
-                WhatsApp
+                {t("ctaWhatsApp")}
               </a>{" "}
-              unter{" "}
+              {t("ctaUnter")}{" "}
               <a
                 href="tel:+436767293888"
                 className="text-accent-400 hover:text-accent-500 transition-colors"
