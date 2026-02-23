@@ -5,13 +5,13 @@ import { Link } from "@/i18n/navigation";
 import { breadcrumbSchema } from "@/lib/schema";
 import { getImageUrl } from "@/lib/images-config";
 import { getVideosConfig, extractYouTubeId } from "@/lib/videos-config";
+import ScrollReveal from "@/components/ScrollReveal";
 import ReviewsSlider from "@/components/ReviewsSlider";
 
 const SITE_URL = "https://gleitschirm-tandemflug.com";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");
-  const locale = await getLocale();
   return {
     title: t("ueberUnsTitle"),
     description: t("ueberUnsDescription"),
@@ -46,6 +46,14 @@ const CheckIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-accent-500 shrink-0 mt-0.5">
     <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
   </svg>
+);
+/* Mountain silhouette divider */
+const MountainDivider = () => (
+  <div className="relative w-full h-16 sm:h-24 -mb-px overflow-hidden">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="absolute bottom-0 w-full h-full" fill="var(--bg-secondary)">
+      <path d="M0,120 L0,80 Q120,20 240,60 T480,40 Q600,10 720,50 T960,30 Q1080,0 1200,45 T1440,35 L1440,120 Z" />
+    </svg>
+  </div>
 );
 
 /* Placeholder shown when no admin image is uploaded */
@@ -116,10 +124,10 @@ export default async function UeberUnsPage() {
       />
 
       {/* ══════════════════════════════════════════
-          HERO – Full-Width Cinematic Opening
+          HERO – Cinematic Opening with staggered entrance
           ══════════════════════════════════════════ */}
       <section className="relative pt-32 pb-24 lg:pt-44 lg:pb-36 overflow-hidden">
-        {/* Dramatic background placeholder */}
+        {/* Multi-layer background */}
         <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800" />
         <div
           className="absolute inset-0 opacity-30"
@@ -127,11 +135,13 @@ export default async function UeberUnsPage() {
             backgroundImage: "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.03\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
           }}
         />
-        <div className="glow-orb glow-orb-accent w-[600px] h-[600px] -top-60 -right-40 opacity-30 animate-glow-pulse" />
-        <div className="glow-orb glow-orb-sky w-[500px] h-[500px] -bottom-40 -left-40 opacity-20 animate-glow-pulse [animation-delay:2s]" />
+        {/* Glow orbs with staggered pulse */}
+        <div className="glow-orb glow-orb-accent w-[500px] h-[500px] sm:w-[700px] sm:h-[700px] -top-60 -right-40 opacity-25 animate-glow-pulse" />
+        <div className="glow-orb glow-orb-sky w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] -bottom-40 -left-40 opacity-15 animate-glow-pulse [animation-delay:2s]" />
 
         <div className="relative max-w-4xl mx-auto px-6">
-          <nav aria-label="Breadcrumb" className="mb-10">
+          {/* Breadcrumb – immediate */}
+          <nav aria-label="Breadcrumb" className="hero-enter hero-enter-1 mb-10">
             <ol className="flex items-center gap-2 text-xs text-white/50 font-light">
               <li>
                 <Link href="/" className="hover:text-accent-400 transition-colors">
@@ -143,25 +153,26 @@ export default async function UeberUnsPage() {
             </ol>
           </nav>
 
-          <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
+          {/* Staggered hero content */}
+          <p className="hero-enter hero-enter-2 text-xs tracking-premium uppercase text-accent-500 font-medium">
             Tandem Paragleiten mit KOFLY
           </p>
 
-          <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1]">
+          <h1 className="hero-enter hero-enter-3 mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1]">
             Nur Fliegen ist{" "}
             <span className="shimmer-text text-transparent bg-clip-text bg-gradient-to-r from-accent-400 via-accent-500 to-accent-400">
               schöner…!
             </span>
           </h1>
 
-          <div className="mt-8 section-divider !mx-0" />
+          <div className="hero-enter hero-enter-4 mt-8 section-divider !mx-0" />
 
-          <p className="mt-8 text-lg sm:text-xl text-white/80 leading-relaxed font-light max-w-2xl">
+          <p className="hero-enter hero-enter-5 mt-8 text-lg sm:text-xl text-white/80 leading-relaxed font-light max-w-2xl">
             Tandem Paragleiten mit KOFLY ohne Vorkenntnisse, mit einem Gleitschirm-Tandemflug im Airpark Lienzer Dolomiten. Erlebe mit uns Osttirol von oben – einfach, sicher und unvergesslich.
           </p>
 
-          {/* Hero Image */}
-          <div className="mt-12 relative rounded-2xl overflow-hidden border border-white/10 aspect-[21/9]">
+          {/* Hero Image with entrance animation */}
+          <div className="hero-enter hero-enter-6 mt-12 relative rounded-2xl overflow-hidden border border-white/10 aspect-[21/9] card-hover-glow">
             {ueberHero ? (
               <Image
                 src={ueberHero}
@@ -181,6 +192,13 @@ export default async function UeberUnsPage() {
               </div>
             )}
           </div>
+
+          {/* Scroll hint */}
+          <div className="mt-10 flex justify-center hero-enter hero-enter-6">
+            <div className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center p-1.5">
+              <div className="w-1 h-2 rounded-full bg-white/40 animate-scroll-hint" />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -189,19 +207,21 @@ export default async function UeberUnsPage() {
           ══════════════════════════════════════════ */}
       <section className="py-20 lg:py-28">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
-              Über Uns – Gleitschirm-Tandemflug.com
-            </p>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
-              Unsere Geschichte
-            </h2>
-            <div className="mt-6 section-divider" />
-          </div>
+          <ScrollReveal animation="fade-up">
+            <div className="text-center mb-16">
+              <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
+                Über Uns – Gleitschirm-Tandemflug.com
+              </p>
+              <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
+                Unsere Geschichte
+              </h2>
+              <div className="mt-6 section-divider" />
+            </div>
+          </ScrollReveal>
 
           <div className="grid lg:grid-cols-5 gap-12 items-start">
             {/* Story text – spans 3 columns */}
-            <div className="lg:col-span-3 space-y-6 text-base text-content-body leading-relaxed font-light">
+            <ScrollReveal animation="fade-right" className="lg:col-span-3 space-y-6 text-base text-content-body leading-relaxed font-light">
               <p>
                 Gleitschirm-Tandemflug.com wurde 2012 von mir, Daniel Kofler, gegründet – aus einer einfachen Überzeugung heraus: Fliegen ist die schönste Sache der Welt. Und Freude wird größer, wenn man sie teilt.
               </p>
@@ -211,11 +231,11 @@ export default async function UeberUnsPage() {
               <p>
                 Wir nennen dieses Fluggebiet den Airpark Lienzer Dolomiten. Ein Spielplatz für viele Sportarten – und doch sagt man: Nur Fliegen ist schöner. Genau aus diesem Gefühl heraus ist Gleitschirm-Tandemflug.com entstanden.
               </p>
-            </div>
+            </ScrollReveal>
 
             {/* Gründer-Bild – spans 2 columns */}
-            <div className="lg:col-span-2">
-              <div className="relative rounded-2xl overflow-hidden border border-edge-faint aspect-[3/4]">
+            <ScrollReveal animation="fade-left" delay={200} className="lg:col-span-2">
+              <div className="relative rounded-2xl overflow-hidden border border-edge-faint aspect-[3/4] card-hover-glow">
                 {ueberGruender ? (
                   <Image
                     src={ueberGruender}
@@ -228,27 +248,31 @@ export default async function UeberUnsPage() {
                   <ImagePlaceholder label="Daniel Kofler – Gründer" icon="person" />
                 )}
               </div>
-            </div>
+            </ScrollReveal>
           </div>
 
           {/* Continuation of story */}
-          <div className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light">
+          <ScrollReveal animation="fade-up" className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light">
             <p>
               Osttirol steht für authentischen, nachhaltigen und bewusst moderaten Tourismus. Kein Massentrubel, sondern echte Natur, echte Begegnungen und ehrliche Erlebnisse. Beste Voraussetzungen also für einen Tandemflug, der dem freien Flug der Steinadler hier im Herzen der Alpen wohl am nächsten kommt.
             </p>
             <p>
               Unser Fluggebiet hat Charakter. Es verlangt Erfahrung, Feingefühl und Respekt vor Wind und Wetter. Deshalb fliegen wir nicht im Takt eines Fließbands. Wir setzen auf Qualität, Sicherheit und Zeit für dich. Jeder Fluggast ist für uns ein Premiumpassagier – und genau so behandeln wir dich auch.
             </p>
+          </ScrollReveal>
 
-            {/* KOFLY Rebrand Callout */}
-            <div className="glass-card border-accent-500/30 p-8 sm:p-10 mt-8">
+          {/* KOFLY Rebrand Callout */}
+          <ScrollReveal animation="scale-in" delay={100}>
+            <div className="glass-card premium-shimmer border-accent-500/30 p-8 sm:p-10 mt-8">
               <p className="text-xs tracking-premium uppercase text-accent-500 font-medium mb-3">Neuer Name, gleiche Leidenschaft</p>
               <p className="text-base text-content-body leading-relaxed font-light">
                 Ab 1.1.2026 nennen wir uns nun KOFLY, da unser alter Name Gleitschirm-Tandemflug.com und zugleich unsere Domain immer wieder zu Verwirrungen führten. Natürlich sind wir über beide Namen in Zukunft aus dem Internet erreichbar.
               </p>
             </div>
+          </ScrollReveal>
 
-            {/* TripAdvisor Link */}
+          {/* TripAdvisor Link */}
+          <ScrollReveal animation="fade-up" delay={200}>
             <div className="highlight-glow bg-accent-500/5 border border-accent-500/20 rounded-sm px-6 py-5 mt-8">
               <p className="text-base text-content-body leading-relaxed font-light">
                 Was unsere Passagiere über uns denken, könnt ihr hier nachlesen:{" "}
@@ -262,9 +286,12 @@ export default async function UeberUnsPage() {
                 </a>
               </p>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
+
+      {/* Mountain transition */}
+      <MountainDivider />
 
       {/* ══════════════════════════════════════════
           BEWERTUNGEN SLIDER
@@ -274,45 +301,54 @@ export default async function UeberUnsPage() {
       {/* ══════════════════════════════════════════
           UNSERE TANDEMPILOTEN
           ══════════════════════════════════════════ */}
-      <section className="py-20 lg:py-28 bg-surface-secondary">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
-              Das Team
-            </p>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
-              Unsere Tandempiloten
-            </h2>
-            <div className="mt-6 section-divider" />
-            <p className="mt-8 text-base text-content-body leading-relaxed font-light max-w-2xl mx-auto">
-              Wir sind ein engagiertes Team aus leidenschaftlichen, lizenzierten und erfahrenen Piloten im Fliegen mit dem Tandem-Gleitschirm. Jeder von uns kennt den Airpark Lienzer Dolomiten in- und auswendig.
-            </p>
-          </div>
+      <section className="py-20 lg:py-28 bg-surface-secondary relative overflow-hidden">
+        {/* Background orb */}
+        <div className="glow-orb glow-orb-sky w-[400px] h-[400px] -top-40 right-0 opacity-10 animate-glow-pulse" />
+
+        <div className="relative max-w-4xl mx-auto px-6">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center mb-16">
+              <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
+                Das Team
+              </p>
+              <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
+                Unsere Tandempiloten
+              </h2>
+              <div className="mt-6 section-divider" />
+              <p className="mt-8 text-base text-content-body leading-relaxed font-light max-w-2xl mx-auto">
+                Wir sind ein engagiertes Team aus leidenschaftlichen, lizenzierten und erfahrenen Piloten im Fliegen mit dem Tandem-Gleitschirm. Jeder von uns kennt den Airpark Lienzer Dolomiten in- und auswendig.
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* Pilot Photos – only shown when at least one is uploaded */}
           {pilotImages.some((p) => p.url) && (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-16">
               {pilotImages.filter((p) => p.url).map((pilot, i) => (
-                <div key={i} className="group">
-                  <div className="relative rounded-xl overflow-hidden border border-edge-faint aspect-[3/4] card-hover-glow">
-                    <Image
-                      src={pilot.url!}
-                      alt={pilot.label}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 50vw, 25vw"
-                    />
+                <ScrollReveal key={i} animation="fade-up" delay={i * 120}>
+                  <div className="group">
+                    <div className="relative rounded-xl overflow-hidden border border-edge-faint aspect-[3/4] card-hover-glow">
+                      <Image
+                        src={pilot.url!}
+                        alt={pilot.label}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 640px) 50vw, 25vw"
+                      />
+                    </div>
                   </div>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           )}
 
-          <p className="text-base text-content-body leading-relaxed font-light mb-8">
-            Was uns verbindet, ist nicht nur die Leidenschaft fürs Fliegen, sondern auch unser Anspruch:
-          </p>
+          <ScrollReveal animation="fade-up">
+            <p className="text-base text-content-body leading-relaxed font-light mb-8">
+              Was uns verbindet, ist nicht nur die Leidenschaft fürs Fliegen, sondern auch unser Anspruch:
+            </p>
+          </ScrollReveal>
 
-          {/* Values list */}
+          {/* Values list with stagger */}
           <div className="grid sm:grid-cols-2 gap-4">
             {[
               "höchste Sicherheitsstandards",
@@ -321,21 +357,23 @@ export default async function UeberUnsPage() {
               "persönliche Betreuung vom ersten Kontakt bis zur Landung",
               "höchste Flexibilität und ein Erlebnis, das in jeder Hinsicht individuell auf dich angepasst ist",
             ].map((value, i) => (
-              <div key={i} className="flex gap-3 p-4 glass-card">
-                <CheckIcon />
-                <span className="text-sm text-content-body leading-relaxed font-light">{value}</span>
-              </div>
+              <ScrollReveal key={i} animation="fade-up" delay={i * 80}>
+                <div className="flex gap-3 p-4 glass-card card-hover-glow">
+                  <CheckIcon />
+                  <span className="text-sm text-content-body leading-relaxed font-light">{value}</span>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
 
-          <div className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light">
+          <ScrollReveal animation="fade-up" className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light">
             <p>
               Wir nehmen uns Zeit für dich. Vor dem Start erklären wir dir jeden Schritt. Während des Fluges führen wir dich ruhig durch das Erlebnis. Und bei der Landung bringen wir dich sicher und mit einem Lächeln zurück auf festen Boden.
             </p>
             <p>
               Der Flug ist bei uns erst zu Ende, wenn die Passagiere die Fotos und Videos gesehen haben und wir das Erlebte ausführlich besprochen haben. Weitere Tipps für den Urlaub und die Region sind selbstverständlich. So sind wir auch weiterhin per WhatsApp jederzeit für Tipps und Tricks erreichbar.
             </p>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -343,30 +381,36 @@ export default async function UeberUnsPage() {
           VIDEO GALLERY – YouTube Shorts 9:16
           ══════════════════════════════════════════ */}
       {hasVideos && (
-        <section className="py-20 lg:py-28 overflow-hidden">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
-                Unsere Flüge erleben
-              </p>
-              <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
-                Video-Galerie
-              </h2>
-              <div className="mt-6 section-divider" />
-            </div>
+        <section className="py-20 lg:py-28 overflow-hidden relative">
+          <div className="glow-orb glow-orb-accent w-[500px] h-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-10 animate-glow-pulse" />
+
+          <div className="relative max-w-5xl mx-auto px-6">
+            <ScrollReveal animation="fade-up">
+              <div className="text-center mb-12">
+                <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
+                  Unsere Flüge erleben
+                </p>
+                <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
+                  Video-Galerie
+                </h2>
+                <div className="mt-6 section-divider" />
+              </div>
+            </ScrollReveal>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {videos.filter((v) => v.youtubeId).map((video) => (
-                <div key={video.id} className="relative rounded-xl overflow-hidden border border-edge-faint aspect-[9/16]">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${video.youtubeId}?loop=1&playlist=${video.youtubeId}&modestbranding=1&rel=0`}
-                    title={video.label}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full"
-                    loading="lazy"
-                  />
-                </div>
+              {videos.filter((v) => v.youtubeId).map((video, i) => (
+                <ScrollReveal key={video.id} animation="fade-up" delay={i * 150}>
+                  <div className="relative rounded-xl overflow-hidden border border-edge-faint aspect-[9/16] card-hover-glow">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${video.youtubeId}?loop=1&playlist=${video.youtubeId}&modestbranding=1&rel=0`}
+                      title={video.label}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                      loading="lazy"
+                    />
+                  </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -376,75 +420,82 @@ export default async function UeberUnsPage() {
       {/* ══════════════════════════════════════════
           UNSERE PHILOSOPHIE
           ══════════════════════════════════════════ */}
-      <section className="py-20 lg:py-28 bg-surface-secondary">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
-              Woran wir glauben
-            </p>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
-              Unsere Philosophie
-            </h2>
-            <div className="mt-6 section-divider" />
+      <section className="py-20 lg:py-28 bg-surface-secondary relative overflow-hidden">
+        {/* Dual glow orbs */}
+        <div className="glow-orb glow-orb-accent w-[400px] h-[400px] -top-40 -left-40 opacity-10 animate-glow-pulse" />
+        <div className="glow-orb glow-orb-sky w-[300px] h-[300px] bottom-0 right-0 opacity-10 animate-glow-pulse [animation-delay:2s]" />
 
-            {/* Big statement */}
-            <p className="mt-10 text-2xl sm:text-3xl font-bold text-content-primary italic">
-              Einfach. Sicher. Unvergesslich.
-            </p>
-            <p className="mt-6 text-base text-content-body leading-relaxed font-light max-w-2xl mx-auto">
-              Wir glauben daran, dass ein Tandemflug mit dem Paragleiter mehr ist als ein Freizeitangebot. Es ist ein Perspektivenwechsel, etwas, das für viele unserer Passagiere ein unvergesslicher Moment der Freiheit war. Ein Erlebnis, das bleibt.
-            </p>
-          </div>
+        <div className="relative max-w-4xl mx-auto px-6">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center mb-16">
+              <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
+                Woran wir glauben
+              </p>
+              <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
+                Unsere Philosophie
+              </h2>
+              <div className="mt-6 section-divider" />
+            </div>
+          </ScrollReveal>
 
-          <p className="text-base text-content-body leading-relaxed font-light mb-10">
-            Unsere Philosophie basiert auf drei Säulen:
-          </p>
+          {/* Big statement with float */}
+          <ScrollReveal animation="scale-in">
+            <div className="text-center mb-16">
+              <p className="quote-float text-2xl sm:text-3xl font-bold text-content-primary italic">
+                Einfach. Sicher. Unvergesslich.
+              </p>
+              <p className="mt-6 text-base text-content-body leading-relaxed font-light max-w-2xl mx-auto">
+                Wir glauben daran, dass ein Tandemflug mit dem Paragleiter mehr ist als ein Freizeitangebot. Es ist ein Perspektivenwechsel, etwas, das für viele unserer Passagiere ein unvergesslicher Moment der Freiheit war. Ein Erlebnis, das bleibt.
+              </p>
+            </div>
+          </ScrollReveal>
 
-          {/* Three Pillars */}
+          <ScrollReveal animation="fade-up">
+            <p className="text-base text-content-body leading-relaxed font-light mb-10">
+              Unsere Philosophie basiert auf drei Säulen:
+            </p>
+          </ScrollReveal>
+
+          {/* Three Pillars with stagger + step-card accent line */}
           <div className="grid md:grid-cols-3 gap-6">
-            {/* Pillar 1 */}
-            <div className="glass-card card-hover-glow p-8 text-center">
-              <div className="w-14 h-14 rounded-full bg-accent-500/10 border border-accent-500/20 flex items-center justify-center mx-auto text-accent-500">
-                <ShieldIcon />
-              </div>
-              <h3 className="mt-5 text-lg font-semibold text-content-primary">
-                1. Sicherheit vor allem
-              </h3>
-              <p className="mt-4 text-sm text-content-body leading-relaxed font-light">
-                Das Wetter entscheidet. Nicht der Kalender. Wir planen flexibel und bestätigen Flugtermine immer wetterabhängig. Verschieben oder stornieren ist bei uns unkompliziert möglich, wenn die Bedingungen nicht passen.
-              </p>
-            </div>
-
-            {/* Pillar 2 */}
-            <div className="glass-card card-hover-glow p-8 text-center">
-              <div className="w-14 h-14 rounded-full bg-accent-500/10 border border-accent-500/20 flex items-center justify-center mx-auto text-accent-500">
-                <SparklesIcon />
-              </div>
-              <h3 className="mt-5 text-lg font-semibold text-content-primary">
-                2. Qualität statt Masse
-              </h3>
-              <p className="mt-4 text-sm text-content-body leading-relaxed font-light">
-                Wir fliegen bewusst in einem Rahmen, der persönliche Betreuung ermöglicht. Keine Massenabfertigung, sondern individuelle Erlebnisse. Jeder Flug ist einzigartig – so wie jeder Mensch, der mit uns startet.
-              </p>
-            </div>
-
-            {/* Pillar 3 */}
-            <div className="glass-card card-hover-glow p-8 text-center">
-              <div className="w-14 h-14 rounded-full bg-accent-500/10 border border-accent-500/20 flex items-center justify-center mx-auto text-accent-500">
-                <GlobeIcon />
-              </div>
-              <h3 className="mt-5 text-lg font-semibold text-content-primary">
-                3. Nachhaltigkeit und Verantwortung
-              </h3>
-              <p className="mt-4 text-sm text-content-body leading-relaxed font-light">
-                Wir leben und arbeiten in einer Region, die von ihrer Natur lebt. Deshalb handeln wir respektvoll gegenüber Umwelt, Partnern und Gästen. Unser Anspruch ist es, einen Beitrag zu hochwertigem, nachhaltigem Tourismus in Osttirol zu leisten.
-              </p>
-            </div>
+            {[
+              {
+                icon: <ShieldIcon />,
+                title: "1. Sicherheit vor allem",
+                text: "Das Wetter entscheidet. Nicht der Kalender. Wir planen flexibel und bestätigen Flugtermine immer wetterabhängig. Verschieben oder stornieren ist bei uns unkompliziert möglich, wenn die Bedingungen nicht passen.",
+              },
+              {
+                icon: <SparklesIcon />,
+                title: "2. Qualität statt Masse",
+                text: "Wir fliegen bewusst in einem Rahmen, der persönliche Betreuung ermöglicht. Keine Massenabfertigung, sondern individuelle Erlebnisse. Jeder Flug ist einzigartig – so wie jeder Mensch, der mit uns startet.",
+              },
+              {
+                icon: <GlobeIcon />,
+                title: "3. Nachhaltigkeit und Verantwortung",
+                text: "Wir leben und arbeiten in einer Region, die von ihrer Natur lebt. Deshalb handeln wir respektvoll gegenüber Umwelt, Partnern und Gästen. Unser Anspruch ist es, einen Beitrag zu hochwertigem, nachhaltigem Tourismus in Osttirol zu leisten.",
+              },
+            ].map((pillar, i) => (
+              <ScrollReveal key={i} animation="fade-up" delay={i * 150}>
+                <div className="step-card glass-card card-hover-glow p-8 text-center h-full">
+                  <div className="w-14 h-14 rounded-full bg-accent-500/10 border border-accent-500/20 flex items-center justify-center mx-auto text-accent-500">
+                    {pillar.icon}
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold text-content-primary">
+                    {pillar.title}
+                  </h3>
+                  <p className="mt-4 text-sm text-content-body leading-relaxed font-light">
+                    {pillar.text}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
 
-          <p className="mt-12 text-center text-lg text-content-body italic font-light">
-            Nur Fliegen ist schöner – und das spürt man bei jedem Start.
-          </p>
+          <ScrollReveal animation="fade-in" delay={300}>
+            <p className="mt-12 text-center text-lg text-content-body italic font-light">
+              Nur Fliegen ist schöner – und das spürt man bei jedem Start.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -453,49 +504,57 @@ export default async function UeberUnsPage() {
           ══════════════════════════════════════════ */}
       <section className="py-20 lg:py-28">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
-              Regionale Stärke
-            </p>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
-              Unsere Partner
-            </h2>
-            <div className="mt-6 section-divider" />
-          </div>
+          <ScrollReveal animation="fade-up">
+            <div className="text-center mb-16">
+              <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
+                Regionale Stärke
+              </p>
+              <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
+                Unsere Partner
+              </h2>
+              <div className="mt-6 section-divider" />
+            </div>
+          </ScrollReveal>
 
-          <div className="space-y-6 text-base text-content-body leading-relaxed font-light">
-            <p>
-              Ein starkes regionales Netzwerk macht Qualität möglich. Wir arbeiten mit ausgewählten Partnerbetrieben in Osttirol zusammen – Hotels, Tourismusbetrieben, Bergbahnen und regionalen Dienstleistern, die unsere Werte teilen:
-            </p>
-          </div>
+          <ScrollReveal animation="fade-up">
+            <div className="space-y-6 text-base text-content-body leading-relaxed font-light">
+              <p>
+                Ein starkes regionales Netzwerk macht Qualität möglich. Wir arbeiten mit ausgewählten Partnerbetrieben in Osttirol zusammen – Hotels, Tourismusbetrieben, Bergbahnen und regionalen Dienstleistern, die unsere Werte teilen:
+              </p>
+            </div>
+          </ScrollReveal>
 
-          {/* Partner values */}
+          {/* Partner values with stagger */}
           <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
-              { icon: <CheckIcon />, label: "Verlässlichkeit" },
-              { icon: <CheckIcon />, label: "Regionalität" },
-              { icon: <CheckIcon />, label: "Nachhaltigkeit" },
-              { icon: <CheckIcon />, label: "Qualitätsbewusstsein" },
+              { label: "Verlässlichkeit" },
+              { label: "Regionalität" },
+              { label: "Nachhaltigkeit" },
+              { label: "Qualitätsbewusstsein" },
             ].map((item, i) => (
-              <div key={i} className="glass-card p-5 text-center flex flex-col items-center gap-2">
-                <span className="text-accent-500">{item.icon}</span>
-                <span className="text-sm text-content-body font-medium">{item.label}</span>
-              </div>
+              <ScrollReveal key={i} animation="scale-in" delay={i * 100}>
+                <div className="glass-card card-hover-glow p-5 text-center flex flex-col items-center gap-2">
+                  <span className="text-accent-500"><CheckIcon /></span>
+                  <span className="text-sm text-content-body font-medium">{item.label}</span>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
 
-          <div className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light">
+          <ScrollReveal animation="fade-up" className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light">
             <p>
               Gemeinsam gestalten wir ein Urlaubserlebnis, das über den Flug hinausgeht. Gerne stellen wir unseren Partnern Informationsmaterial zur Verfügung oder entwickeln individuelle Angebote wie Firmen-Events, Gruppenflüge oder besondere Erlebnispakete – etwa unseren „Ski & Fly"-Tandemflug im Winter.
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* Partner Logo Placeholders */}
           <div className="mt-12 grid grid-cols-3 sm:grid-cols-6 gap-4">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="aspect-[3/2] rounded-lg border border-edge-faint bg-surface-secondary flex items-center justify-center">
-                <p className="text-[10px] text-content-faint font-light">Partner {i + 1}</p>
-              </div>
+              <ScrollReveal key={i} animation="fade-up" delay={i * 80}>
+                <div className="aspect-[3/2] rounded-lg border border-edge-faint bg-surface-secondary flex items-center justify-center card-hover-glow">
+                  <p className="text-[10px] text-content-faint font-light">Partner {i + 1}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -505,53 +564,61 @@ export default async function UeberUnsPage() {
           EMOTIONAL CLOSE + CTA
           ══════════════════════════════════════════ */}
       <section className="relative py-28 lg:py-40 overflow-hidden">
+        {/* Multi-layer glow */}
         <div className="glow-orb glow-orb-accent w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 animate-glow-pulse" />
+        <div className="glow-orb glow-orb-sky w-[400px] h-[400px] top-0 -right-20 opacity-10 animate-glow-pulse [animation-delay:3s]" />
 
         <div className="relative max-w-3xl mx-auto px-6 text-center">
-          <p className="quote-float text-2xl sm:text-3xl font-bold text-content-primary italic">
-            Nur Fliegen ist schöner…!
-          </p>
+          <ScrollReveal animation="scale-in">
+            <p className="quote-float text-2xl sm:text-3xl font-bold text-content-primary italic">
+              Nur Fliegen ist schöner…!
+            </p>
+          </ScrollReveal>
 
-          <div className="mt-8 space-y-5 text-base sm:text-lg text-content-body leading-relaxed font-light">
+          <ScrollReveal animation="fade-up" delay={150} className="mt-8 space-y-5 text-base sm:text-lg text-content-body leading-relaxed font-light">
             <p>
               Wir von Gleitschirm-Tandemflug.com haben es uns zur Aufgabe gemacht, dir den Traum vom Fliegen zu erfüllen – im Airpark Lienzer Dolomiten, inmitten einer der eindrucksvollsten Bergwelten Österreichs.
             </p>
             <p>
               Ein Erlebnis für dich – jung bis alt – in sicheren Händen erfahrener Profi-Tandempiloten.
             </p>
-          </div>
+          </ScrollReveal>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/buchen"
-              className="cta-lift btn-glow w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-accent-500 hover:bg-accent-400 text-white text-xs font-medium tracking-wide uppercase transition-colors"
-            >
-              Jetzt Termin anfragen
-            </Link>
-            <Link
-              href="/buchen#gutschein"
-              className="cta-lift w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-edge-secondary text-content-body hover:text-accent-400 hover:border-accent-500 text-xs font-medium tracking-wide uppercase transition-colors"
-            >
-              Gutschein bestellen
-            </Link>
-          </div>
+          <ScrollReveal animation="fade-up" delay={300}>
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/buchen"
+                className="cta-lift btn-glow w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-accent-500 hover:bg-accent-400 text-white text-xs font-medium tracking-wide uppercase transition-colors"
+              >
+                Jetzt Termin anfragen
+              </Link>
+              <Link
+                href="/buchen#gutschein"
+                className="cta-lift w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-edge-secondary text-content-body hover:text-accent-400 hover:border-accent-500 text-xs font-medium tracking-wide uppercase transition-colors"
+              >
+                Gutschein bestellen
+              </Link>
+            </div>
+          </ScrollReveal>
 
-          <p className="mt-8 text-sm text-content-muted font-light">
-            Du erreichst uns auch jederzeit direkt per{" "}
-            <a
-              href="https://wa.me/436767293888"
-              className="text-accent-400 hover:text-accent-500 transition-colors"
-            >
-              WhatsApp
-            </a>{" "}
-            unter{" "}
-            <a
-              href="tel:+436767293888"
-              className="text-accent-400 hover:text-accent-500 transition-colors"
-            >
-              +43 676 7293888
-            </a>
-          </p>
+          <ScrollReveal animation="fade-in" delay={450}>
+            <p className="mt-8 text-sm text-content-muted font-light">
+              Du erreichst uns auch jederzeit direkt per{" "}
+              <a
+                href="https://wa.me/436767293888"
+                className="text-accent-400 hover:text-accent-500 transition-colors"
+              >
+                WhatsApp
+              </a>{" "}
+              unter{" "}
+              <a
+                href="tel:+436767293888"
+                className="text-accent-400 hover:text-accent-500 transition-colors"
+              >
+                +43 676 7293888
+              </a>
+            </p>
+          </ScrollReveal>
         </div>
       </section>
     </>
