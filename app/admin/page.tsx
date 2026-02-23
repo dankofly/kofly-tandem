@@ -35,7 +35,32 @@ const SLOT_DIMENSIONS: Record<string, { w: number; h: number }> = {
   "gallery-8":          { w: 800,  h: 800  },
   "gallery-9":          { w: 800,  h: 800  },
   "gallery-10":         { w: 800,  h: 800  },
+  "ueber-hero":         { w: 1920, h: 800  },
+  "ueber-gruender":     { w: 600,  h: 800  },
+  "ueber-pilot-1":      { w: 600,  h: 800  },
+  "ueber-pilot-2":      { w: 600,  h: 800  },
+  "ueber-pilot-3":      { w: 600,  h: 800  },
+  "ueber-pilot-4":      { w: 600,  h: 800  },
 };
+
+/* ── Slot groups for organised admin display ── */
+interface SlotGroup {
+  page: string;
+  section: string;
+  slotIds: string[];
+}
+
+const SLOT_GROUPS: SlotGroup[] = [
+  { page: "Startseite",  section: "Hero",                    slotIds: ["hero", "hero-mobile"] },
+  { page: "Startseite",  section: "Warum wir",               slotIds: ["whyus-bg", "tile-einfach", "tile-sicher", "tile-unvergesslich"] },
+  { page: "Startseite",  section: "Über uns / Warum wir",    slotIds: ["about"] },
+  { page: "Startseite",  section: "Flugpakete",              slotIds: ["packages"] },
+  { page: "Startseite",  section: "Bildgalerie",             slotIds: ["gallery-1", "gallery-2", "gallery-3", "gallery-4", "gallery-5", "gallery-6", "gallery-7", "gallery-8", "gallery-9", "gallery-10"] },
+  { page: "Ablauf",      section: "Ablauf-Seite",            slotIds: ["ablauf-hero", "ablauf-flug", "ablauf-landing"] },
+  { page: "Über Uns",    section: "Hero & Geschichte",       slotIds: ["ueber-hero", "ueber-gruender"] },
+  { page: "Über Uns",    section: "Tandempiloten",           slotIds: ["ueber-pilot-1", "ueber-pilot-2", "ueber-pilot-3", "ueber-pilot-4"] },
+  { page: "Allgemein",   section: "Social Media / SEO",      slotIds: ["og-image"] },
+];
 
 async function optimizeImage(file: File, slot: string): Promise<File> {
   const dim = SLOT_DIMENSIONS[slot] || { w: 1920, h: 1080 };
@@ -394,64 +419,102 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* Images Tab */}
+        {/* Images Tab – grouped by page & section */}
         {activeTab === "images" && (
-          <div className="space-y-4">
+          <div className="space-y-6">
             <p className="text-xs text-content-muted">
               Lade Bilder hoch und weise sie einer Position auf der Website zu.
               Bilder werden automatisch in WebP konvertiert und auf die optimale Gr&ouml;&szlig;e skaliert.
             </p>
 
-            {Object.entries(slots).map(([slotId, slot]) => (
-              <div
-                key={slotId}
-                className="glass-card rounded-2xl p-5 border border-edge-faint"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1">
-                    <h3 className="text-sm font-semibold text-content-strong">
-                      {slot.label}
-                    </h3>
-                    <p className="text-xs text-content-muted mt-1">
-                      {slot.description}
-                    </p>
+            {(() => {
+              /* Group sections by page */
+              const pages = SLOT_GROUPS.reduce<Record<string, SlotGroup[]>>((acc, g) => {
+                (acc[g.page] ??= []).push(g);
+                return acc;
+              }, {});
+
+              return Object.entries(pages).map(([pageName, sections]) => (
+                <div key={pageName} className="space-y-4">
+                  {/* Page heading */}
+                  <div className="flex items-center gap-3 pt-2">
+                    <h2 className="text-base font-bold text-content-strong whitespace-nowrap">
+                      {pageName}
+                    </h2>
+                    <div className="flex-1 h-px bg-edge-faint" />
                   </div>
 
-                  <div className="flex gap-2 flex-shrink-0">
-                    <button
-                      onClick={() => triggerUpload(slotId)}
-                      disabled={uploadingSlot === slotId}
-                      className="px-3 py-1.5 rounded-lg bg-accent-500 hover:bg-accent-400 text-white text-xs font-medium disabled:opacity-40 transition-all"
-                    >
-                      {uploadingSlot === slotId
-                        ? "Lädt..."
-                        : slot.filename
-                          ? "Ersetzen"
-                          : "Hochladen"}
-                    </button>
-                    {slot.filename && (
-                      <button
-                        onClick={() => handleDelete(slotId)}
-                        className="px-3 py-1.5 rounded-lg border border-red-400/30 text-red-400 hover:bg-red-400/10 text-xs font-medium transition-all"
-                      >
-                        Entfernen
-                      </button>
-                    )}
-                  </div>
+                  {sections.map((group) => (
+                    <details key={group.section} className="glass-card rounded-2xl border border-edge-faint group" open>
+                      <summary className="flex items-center justify-between px-5 py-4 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
+                        <div className="flex items-center gap-3">
+                          <h3 className="text-sm font-semibold text-content-strong">
+                            {group.section}
+                          </h3>
+                          <span className="text-[11px] text-content-muted bg-surface-secondary px-2 py-0.5 rounded-full">
+                            {group.slotIds.filter((id) => slots[id]?.filename).length}/{group.slotIds.length}
+                          </span>
+                        </div>
+                        <svg className="w-4 h-4 text-content-muted transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </summary>
+
+                      <div className="px-5 pb-5 space-y-3">
+                        {group.slotIds.map((slotId) => {
+                          const slot = slots[slotId];
+                          if (!slot) return null;
+                          return (
+                            <div key={slotId} className="rounded-xl border border-edge-faint bg-surface-secondary/50 p-4">
+                              <div className="flex items-start justify-between gap-4">
+                                <div className="flex-1 min-w-0">
+                                  <h4 className="text-sm font-medium text-content-strong truncate">
+                                    {slot.label}
+                                  </h4>
+                                  <p className="text-xs text-content-muted mt-0.5">
+                                    {slot.description}
+                                  </p>
+                                </div>
+                                <div className="flex gap-2 flex-shrink-0">
+                                  <button
+                                    onClick={() => triggerUpload(slotId)}
+                                    disabled={uploadingSlot === slotId}
+                                    className="px-3 py-1.5 rounded-lg bg-accent-500 hover:bg-accent-400 text-white text-xs font-medium disabled:opacity-40 transition-all"
+                                  >
+                                    {uploadingSlot === slotId
+                                      ? "L\u00e4dt..."
+                                      : slot.filename
+                                        ? "Ersetzen"
+                                        : "Hochladen"}
+                                  </button>
+                                  {slot.filename && (
+                                    <button
+                                      onClick={() => handleDelete(slotId)}
+                                      className="px-3 py-1.5 rounded-lg border border-red-400/30 text-red-400 hover:bg-red-400/10 text-xs font-medium transition-all"
+                                    >
+                                      Entfernen
+                                    </button>
+                                  )}
+                                </div>
+                              </div>
+                              {slot.filename && (
+                                <div className="mt-3">
+                                  <img
+                                    src={slot.blobbed ? `/api/images/${slotId}?v=${slot.filename?.match(/-(\d+)\./)?.[1] || ""}` : `/images/${slot.filename}`}
+                                    alt={slot.label}
+                                    className="rounded-lg border border-edge-faint max-h-40 object-cover w-full"
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </details>
+                  ))}
                 </div>
-
-                {/* Image preview */}
-                {slot.filename && (
-                  <div className="mt-4">
-                    <img
-                      src={slot.blobbed ? `/api/images/${slotId}?v=${slot.filename?.match(/-(\d+)\./)?.[1] || ""}` : `/images/${slot.filename}`}
-                      alt={slot.label}
-                      className="rounded-xl border border-edge-faint max-h-48 object-cover w-full"
-                    />
-                  </div>
-                )}
-              </div>
-            ))}
+              ));
+            })()}
           </div>
         )}
 

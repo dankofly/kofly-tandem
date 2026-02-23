@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { breadcrumbSchema } from "@/lib/schema";
+import { getImageUrl } from "@/lib/images-config";
 import ReviewsSlider from "@/components/ReviewsSlider";
 
 const SITE_URL = "https://gleitschirm-tandemflug.com";
@@ -29,11 +31,6 @@ const ShieldIcon = () => (
     <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.932 9.563 12.348a.749.749 0 00.374 0c5.499-1.416 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
   </svg>
 );
-const HeartIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-    <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
-  </svg>
-);
 const SparklesIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
     <path fillRule="evenodd" d="M9 4.5a.75.75 0 01.721.544l.813 2.846a3.75 3.75 0 002.576 2.576l2.846.813a.75.75 0 010 1.442l-2.846.813a3.75 3.75 0 00-2.576 2.576l-.813 2.846a.75.75 0 01-1.442 0l-.813-2.846a3.75 3.75 0 00-2.576-2.576l-2.846-.813a.75.75 0 010-1.442l2.846-.813A3.75 3.75 0 007.466 7.89l.813-2.846A.75.75 0 019 4.5zM18 1.5a.75.75 0 01.728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 010 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 01-1.456 0l-.258-1.036a2.625 2.625 0 00-1.91-1.91l-1.036-.258a.75.75 0 010-1.456l1.036-.258a2.625 2.625 0 001.91-1.91l.258-1.036A.75.75 0 0118 1.5zM16.5 15a.75.75 0 01.712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 010 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 01-1.422 0l-.395-1.183a1.5 1.5 0 00-.948-.948l-1.183-.395a.75.75 0 010-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0116.5 15z" clipRule="evenodd" />
@@ -49,19 +46,47 @@ const CheckIcon = () => (
     <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
   </svg>
 );
-const UsersIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-    <path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-1.01.75.75 0 00.42-.643 4.875 4.875 0 00-6.957-4.611 8.586 8.586 0 011.71 5.157v.003z" />
-  </svg>
-);
-const HandshakeIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-    <path d="M10.5 1.875a6.375 6.375 0 00-6.375 6.375v.75c0 .414.336.75.75.75h.75a.75.75 0 00.75-.75v-.75a4.875 4.875 0 019.75 0v.75a.75.75 0 00.75.75h.75a.75.75 0 00.75-.75v-.75A6.375 6.375 0 0010.5 1.875zM3.006 12.31a.75.75 0 00-.494.374C1.68 14.324 1.125 16.2 1.125 18.188c0 .998.81 1.812 1.812 1.812h15.126c1.002 0 1.812-.814 1.812-1.812 0-1.989-.555-3.864-1.387-5.504a.75.75 0 00-.494-.374C15.93 11.68 13.293 11.25 10.5 11.25s-5.43.43-7.494 1.06z" />
-  </svg>
-);
+
+/* Placeholder shown when no admin image is uploaded */
+function ImagePlaceholder({ label, icon = "photo" }: { label: string; icon?: "photo" | "person" }) {
+  return (
+    <div className="absolute inset-0 bg-gradient-to-br from-surface-secondary to-surface-tertiary flex items-center justify-center">
+      <div className="text-center px-6">
+        {icon === "person" ? (
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-12 h-12 text-content-faint mx-auto">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+          </svg>
+        ) : (
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-12 h-12 text-content-faint mx-auto">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+          </svg>
+        )}
+        <p className="mt-3 text-sm text-content-faint font-light">{label}</p>
+      </div>
+    </div>
+  );
+}
 
 export default async function UeberUnsPage() {
   const locale = await getLocale();
+
+  /* Fetch all über-uns images in parallel */
+  const [ueberHero, ueberGruender, pilot1, pilot2, pilot3, pilot4] =
+    await Promise.all([
+      getImageUrl("ueber-hero"),
+      getImageUrl("ueber-gruender"),
+      getImageUrl("ueber-pilot-1"),
+      getImageUrl("ueber-pilot-2"),
+      getImageUrl("ueber-pilot-3"),
+      getImageUrl("ueber-pilot-4"),
+    ]);
+
+  const pilotImages = [
+    { url: pilot1, label: "Pilot 1" },
+    { url: pilot2, label: "Pilot 2" },
+    { url: pilot3, label: "Pilot 3" },
+    { url: pilot4, label: "Pilot 4" },
+  ];
 
   const breadcrumbs = breadcrumbSchema([
     { name: "Home", url: `${SITE_URL}/${locale}` },
@@ -120,16 +145,26 @@ export default async function UeberUnsPage() {
             Tandem Paragleiten mit KOFLY ohne Vorkenntnisse, mit einem Gleitschirm-Tandemflug im Airpark Lienzer Dolomiten. Erlebe mit uns Osttirol von oben – einfach, sicher und unvergesslich.
           </p>
 
-          {/* Hero Image Placeholder */}
+          {/* Hero Image */}
           <div className="mt-12 relative rounded-2xl overflow-hidden border border-white/10 aspect-[21/9]">
-            <div className="absolute inset-0 bg-gradient-to-br from-navy-800 to-navy-700 flex items-center justify-center">
-              <div className="text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-16 h-16 text-white/20 mx-auto">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
-                </svg>
-                <p className="mt-3 text-sm text-white/30 font-light">Hero-Bild: Panorama Airpark Lienzer Dolomiten</p>
+            {ueberHero ? (
+              <Image
+                src={ueberHero}
+                alt="Panorama Airpark Lienzer Dolomiten"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 900px"
+              />
+            ) : (
+              <div className="absolute inset-0 bg-gradient-to-br from-navy-800 to-navy-700 flex items-center justify-center">
+                <div className="text-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-16 h-16 text-white/20 mx-auto">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+                  </svg>
+                  <p className="mt-3 text-sm text-white/30 font-light">Hero-Bild: Panorama Airpark Lienzer Dolomiten</p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>
@@ -163,17 +198,20 @@ export default async function UeberUnsPage() {
               </p>
             </div>
 
-            {/* Image Placeholder – spans 2 columns */}
+            {/* Gründer-Bild – spans 2 columns */}
             <div className="lg:col-span-2">
               <div className="relative rounded-2xl overflow-hidden border border-edge-faint aspect-[3/4]">
-                <div className="absolute inset-0 bg-gradient-to-br from-surface-secondary to-surface-tertiary flex items-center justify-center">
-                  <div className="text-center px-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-12 h-12 text-content-faint mx-auto">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                    </svg>
-                    <p className="mt-3 text-sm text-content-faint font-light">Daniel Kofler – Gründer</p>
-                  </div>
-                </div>
+                {ueberGruender ? (
+                  <Image
+                    src={ueberGruender}
+                    alt="Daniel Kofler – Gründer von Gleitschirm-Tandemflug.com"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 360px"
+                  />
+                ) : (
+                  <ImagePlaceholder label="Daniel Kofler – Gründer" icon="person" />
+                )}
               </div>
             </div>
           </div>
@@ -236,19 +274,22 @@ export default async function UeberUnsPage() {
             </p>
           </div>
 
-          {/* Pilot Photo Placeholders */}
+          {/* Pilot Photos */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-16">
-            {["Pilot 1", "Pilot 2", "Pilot 3", "Pilot 4"].map((name, i) => (
+            {pilotImages.map((pilot, i) => (
               <div key={i} className="group">
                 <div className="relative rounded-xl overflow-hidden border border-edge-faint aspect-[3/4] card-hover-glow">
-                  <div className="absolute inset-0 bg-gradient-to-br from-surface-tertiary to-surface-secondary flex items-center justify-center">
-                    <div className="text-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-10 h-10 text-content-faint mx-auto">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                      </svg>
-                      <p className="mt-2 text-xs text-content-faint font-light">{name}</p>
-                    </div>
-                  </div>
+                  {pilot.url ? (
+                    <Image
+                      src={pilot.url}
+                      alt={pilot.label}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 50vw, 25vw"
+                    />
+                  ) : (
+                    <ImagePlaceholder label={pilot.label} icon="person" />
+                  )}
                 </div>
               </div>
             ))}

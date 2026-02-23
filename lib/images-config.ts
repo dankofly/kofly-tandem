@@ -126,6 +126,37 @@ const DEFAULT_SLOTS: Record<string, ImageSlot> = {
     filename: null,
     description: "Quadratisches Galeriebild (empfohlen: 800×800, 1:1)",
   },
+  // ── Über Uns Seite ──
+  "ueber-hero": {
+    label: "Über Uns: Hero-Panorama",
+    filename: null,
+    description: "Großes Headerbild auf der Über-Uns-Seite (empfohlen: 1920×800, Querformat 21:9)",
+  },
+  "ueber-gruender": {
+    label: "Über Uns: Gründer Daniel Kofler",
+    filename: null,
+    description: "Portraitfoto Gründer neben der Geschichte (empfohlen: 600×800, Hochformat 3:4)",
+  },
+  "ueber-pilot-1": {
+    label: "Über Uns: Pilot 1",
+    filename: null,
+    description: "Pilotenfoto im Team-Bereich (empfohlen: 600×800, Hochformat 3:4)",
+  },
+  "ueber-pilot-2": {
+    label: "Über Uns: Pilot 2",
+    filename: null,
+    description: "Pilotenfoto im Team-Bereich (empfohlen: 600×800, Hochformat 3:4)",
+  },
+  "ueber-pilot-3": {
+    label: "Über Uns: Pilot 3",
+    filename: null,
+    description: "Pilotenfoto im Team-Bereich (empfohlen: 600×800, Hochformat 3:4)",
+  },
+  "ueber-pilot-4": {
+    label: "Über Uns: Pilot 4",
+    filename: null,
+    description: "Pilotenfoto im Team-Bereich (empfohlen: 600×800, Hochformat 3:4)",
+  },
 };
 
 function getImagesStore() {
