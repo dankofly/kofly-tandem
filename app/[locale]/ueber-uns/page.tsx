@@ -587,16 +587,6 @@ export default async function UeberUnsPage() {
             <p>{t("partnerOutro")}</p>
           </ScrollReveal>
 
-          {/* Partner Logo Placeholders */}
-          <div className="mt-12 grid grid-cols-3 sm:grid-cols-6 gap-4">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <ScrollReveal key={i} animation="fade-up" delay={i * 80}>
-                <div className="aspect-[3/2] rounded-lg border border-edge-faint bg-surface-secondary flex items-center justify-center card-hover-glow">
-                  <p className="text-[10px] text-content-faint font-light">Partner {i + 1}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
         </div>
       </section>
 
