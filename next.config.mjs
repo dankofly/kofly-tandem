@@ -22,7 +22,7 @@ const nextConfig = {
       "img-src 'self' data: blob: https://*.google.com https://*.googleapis.com https://*.gstatic.com",
       "font-src 'self' data:",
       "connect-src 'self'",
-      "frame-src https://www.google.com",
+      "frame-src https://www.google.com https://www.youtube.com https://www.youtube-nocookie.com",
       "frame-ancestors 'none'",
       "object-src 'none'",
       "base-uri 'self'",
