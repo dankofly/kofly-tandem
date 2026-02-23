@@ -29,12 +29,14 @@
     "paragleitenTitle": "Paragliding in East Tyrol: Flying Areas & Tandem\u2011Options for Visitors",
     "paragleitenDescription": "Overview of Zettersfeld, Hochstein, Thurntaler & Golzentipp \u2013 plus tandem\u2011flight process, clothing & booking for your East Tyrol holiday.",
     "paragleitenOgTitle": "Paragliding in East Tyrol \u2013 Flying Areas & Tandem Flights | KOFLY",
-    "paragleitenOgDescription": "Zettersfeld, Hochstein, Thurntaler & Golzentipp \u2013 tandem\u2011flight process & booking for visitors."
+    "paragleitenOgDescription": "Zettersfeld, Hochstein, Thurntaler & Golzentipp \u2013 tandem\u2011flight process & booking for visitors.",
+    "ueberUnsTitle": "About Us \u2013 Tandem Paragliding with KOFLY in East Tyrol",
+    "ueberUnsDescription": "Meet the KOFLY team: tandem pilots in the Airpark Lienzer Dolomiten since 2006. Our story, philosophy and passion for flying."
   },
   "Navigation": {
     "erlebnis": "Experience",
     "ablauf": "How It Works",
-    "bewertungen": "Reviews",
+    "ueberUns": "About Us",
     "pakete": "Flight Packages & Prices",
     "agb": "T&Cs",
     "anfragen": "Enquire",
@@ -245,7 +247,7 @@
     "navigation": "Navigation",
     "erlebnis": "Experience",
     "ablauf": "How It Works",
-    "bewertungen": "Reviews",
+    "ueberUns": "About Us",
     "flugpakete": "Flight Packages",
     "faq": "FAQ",
     "kontakt": "Contact",

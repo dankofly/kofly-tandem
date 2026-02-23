@@ -456,9 +456,9 @@ export function siteNavigationSchema(locale: string = "de") {
       {
         "@type": "SiteNavigationElement",
         position: 3,
-        name: "Bewertungen",
-        description: "5.0/5 Sterne auf Tripadvisor – über 250 Bewertungen",
-        url: `${base}/#bewertungen`,
+        name: "Über Uns",
+        description: "Das KOFLY-Team – Tandempiloten im Airpark Lienzer Dolomiten seit 2006",
+        url: `${base}/ueber-uns`,
       },
       {
         "@type": "SiteNavigationElement",

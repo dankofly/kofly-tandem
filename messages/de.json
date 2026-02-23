@@ -29,12 +29,14 @@
     "paragleitenTitle": "Paragleiten in Osttirol: Fluggebiete & Tandem\u2011Optionen für Urlauber",
     "paragleitenDescription": "Überblick zu Zettersfeld, Hochstein, Thurntaler & Golzentipp – plus Tandemflug\u2011Ablauf, Kleidung & Buchung. Ideal für deinen Osttirol\u2011Urlaub.",
     "paragleitenOgTitle": "Paragleiten in Osttirol – Fluggebiete & Tandemflug | KOFLY",
-    "paragleitenOgDescription": "Zettersfeld, Hochstein, Thurntaler & Golzentipp – plus Tandemflug\u2011Ablauf & Buchung für Urlauber."
+    "paragleitenOgDescription": "Zettersfeld, Hochstein, Thurntaler & Golzentipp – plus Tandemflug\u2011Ablauf & Buchung für Urlauber.",
+    "ueberUnsTitle": "Über Uns – Tandem Paragleiten mit KOFLY in Osttirol",
+    "ueberUnsDescription": "Lerne das KOFLY-Team kennen: Seit 2006 Tandempiloten im Airpark Lienzer Dolomiten. Unsere Geschichte, Philosophie und Leidenschaft fürs Fliegen."
   },
   "Navigation": {
     "erlebnis": "Erlebnis",
     "ablauf": "Ablauf",
-    "bewertungen": "Bewertungen",
+    "ueberUns": "Über Uns",
     "pakete": "Flugpaket-Preise",
     "agb": "AGB",
     "anfragen": "Anfragen",
@@ -245,7 +247,7 @@
     "navigation": "Navigation",
     "erlebnis": "Erlebnis",
     "ablauf": "Ablauf",
-    "bewertungen": "Bewertungen",
+    "ueberUns": "Über Uns",
     "flugpakete": "Flugpakete",
     "faq": "FAQ",
     "kontakt": "Kontakt",

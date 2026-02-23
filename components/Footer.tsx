@@ -30,7 +30,7 @@ export default function Footer() {
               {[
                 { label: t("erlebnis"), href: "/#erlebnis" },
                 { label: t("ablauf"), href: "/ablauf" },
-                { label: t("bewertungen"), href: "/#bewertungen" },
+                { label: t("ueberUns"), href: "/ueber-uns" },
                 { label: t("flugpakete"), href: "/#pakete" },
                 { label: t("faq"), href: "/#faq" },
                 { label: t("kontakt"), href: "/#kontakt" },

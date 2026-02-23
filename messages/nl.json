@@ -29,12 +29,14 @@
     "paragleitenTitle": "Paragliden in Oost-Tirol: vlieggebieden & tandem\u2011opties voor vakantiegangers",
     "paragleitenDescription": "Overzicht van Zettersfeld, Hochstein, Thurntaler & Golzentipp \u2013 plus tandemvlucht\u2011verloop, kleding & boeken. Ideaal voor je Oost-Tirol vakantie.",
     "paragleitenOgTitle": "Paragliden in Oost-Tirol \u2013 Vlieggebieden & tandemvluchten | KOFLY",
-    "paragleitenOgDescription": "Zettersfeld, Hochstein, Thurntaler & Golzentipp \u2013 tandemvlucht\u2011verloop & boeken voor vakantiegangers."
+    "paragleitenOgDescription": "Zettersfeld, Hochstein, Thurntaler & Golzentipp \u2013 tandemvlucht\u2011verloop & boeken voor vakantiegangers.",
+    "ueberUnsTitle": "Over Ons \u2013 Tandem paragliden met KOFLY in Oost-Tirol",
+    "ueberUnsDescription": "Leer het KOFLY-team kennen: tandempiloten in het Airpark Lienzer Dolomiten sinds 2006. Ons verhaal, filosofie en passie voor vliegen."
   },
   "Navigation": {
     "erlebnis": "Beleving",
     "ablauf": "Verloop",
-    "bewertungen": "Beoordelingen",
+    "ueberUns": "Over Ons",
     "pakete": "Prijzen",
     "agb": "Voorwaarden",
     "anfragen": "Aanvragen",
@@ -245,7 +247,7 @@
     "navigation": "Navigatie",
     "erlebnis": "Beleving",
     "ablauf": "Verloop",
-    "bewertungen": "Beoordelingen",
+    "ueberUns": "Over Ons",
     "flugpakete": "Vluchtpakketten",
     "faq": "FAQ",
     "kontakt": "Contact",
