@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { breadcrumbSchema } from "@/lib/schema";
+import ReviewsSlider from "@/components/ReviewsSlider";
 
 const SITE_URL = "https://gleitschirm-tandemflug.com";
 
@@ -211,6 +212,11 @@ export default async function UeberUnsPage() {
           </div>
         </div>
       </section>
+
+      {/* ══════════════════════════════════════════
+          BEWERTUNGEN SLIDER
+          ══════════════════════════════════════════ */}
+      <ReviewsSlider />
 
       {/* ══════════════════════════════════════════
           UNSERE TANDEMPILOTEN
