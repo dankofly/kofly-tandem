@@ -98,6 +98,9 @@ export async function generateMetadata({
         "x-default": `${SITE_URL}/de`,
       },
     },
+    verification: {
+      google: "googlefb3c4e31913cb3e3",
+    },
     robots: { index: true, follow: true },
     other: {
       "geo.region": "AT-7",

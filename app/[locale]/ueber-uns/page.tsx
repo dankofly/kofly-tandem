@@ -4,6 +4,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { breadcrumbSchema } from "@/lib/schema";
 import { getImageUrl } from "@/lib/images-config";
+import { getVideosConfig, extractYouTubeId } from "@/lib/videos-config";
 import ReviewsSlider from "@/components/ReviewsSlider";
 
 const SITE_URL = "https://gleitschirm-tandemflug.com";
@@ -80,6 +81,20 @@ export default async function UeberUnsPage() {
       getImageUrl("ueber-pilot-3"),
       getImageUrl("ueber-pilot-4"),
     ]);
+
+  /* Fetch video URLs */
+  const videoSlots = await getVideosConfig();
+  const videos = [
+    { id: "ueber-video-1", ...videoSlots["ueber-video-1"] },
+    { id: "ueber-video-2", ...videoSlots["ueber-video-2"] },
+    { id: "ueber-video-3", ...videoSlots["ueber-video-3"] },
+    { id: "ueber-video-4", ...videoSlots["ueber-video-4"] },
+  ].map((v) => ({
+    ...v,
+    youtubeId: v.url ? extractYouTubeId(v.url) : null,
+  }));
+
+  const hasVideos = videos.some((v) => v.youtubeId);
 
   const pilotImages = [
     { url: pilot1, label: "Pilot 1" },
@@ -274,26 +289,24 @@ export default async function UeberUnsPage() {
             </p>
           </div>
 
-          {/* Pilot Photos */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-16">
-            {pilotImages.map((pilot, i) => (
-              <div key={i} className="group">
-                <div className="relative rounded-xl overflow-hidden border border-edge-faint aspect-[3/4] card-hover-glow">
-                  {pilot.url ? (
+          {/* Pilot Photos – only shown when at least one is uploaded */}
+          {pilotImages.some((p) => p.url) && (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-16">
+              {pilotImages.filter((p) => p.url).map((pilot, i) => (
+                <div key={i} className="group">
+                  <div className="relative rounded-xl overflow-hidden border border-edge-faint aspect-[3/4] card-hover-glow">
                     <Image
-                      src={pilot.url}
+                      src={pilot.url!}
                       alt={pilot.label}
                       fill
                       className="object-cover"
                       sizes="(max-width: 640px) 50vw, 25vw"
                     />
-                  ) : (
-                    <ImagePlaceholder label={pilot.label} icon="person" />
-                  )}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           <p className="text-base text-content-body leading-relaxed font-light mb-8">
             Was uns verbindet, ist nicht nur die Leidenschaft fürs Fliegen, sondern auch unser Anspruch:
@@ -327,50 +340,38 @@ export default async function UeberUnsPage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          VIDEO GALLERY – 4 Videos 9:16 Format
+          VIDEO GALLERY – YouTube Shorts 9:16
           ══════════════════════════════════════════ */}
-      <section className="py-20 lg:py-28 overflow-hidden">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
-              Unsere Flüge erleben
-            </p>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
-              Video-Galerie
-            </h2>
-            <div className="mt-6 section-divider" />
-          </div>
+      {hasVideos && (
+        <section className="py-20 lg:py-28 overflow-hidden">
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
+                Unsere Flüge erleben
+              </p>
+              <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
+                Video-Galerie
+              </h2>
+              <div className="mt-6 section-divider" />
+            </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { label: "Tandemflug Start", desc: "Der Moment des Abhebens" },
-              { label: "Flug über Dolomiten", desc: "Panorama vom Zettersfeld" },
-              { label: "Thermikflug", desc: "Mit den Adlern kreisen" },
-              { label: "Landung", desc: "Sicher zurück am Boden" },
-            ].map((video, i) => (
-              <div key={i} className="group relative rounded-xl overflow-hidden border border-edge-faint aspect-[9/16] card-hover-glow cursor-pointer">
-                <div className="absolute inset-0 bg-gradient-to-b from-navy-800 via-navy-900 to-navy-950 flex flex-col items-center justify-center p-4">
-                  {/* Play button overlay */}
-                  <div className="w-14 h-14 rounded-full bg-accent-500/20 border border-accent-500/40 flex items-center justify-center group-hover:bg-accent-500/30 group-hover:scale-110 transition-all duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 text-accent-400 ml-0.5">
-                      <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <p className="mt-4 text-sm text-white/80 font-medium text-center">{video.label}</p>
-                  <p className="mt-1 text-xs text-white/40 font-light text-center">{video.desc}</p>
-
-                  {/* Video placeholder label */}
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-white/5 backdrop-blur-sm rounded-lg px-3 py-2 text-center">
-                      <p className="text-[10px] text-white/30 font-light">Video {i + 1} – 9:16 Format</p>
-                    </div>
-                  </div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {videos.filter((v) => v.youtubeId).map((video) => (
+                <div key={video.id} className="relative rounded-xl overflow-hidden border border-edge-faint aspect-[9/16]">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.youtubeId}?loop=1&playlist=${video.youtubeId}&modestbranding=1&rel=0`}
+                    title={video.label}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                    loading="lazy"
+                  />
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ══════════════════════════════════════════
           UNSERE PHILOSOPHIE

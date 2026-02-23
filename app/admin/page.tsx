@@ -10,7 +10,7 @@ interface ImageSlot {
   blobbed?: boolean;
 }
 
-type Tab = "prompt" | "images" | "ticker";
+type Tab = "prompt" | "images" | "videos" | "ticker";
 
 const SLOT_DIMENSIONS: Record<string, { w: number; h: number }> = {
   hero:                 { w: 1920, h: 1080 },
@@ -109,6 +109,11 @@ export default function AdminPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
 
+  // Videos state
+  interface VideoSlot { label: string; url: string | null; description: string; }
+  const [videoSlots, setVideoSlots] = useState<Record<string, VideoSlot>>({});
+  const [isSavingVideos, setIsSavingVideos] = useState(false);
+
   // Ticker state
   const [tickerItems, setTickerItems] = useState<string[]>([]);
   const [isSavingTicker, setIsSavingTicker] = useState(false);
@@ -134,6 +139,7 @@ export default function AdminPage() {
       setIsAuthenticated(true);
       setPassword("");
       loadImages(password);
+      loadVideos(password);
       loadTicker(password);
     } else {
       setMessage({ type: "error", text: "Falsches Passwort." });
@@ -147,6 +153,42 @@ export default function AdminPage() {
     if (res.ok) {
       const data = await res.json();
       setSlots(data.slots);
+    }
+  }
+
+  async function loadVideos(token?: string) {
+    const res = await fetch("/api/admin/videos", {
+      headers: { Authorization: `Bearer ${token || authToken}` },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setVideoSlots(data.slots);
+    }
+  }
+
+  async function handleSaveVideos() {
+    setIsSavingVideos(true);
+    setMessage(null);
+
+    try {
+      const res = await fetch("/api/admin/videos", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify({ slots: videoSlots }),
+      });
+
+      if (res.ok) {
+        setMessage({ type: "success", text: "Videos gespeichert!" });
+      } else {
+        setMessage({ type: "error", text: "Fehler beim Speichern." });
+      }
+    } catch {
+      setMessage({ type: "error", text: "Verbindungsfehler." });
+    } finally {
+      setIsSavingVideos(false);
     }
   }
 
@@ -368,6 +410,16 @@ export default function AdminPage() {
             Bilder
           </button>
           <button
+            onClick={() => { setActiveTab("videos"); setMessage(null); }}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              activeTab === "videos"
+                ? "bg-accent-500 text-white"
+                : "text-content-muted hover:text-content-strong"
+            }`}
+          >
+            Videos
+          </button>
+          <button
             onClick={() => { setActiveTab("ticker"); setMessage(null); }}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               activeTab === "ticker"
@@ -515,6 +567,67 @@ export default function AdminPage() {
                 </div>
               ));
             })()}
+          </div>
+        )}
+
+        {/* Videos Tab */}
+        {activeTab === "videos" && (
+          <div className="glass-card rounded-2xl p-6 border border-edge-faint">
+            <label className="block text-sm font-medium text-content-body mb-2">
+              YouTube Shorts – Über Uns Seite
+            </label>
+            <p className="text-xs text-content-muted mb-6">
+              Füge YouTube Shorts URLs ein. Unterstützte Formate: youtube.com/shorts/..., youtu.be/..., youtube.com/watch?v=...
+            </p>
+
+            <div className="space-y-4">
+              {Object.entries(videoSlots).map(([slotId, slot]) => (
+                <div key={slotId} className="rounded-xl border border-edge-faint bg-surface-secondary/50 p-4">
+                  <label className="block text-sm font-medium text-content-strong mb-1">
+                    {slot.label}
+                  </label>
+                  <p className="text-xs text-content-muted mb-2">{slot.description}</p>
+                  <input
+                    type="url"
+                    value={slot.url || ""}
+                    onChange={(e) => {
+                      setVideoSlots((prev) => ({
+                        ...prev,
+                        [slotId]: { ...prev[slotId], url: e.target.value || null },
+                      }));
+                    }}
+                    placeholder="https://youtube.com/shorts/..."
+                    className="w-full px-4 py-2.5 rounded-xl border border-edge-input bg-surface-input text-content-strong text-sm placeholder:text-content-placeholder focus:outline-none focus:ring-2 focus:ring-accent-500/50 focus:border-accent-500 transition-colors"
+                  />
+                  {slot.url && (
+                    <button
+                      onClick={() => {
+                        setVideoSlots((prev) => ({
+                          ...prev,
+                          [slotId]: { ...prev[slotId], url: null },
+                        }));
+                      }}
+                      className="mt-2 text-xs text-red-400 hover:text-red-300 transition-colors"
+                    >
+                      URL entfernen
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="flex items-center justify-between mt-6 pt-4 border-t border-edge-faint">
+              <p className="text-xs text-content-muted">
+                {Object.values(videoSlots).filter((s) => s.url).length}/{Object.keys(videoSlots).length} Videos eingetragen
+              </p>
+              <button
+                onClick={handleSaveVideos}
+                disabled={isSavingVideos}
+                className="px-6 py-2.5 rounded-xl bg-accent-500 hover:bg-accent-400 text-white font-medium btn-glow disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+              >
+                {isSavingVideos ? "Speichern..." : "Videos speichern"}
+              </button>
+            </div>
           </div>
         )}
 
