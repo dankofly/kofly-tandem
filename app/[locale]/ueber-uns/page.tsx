@@ -172,6 +172,28 @@ export default async function UeberUnsPage() {
             {t("heroDescription")}
           </p>
 
+          {/* Hero CTA – above the fold */}
+          <div className="hero-enter hero-enter-5 mt-8 flex flex-col sm:flex-row gap-3">
+            <Link
+              href="/buchen"
+              className="cta-lift btn-glow cursor-pointer inline-flex items-center justify-center px-7 py-3.5 min-h-[44px] bg-accent-500 hover:bg-accent-400 text-white text-xs font-medium tracking-wide uppercase transition-colors duration-200"
+            >
+              {t("ctaBooking")}
+            </Link>
+            <a
+              href="https://wa.me/436767293888"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-lift cursor-pointer inline-flex items-center justify-center gap-2 px-7 py-3.5 min-h-[44px] border border-white/20 text-white/80 hover:text-accent-400 hover:border-accent-500 text-xs font-medium tracking-wide uppercase transition-colors duration-200"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.687-1.228A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.239 0-4.332-.726-6.02-1.956a.5.5 0 00-.417-.072l-3.234.848.66-2.907a.5.5 0 00-.063-.39A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+              </svg>
+              {t("ctaWhatsApp")}
+            </a>
+          </div>
+
           {/* Hero Image with entrance animation */}
           <div className="hero-enter hero-enter-6 mt-12 relative rounded-2xl overflow-hidden border border-white/10 aspect-[21/9] card-hover-glow">
             {ueberHero ? (
@@ -222,7 +244,7 @@ export default async function UeberUnsPage() {
 
           <div className="grid lg:grid-cols-5 gap-12 items-start">
             {/* Story text – spans 3 columns */}
-            <ScrollReveal animation="fade-right" className="lg:col-span-3 space-y-6 text-base text-content-body leading-relaxed font-light">
+            <ScrollReveal animation="fade-right" className="lg:col-span-3 space-y-6 text-base text-content-body leading-relaxed font-light max-w-prose">
               <p>{t("geschichteP1")}</p>
               <p>{t("geschichteP2")}</p>
               <p>{t("geschichteP3")}</p>
@@ -247,7 +269,7 @@ export default async function UeberUnsPage() {
           </div>
 
           {/* Continuation of story */}
-          <ScrollReveal animation="fade-up" className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light">
+          <ScrollReveal animation="fade-up" className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light max-w-prose">
             <p>{t("geschichteP4")}</p>
             <p>{t("geschichteP5")}</p>
           </ScrollReveal>
@@ -264,16 +286,16 @@ export default async function UeberUnsPage() {
 
           {/* TripAdvisor Link */}
           <ScrollReveal animation="fade-up" delay={200}>
-            <div className="highlight-glow bg-accent-500/5 border border-accent-500/20 rounded-sm px-6 py-5 mt-8 text-center">
-              <a
-                href="https://www.tripadvisor.de/Attraction_Review-g230011-d8720066-Reviews-Gleitschirm_Tandemflug_com-Lienz_Tirol_Austrian_Alps.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent-400 hover:text-accent-500 transition-colors underline underline-offset-4 text-base font-medium"
-              >
+            <a
+              href="https://www.tripadvisor.de/Attraction_Review-g230011-d8720066-Reviews-Gleitschirm_Tandemflug_com-Lienz_Tirol_Austrian_Alps.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block cursor-pointer highlight-glow bg-accent-500/5 border border-accent-500/20 hover:border-accent-500/40 rounded-sm px-6 py-5 mt-8 text-center transition-all duration-200"
+            >
+              <span className="text-accent-400 group-hover:text-accent-500 transition-colors duration-200 text-base font-medium underline underline-offset-4">
                 {t("tripAdvisorTitle")}
-              </a>
-            </div>
+              </span>
+            </a>
           </ScrollReveal>
         </div>
       </section>
@@ -339,7 +361,7 @@ export default async function UeberUnsPage() {
           {/* Values – Würfel-5 (Quincunx) Layout */}
           {(() => {
             const ValueCard = ({ icon, title, text, center }: { icon: React.ReactNode; title: string; text: string; center?: boolean }) => (
-              <div className={`step-card glass-card card-hover-glow p-6 h-full ${center ? "border-accent-500/30 bg-accent-500/5" : ""}`}>
+              <div className={`step-card glass-card card-hover-glow cursor-default p-6 h-full transition-all duration-200 ${center ? "border-accent-500/30 bg-accent-500/5" : ""}`}>
                 <div className="flex items-center gap-3 mb-3">
                   <div className={`${center ? "w-12 h-12" : "w-10 h-10"} rounded-full bg-accent-500/10 border border-accent-500/20 flex items-center justify-center text-accent-500 shrink-0`}>
                     {icon}
@@ -414,7 +436,7 @@ export default async function UeberUnsPage() {
             );
           })()}
 
-          <ScrollReveal animation="fade-up" className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light">
+          <ScrollReveal animation="fade-up" className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light max-w-prose">
             <p>{t("teamAfterP1")}</p>
             <p>{t("teamAfterP2")}</p>
           </ScrollReveal>
@@ -520,14 +542,14 @@ export default async function UeberUnsPage() {
               },
             ].map((pillar, i) => (
               <ScrollReveal key={i} animation="fade-up" delay={i * 150}>
-                <div className="step-card glass-card card-hover-glow p-8 text-center h-full">
-                  <div className="w-14 h-14 rounded-full bg-accent-500/10 border border-accent-500/20 flex items-center justify-center mx-auto text-accent-500">
+                <div className="step-card glass-card card-hover-glow cursor-default p-8 text-center h-full transition-all duration-200">
+                  <div className="w-14 h-14 rounded-full bg-accent-500/10 border border-accent-500/20 flex items-center justify-center mx-auto text-accent-500 transition-colors duration-200">
                     {pillar.icon}
                   </div>
                   <h3 className="mt-5 text-lg font-semibold text-content-primary">
                     {pillar.title}
                   </h3>
-                  <p className="mt-4 text-sm text-content-body leading-relaxed font-light">
+                  <p className="mt-4 text-sm text-content-body leading-relaxed font-light max-w-[28ch] mx-auto">
                     {pillar.text}
                   </p>
                 </div>
@@ -575,7 +597,7 @@ export default async function UeberUnsPage() {
               { label: t("partnerValue4") },
             ].map((item, i) => (
               <ScrollReveal key={i} animation="scale-in" delay={i * 100}>
-                <div className="glass-card card-hover-glow p-5 text-center flex flex-col items-center gap-2">
+                <div className="glass-card card-hover-glow cursor-default p-5 text-center flex flex-col items-center gap-2 transition-all duration-200">
                   <span className="text-accent-500"><CheckIcon /></span>
                   <span className="text-sm text-content-body font-medium">{item.label}</span>
                 </div>
@@ -614,13 +636,13 @@ export default async function UeberUnsPage() {
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/buchen"
-                className="cta-lift btn-glow w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-accent-500 hover:bg-accent-400 text-white text-xs font-medium tracking-wide uppercase transition-colors"
+                className="cta-lift btn-glow cursor-pointer w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 min-h-[44px] bg-accent-500 hover:bg-accent-400 text-white text-xs font-medium tracking-wide uppercase transition-colors duration-200"
               >
                 {t("ctaBooking")}
               </Link>
               <Link
                 href="/buchen#gutschein"
-                className="cta-lift w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-edge-secondary text-content-body hover:text-accent-400 hover:border-accent-500 text-xs font-medium tracking-wide uppercase transition-colors"
+                className="cta-lift cursor-pointer w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 min-h-[44px] border border-edge-secondary text-content-body hover:text-accent-400 hover:border-accent-500 text-xs font-medium tracking-wide uppercase transition-colors duration-200"
               >
                 {t("ctaVoucher")}
               </Link>
@@ -632,14 +654,14 @@ export default async function UeberUnsPage() {
               {t("ctaContactIntro")}{" "}
               <a
                 href="https://wa.me/436767293888"
-                className="text-accent-400 hover:text-accent-500 transition-colors"
+                className="cursor-pointer text-accent-400 hover:text-accent-500 transition-colors duration-200"
               >
                 {t("ctaWhatsApp")}
               </a>{" "}
               {t("ctaUnter")}{" "}
               <a
                 href="tel:+436767293888"
-                className="text-accent-400 hover:text-accent-500 transition-colors"
+                className="cursor-pointer text-accent-400 hover:text-accent-500 transition-colors duration-200"
               >
                 +43 676 7293888
               </a>
