@@ -358,83 +358,71 @@ export default async function UeberUnsPage() {
             </p>
           </ScrollReveal>
 
-          {/* Values – Würfel-5 (Quincunx) Layout */}
-          {(() => {
-            const ValueCard = ({ icon, title, text, center }: { icon: React.ReactNode; title: string; text: string; center?: boolean }) => (
-              <div className={`step-card glass-card card-hover-glow cursor-default p-6 h-full transition-all duration-200 ${center ? "border-accent-500/30 bg-accent-500/5" : ""}`}>
-                <div className="flex items-center gap-3 mb-3">
-                  <div className={`${center ? "w-12 h-12" : "w-10 h-10"} rounded-full bg-accent-500/10 border border-accent-500/20 flex items-center justify-center text-accent-500 shrink-0`}>
-                    {icon}
+          {/* Values – Open Layout ohne Boxen */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-14 max-w-3xl mx-auto">
+            {[
+              {
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.932 9.563 12.348a.749.749 0 00.374 0c5.499-1.416 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
+                  </svg>
+                ),
+                title: t("valueSafetyTitle"),
+                text: t("valueSafetyDesc"),
+              },
+              {
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path fillRule="evenodd" d="M4.848 2.771A49.144 49.144 0 0112 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 01-3.476.383.39.39 0 00-.297.17l-2.755 4.133a.75.75 0 01-1.248 0l-2.755-4.133a.39.39 0 00-.297-.17 48.9 48.9 0 01-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.741c0-1.946 1.37-3.68 3.348-3.97zM6.025 7.5a.75.75 0 000 1.5h.75a.75.75 0 000-1.5h-.75zm2.905 0a.75.75 0 000 1.5h7.5a.75.75 0 000-1.5h-7.5zm0 3.75a.75.75 0 000 1.5h7.5a.75.75 0 000-1.5h-7.5z" clipRule="evenodd" />
+                  </svg>
+                ),
+                title: t("valueCommunicationTitle"),
+                text: t("valueCommunicationDesc"),
+              },
+              {
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                  </svg>
+                ),
+                title: t("valuePassionTitle"),
+                text: t("valuePassionDesc"),
+              },
+              {
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path d="M10.5 1.875a1.125 1.125 0 012.25 0v8.219c.517.162 1.02.382 1.5.659V3.375a1.125 1.125 0 012.25 0v10.937a4.505 4.505 0 00-3.25 2.373 8.963 8.963 0 014-.935A.75.75 0 0018 15v-2.266a3.368 3.368 0 01.988-2.37 1.125 1.125 0 011.591 1.59 1.118 1.118 0 00-.329.79v3.006h-.005a6 6 0 01-3.996 4.71l-.062.024a6.004 6.004 0 01-8.054-2.996l-.04-.09a6 6 0 01-.396-1.593 8.957 8.957 0 013.241.553A4.505 4.505 0 007.5 14.312V3.375a1.125 1.125 0 012.25 0v7.378a5.477 5.477 0 01.75-.753V1.875z" />
+                  </svg>
+                ),
+                title: t("valueCareTitle"),
+                text: t("valueCareDesc"),
+              },
+              {
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path fillRule="evenodd" d="M9 4.5a.75.75 0 01.721.544l.813 2.846a3.75 3.75 0 002.576 2.576l2.846.813a.75.75 0 010 1.442l-2.846.813a3.75 3.75 0 00-2.576 2.576l-.813 2.846a.75.75 0 01-1.442 0l-.813-2.846a3.75 3.75 0 00-2.576-2.576l-2.846-.813a.75.75 0 010-1.442l2.846-.813A3.75 3.75 0 007.466 7.89l.813-2.846A.75.75 0 019 4.5zM18 1.5a.75.75 0 01.728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 010 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 01-1.456 0l-.258-1.036a2.625 2.625 0 00-1.91-1.91l-1.036-.258a.75.75 0 010-1.456l1.036-.258a2.625 2.625 0 001.91-1.91l.258-1.036A.75.75 0 0118 1.5z" clipRule="evenodd" />
+                  </svg>
+                ),
+                title: t("valueUniquenessTitle"),
+                text: t("valueUniquenessDesc"),
+              },
+            ].map((value, i) => (
+              <ScrollReveal key={i} animation="fade-up" delay={i * 100}>
+                <div className="group text-center">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-accent-500/15 to-accent-500/5 flex items-center justify-center mx-auto text-accent-500 transition-transform duration-300 group-hover:scale-110">
+                    {value.icon}
                   </div>
-                  <h4 className={`${center ? "text-base" : "text-sm"} font-semibold text-content-primary tracking-wide`}>
-                    {title}
+                  <div className="mt-5 w-8 h-px bg-accent-500/30 mx-auto" />
+                  <h4 className="mt-4 text-base font-semibold text-content-primary tracking-wide">
+                    {value.title}
                   </h4>
+                  <p className="mt-2 text-sm text-content-body leading-relaxed font-light">
+                    {value.text}
+                  </p>
                 </div>
-                <p className={`text-sm text-content-body leading-relaxed font-light ${center ? "pl-[60px]" : "pl-[52px]"}`}>
-                  {text}
-                </p>
-              </div>
-            );
-
-            const shieldIcon = (
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.932 9.563 12.348a.749.749 0 00.374 0c5.499-1.416 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
-              </svg>
-            );
-            const heartIcon = (
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
-              </svg>
-            );
-            const chatIcon = (
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                <path fillRule="evenodd" d="M4.848 2.771A49.144 49.144 0 0112 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 01-3.476.383.39.39 0 00-.297.17l-2.755 4.133a.75.75 0 01-1.248 0l-2.755-4.133a.39.39 0 00-.297-.17 48.9 48.9 0 01-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.741c0-1.946 1.37-3.68 3.348-3.97zM6.025 7.5a.75.75 0 000 1.5h.75a.75.75 0 000-1.5h-.75zm2.905 0a.75.75 0 000 1.5h7.5a.75.75 0 000-1.5h-7.5zm0 3.75a.75.75 0 000 1.5h7.5a.75.75 0 000-1.5h-7.5z" clipRule="evenodd" />
-              </svg>
-            );
-            const handIcon = (
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                <path d="M10.5 1.875a1.125 1.125 0 012.25 0v8.219c.517.162 1.02.382 1.5.659V3.375a1.125 1.125 0 012.25 0v10.937a4.505 4.505 0 00-3.25 2.373 8.963 8.963 0 014-.935A.75.75 0 0018 15v-2.266a3.368 3.368 0 01.988-2.37 1.125 1.125 0 011.591 1.59 1.118 1.118 0 00-.329.79v3.006h-.005a6 6 0 01-3.996 4.71l-.062.024a6.004 6.004 0 01-8.054-2.996l-.04-.09a6 6 0 01-.396-1.593 8.957 8.957 0 013.241.553A4.505 4.505 0 007.5 14.312V3.375a1.125 1.125 0 012.25 0v7.378a5.477 5.477 0 01.75-.753V1.875z" />
-              </svg>
-            );
-            const sparklesIcon = (
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                <path fillRule="evenodd" d="M9 4.5a.75.75 0 01.721.544l.813 2.846a3.75 3.75 0 002.576 2.576l2.846.813a.75.75 0 010 1.442l-2.846.813a3.75 3.75 0 00-2.576 2.576l-.813 2.846a.75.75 0 01-1.442 0l-.813-2.846a3.75 3.75 0 00-2.576-2.576l-2.846-.813a.75.75 0 010-1.442l2.846-.813A3.75 3.75 0 007.466 7.89l.813-2.846A.75.75 0 019 4.5zM18 1.5a.75.75 0 01.728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 010 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 01-1.456 0l-.258-1.036a2.625 2.625 0 00-1.91-1.91l-1.036-.258a.75.75 0 010-1.456l1.036-.258a2.625 2.625 0 001.91-1.91l.258-1.036A.75.75 0 0118 1.5z" clipRule="evenodd" />
-              </svg>
-            );
-
-            return (
-              <div className="flex flex-col gap-5 max-w-2xl mx-auto">
-                {/* Row 1: Sicherheit + Kommunikation */}
-                <div className="grid grid-cols-2 gap-5">
-                  <ScrollReveal animation="fade-up" delay={0}>
-                    <ValueCard icon={shieldIcon} title={t("valueSafetyTitle")} text={t("valueSafetyDesc")} />
-                  </ScrollReveal>
-                  <ScrollReveal animation="fade-up" delay={100}>
-                    <ValueCard icon={chatIcon} title={t("valueCommunicationTitle")} text={t("valueCommunicationDesc")} />
-                  </ScrollReveal>
-                </div>
-
-                {/* Row 2: Leidenschaft – zentriert & hervorgehoben */}
-                <div className="flex justify-center">
-                  <ScrollReveal animation="scale-in" delay={200}>
-                    <div className="w-full max-w-xs">
-                      <ValueCard icon={heartIcon} title={t("valuePassionTitle")} text={t("valuePassionDesc")} center />
-                    </div>
-                  </ScrollReveal>
-                </div>
-
-                {/* Row 3: Betreuung + Einzigartigkeit */}
-                <div className="grid grid-cols-2 gap-5">
-                  <ScrollReveal animation="fade-up" delay={300}>
-                    <ValueCard icon={handIcon} title={t("valueCareTitle")} text={t("valueCareDesc")} />
-                  </ScrollReveal>
-                  <ScrollReveal animation="fade-up" delay={400}>
-                    <ValueCard icon={sparklesIcon} title={t("valueUniquenessTitle")} text={t("valueUniquenessDesc")} />
-                  </ScrollReveal>
-                </div>
-              </div>
-            );
-          })()}
+              </ScrollReveal>
+            ))}
+          </div>
 
           <ScrollReveal animation="fade-up" className="mt-12 space-y-6 text-base text-content-body leading-relaxed font-light max-w-prose">
             <p>{t("teamAfterP1")}</p>

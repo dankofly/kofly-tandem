@@ -47,7 +47,8 @@
     "whatsappLabel": "WhatsApp Schnellanfrage",
     "hauptnavigation": "Hauptnavigation",
     "mobileNavigation": "Mobile Navigation",
-    "whatsappMessage": "Hallo, ich interessiere mich für einen Tandemflug. Wann wäre ein Termin möglich?"
+    "whatsappMessage": "Hallo, ich interessiere mich für einen Tandemflug. Wann wäre ein Termin möglich?",
+    "fragMich": "Frag mich"
   },
   "Hero": {
     "ariaLabel": "Gleitschirm Tandemflug und Paragleiten in Osttirol – Startbereich",
@@ -262,7 +263,8 @@
   },
   "MobileCTA": {
     "anfragen": "Jetzt anfragen",
-    "whatsappLabel": "WhatsApp schreiben (öffnet in neuem Tab)"
+    "whatsappLabel": "WhatsApp schreiben (öffnet in neuem Tab)",
+    "fragMich": "Frag mich"
   },
   "BookingForm": {
     "vorname": "Vorname *",

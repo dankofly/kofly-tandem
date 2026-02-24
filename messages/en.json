@@ -47,7 +47,8 @@
     "whatsappLabel": "WhatsApp Quick Enquiry",
     "hauptnavigation": "Main navigation",
     "mobileNavigation": "Mobile navigation",
-    "whatsappMessage": "Hello, I\u2019m interested in a tandem flight. When would an appointment be possible?"
+    "whatsappMessage": "Hello, I\u2019m interested in a tandem flight. When would an appointment be possible?",
+    "fragMich": "Ask me"
   },
   "Hero": {
     "ariaLabel": "Tandem paragliding and paragliding in East Tyrol \u2013 hero section",
@@ -262,7 +263,8 @@
   },
   "MobileCTA": {
     "anfragen": "Enquire now",
-    "whatsappLabel": "Message on WhatsApp (opens in new tab)"
+    "whatsappLabel": "Message on WhatsApp (opens in new tab)",
+    "fragMich": "Ask me"
   },
   "BookingForm": {
     "vorname": "First name *",

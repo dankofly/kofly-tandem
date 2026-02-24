@@ -47,7 +47,8 @@
     "whatsappLabel": "WhatsApp snelle aanvraag",
     "hauptnavigation": "Hoofdnavigatie",
     "mobileNavigation": "Mobiele navigatie",
-    "whatsappMessage": "Hallo, ik heb interesse in een tandemvlucht. Wanneer is er een afspraak mogelijk?"
+    "whatsappMessage": "Hallo, ik heb interesse in een tandemvlucht. Wanneer is er een afspraak mogelijk?",
+    "fragMich": "Vraag mij"
   },
   "Hero": {
     "ariaLabel": "Tandem paragliden in Oost-Tirol \u2013 startgedeelte",
@@ -262,7 +263,8 @@
   },
   "MobileCTA": {
     "anfragen": "Nu aanvragen",
-    "whatsappLabel": "WhatsApp sturen (opent in nieuw tabblad)"
+    "whatsappLabel": "WhatsApp sturen (opent in nieuw tabblad)",
+    "fragMich": "Vraag mij"
   },
   "BookingForm": {
     "vorname": "Voornaam *",
