@@ -34,6 +34,7 @@ export function organizationSchema(locale: string = "de") {
     logo: `${SITE_URL}/icon.png`,
     description:
       "Gleitschirm Tandemflüge & Paragleiten im Airpark Lienzer Dolomiten mit erfahrenen zertifizierten Tandempiloten. Tandemflug & Tandemsprung in Osttirol – Lienz, Sillian, Matrei, St. Jakob im Defereggental & Kals am Großglockner. Ab €150.",
+    founder: { "@id": `${SITE_URL}/#danielkofler` },
     foundingDate: "2015",
     priceRange: "€150–€250",
     currenciesAccepted: "EUR",
@@ -106,6 +107,50 @@ export function organizationSchema(locale: string = "de") {
         containedInPlace: {
           "@type": "AdministrativeArea",
           name: "Osttirol",
+        },
+      },
+      {
+        "@type": "City",
+        name: "Greifenburg",
+        containedInPlace: {
+          "@type": "AdministrativeArea",
+          name: "Oberkärnten",
+        },
+      },
+      {
+        "@type": "City",
+        name: "Berg im Drautal",
+        containedInPlace: {
+          "@type": "AdministrativeArea",
+          name: "Oberkärnten",
+        },
+      },
+      {
+        "@type": "City",
+        name: "Weissensee",
+        containedInPlace: {
+          "@type": "AdministrativeArea",
+          name: "Oberkärnten",
+        },
+      },
+      {
+        "@type": "City",
+        name: "Spittal an der Drau",
+        containedInPlace: {
+          "@type": "AdministrativeArea",
+          name: "Kärnten",
+        },
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: "Oberkärnten",
+        containedInPlace: {
+          "@type": "AdministrativeArea",
+          name: "Kärnten",
+          containedInPlace: {
+            "@type": "Country",
+            name: "Austria",
+          },
         },
       },
       {
@@ -263,6 +308,11 @@ export function serviceSchema(locale: string = "de") {
       { "@type": "City", name: "Nußdorf-Debant" },
       { "@type": "AdministrativeArea", name: "Defereggental" },
       { "@type": "AdministrativeArea", name: "Osttirol" },
+      { "@type": "City", name: "Greifenburg" },
+      { "@type": "City", name: "Berg im Drautal" },
+      { "@type": "City", name: "Weissensee" },
+      { "@type": "City", name: "Spittal an der Drau" },
+      { "@type": "AdministrativeArea", name: "Oberkärnten" },
     ],
     description:
       "Tandem-Gleitschirmflüge & Paragleiten im Airpark Lienzer Dolomiten. Start ab Zettersfeld oder Hochstein mit erfahrenen zertifizierten Tandempiloten. Tandemflug ab €150 – Lienz, Sillian, Matrei, St. Jakob, Kals & ganz Osttirol.",

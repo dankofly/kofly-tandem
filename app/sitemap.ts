@@ -10,6 +10,7 @@ const pages = [
   { path: "/urlaub", changeFrequency: "weekly" as const, priority: 0.9 },
   { path: "/anreise", changeFrequency: "weekly" as const, priority: 0.8 },
   { path: "/paragleiten", changeFrequency: "weekly" as const, priority: 0.9 },
+  { path: "/ueber-uns", changeFrequency: "monthly" as const, priority: 0.7 },
   { path: "/agb", changeFrequency: "yearly" as const, priority: 0.3 },
   { path: "/datenschutz", changeFrequency: "yearly" as const, priority: 0.3 },
   { path: "/impressum", changeFrequency: "yearly" as const, priority: 0.3 },
