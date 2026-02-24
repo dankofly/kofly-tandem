@@ -169,6 +169,27 @@ function RatingBadge() {
           visible ? "opacity-100 scale-100" : "opacity-0 scale-[0.92]"
         }`}
       >
+        {/* TripAdvisor owl logo */}
+        <svg className="w-8 h-8 shrink-0" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Tripadvisor">
+          <circle cx="32" cy="32" r="32" fill="#34E0A1"/>
+          <g transform="translate(10, 18)">
+            {/* Binocular owl eyes */}
+            <circle cx="13" cy="16" r="9" stroke="#1A1A1A" strokeWidth="2.5" fill="none"/>
+            <circle cx="31" cy="16" r="9" stroke="#1A1A1A" strokeWidth="2.5" fill="none"/>
+            {/* Pupils */}
+            <circle cx="13" cy="16" r="4" fill="#1A1A1A"/>
+            <circle cx="31" cy="16" r="4" fill="#1A1A1A"/>
+            {/* Beak */}
+            <path d="M20 20l2 4 2-4" fill="#1A1A1A"/>
+            {/* Top connector / head */}
+            <path d="M13 7C13 7 17 2 22 2C27 2 31 7 31 7" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+            {/* Left wing hint */}
+            <path d="M4 12C2 14 2 18 4 20" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+            {/* Right wing hint */}
+            <path d="M40 12C42 14 42 18 40 20" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+          </g>
+        </svg>
+
         {/* Animated stars — pop in one by one */}
         <div className="flex gap-1">
           {Array.from({ length: 5 }).map((_, i) => (
