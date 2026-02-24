@@ -13,26 +13,21 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "transparent",
+          borderRadius: 6,
+          background: "linear-gradient(135deg, #FF8C00 0%, #F56300 50%, #E04D00 100%)",
         }}
       >
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        <span
+          style={{
+            fontSize: 22,
+            fontWeight: 900,
+            color: "white",
+            lineHeight: 1,
+            letterSpacing: "-0.5px",
+          }}
         >
-          <defs>
-            <radialGradient id="ring" cx="45%" cy="40%" r="50%">
-              <stop offset="0%" stopColor="#FFB347" />
-              <stop offset="50%" stopColor="#F58220" />
-              <stop offset="100%" stopColor="#D4691A" />
-            </radialGradient>
-          </defs>
-          {/* Orange ring / donut */}
-          <circle cx="16" cy="16" r="13" stroke="url(#ring)" strokeWidth="6.5" fill="none" />
-        </svg>
+          K
+        </span>
       </div>
     ),
     { ...size }
