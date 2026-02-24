@@ -14,8 +14,11 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-# OpenAI (ChatGPT)
+# OpenAI (ChatGPT & SearchGPT)
 User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User

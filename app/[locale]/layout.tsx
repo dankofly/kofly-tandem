@@ -20,6 +20,7 @@ import {
   productSchema,
   touristAttractionSchema,
   siteNavigationSchema,
+  personSchema,
 } from "@/lib/schema";
 import { getImageUrl } from "@/lib/images-config";
 
@@ -161,6 +162,12 @@ export default async function LocaleLayout({ children, params }: Props) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(siteNavigationSchema(locale)),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personSchema()),
           }}
         />
         <ThemeProvider>

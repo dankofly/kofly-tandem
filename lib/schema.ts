@@ -172,8 +172,8 @@ export function organizationSchema(locale: string = "de") {
       ratingValue: "5.0",
       bestRating: "5",
       worstRating: "1",
-      ratingCount: "250",
-      reviewCount: "250",
+      ratingCount: "284",
+      reviewCount: "284",
     },
     contactPoint: {
       "@type": "ContactPoint",
@@ -382,8 +382,8 @@ export function productSchema() {
       ratingValue: "5.0",
       bestRating: "5",
       worstRating: "1",
-      ratingCount: "250",
-      reviewCount: "250",
+      ratingCount: "284",
+      reviewCount: "284",
     },
     offers: {
       "@type": "AggregateOffer",
@@ -638,6 +638,37 @@ export function flightAreaSchemas() {
       publicAccess: true,
     },
   ];
+}
+
+export function personSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${SITE_URL}/#danielkofler`,
+    name: "Daniel Kofler",
+    jobTitle: "Tandempilot & Gründer",
+    worksFor: { "@id": `${SITE_URL}/#organization` },
+    description:
+      "Pionier des Speedflying, Teilnehmer des Speedflying Pro in Les Arcs, ehemaliger Entwicklungsleiter bei Swing Paragliders und Miterfinder des legendären Spitfire. Erfahrenster Tandempilot im Raum Lienz mit über 10.000 Tandemflügen seit 2006.",
+    knowsAbout: [
+      "Tandem Paragliding",
+      "Speedflying",
+      "Gleitschirmfliegen",
+      "Flugsicherheit",
+      "Meteorologie Alpen",
+      "Airpark Lienzer Dolomiten",
+    ],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Gaimberg",
+      addressRegion: "Osttirol",
+      addressCountry: "AT",
+    },
+    sameAs: [
+      "https://www.instagram.com/tandemfluglienz/",
+      "https://www.osttirol-heute.at/menschen/daniel-kofler-ein-grenzgaenger-der-luefte-aus-osttirol/",
+    ],
+  };
 }
 
 export function breadcrumbSchema(
