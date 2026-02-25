@@ -144,11 +144,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Barlow Condensed for all major headings — athletic, energetic feel */
-h1, h2, h3 {
-  font-family: var(--font-barlow), "Barlow Condensed", Impact, sans-serif;
-}
-
 body {
   color: var(--text-base);
   background: var(--bg-primary);

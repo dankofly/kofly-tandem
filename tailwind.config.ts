@@ -64,8 +64,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "Inter", "system-ui", "-apple-system", "sans-serif"],
-        heading: ["var(--font-barlow)", "Barlow Condensed", "Impact", "sans-serif"],
+        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
       },
       letterSpacing: {
         premium: "0.2em",
