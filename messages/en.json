@@ -259,7 +259,10 @@
     "datenschutz": "Privacy Policy",
     "urlaubOsttirol": "Holidays in East Tyrol",
     "anreise": "Getting There",
-    "paragleiten": "Paragliding"
+    "paragleiten": "Paragliding",
+    "anrufen": "Call",
+    "email": "Email",
+    "bewertungen": "Google"
   },
   "MobileCTA": {
     "anfragen": "Enquire now",

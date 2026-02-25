@@ -259,7 +259,10 @@
     "datenschutz": "Privacy",
     "urlaubOsttirol": "Vakantie Oost-Tirol",
     "anreise": "Bereikbaarheid",
-    "paragleiten": "Paragliden"
+    "paragleiten": "Paragliden",
+    "anrufen": "Bellen",
+    "email": "E-mail",
+    "bewertungen": "Google"
   },
   "MobileCTA": {
     "anfragen": "Nu aanvragen",
