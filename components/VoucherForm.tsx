@@ -153,20 +153,6 @@ export default function VoucherForm() {
         </div>
       </div>
 
-      {/* Anmerkung */}
-      <div>
-        <label htmlFor="v_nachricht" className={LABEL_CLS}>
-          {t("nachricht")}
-        </label>
-        <textarea
-          id="v_nachricht"
-          name="nachricht"
-          rows={3}
-          className={`${INPUT_CLS} resize-y`}
-          placeholder={t("nachrichtPlaceholder")}
-        />
-      </div>
-
       {/* === Gutschein-Optionen Section === */}
       <fieldset className="space-y-6 border-t border-edge-subtle pt-8">
         <legend className="text-sm font-semibold text-content-primary uppercase tracking-wide">
@@ -252,6 +238,20 @@ export default function VoucherForm() {
           </div>
         </div>
       </fieldset>
+
+      {/* Anmerkung */}
+      <div>
+        <label htmlFor="v_nachricht" className={LABEL_CLS}>
+          {t("nachricht")}
+        </label>
+        <textarea
+          id="v_nachricht"
+          name="nachricht"
+          rows={3}
+          className={`${INPUT_CLS} resize-y`}
+          placeholder={t("nachrichtPlaceholder")}
+        />
+      </div>
 
       {/* === Zustellung Section === */}
       <fieldset className="space-y-4 border-t border-edge-subtle pt-8">
