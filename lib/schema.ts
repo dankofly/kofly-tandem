@@ -31,7 +31,7 @@ export function organizationSchema(locale: string = "de") {
     telephone: PHONE,
     email: EMAIL,
     image: `${SITE_URL}/images/hero-1771273007982.webp`,
-    logo: `${SITE_URL}/icon.png`,
+    logo: `${SITE_URL}/icon-512.png`,
     description:
       "Gleitschirm Tandemflüge & Paragleiten im Airpark Lienzer Dolomiten mit erfahrenen zertifizierten Tandempiloten. Tandemflug & Tandemsprung in Osttirol – Lienz, Sillian, Matrei, St. Jakob im Defereggental & Kals am Großglockner. Ab €150.",
     founder: { "@id": `${SITE_URL}/#danielkofler` },
@@ -297,8 +297,11 @@ export function serviceSchema(locale: string = "de") {
       "Tandemsprung Osttirol",
       "Gleitschirmfliegen Osttirol",
     ],
+    url: `${localeBase(locale)}/buchen`,
+    image: `${SITE_URL}/images/hero-1771273007982.webp`,
     provider: { "@id": `${SITE_URL}/#organization` },
     serviceType: "Tandem Paragliding",
+    availableLanguage: ["German", "English", "Dutch"],
     areaServed: [
       { "@type": "City", name: "Lienz" },
       { "@type": "City", name: "Sillian" },
@@ -379,6 +382,18 @@ export function voucherServiceSchema(locale: string = "de") {
     description:
       "Gutschein für einen Gleitschirm Tandemflug im Airpark Lienzer Dolomiten. Persönliche Abholung oder Postversand möglich. Zahlung per Überweisung.",
     url: `${localeBase(locale)}/buchen#gutschein`,
+    availableLanguage: ["German", "English", "Dutch"],
+    offers: {
+      "@type": "Offer",
+      price: "150.00",
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+      url: `${localeBase(locale)}/buchen#gutschein`,
+    },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "Osttirol",
+    },
   };
 }
 
@@ -698,6 +713,8 @@ export function personSchema() {
     name: "Daniel Kofler",
     jobTitle: "Tandempilot & Gründer",
     worksFor: { "@id": `${SITE_URL}/#organization` },
+    image: `${SITE_URL}/images/hero-1771273007982.webp`,
+    url: `${SITE_URL}/de/ueber-uns`,
     description:
       "Pionier des Speedflying, Teilnehmer des Speedflying Pro in Les Arcs, ehemaliger Entwicklungsleiter bei Swing Paragliders und Miterfinder des legendären Spitfire. Erfahrenster Tandempilot im Raum Lienz mit über 10.000 Tandemflügen seit 2006.",
     knowsAbout: [
@@ -731,7 +748,7 @@ export function breadcrumbSchema(
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: item.url,
+      "@id": item.url,
     })),
   };
 }
