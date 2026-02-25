@@ -1,26 +1,24 @@
-import { readFile, writeFile } from "fs/promises";
-import { join } from "path";
+import { getStore } from "@netlify/blobs";
 import { SYSTEM_PROMPT } from "./system-prompt";
 
-const CONFIG_PATH = join(process.cwd(), "data", "chat-config.json");
+const CONFIG_KEY = "system-prompt";
 
-interface ChatConfig {
-  systemPrompt: string;
+function getChatStore() {
+  return getStore({ name: "chat-config", consistency: "strong" });
 }
 
 export async function getSystemPrompt(): Promise<string> {
   try {
-    // Try filesystem read first (works in dev, supports admin edits)
-    const raw = await readFile(CONFIG_PATH, "utf-8");
-    const config: ChatConfig = JSON.parse(raw);
-    return config.systemPrompt;
+    const store = getChatStore();
+    const raw = await store.get(CONFIG_KEY, { type: "text" });
+    if (raw) return raw;
   } catch {
-    // Fallback to build-time constant (works on Netlify serverless)
-    return SYSTEM_PROMPT;
+    // Blob store not available (local dev or first deploy)
   }
+  return SYSTEM_PROMPT;
 }
 
 export async function saveSystemPrompt(prompt: string): Promise<void> {
-  const config: ChatConfig = { systemPrompt: prompt };
-  await writeFile(CONFIG_PATH, JSON.stringify(config, null, 2), "utf-8");
+  const store = getChatStore();
+  await store.set(CONFIG_KEY, prompt);
 }
