@@ -5,6 +5,13 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# Trailing-Slash-Redirects deaktivieren – Next.js/Middleware regelt das
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = false
+
 [functions]
   included_files = ["data/**"]
 
