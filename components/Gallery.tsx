@@ -15,7 +15,7 @@ export default async function Gallery() {
     <section className="bg-surface-elevated/20">
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-[1px]">
         {images.map(({ url, slot }) => (
-          <div key={slot} className="relative aspect-square overflow-hidden">
+          <div key={slot} className="relative aspect-square overflow-hidden img-skeleton">
             <Image
               src={url}
               alt=""

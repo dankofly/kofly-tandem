@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Barlow_Condensed } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -12,6 +12,7 @@ import ThemeProvider from "@/components/ThemeProvider";
 
 const ChatBot = dynamic(() => import("@/components/ChatBot"), { loading: () => null });
 const CookieBanner = dynamic(() => import("@/components/CookieBanner"), { loading: () => null });
+const ScrollProgress = dynamic(() => import("@/components/ScrollProgress"), { loading: () => null });
 import {
   organizationSchema,
   serviceSchema,
@@ -28,6 +29,13 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+});
+
+const barlowCondensed = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  display: "swap",
+  variable: "--font-barlow",
 });
 
 const SITE_URL =
@@ -128,7 +136,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} className={inter.variable} suppressHydrationWarning>
+    <html lang={locale} className={`${inter.variable} ${barlowCondensed.variable}`} suppressHydrationWarning>
       <body className="font-sans antialiased bg-surface-primary text-content-base">
         <script
           type="application/ld+json"
@@ -180,6 +188,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
         <ThemeProvider>
           <NextIntlClientProvider>
+            <ScrollProgress />
             <Header />
             <main>{children}</main>
             <Footer />

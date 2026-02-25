@@ -144,6 +144,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Barlow Condensed for all major headings — athletic, energetic feel */
+h1, h2, h3 {
+  font-family: var(--font-barlow), "Barlow Condensed", Impact, sans-serif;
+}
+
 body {
   color: var(--text-base);
   background: var(--bg-primary);
@@ -167,6 +172,18 @@ textarea,
   outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
   border-radius: 2px;
+}
+
+/* Skeleton shimmer for lazy-loaded images */
+@keyframes skeleton-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.img-skeleton {
+  background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--bg-tertiary) 50%, var(--bg-secondary) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.8s ease-in-out infinite;
 }
 
 /* Section divider – accent glow line */

@@ -160,20 +160,25 @@ export default function ReviewsSlider() {
                 <p className="mt-4 text-sm text-content-strong leading-relaxed font-light flex-1">
                   &ldquo;{fullText}&rdquo;
                 </p>
-                <div className="mt-5 pt-5 border-t border-edge-subtle">
-                  <p className="text-xs font-medium text-content-strong tracking-wide">
-                    {review.name}
-                  </p>
-                  <time
-                    className="text-[11px] text-content-subtle"
-                    dateTime={review.date}
-                    suppressHydrationWarning
-                  >
-                    {new Date(review.date).toLocaleDateString(
-                      dateLocaleMap[locale] || locale,
-                      { year: "numeric", month: "long" }
-                    )}
-                  </time>
+                <div className="mt-5 pt-5 border-t border-edge-subtle flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-accent-500/15 text-accent-500 text-xs font-bold flex items-center justify-center shrink-0">
+                    {review.name.charAt(0)}
+                  </span>
+                  <div>
+                    <p className="text-xs font-medium text-content-strong tracking-wide">
+                      {review.name}
+                    </p>
+                    <time
+                      className="text-[11px] text-content-subtle"
+                      dateTime={review.date}
+                      suppressHydrationWarning
+                    >
+                      {new Date(review.date).toLocaleDateString(
+                        dateLocaleMap[locale] || locale,
+                        { year: "numeric", month: "long" }
+                      )}
+                    </time>
+                  </div>
                 </div>
               </article>
             );
