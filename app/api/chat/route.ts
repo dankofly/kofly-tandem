@@ -1,6 +1,7 @@
 import { createOpenAI } from "@ai-sdk/openai";
-import { streamText, convertToModelMessages } from "ai";
+import { streamText, convertToModelMessages, stepCountIs } from "ai";
 import { getSystemPrompt } from "@/lib/chat-config";
+import { weatherTool } from "@/lib/weather";
 
 const openrouter = createOpenAI({
   baseURL: "https://openrouter.ai/api/v1",
@@ -17,6 +18,8 @@ export async function POST(req: Request) {
       model: openrouter.chat("openai/gpt-4o-mini"),
       system: systemPrompt,
       messages: modelMessages,
+      tools: { getWeather: weatherTool },
+      stopWhen: stepCountIs(2),
     });
 
     return result.toUIMessageStreamResponse();
