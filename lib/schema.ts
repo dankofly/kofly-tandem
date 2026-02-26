@@ -209,7 +209,7 @@ export function organizationSchema(locale: string = "de") {
           "Sunday",
         ],
         opens: "09:00",
-        closes: "19:00",
+        closes: "17:00",
       },
     ],
     aggregateRating: {
@@ -421,15 +421,10 @@ export function webSiteSchema(locale: string = "de") {
     url: `${localeBase(locale)}`,
     publisher: { "@id": `${SITE_URL}/#organization` },
     inLanguage: locale === "nl" ? "nl-NL" : locale === "en" ? "en-US" : "de-AT",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${localeBase(locale)}/buchen?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 
-export function productSchema() {
+export function productSchema(locale: string = "de") {
   return {
     "@context": "https://schema.org/",
     "@type": "Product",
@@ -437,7 +432,7 @@ export function productSchema() {
     description:
       "Tandem-Gleitschirmflug im Airpark Lienzer Dolomiten mit zertifizierten Tandempiloten. Nr. 1 Outdoor-Aktivität in Lienz – 5.0/5 Sterne auf Tripadvisor.",
     image: `${SITE_URL}/images/hero-1771273007982.webp`,
-    url: `${SITE_URL}/de`,
+    url: `${localeBase(locale)}`,
     brand: {
       "@type": "Brand",
       name: "KOFLY",
@@ -457,12 +452,12 @@ export function productSchema() {
       priceCurrency: "EUR",
       offerCount: "4",
       availability: "https://schema.org/InStock",
-      url: `${SITE_URL}/de/buchen`,
+      url: `${localeBase(locale)}/buchen`,
     },
   };
 }
 
-export function touristAttractionSchema() {
+export function touristAttractionSchema(locale: string = "de") {
   return {
     "@context": "https://schema.org",
     "@type": "TouristAttraction",
@@ -474,7 +469,7 @@ export function touristAttractionSchema() {
     ],
     description:
       "Tandem-Paragliding im Airpark Lienzer Dolomiten – Start ab Zettersfeld (1.750 m) oder Hochstein (2.057 m) mit Panoramablick auf über 100 Alpengipfel. Nr. 1 Outdoor-Aktivität in Lienz.",
-    url: `${SITE_URL}/de`,
+    url: `${localeBase(locale)}`,
     image: `${SITE_URL}/images/hero-1771273007982.webp`,
     geo: {
       "@type": "GeoCoordinates",
@@ -705,7 +700,7 @@ export function flightAreaSchemas() {
   ];
 }
 
-export function personSchema() {
+export function personSchema(locale: string = "de") {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -714,7 +709,7 @@ export function personSchema() {
     jobTitle: "Tandempilot & Gründer",
     worksFor: { "@id": `${SITE_URL}/#organization` },
     image: `${SITE_URL}/images/hero-1771273007982.webp`,
-    url: `${SITE_URL}/de/ueber-uns`,
+    url: `${localeBase(locale)}/ueber-uns`,
     description:
       "Pionier des Speedflying, Teilnehmer des Speedflying Pro in Les Arcs, ehemaliger Entwicklungsleiter bei Swing Paragliders und Miterfinder des legendären Spitfire. Erfahrenster Tandempilot im Raum Lienz mit über 10.000 Tandemflügen seit 2006.",
     knowsAbout: [
@@ -748,7 +743,7 @@ export function breadcrumbSchema(
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      "@id": item.url,
+      item: item.url,
     })),
   };
 }

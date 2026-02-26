@@ -159,13 +159,13 @@ export default async function LocaleLayout({ children, params }: Props) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(productSchema()),
+            __html: JSON.stringify(productSchema(locale)),
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(touristAttractionSchema()),
+            __html: JSON.stringify(touristAttractionSchema(locale)),
           }}
         />
         <script
@@ -177,7 +177,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(personSchema()),
+            __html: JSON.stringify(personSchema(locale)),
           }}
         />
         <ThemeProvider>
