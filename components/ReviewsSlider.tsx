@@ -134,7 +134,7 @@ export default function ReviewsSlider() {
       </div>
 
       {/* Slider wrapper with fade edges */}
-      <div className="relative">
+      <div className="relative overflow-hidden">
         {/* Left fade */}
         <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-32 z-10 bg-gradient-to-r from-surface-secondary to-transparent" />
         {/* Right fade */}

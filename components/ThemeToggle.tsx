@@ -10,7 +10,7 @@ export default function ThemeToggle() {
   useEffect(() => setMounted(true), []);
 
   if (!mounted) {
-    return <div className="w-9 h-9" />;
+    return <div className="w-11 h-11" />;
   }
 
   const isDark = theme === "dark";
@@ -18,7 +18,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="theme-spin p-2 text-content-muted hover:text-accent-400 transition-colors duration-300 cursor-pointer"
+      className="theme-spin p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-content-muted hover:text-accent-400 transition-colors duration-300 cursor-pointer"
       aria-label={
         isDark
           ? "Zum hellen Modus wechseln"

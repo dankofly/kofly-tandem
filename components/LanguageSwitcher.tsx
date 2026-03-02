@@ -20,7 +20,7 @@ export default function LanguageSwitcher() {
   }
 
   return (
-    <div className="flex items-center gap-0.5" role="group" aria-label="Language">
+    <div className="flex items-center" role="group" aria-label="Language">
       {routing.locales.map((l, i) => (
         <span key={l} className="flex items-center">
           {i > 0 && (
@@ -29,7 +29,7 @@ export default function LanguageSwitcher() {
           <button
             onClick={() => switchLocale(l)}
             aria-current={locale === l ? "true" : undefined}
-            className={`text-xs font-bold tracking-wide transition-colors duration-300 px-1 py-0.5 ${
+            className={`text-xs font-bold tracking-wide transition-colors duration-300 px-2 py-3 min-h-[44px] min-w-[44px] flex items-center justify-center ${
               locale === l
                 ? "text-accent-500"
                 : "text-hero-secondary hover:text-hero"
