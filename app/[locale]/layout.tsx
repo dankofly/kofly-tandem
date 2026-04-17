@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 import MobileCTA from "@/components/MobileCTA";
 import ThemeProvider from "@/components/ThemeProvider";
 
-const ChatBot = dynamic(() => import("@/components/ChatBot"), { loading: () => null });
+const ChatBotLazy = dynamic(() => import("@/components/ChatBotLazy"), { loading: () => null });
 const CookieBanner = dynamic(() => import("@/components/CookieBanner"), { loading: () => null });
 const ScrollProgress = dynamic(() => import("@/components/ScrollProgress"), { loading: () => null });
 import {
@@ -159,7 +159,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             <main>{children}</main>
             <Footer />
             <MobileCTA />
-            <ChatBot />
+            <ChatBotLazy />
             <CookieBanner />
           </NextIntlClientProvider>
         </ThemeProvider>

@@ -428,15 +428,15 @@ textarea,
 }
 
 .hero-enter {
-  animation: hero-entrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: hero-entrance 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .hero-enter-1 { animation-delay: 0ms; }
-.hero-enter-2 { animation-delay: 120ms; }
-.hero-enter-3 { animation-delay: 240ms; }
-.hero-enter-4 { animation-delay: 360ms; }
-.hero-enter-5 { animation-delay: 480ms; }
-.hero-enter-6 { animation-delay: 600ms; }
+.hero-enter-2 { animation-delay: 50ms; }
+.hero-enter-3 { animation-delay: 100ms; }
+.hero-enter-4 { animation-delay: 150ms; }
+.hero-enter-5 { animation-delay: 200ms; }
+.hero-enter-6 { animation-delay: 250ms; }
 
 /* Ticker marquee */
 @keyframes ticker-scroll {
