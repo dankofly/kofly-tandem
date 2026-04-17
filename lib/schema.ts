@@ -562,6 +562,13 @@ export function siteNavigationSchema(locale: string = "de") {
         description: "Fluggebiete und Tandem-Optionen für Urlauber",
         url: `${base}/paragleiten`,
       },
+      {
+        "@type": "SiteNavigationElement",
+        position: 10,
+        name: "Tandemflug Osttirol",
+        description: "Tandem-Paragliding in Lienz, Sillian, Matrei, Kals und Defereggen – alle 7 Fluggebiete",
+        url: `${base}/tandemflug-osttirol`,
+      },
     ],
   };
 }

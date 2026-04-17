@@ -130,6 +130,7 @@ export default function Footer() {
                   { label: t("urlaubOsttirol"), href: "/urlaub" },
                   { label: t("anreise"), href: "/anreise" },
                   { label: t("paragleiten"), href: "/paragleiten" },
+                  { label: t("tandemflugOsttirol"), href: "/tandemflug-osttirol" },
                 ].map((link) => (
                   <li key={link.href}>
                     <Link

@@ -1,4 +1,5 @@
 import { getTranslations, getLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import Hero from "@/components/Hero";
 import Ticker from "@/components/Ticker";
 import StatsBar from "@/components/StatsBar";
@@ -22,6 +23,7 @@ const FAQ_KEYS = [
 export default async function HomePage() {
   const locale = await getLocale();
   const t = await getTranslations({ locale, namespace: "FAQ" });
+  const tRegional = await getTranslations({ locale, namespace: "HomeRegional" });
 
   const faqItems = FAQ_KEYS.map((key) => ({
     name: t(`q${key}`),
@@ -42,6 +44,44 @@ export default async function HomePage() {
       <StatsBar />
       <Reviews />
       <WhyUs />
+
+      {/* Regional coverage – internal link to /tandemflug-osttirol */}
+      <section className="py-16 lg:py-20">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="glass-card border-accent-500/20 p-6 sm:p-10">
+            <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
+              {tRegional("tagline")}
+            </p>
+            <h2 className="mt-3 text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+              {tRegional("title")}
+            </h2>
+            <div className="mt-5 section-divider !mx-0" />
+            <p className="mt-6 text-base text-content-body leading-relaxed font-light">
+              {tRegional("text")}
+            </p>
+            <Link
+              href="/tandemflug-osttirol"
+              className="mt-6 inline-flex items-center gap-2 text-sm text-accent-400 hover:text-accent-500 transition-colors font-medium"
+            >
+              {tRegional("cta")}
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <Packages />
       <Gallery />
       <FAQ />

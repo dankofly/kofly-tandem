@@ -430,7 +430,22 @@ export default async function UrlaubPage() {
       {/* Cross-Links */}
       <section className="py-12 lg:py-16">
         <div className="max-w-3xl mx-auto px-6">
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <Link href="/tandemflug-osttirol" className="block group">
+              <div className="glass-card card-hover-glow p-6 h-full border-accent-500/20">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
+                    {t("crosslinkTandemflugOsttirolTitle")}
+                  </h3>
+                  <svg className="w-4 h-4 text-accent-500 shrink-0 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+                <p className="mt-2 text-sm text-content-body font-light">
+                  {t("crosslinkTandemflugOsttirolP")}
+                </p>
+              </div>
+            </Link>
             <Link href="/anreise" className="block group">
               <div className="glass-card card-hover-glow p-6 h-full">
                 <div className="flex items-center justify-between">
