@@ -137,49 +137,19 @@ export default async function LocaleLayout({ children, params }: Props) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema(locale)),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(serviceSchema(locale)),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(voucherServiceSchema(locale)),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(webSiteSchema(locale)),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(productSchema(locale)),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(touristAttractionSchema(locale)),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(siteNavigationSchema(locale)),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(personSchema(locale)),
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                organizationSchema(locale),
+                serviceSchema(locale),
+                voucherServiceSchema(locale),
+                webSiteSchema(locale),
+                productSchema(locale),
+                touristAttractionSchema(locale),
+                siteNavigationSchema(locale),
+                personSchema(locale),
+              ],
+            }),
           }}
         />
         <ThemeProvider>

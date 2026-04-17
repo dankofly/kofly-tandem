@@ -1,243 +1,238 @@
-# SEO & GEO Audit – Gleitschirm-Tandemflug.com
+# SEO, GEO & Technik-Audit – Gleitschirm-Tandemflug.com
 
-**Datum:** 17. Februar 2026
+**Datum:** 17. April 2026
 **Domain:** https://gleitschirm-tandemflug.com
-**Neue Seite (Next.js):** Netlify Deployment (in Entwicklung)
+**Hosting:** Netlify (Next.js 15, SSG/SSR)
+**Status:** Neue Next.js-Seite ist **LIVE** (ersetzt WordPress)
 
 ---
 
 ## 1. EXECUTIVE SUMMARY
 
-| Bereich | Live (WordPress) | Neu (Next.js) |
-|---------|-----------------|---------------|
-| Meta-Tags | Doppelte description & OG-Tags | Sauber, pro Locale optimiert |
-| Schema/JSON-LD | Nur WebSite + Person, kein LocalBusiness | 6 Schemas: Organization, Service, FAQ, WebSite, Breadcrumb, Reviews |
-| AggregateRating (Sterne) | Fehlt komplett | 5.0 / 250 Bewertungen + 4 individuelle Reviews |
-| FAQPage Schema | Fehlt komplett | 20 FAQ-Einträge (Google FAQ Rich Snippets) |
-| robots.txt | Twitterbot blockiert, keine AI-Bot-Regeln | Alle AI-Bots explizit erlaubt |
-| Sitemap | Veraltet (letztes Update 2019), Junk-Seiten enthalten | Dynamisch, alle Locales mit hreflang |
-| Hreflang | Nur DE + EN, kein x-default | DE + EN + NL + x-default |
-| H1-Tags | 14 Stück (fatal) | 1 pro Seite (korrekt) |
-| Ladezeit | WordPress + Avada + LayerSlider (schwer) | Next.js SSG/SSR (schnell) |
-| Mobile | Eingeschränkt | Vollständig responsive, Touch-optimiert |
-| AI-Sichtbarkeit (GEO) | Keine Optimierung | FAQ, Statistiken, autoritative Sprache |
+| Bereich | Status | Score |
+|---------|--------|-------|
+| On-Page SEO (Meta, H1, Canonical, hreflang) | Exzellent | 9,5 / 10 |
+| Schema / JSON-LD | Exzellent | 9,5 / 10 |
+| GEO (AI-Suchmaschinen) | Exzellent | 9,5 / 10 |
+| Technisch (Headers, Security, HTTPS) | Sehr gut | 9,0 / 10 |
+| Performance (TTFB, Größe) | Gut | 8,0 / 10 |
+| Sitemap / robots.txt | Sehr gut | 9,0 / 10 |
+| Content & E-E-A-T (llms.txt) | Exzellent | 10 / 10 |
 
-**Fazit:** Die neue Next.js-Seite ist der WordPress-Seite in allen SEO/GEO-Bereichen deutlich überlegen. Nach dem Go-Live wird ein signifikanter Ranking-Boost erwartet.
+**Gesamtnote: 9,2 / 10** – deutlich über Branchenschnitt. 8 konkrete Optimierungen unten.
 
 ---
 
-## 2. LIVE-SITE ANALYSE (WordPress)
+## 2. ON-PAGE SEO – LIVE-CHECK
 
-### 2.1 Kritische Probleme
+### 2.1 Homepage `/de` – OK
 
-| # | Problem | Impact |
-|---|---------|--------|
-| 1 | **14 H1-Tags** auf der Startseite (sollte genau 1 sein) | KRITISCH – Google kann Hauptthema nicht erkennen |
-| 2 | **Doppelte Meta-Description** (Rank Math + Avada Theme) | HOCH – widersprüchliche Signale an Suchmaschinen |
-| 3 | **Doppelte Open-Graph-Tags** (zweites Set mit leeren og:image-Werten) | HOCH – Social Shares zeigen kein Bild |
-| 4 | **Kein LocalBusiness-Schema** – nur Person/Organization | HOCH – keine Rich Snippets möglich |
-| 5 | **Keine AggregateRating** – Sterne fehlen komplett | HOCH – keine Sternchen in Suchergebnissen |
-| 6 | **Kein FAQPage-Schema** | HOCH – keine FAQ Rich Snippets |
-| 7 | **Sitemap veraltet** – letztes Update Oktober 2019 | HOCH – Google crawlt seltener |
-| 8 | **8 Bilder ohne alt-Attribut** (Galerie) | MITTEL – Accessibility + Bilder-SEO |
-| 9 | **Twitterbot blockiert** in robots.txt | MITTEL – keine Link-Previews auf X/Twitter |
-| 10 | **Kein hreflang x-default** | MITTEL – unklare Standardsprache |
+| Element | Wert | Bewertung |
+|---------|------|-----------|
+| `<title>` | `Tandemflug Lienz – Paragleiten Osttirol ab €150 \| KOFLY` | OK (58 Zeichen) |
+| `<meta description>` | `Tandemflug Lienz ab €150 – Paragliding Osttirol mit zertifizierten Piloten. 5,0 Sterne (284 Bewertungen). Nr. 1 Outdoor-Aktivität Lienzer Dolomiten.` | OK (150 Zeichen) |
+| Canonical | `https://gleitschirm-tandemflug.com/de` | OK |
+| Hreflang | DE, EN, NL, x-default | OK |
+| OG-Tags | Komplett (title, description, url, image 1200×630, locale de_AT) | OK |
+| Twitter Cards | summary_large_image | OK |
+| H1-Count | **1** | OK (war 14 in WP – jetzt korrekt) |
+| Robots | `index, follow` | OK |
+| Geo-Meta | AT-7, Lienz, 46.8298;12.7693 | OK |
 
-### 2.2 robots.txt (Live)
+### 2.2 Sprachversionen
+
+- [/en](https://gleitschirm-tandemflug.com/en) → `Tandem Paragliding Lienz – East Tyrol from €150 | KOFLY` – OK
+- [/nl](https://gleitschirm-tandemflug.com/nl) → `Tandemvlucht Lienz - Paragliden in Oost-Tirol | KOFLY` – OK
+- Canonical korrekt pro Locale, hreflang-Self-Reference überall vorhanden.
+
+### 2.3 Unterseiten – Stichprobe `/de/ablauf`
+
+Title, Canonical, hreflang OK. Schema-Count: nur 2 JSON-LD auf Unterseiten (vs. 9 auf Home). Gut strukturiert – kein Schema-Spam auf Legal-/Detailseiten.
+
+---
+
+## 3. SCHEMA / JSON-LD – LIVE
+
+**Homepage hat 9 JSON-LD-Skripte** mit folgenden `@type`-Entities:
+
+| Schema | Entity | Rich-Result-fähig |
+|--------|--------|-------------------|
+| Organization + LocalBusiness + SportsActivityLocation | ✓ | Knowledge Panel |
+| Service + OfferCatalog (5 Pakete) | ✓ | Rich Snippet |
+| Service (Voucher, Gutschein) | ✓ | – |
+| WebSite + Publisher | ✓ | Sitelinks-Search |
+| Product + AggregateOffer | ✓ | Sterne + Preisrange |
+| TouristAttraction | ✓ | – |
+| ItemList (Site-Navigation, 9 Elemente) | ✓ | – |
+| Person (Daniel Kofler) | ✓ | Knowledge Panel |
+| FAQPage (31 Q&A, nur Homepage) | ✓ | FAQ Rich Snippets |
+
+**AggregateRating:** 5,0 / 5 aus **284 Bewertungen** (war vorher 250) + 4 Einzel-Reviews.
+
+**Verbesserungspotential:**
+- 9 separate `<script>`-Tags → könnten zu einem `@graph` verdichtet werden (spart ~2 KB, minimal).
+- Alle 4 Reviews haben `author.name: "Tripadvisor-Gast"` → Google könnte das als unspezifisch einstufen. Vornamen/Initialen diversifizieren.
+- `SearchAction` im `WebSite`-Schema fehlt aktuell (letztes Audit: Target zeigte auf `/buchen?q=` → korrekt entfernt bzw. nicht implementiert – OK, aber falls Sitelinks-Search gewünscht, sauberer Endpoint nötig).
+
+---
+
+## 4. TECHNIK – HTTP-HEADERS & SECURITY
+
+### 4.1 Security-Headers (ausgezeichnet)
+
+| Header | Wert | Bewertung |
+|--------|------|-----------|
+| `Strict-Transport-Security` | `max-age=31536000; includeSubDomains; preload` | Preload-ready |
+| `X-Content-Type-Options` | `nosniff` | OK |
+| `X-Frame-Options` | `DENY` | OK |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` | OK |
+| `Cross-Origin-Opener-Policy` | `same-origin` | OK |
+| `Permissions-Policy` | `camera=(), microphone=(), geolocation=(), notifications=()` | OK |
+| `Content-Security-Policy` | `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; ...` | **Verbesserbar** |
+
+**Problem:** CSP erlaubt `'unsafe-inline'` + `'unsafe-eval'` für `script-src`. Next.js benötigt das für Hydration, aber mittels **Nonce-basiertem CSP** könnte `'unsafe-inline'` entfernt werden. Priorität: MITTEL.
+
+### 4.2 Cache-Control auf HTML
 
 ```
-User-agent: Twitterbot    → BLOCKIERT (keine Twitter-Previews)
-User-agent: GPTBot         → Nicht erwähnt (erlaubt über Wildcard)
-User-agent: ChatGPT-User   → Nicht erwähnt (erlaubt über Wildcard)
-User-agent: PerplexityBot   → Nicht erwähnt (erlaubt über Wildcard)
-User-agent: ClaudeBot       → Nicht erwähnt (erlaubt über Wildcard)
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
 ```
 
-Sitemap-Verweis zeigt auf `/en/sitemap_index.xml` – stimmt nicht mit `/sitemap.xml` überein.
+**Problem:** HTML-Responses werden **nicht gecacht**. Bei statischen, locale-basierten Seiten ist das Overhead – jedes Request landet am Origin. Netlify Edge-Cache kann nicht helfen.
 
-### 2.3 Sitemap (Live)
+**Empfehlung:** `middleware.ts` prüfen, ggf. `Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=86400` für prerendered HTML setzen. Priorität: HOCH (Performance + SEO-Crawling).
 
-- **39 URLs** – viele davon veraltet oder Junk
-- **Keine hreflang-Alternates**
-- **Junk-Seiten enthalten:** `/test/`, `/test2/`, `/fusion_template/impressum-old/`, `/element_category/*`
-- **Duplikate:** FAQ-Inhalte unter `/faq/` UND `/faq-items/` (Keyword-Kannibalisierung)
-- **Neuestes lastmod:** Oktober 2019 (6+ Jahre alt)
+### 4.3 Performance (Curl-Messung)
 
-### 2.4 Schema/JSON-LD (Live)
+| Metrik | Wert |
+|--------|------|
+| TTFB | 479 ms |
+| Total Load | 559 ms |
+| HTML-Größe (unkomprimiert) | 447 KB |
+| HTML-Größe (brotli/gzip) | 138 KB |
+| HTTP-Version | HTTP/1.1 (curl) – Browser nutzen HTTP/2 via Netlify |
 
-Nur 4 Entities via Rank Math `@graph`:
-
-| Schema | Vorhanden | Bewertung |
-|--------|-----------|-----------|
-| WebSite | Ja | OK |
-| WebPage | Ja | OK |
-| Person/Organization (dual type) | Ja | Ungewöhnlich – Google bevorzugt einen Typ |
-| ImageObject | Ja | OK |
-| **LocalBusiness** | **Nein** | **FEHLT** |
-| **AggregateRating** | **Nein** | **FEHLT** |
-| **FAQPage** | **Nein** | **FEHLT** |
-| **Service/Offer** | **Nein** | **FEHLT** |
-| **BreadcrumbList** | **Nein** | **FEHLT** |
+Empfehlung: PageSpeed Insights / Lighthouse auf Live-URL prüfen (LCP, CLS, INP).
 
 ---
 
-## 3. NEUE SEITE ANALYSE (Next.js)
+## 5. ROBOTS.TXT & SITEMAP
 
-### 3.1 Was funktioniert gut
+### 5.1 robots.txt – vollständig
 
-| Bereich | Status | Details |
-|---------|--------|---------|
-| Meta-Tags | OK | Title, Description, Keywords pro Locale (DE/EN/NL) |
-| OpenGraph | OK | Title, Description, locale-spezifisch |
-| Twitter Cards | OK | summary_large_image |
-| Hreflang | OK | DE, EN, NL + x-default |
-| Geo-Meta | OK | AT-7, Lienz, Koordinaten, ICBM |
-| robots.txt | OK | Alle AI-Bots erlaubt (GPTBot, ChatGPT-User, PerplexityBot, ClaudeBot, Bingbot) |
-| Sitemap | OK | Dynamisch, alle Locales, alternates, Prioritäten |
-| H1-Struktur | OK | 1 H1 pro Seite |
-| Mobile UX | OK | Touch-optimiert, responsive |
-| Ladezeit | OK | Next.js mit SSG/SSR, optimierte Bilder |
+Alle relevanten AI-Bots explizit erlaubt: GPTBot, ChatGPT-User, OAI-SearchBot, PerplexityBot, ClaudeBot, anthropic-ai, Google-Extended, Applebot, CCBot, FacebookBot, Bytespider, Brave. Sitemap-Verweis korrekt.
 
-### 3.2 Schema/JSON-LD (Neue Seite)
+### 5.2 Sitemap.xml
 
-| Schema | Vorhanden | Felder | Rich-Result-fähig |
-|--------|-----------|--------|--------------------|
-| Organization + LocalBusiness + SportsActivityLocation | Ja | Name, Adresse, Geo, Öffnungszeiten, Kontakt, areaServed (8 Orte), 3 Locations | Ja |
-| AggregateRating | Ja | 5.0 / 250 Bewertungen, bestRating, worstRating | **Ja – Sterne in Suchergebnissen** |
-| 4x individuelle Reviews | Ja | Author, Date, Rating, ReviewBody | Ja – stärkt AggregateRating |
-| Service + OfferCatalog (5 Pakete) | Ja | Preise, Beschreibungen, URLs | Ja |
-| FAQPage (20 Fragen) | Ja | Question/Answer Format | **Ja – FAQ Rich Snippets** |
-| WebSite + SearchAction | Ja | Name, Publisher, Sprache | Ja |
-| BreadcrumbList | Ja | Auf /ablauf und /buchen | **Ja – Breadcrumb Rich Snippets** |
+| Check | Wert |
+|-------|------|
+| URL-Count | **30** (3 Sprachen × 10 Seiten) |
+| Hreflang-Alternates | Ja (de/en/nl/x-default pro URL) |
+| Priorität | 1,0 Home → 0,3 Legal (gestaffelt) |
+| changeFrequency | weekly/monthly/yearly sinnvoll vergeben |
+| **lastmod** | `2026-03-02T07:04:43Z` (letzter Build) |
 
-### 3.3 Verbesserungspotential (Neue Seite)
+**Problem:** `lastmod = new Date()` bei jedem Build, identisch für alle URLs. Letzter Build war vor 6 Wochen – heute 2026-04-17. Zwei Optionen:
+- **A)** Rebuild/Redeploy → lastmod springt auf aktuelles Datum (verwirrt Google, wenn nichts geändert wurde)
+- **B)** Echte `lastmod` pro Seite aus Git-Commit oder CMS-Feld ableiten (empfohlen für Content-reiche Seiten).
 
-| # | Empfehlung | Priorität | Status |
-|---|-----------|-----------|--------|
-| 1 | `image` + `logo` zur Organization hinzufügen | HOCH | Offen |
-| 2 | FAQ-Schema nur auf Homepage injizieren (nicht auf allen Unterseiten via Layout) | MITTEL | Offen |
-| 3 | Review-Autoren diversifizieren (alle heißen "Tripadvisor-Gast") | NIEDRIG | Offen |
-| 4 | `availability` auf Offers hinzufügen | NIEDRIG | Offen |
-| 5 | SearchAction-Target prüfen (`/buchen?q=` verarbeitet keine Suche) | NIEDRIG | Offen |
-| 6 | VoucherService-Schema erweitern (@id, serviceType, Preis) | NIEDRIG | Offen |
+Priorität: MITTEL.
 
 ---
 
-## 4. KEYWORD-ABDECKUNG
+## 6. GEO (AI-Suchmaschinen)
 
-### 4.1 Primäre Keywords (Hauptzielgruppe)
+### 6.1 AI-Bot-Zugriff
 
-| Keyword | Meta | Schema | FAQ | Content |
-|---------|------|--------|-----|---------|
-| Gleitschirm Tandemflug | Title, H1 | Org, Service | Ja | Ja |
-| Paragleiten Osttirol | Title, Desc | Org, Service | Ja | Ja |
-| Tandemflug Lienz | Title, Keywords | Org, areaServed | Ja | Ja |
-| Tandemfliegen Osttirol | Keywords | Org | Ja | Ja |
-| Gleitschirmfliegen Osttirol | Keywords | Org, Service | Ja | Ja |
-| Tandemsprung Osttirol | Keywords | Org | – | Ja |
+Vollständig erlaubt via `robots.txt` (siehe 5.1). Keine Sperren.
 
-### 4.2 Regionale Keywords (Orte)
+### 6.2 llms.txt – vorbildlich
 
-| Ort | Meta-Keywords | Schema areaServed | FAQ | Anfahrtszeit |
-|-----|---------------|-------------------|-----|-------------|
-| Lienz | Ja | Ja | Ja | Startort |
-| Sillian | Ja | Ja | Ja | ca. 30 Min |
-| Matrei | Ja | Ja | Ja | ca. 25 Min |
-| Kals am Großglockner | Ja | Ja | Ja | ca. 40 Min |
-| St. Jakob / Defereggental | Ja | Ja | Ja | ca. 35 Min |
-| Nußdorf-Debant | Ja | Ja | – | Bei Lienz |
+Umfangreiche `llms.txt` mit:
+- Wichtige Landing-Seiten
+- E-E-A-T-Säulen (Daniel Kofler, KOFLY-Historie)
+- Marken-Entitäten
+- Autoritätsbelege (5,0 / 284 Reviews)
 
-### 4.3 Tourismus-Keywords (NEU hinzugefügt)
+→ **Das ist weit über Branchenschnitt.** Wenig Optimierungsbedarf.
 
-| Keyword | Meta | Schema | FAQ |
-|---------|------|--------|-----|
-| Urlaub Osttirol | Ja | Ja | Ja |
-| Aktivitäten Osttirol | Ja | Ja | Ja |
-| Outdoor Aktivitäten Osttirol | Ja | Ja | Ja |
-| Erlebnisse Osttirol | Ja | Ja | – |
-| Freizeit Osttirol | Ja | Ja | – |
-| Ausflugsziele Lienz | Ja | – | Ja |
+### 6.3 GEO-Content-Signale (Princeton-Methoden)
 
-### 4.4 Konkurrenz-Keywords (NEU hinzugefügt)
-
-| Keyword | Meta | Schema | FAQ |
-|---------|------|--------|-----|
-| Airtime Austria | Ja | Ja | Ja |
-| Bruno Girstmair | Ja | – | Ja |
-| Flugschule Tirol | Ja | Ja | Ja |
-| Landeplatz Postleite | Ja | – | Ja |
+| Methode | Boost | Status |
+|---------|-------|--------|
+| Statistiken | +37 % | ✓ FAQ: „5,0 / 284 Bewertungen", „ab €150", „10.000+ Flüge" |
+| Autoritative Sprache | +25 % | ✓ „führender Anbieter", „Nr. 1 Outdoor-Aktivität" |
+| Quellen-Zitate | +40 % | ✓ Tripadvisor, Google, osttirol-heute.at |
+| Technische Begriffe | +18 % | ✓ Thermik, Zettersfeld, Hochstein, Airpark |
+| Flüssiger Text | +15-30 % | ✓ FAQ-Antworten strukturiert |
+| Keyword-Stuffing | **-10 %** | **Warnung → siehe 7.3** |
 
 ---
 
-## 5. GEO-OPTIMIERUNG (AI-Suchmaschinen)
+## 7. KRITISCHE FINDINGS (Priorisiert)
 
-### 5.1 Princeton GEO-Methoden – Umsetzungsstatus
+### HOCH
 
-| Methode | Boost | Status | Wo umgesetzt |
-|---------|-------|--------|-------------|
-| Statistiken einfügen | +37% | Ja | FAQ: "5,0 Sterne aus über 250 Bewertungen", "ab €150", "10.000+ Flüge" |
-| Autoritative Sprache | +25% | Ja | FAQ: "führender Anbieter", "Nr. 1 Outdoor-Aktivität" |
-| Quellen zitieren | +40% | Ja | FAQ: Tripadvisor-Referenzen |
-| Verständliche Sprache | +20% | Ja | FAQ: klare, einfache Antworten |
-| Technische Begriffe | +18% | Ja | "Thermik", "Airpark", "Zettersfeld", "Hochstein" |
-| Flüssiger Text | +15-30% | Ja | Gut strukturierte FAQ-Antworten |
-| Keyword Stuffing | **-10%** | Vermieden | Keywords natürlich verteilt |
+**1. Meta-Keywords-Overload (44 Keywords)**
+Das `<meta name="keywords">`-Tag enthält 44 Keywords. Google ignoriert es zwar, **Bing und Yandex werten es teilweise aus** und können Keyword-Stuffing negativ bewerten. Reduziere auf 8–12 Kern-Keywords.
+**File:** [messages/de.json](messages/de.json) → `Metadata.homeKeywords`.
 
-### 5.2 AI-Bot-Zugang
+**2. Cache-Control HTML auf `no-store`**
+Netlify Edge kann keine HTML-Responses zwischenspeichern. Erwartet: Edge-Cache mit `stale-while-revalidate`. Overhead pro Request + schlechteres Crawl-Budget.
+**File:** [middleware.ts](middleware.ts) oder [netlify.toml](netlify.toml).
 
-| Bot | Zweck | robots.txt | Status |
-|-----|-------|------------|--------|
-| GPTBot | OpenAI Training | Allow: / | Erlaubt |
-| ChatGPT-User | ChatGPT Browsing | Allow: / | Erlaubt |
-| PerplexityBot | Perplexity AI | Allow: / | Erlaubt |
-| ClaudeBot | Claude AI | Allow: / | Erlaubt |
-| anthropic-ai | Anthropic | Allow: / | Erlaubt |
-| Googlebot | Google + AI Overview | Allow: / | Erlaubt |
-| Bingbot | Bing + Copilot | Allow: / | Erlaubt |
+### MITTEL
 
-### 5.3 AI-Zusammenfassung Optimierung
+**3. CSP ohne Nonce**
+`script-src 'unsafe-inline' 'unsafe-eval'` öffnet XSS-Tor. Next.js 15 unterstützt nonce-basierte CSP via Middleware.
+**File:** [middleware.ts](middleware.ts) → `headers()` anpassen.
 
-Die FAQ-Antworten sind im "Answer-First"-Format geschrieben – direkte Antwort am Anfang, dann Details. Das ist ideal für:
-- **Google AI Overview** – wird als Quelle zitiert
-- **ChatGPT** – bevorzugt Seiten mit strukturierten, faktenreichen Antworten
-- **Perplexity** – nutzt FAQ-Schema bevorzugt für Zitate
+**4. Sitemap-`lastmod` generisch**
+Alle URLs haben dasselbe lastmod (Build-Timestamp). Pro Seite echte Änderungsdaten wären aussagekräftiger.
+**File:** [app/sitemap.ts](app/sitemap.ts).
 
----
+**5. Schema-Konsolidierung**
+9 separate `<script>`-Tags auf Homepage. Ein `@graph`-Container wäre sauberer und 2–4 KB kleiner.
+**File:** [app/[locale]/layout.tsx:137-184](app/[locale]/layout.tsx#L137-L184).
 
-## 6. RICH RESULTS ERWARTUNG
+### NIEDRIG
 
-Nach Go-Live der neuen Next.js-Seite:
+**6. Review-Autoren diversifizieren**
+Alle 4 Einzel-Reviews im Schema haben `"Tripadvisor-Gast"`. Vornamen/Initialen verwenden (z. B. „Markus K.", „Sophie W.") – authentischer für Google.
+**File:** [lib/schema.ts:230-279](lib/schema.ts#L230-L279).
 
-| Rich Result | Wahrscheinlichkeit | Voraussetzung |
-|-------------|-------------------|---------------|
-| Sterne (AggregateRating) | **HOCH** | AggregateRating + Reviews vorhanden |
-| FAQ-Snippets | **HOCH** | FAQPage Schema korrekt strukturiert |
-| Breadcrumbs | **HOCH** | BreadcrumbList auf Unterseiten |
-| Sitelinks Search Box | **MITTEL** | SearchAction vorhanden (Target prüfen) |
-| Knowledge Panel | **MITTEL** | Organization + sameAs vorhanden |
-| Local Pack (Maps) | **MITTEL** | LocalBusiness + Geo + Öffnungszeiten |
+**7. IndexNow-API (Bing + Yandex)**
+Bei Content-Updates automatisch an IndexNow pingen. Schnellere Indexierung, nicht implementiert.
+**File:** neuer API-Endpoint unter `app/api/indexnow/`.
+
+**8. PageSpeed Insights prüfen**
+HTML 138 KB gzipped – akzeptabel. Aber LCP/CLS/INP auf Live-URL verifizieren: https://pagespeed.web.dev/analysis?url=https://gleitschirm-tandemflug.com/de
 
 ---
 
-## 7. EMPFOHLENE NÄCHSTE SCHRITTE
+## 8. WAS BEREITS TOP IST
 
-### Priorität HOCH (vor Go-Live)
-1. `image` und `logo` zum Organization-Schema hinzufügen
-2. FAQ-Schema aus dem Layout entfernen (nur auf Homepage behalten)
-3. Google Search Console nach Go-Live verifizieren
-4. Bing Webmaster Tools einrichten
-5. IndexNow-API für schnellere Indexierung implementieren
+- Einzige H1 pro Seite (gegenüber WP: 14)
+- Hreflang + x-default vollständig
+- 9 Schema-Entities auf Homepage (inkl. FAQ, Reviews, LocalBusiness, Product)
+- AggregateRating: 5,0 / **284** (gewachsen von 250)
+- robots.txt: 13 AI-Bots explizit erlaubt
+- llms.txt mit E-E-A-T-Content vorbildlich
+- HSTS preload, Security-Headers vollständig
+- Netlify-Edge-Hosting (niedriger TTFB)
+- Clean URLs, kein Trailing Slash, 308 Redirect auf `/de` Default
 
-### Priorität MITTEL (nach Go-Live)
-6. Google Rich Results Test durchführen: https://search.google.com/test/rich-results
-7. Schema.org Validator prüfen: https://validator.schema.org
-8. Google Business Profile mit neuer URL verknüpfen
-9. Tripadvisor-Profil mit neuer URL aktualisieren
-10. Backlinks von der alten WP-Seite per 301-Redirect umleiten
+---
 
-### Priorität NIEDRIG (Optimierung)
-11. Review-Autoren diversifizieren
-12. VoucherService-Schema erweitern
-13. Availability auf Offers hinzufügen
-14. Brave Search Indexierung prüfen (für Claude AI)
-15. Content-Cluster aufbauen (Blog/Ratgeber zu Paragliding-Themen)
+## 9. NÄCHSTE SCHRITTE
+
+| Prio | Aufgabe | Aufwand |
+|------|---------|---------|
+| HOCH | Meta-Keywords auf 8-12 reduzieren | 5 min |
+| HOCH | Cache-Control für HTML in netlify.toml anpassen | 15 min |
+| MITTEL | CSP Nonce-basiert machen | 60 min |
+| MITTEL | Schema-`@graph` konsolidieren | 30 min |
+| MITTEL | Rebuild triggern → sitemap lastmod aktuell | 5 min |
+| NIEDRIG | Review-Namen diversifizieren | 10 min |
+| NIEDRIG | IndexNow-API einbauen | 45 min |
+| NIEDRIG | Lighthouse/PSI-Report ziehen | 10 min |

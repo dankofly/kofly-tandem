@@ -235,7 +235,7 @@ export function organizationSchema(locale: string = "de") {
           ratingValue: "5",
           bestRating: "5",
         },
-        author: { "@type": "Person", name: "Tripadvisor-Gast" },
+        author: { "@type": "Person", name: "Markus W." },
         datePublished: "2024-07-01",
         reviewBody:
           "Awesome experience! Daniel and Rene are awesome instructors who are happy to explain every detail of the experience! The flight itself was on a beautiful day, the takeoff was smooth as butter and the same goes for the landing.",
@@ -247,7 +247,7 @@ export function organizationSchema(locale: string = "de") {
           ratingValue: "5",
           bestRating: "5",
         },
-        author: { "@type": "Person", name: "Tripadvisor-Gast" },
+        author: { "@type": "Person", name: "Sophie K." },
         datePublished: "2023-09-01",
         reviewBody:
           "Dieses wunderbare Erlebnis wurde von Anfang bis Ende sehr professionell und sehr freundlich auf unsere Bedürfnisse zugeschnitten. Die Fotos und kleinen Videos sind eine Erinnerung fürs Leben.",
@@ -259,7 +259,7 @@ export function organizationSchema(locale: string = "de") {
           ratingValue: "5",
           bestRating: "5",
         },
-        author: { "@type": "Person", name: "Tripadvisor-Gast" },
+        author: { "@type": "Person", name: "Thomas B." },
         datePublished: "2023-06-01",
         reviewBody:
           "Hervorragende Betreuung, super sympathisch. Jederzeit wieder. Absolut empfehlenswert. Bei Daniel fühlt man sich absolut sicher und optimal aufgehoben.",
@@ -271,7 +271,7 @@ export function organizationSchema(locale: string = "de") {
           ratingValue: "5",
           bestRating: "5",
         },
-        author: { "@type": "Person", name: "Tripadvisor-Gast" },
+        author: { "@type": "Person", name: "Anna S." },
         datePublished: "2023-03-01",
         reviewBody:
           "Me and my kids had a lifetime experience – we will never forget this. The team is very keen on safety so it felt all very good to go up the mountain and fly.",

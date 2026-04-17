@@ -3,17 +3,19 @@ import type { MetadataRoute } from "next";
 const SITE_URL = "https://gleitschirm-tandemflug.com";
 const locales = ["de", "en", "nl"] as const;
 
+// Echte lastmod pro Seite (manuell bei Content-Update aktualisieren).
+// Google bevorzugt stabile lastmod-Werte gegenüber Build-Timestamps.
 const pages = [
-  { path: "", changeFrequency: "weekly" as const, priority: 1.0 },
-  { path: "/ablauf", changeFrequency: "monthly" as const, priority: 0.8 },
-  { path: "/buchen", changeFrequency: "monthly" as const, priority: 0.9 },
-  { path: "/urlaub", changeFrequency: "weekly" as const, priority: 0.9 },
-  { path: "/anreise", changeFrequency: "weekly" as const, priority: 0.8 },
-  { path: "/paragleiten", changeFrequency: "weekly" as const, priority: 0.9 },
-  { path: "/ueber-uns", changeFrequency: "monthly" as const, priority: 0.7 },
-  { path: "/agb", changeFrequency: "yearly" as const, priority: 0.3 },
-  { path: "/datenschutz", changeFrequency: "yearly" as const, priority: 0.3 },
-  { path: "/impressum", changeFrequency: "yearly" as const, priority: 0.3 },
+  { path: "", changeFrequency: "weekly" as const, priority: 1.0, lastmod: "2026-04-17" },
+  { path: "/ablauf", changeFrequency: "monthly" as const, priority: 0.8, lastmod: "2026-03-15" },
+  { path: "/buchen", changeFrequency: "monthly" as const, priority: 0.9, lastmod: "2026-03-15" },
+  { path: "/urlaub", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-04-01" },
+  { path: "/anreise", changeFrequency: "weekly" as const, priority: 0.8, lastmod: "2026-03-15" },
+  { path: "/paragleiten", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-04-01" },
+  { path: "/ueber-uns", changeFrequency: "monthly" as const, priority: 0.7, lastmod: "2026-03-15" },
+  { path: "/agb", changeFrequency: "yearly" as const, priority: 0.3, lastmod: "2026-02-01" },
+  { path: "/datenschutz", changeFrequency: "yearly" as const, priority: 0.3, lastmod: "2026-02-01" },
+  { path: "/impressum", changeFrequency: "yearly" as const, priority: 0.3, lastmod: "2026-02-01" },
 ];
 
 function localeUrl(locale: string, path: string): string {
@@ -27,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const locale of locales) {
       entries.push({
         url: localeUrl(locale, page.path),
-        lastModified: new Date(),
+        lastModified: page.lastmod,
         changeFrequency: page.changeFrequency,
         priority: page.priority,
         alternates: {

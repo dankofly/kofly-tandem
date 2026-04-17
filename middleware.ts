@@ -19,6 +19,15 @@ export default function middleware(request: NextRequest) {
     }
   }
 
+  // Perf: Netlify-Edge darf HTML 1h cachen + 1d stale-while-revalidate servieren.
+  // Überschreibt den Next.js-Default `private, no-cache, no-store` für statische Locale-Seiten.
+  if (response.status === 200) {
+    response.headers.set(
+      "Cache-Control",
+      "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400"
+    );
+  }
+
   return response;
 }
 
