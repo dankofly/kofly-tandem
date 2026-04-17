@@ -126,11 +126,15 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {[
                   { label: t("terminAnfragen"), href: "/buchen" },
-                  { label: t("gutscheinBestellen"), href: "/buchen#gutschein" },
+                  { label: t("classicflug"), href: "/classicflug" },
+                  { label: t("premiumflug"), href: "/premiumflug" },
+                  { label: t("thermikflug"), href: "/thermikflug" },
+                  { label: t("gutschein"), href: "/gutschein" },
+                  { label: t("tandemflugOsttirol"), href: "/tandemflug-osttirol" },
+                  { label: t("paragleiten"), href: "/paragleiten" },
+                  { label: t("sicherheit"), href: "/sicherheit" },
                   { label: t("urlaubOsttirol"), href: "/urlaub" },
                   { label: t("anreise"), href: "/anreise" },
-                  { label: t("paragleiten"), href: "/paragleiten" },
-                  { label: t("tandemflugOsttirol"), href: "/tandemflug-osttirol" },
                 ].map((link) => (
                   <li key={link.href}>
                     <Link

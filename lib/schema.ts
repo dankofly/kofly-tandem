@@ -740,6 +740,40 @@ export function personSchema(locale: string = "de") {
   };
 }
 
+export function packageProductSchema(opts: {
+  name: string;
+  description: string;
+  price: string;
+  url: string;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: opts.name,
+    description: opts.description,
+    image: opts.image || `${SITE_URL}/images/hero-1771273007982.webp`,
+    url: opts.url,
+    brand: { "@type": "Brand", name: "KOFLY" },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      bestRating: "5",
+      worstRating: "1",
+      ratingCount: "284",
+      reviewCount: "284",
+    },
+    offers: {
+      "@type": "Offer",
+      price: opts.price,
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+      url: opts.url,
+      seller: { "@id": `${SITE_URL}/#organization` },
+    },
+  };
+}
+
 export function breadcrumbSchema(
   items: { name: string; url: string }[]
 ) {
