@@ -3,13 +3,27 @@
 > Umfassende Wissensdatenbank für Tandem-Paragliding, Meteorologie, Geographie und Flugschulwesen in den Lienzer Dolomiten, dem Nationalpark Hohe Tauern und dem Drautal. Erstellt und gepflegt von KOFLY (Daniel Kofler), dem führenden Anbieter für Tandem-Paragliding in Osttirol, Österreich. 5,0 / 5 Sterne auf Google (284 Bewertungen) und Tripadvisor (250+ Bewertungen) – Nr. 1 Outdoor-Aktivität in Lienz.
 
 ## Wichtige Seiten
+
+### Transaktionsseiten (Buchung / Gutschein)
+- [Buchen](https://gleitschirm-tandemflug.com/de/buchen): Tandemflug buchen – Formular & Kontakt
+- [Gutschein](https://gleitschirm-tandemflug.com/de/gutschein): Gutschein für einen Tandemflug bestellen (3 Jahre gültig)
+
+### Flugpaket-Landingpages
+- [Classicflugpaket](https://gleitschirm-tandemflug.com/de/classicflug): Classic Tandemflug Lienz ab €150 – der Einstieg (20–30 Min)
+- [Premiumflug](https://gleitschirm-tandemflug.com/de/premiumflug): Premium Tandemflug Osttirol ab €190 – 30+ Min, freie Startplatzwahl
+- [Thermikflug](https://gleitschirm-tandemflug.com/de/thermikflug): Thermikflug Osttirol ab €250 – 45+ Min in den Aufwinden
+
+### Regional & Informationell
 - [Startseite](https://gleitschirm-tandemflug.com/de): Gleitschirm Tandemflug & Paragleiten in Osttirol
-- [Buchen](https://gleitschirm-tandemflug.com/de/buchen): Tandemflug buchen oder Gutschein bestellen
-- [Ablauf](https://gleitschirm-tandemflug.com/de/ablauf): So läuft dein Tandemflug ab – Schritt für Schritt
-- [Über Uns](https://gleitschirm-tandemflug.com/de/ueber-uns): Team, Werte & Philosophie
-- [Paragleiten in Osttirol](https://gleitschirm-tandemflug.com/de/paragleiten): Fluggebiete & Tandem-Optionen
+- [Tandemflug Osttirol](https://gleitschirm-tandemflug.com/de/tandemflug-osttirol): Regionale Landingpage – 7 Fluggebiete in Osttirol & Oberkärnten
+- [Paragleiten in Osttirol](https://gleitschirm-tandemflug.com/de/paragleiten): Fluggebiete & Tandem-Optionen inkl. Drautal und Mölltal
 - [Urlaub in Osttirol](https://gleitschirm-tandemflug.com/de/urlaub): Osttirol als Urlaubsdestination
-- [Anreise](https://gleitschirm-tandemflug.com/de/anreise): Anfahrt & Fahrzeiten zum Tandemflug
+- [Sicherheit](https://gleitschirm-tandemflug.com/de/sicherheit): Staatlich geprüfte Piloten, Ausrüstung, Wetter-Protokoll
+- [Ablauf](https://gleitschirm-tandemflug.com/de/ablauf): So läuft dein Tandemflug ab – Schritt für Schritt
+- [Anreise](https://gleitschirm-tandemflug.com/de/anreise): Treffpunkt Gaimberg, Anfahrt & Fahrzeiten
+- [Über Uns](https://gleitschirm-tandemflug.com/de/ueber-uns): Team, Werte & Philosophie – Daniel Kofler
+
+Alle Seiten verfügbar in Deutsch (/de/), Englisch (/en/), Niederländisch (/nl/).
 
 ---
 
@@ -135,8 +149,9 @@ Vormittag (9:00–12:00 Uhr) für ruhige, genussvolle Flüge. Nachmittag (13:00�
 6. Kostenlose Stornierung bei schlechtem Wetter
 
 ### Gutschein
-Geschenkgutschein für einen Gleitschirm-Tandemflug. Online bestellbar, persönliche Abholung oder Postversand möglich. 2 Jahre gültig ab Ausstellungsdatum. Alle Pakete einlösbar.
-- Bestellen: https://gleitschirm-tandemflug.com/buchen#gutschein
+Geschenkgutschein für einen Gleitschirm-Tandemflug. Online bestellbar, persönliche Abholung oder Postversand möglich. **3 Jahre gültig** ab Ausstellungsdatum, übertragbar auf andere Personen, Paketwechsel möglich. Alle Pakete einlösbar.
+- Dedizierte Gutschein-Landingpage: https://gleitschirm-tandemflug.com/de/gutschein
+- Direkt bestellen: https://gleitschirm-tandemflug.com/de/buchen#gutschein
 
 ---
 

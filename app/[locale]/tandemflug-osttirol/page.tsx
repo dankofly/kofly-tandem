@@ -36,7 +36,6 @@ export async function generateMetadata(): Promise<Metadata> {
       description: t("tandemflugOsttirolOgDescription"),
     },
     alternates: {
-      canonical: `${SITE_URL}/de/tandemflug-osttirol`,
       languages: {
         de: `${SITE_URL}/de/tandemflug-osttirol`,
         en: `${SITE_URL}/en/tandemflug-osttirol`,

@@ -31,7 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
       description: t("sicherheitOgDescription"),
     },
     alternates: {
-      canonical: `${SITE_URL}/de/sicherheit`,
       languages: {
         de: `${SITE_URL}/de/sicherheit`,
         en: `${SITE_URL}/en/sicherheit`,

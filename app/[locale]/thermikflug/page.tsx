@@ -33,7 +33,6 @@ export async function generateMetadata(): Promise<Metadata> {
       description: t("thermikflugOgDescription"),
     },
     alternates: {
-      canonical: `${SITE_URL}/de/thermikflug`,
       languages: {
         de: `${SITE_URL}/de/thermikflug`,
         en: `${SITE_URL}/en/thermikflug`,

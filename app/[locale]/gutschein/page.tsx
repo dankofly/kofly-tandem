@@ -35,7 +35,6 @@ export async function generateMetadata(): Promise<Metadata> {
       description: t("gutscheinOgDescription"),
     },
     alternates: {
-      canonical: `${SITE_URL}/de/gutschein`,
       languages: {
         de: `${SITE_URL}/de/gutschein`,
         en: `${SITE_URL}/en/gutschein`,

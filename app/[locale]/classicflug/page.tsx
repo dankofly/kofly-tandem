@@ -34,7 +34,6 @@ export async function generateMetadata(): Promise<Metadata> {
       description: t("classicflugOgDescription"),
     },
     alternates: {
-      canonical: `${SITE_URL}/de/classicflug`,
       languages: {
         de: `${SITE_URL}/de/classicflug`,
         en: `${SITE_URL}/en/classicflug`,
