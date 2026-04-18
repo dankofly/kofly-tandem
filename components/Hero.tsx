@@ -21,7 +21,6 @@ export default async function Hero() {
 
   return (
     <section
-      id="erlebnis"
       aria-label={t("ariaLabel")}
       className="relative min-h-screen flex items-center overflow-hidden"
     >
