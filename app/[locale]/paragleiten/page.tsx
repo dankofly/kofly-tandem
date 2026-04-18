@@ -15,6 +15,7 @@ const rich = {
 const TANDEM_AREAS = ["zettersfeld", "hochstein"] as const;
 const PILOT_PUSTERTAL = ["thurntaler", "golzentipp"] as const;
 const PILOT_ISELTAL = ["goldried", "virgen", "praegraten", "alkus"] as const;
+const PILOT_DRAU_MOELL = ["drautal", "moelltal"] as const;
 
 const FAQ_TOPICS = [
   "Safety",
@@ -282,17 +283,38 @@ export default async function ParagleitenPage() {
         </div>
       </section>
 
-      {/* Weitere Fluggebiete + Tandem-CTA */}
+      {/* Weitere Fluggebiete Drautal & Mölltal + Tandem-CTA */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("moreAreasTitle")}
             </h2>
             <div className="mt-5 section-divider !mx-0" />
-            <div className="mt-6 space-y-5 text-base text-content-body leading-relaxed font-light">
-              <p>{t("moreAreasP1")}</p>
-              <p>{t("moreAreasP2")}</p>
-            </div>
+            <p className="mt-6 text-base text-content-body leading-relaxed font-light">
+              {t("moreAreasIntro")}
+            </p>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            {PILOT_DRAU_MOELL.map((area) => (
+              <div key={area} className="glass-card card-hover-glow p-6 sm:p-8 h-full">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xl font-bold text-content-primary">
+                      {t(`${area}Name`)}
+                    </h3>
+                    <span className="text-xs font-medium text-accent-500 bg-accent-500/10 px-2 py-1 rounded">
+                      {t(`${area}Alt`)}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-xs tracking-premium uppercase text-content-muted font-medium">
+                    {t(`${area}Tag`)}
+                  </p>
+                  <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
+                    <p>{r(`${area}P1`)}</p>
+                    <p>{r(`${area}P2`)}</p>
+                  </div>
+                </div>
+            ))}
+          </div>
 
           <div className="mt-12 relative overflow-hidden glass-card border-accent-500/30 p-8 sm:p-12">
               <div
