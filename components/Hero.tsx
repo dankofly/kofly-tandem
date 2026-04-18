@@ -39,7 +39,8 @@ export default async function Hero() {
           alt={t("heroImageAlt")}
           fill
           className="object-cover sm:hidden"
-          loading="eager"
+          priority
+          fetchPriority="high"
           sizes="100vw"
           placeholder="blur"
           blurDataURL={HERO_BLUR}
@@ -51,7 +52,8 @@ export default async function Hero() {
           alt={t("heroImageAlt")}
           fill
           className={`object-cover ${heroMobileImage ? "hidden sm:block" : ""}`}
-          loading="eager"
+          priority
+          fetchPriority="high"
           sizes="100vw"
           placeholder="blur"
           blurDataURL={HERO_BLUR}

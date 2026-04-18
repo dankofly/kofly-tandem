@@ -17,3 +17,54 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# ─────────────────────────────────────────────────────────────
+# Cache-Header für statische Ressourcen (Performance)
+# ─────────────────────────────────────────────────────────────
+
+# Originale Bilder im /public/images/-Ordner sind unveränderlich
+# (Dateinamen enthalten Timestamps wie hero-1771273007982.webp).
+# 1 Jahr immutable Cache in Browser + Edge.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Favicons / PWA-Icons – stabil, 1 Woche Cache
+[[headers]]
+  for = "/favicon*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/apple-touch-icon*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/icon-*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Fonts (falls selbst gehostet) – 1 Jahr immutable
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# robots.txt, llms.txt – 1 Tag
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# sitemap.xml – 1 Stunde, Google crawlt regelmäßig
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
