@@ -37,7 +37,7 @@ export default async function WhyUs() {
   ]);
 
   return (
-    <section id="warum-wir" className="relative py-16 lg:py-24 overflow-hidden scroll-mt-20 [clip-path:inset(0)]">
+    <section id="erlebnis" className="relative py-16 lg:py-24 overflow-hidden scroll-mt-20 [clip-path:inset(0)]">
       {/* Parallax background image */}
       {bgImage ? (
         <>
