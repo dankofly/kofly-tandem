@@ -2,7 +2,6 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import ScrollIndicator from "./ScrollIndicator";
 import { getImageUrl } from "@/lib/images-config";
-import { getOptimizedUrl } from "@/lib/image-loader";
 import { getTranslations } from "next-intl/server";
 
 /* Tiny 16×9 JPEG blur – generated from the default hero image via sharp */
@@ -24,13 +23,7 @@ export default async function Hero() {
       aria-label={t("ariaLabel")}
       className="relative min-h-screen flex items-center overflow-hidden"
     >
-      {/* Preload only the image matching the viewport (React 19 hoists to <head>) */}
-      {heroMobileImage && (
-        <link rel="preload" as="image" href={getOptimizedUrl(heroMobileImage, 828)} media="(max-width: 639px)" fetchPriority="high" />
-      )}
-      {heroImage && (
-        <link rel="preload" as="image" href={getOptimizedUrl(heroImage, 1920)} media="(min-width: 640px)" fetchPriority="high" />
-      )}
+      {/* Preload handled automatically by Next/Image `priority` prop — no manual <link rel="preload"> needed */}
 
       {/* Background — separate images for mobile (9:16) and desktop (16:9) */}
       {heroMobileImage && (

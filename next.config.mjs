@@ -9,6 +9,7 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["@ai-sdk/react", "next-intl", "ai"],
     optimizeCss: true,
+    inlineCss: true,
   },
   images: {
     loader: "custom",
