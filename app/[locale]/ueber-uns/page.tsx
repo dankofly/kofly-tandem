@@ -612,7 +612,7 @@ export default async function UeberUnsPage() {
       {/* ══════════════════════════════════════════
           EMOTIONAL CLOSE + CTA
           ══════════════════════════════════════════ */}
-      <section className="relative py-28 lg:py-40 overflow-hidden">
+      <section className="relative py-20 lg:py-28 overflow-hidden">
         {/* Multi-layer glow */}
         <div className="glow-orb glow-orb-accent w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 animate-glow-pulse" />
         <div className="glow-orb glow-orb-sky w-[400px] h-[400px] top-0 -right-20 opacity-10 animate-glow-pulse [animation-delay:3s]" />

@@ -170,7 +170,7 @@ function RatingBadge() {
     <div className="mb-8 flex justify-center">
       <div
         ref={ref}
-        className={`inline-flex items-center flex-wrap justify-center gap-3 sm:gap-4 glass-card rounded-full px-5 sm:px-8 py-3 sm:py-4 border border-accent-500/20 shadow-[0_0_30px_rgba(232,104,48,0.1)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`inline-flex items-center flex-wrap justify-center gap-3 sm:gap-4 glass-card rounded-full px-5 sm:px-8 py-3 sm:py-4 border border-accent-500/20 shadow-[0_0_16px_rgba(232,104,48,0.08)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           visible ? "opacity-100 scale-100" : "opacity-0 scale-[0.92]"
         }`}
       >
@@ -235,7 +235,7 @@ export default function Reviews() {
   return (
     <section id="bewertungen" className="relative py-14 sm:py-16 lg:py-24 overflow-hidden scroll-mt-20">
       {/* Glow orb */}
-      <div className="glow-orb glow-orb-sky w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] top-20 right-0 animate-glow-pulse" aria-hidden="true" />
+      <div className="glow-orb glow-orb-sky w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] top-20 right-0 opacity-70 animate-glow-pulse" aria-hidden="true" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         {/* Header */}

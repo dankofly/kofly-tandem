@@ -126,7 +126,7 @@ export default async function TandemflugOsttirolPage() {
           <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
             {t("heroTagline")}
           </p>
-          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-content-primary tracking-tight leading-[1.15]">
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-content-primary tracking-tight leading-[1.15] text-balance">
             {t("heroTitle")}
             <span className="shimmer-text text-transparent bg-clip-text bg-gradient-to-r from-accent-400 via-accent-500 to-accent-400">
               {t("heroTitleAccent")}
@@ -411,7 +411,7 @@ export default async function TandemflugOsttirolPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-28 lg:py-40 overflow-hidden bg-surface-secondary">
+      <section className="relative py-20 lg:py-28 overflow-hidden bg-surface-secondary">
         <div
           className="glow-orb glow-orb-accent w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 animate-glow-pulse"
           aria-hidden="true"

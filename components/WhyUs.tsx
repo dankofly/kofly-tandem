@@ -42,14 +42,15 @@ export default async function WhyUs() {
       {bgImage ? (
         <>
           <ParallaxBg src={bgImage} alt={t("bgAlt")} />
-          <div className="absolute inset-0 hero-overlay" />
+          {/* Subtle darkening for text legibility — replaces the stronger .hero-overlay */}
+          <div className="absolute inset-0 bg-black/40" />
         </>
       ) : (
         <div className="absolute inset-0 bg-[var(--bg-secondary)]" />
       )}
 
-      {/* Glow orb */}
-      <div className="glow-orb glow-orb-accent w-[400px] h-[400px] top-0 left-1/2 -translate-x-1/2 animate-glow-pulse" aria-hidden="true" />
+      {/* Glow orb — single, centered, dimmed for calmer composition */}
+      <div className="glow-orb glow-orb-accent w-[400px] h-[400px] top-0 left-1/2 -translate-x-1/2 opacity-60 animate-glow-pulse" aria-hidden="true" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         {/* Header */}

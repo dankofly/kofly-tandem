@@ -120,7 +120,7 @@ export default async function ParagleitenPage() {
           <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
             {t("heroTagline")}
           </p>
-          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-content-primary tracking-tight leading-[1.15]">
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-content-primary tracking-tight leading-[1.15] text-balance">
             {t("heroTitle")}
             <span className="shimmer-text text-transparent bg-clip-text bg-gradient-to-r from-accent-400 via-accent-500 to-accent-400">
               {t("heroTitleAccent")}
@@ -246,7 +246,7 @@ export default async function ParagleitenPage() {
             ))}
           </div>
 
-          {/* Tandem-CTA Pustertal */}
+          {/* Tandem-CTA Pustertal — Mountain icon (Höhe/Gipfel) */}
           <div className="mt-12 relative overflow-hidden glass-card border-accent-500/30 p-8 sm:p-12">
             <div
               className="glow-orb glow-orb-accent w-[300px] h-[300px] -top-20 -right-20 opacity-20 animate-glow-pulse"
@@ -255,9 +255,8 @@ export default async function ParagleitenPage() {
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-4">
                 <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-accent-500/10">
-                  <svg className="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                  <svg className="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 20l5.5-11 4 7 3-5 5.5 9z" />
                   </svg>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-content-primary">
@@ -319,7 +318,7 @@ export default async function ParagleitenPage() {
             ))}
           </div>
 
-          {/* Tandem-CTA Iseltal */}
+          {/* Tandem-CTA Iseltal — Clock icon (Fahrzeit) */}
           <div className="mt-12 relative overflow-hidden glass-card border-accent-500/30 p-8 sm:p-12">
             <div
               className="glow-orb glow-orb-accent w-[300px] h-[300px] -top-20 -right-20 opacity-20 animate-glow-pulse"
@@ -328,9 +327,8 @@ export default async function ParagleitenPage() {
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-4">
                 <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-accent-500/10">
-                  <svg className="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                  <svg className="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m5-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-content-primary">
@@ -489,7 +487,7 @@ export default async function ParagleitenPage() {
         <div className="max-w-3xl mx-auto px-6">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <Link href="/tandemflug-osttirol" className="block group">
-              <div className="glass-card card-hover-glow p-6 h-full border-accent-500/20">
+              <div className="glass-card card-hover-glow p-6 h-full">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
                     {t("crosslinkTandemflugOsttirolTitle")}
@@ -553,7 +551,7 @@ export default async function ParagleitenPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-28 lg:py-40 overflow-hidden bg-surface-secondary">
+      <section className="relative py-20 lg:py-28 overflow-hidden bg-surface-secondary">
         <div
           className="glow-orb glow-orb-accent w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 animate-glow-pulse"
           aria-hidden="true"
