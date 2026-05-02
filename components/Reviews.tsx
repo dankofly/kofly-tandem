@@ -312,8 +312,8 @@ export default function Reviews() {
               sizes="(max-width: 640px) 240px, 300px"
             />
           </a>
-          <p className="max-w-md text-center text-xs sm:text-[13px] text-content-muted leading-relaxed font-light">
-            {t("travelersChoiceSubline")}
+          <p className="max-w-lg text-center text-xs sm:text-[13px] text-content-muted leading-relaxed font-light">
+            {t.rich("travelersChoiceSubline", { br: () => <br /> })}
           </p>
         </ScrollReveal>
       </div>
