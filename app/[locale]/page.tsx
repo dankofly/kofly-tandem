@@ -46,38 +46,58 @@ export default async function HomePage() {
       <WhyUs />
 
       {/* Regional coverage – internal link to /tandemflug-osttirol */}
-      <section className="py-16 lg:py-20">
+      <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6">
-          <div className="glass-card border-accent-500/20 p-6 sm:p-10">
-            <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
+          <div className="glass-card border-accent-500/20 p-6 sm:p-10 lg:p-12">
+            <p className="text-xs tracking-premium uppercase text-accent-500 font-semibold">
               {tRegional("tagline")}
             </p>
-            <h2 className="mt-3 text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+            <h2 className="mt-3 text-3xl sm:text-4xl font-black text-content-primary tracking-tight">
               {tRegional("title")}
             </h2>
             <div className="mt-5 section-divider !mx-0" />
-            <p className="mt-6 text-base text-content-body leading-relaxed font-light">
-              {tRegional("text")}
+
+            <div className="mt-6 space-y-5 text-base text-content-body leading-relaxed font-light">
+              <p>{tRegional("p1")}</p>
+              <p>{tRegional("p2")}</p>
+              <p>{tRegional("p3")}</p>
+              <p>{tRegional("p4")}</p>
+            </div>
+
+            {/* Pull quote */}
+            <blockquote className="mt-10 sm:mt-12 text-center">
+              <p className="text-2xl sm:text-3xl font-light italic text-accent-500 tracking-tight leading-snug">
+                {tRegional("quote")}
+              </p>
+            </blockquote>
+
+            {/* Closing line */}
+            <p className="mt-6 text-sm sm:text-[15px] text-content-muted text-center leading-relaxed max-w-xl mx-auto">
+              {tRegional("closing")}
             </p>
-            <Link
-              href="/tandemflug-osttirol"
-              className="mt-6 inline-flex items-center gap-2 text-sm text-accent-400 hover:text-accent-500 transition-colors font-medium"
-            >
-              {tRegional("cta")}
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+
+            <div className="mt-8 flex justify-center">
+              <Link
+                href="/tandemflug-osttirol"
+                className="inline-flex items-center gap-2 text-sm font-semibold tracking-wide uppercase text-accent-500 hover:text-accent-400 transition-colors"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </Link>
+                {tRegional("cta")}
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
