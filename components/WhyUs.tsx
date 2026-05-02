@@ -42,8 +42,8 @@ export default async function WhyUs() {
       {bgImage ? (
         <>
           <ParallaxBg src={bgImage} alt={t("bgAlt")} />
-          {/* Subtle darkening for text legibility — replaces the stronger .hero-overlay */}
-          <div className="absolute inset-0 bg-black/40" />
+          {/* Light overlay — gradient lighter at top (heading), slightly stronger near cards for contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/20 to-black/30" />
         </>
       ) : (
         <div className="absolute inset-0 bg-[var(--bg-secondary)]" />
