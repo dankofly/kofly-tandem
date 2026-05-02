@@ -182,19 +182,16 @@ function StatsStrip() {
           className="cursor-pointer transition-transform duration-200 hover:scale-105"
         >
           <Image
-            src="/images/tripadvisor-travelers-choice-2026-pin.png"
+            src="/images/tripadvisor-tc-badge-left-aligned.png"
             alt={t("travelersChoiceAlt")}
-            width={400}
-            height={400}
-            className="h-[60px] sm:h-[68px] w-auto"
+            width={2000}
+            height={784}
+            className="h-12 sm:h-14 w-auto"
             loading="lazy"
-            sizes="68px"
+            sizes="(max-width: 640px) 144px, 168px"
           />
         </a>
-        <div className="mt-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-content-strong">
-          Travelers&apos; Choice
-        </div>
-        <div className="mt-1 text-xs text-content-muted">
+        <div className="mt-3 text-xs text-content-muted text-center max-w-[220px]">
           {t("statAwardSub")}
         </div>
       </div>
