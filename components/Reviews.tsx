@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 
 interface Review {
@@ -287,6 +288,33 @@ export default function Reviews() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
             </svg>
           </a>
+        </ScrollReveal>
+
+        {/* Travelers' Choice 2026 award */}
+        <ScrollReveal className="mt-12 flex flex-col items-center gap-4">
+          <p className="text-sm tracking-premium uppercase text-accent-500 font-semibold">
+            {t("travelersChoiceLabel")}
+          </p>
+          <a
+            href={TRIPADVISOR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t("travelersChoiceAlt")}
+            className="inline-flex items-center justify-center bg-white rounded-2xl px-6 py-5 sm:px-8 sm:py-6 shadow-[0_8px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_12px_40px_rgba(232,104,48,0.25)] hover:-translate-y-0.5 transition-all duration-300"
+          >
+            <Image
+              src="/images/tripadvisor-travelers-choice-2026.png"
+              alt={t("travelersChoiceAlt")}
+              width={2000}
+              height={784}
+              className="h-auto w-[240px] sm:w-[300px]"
+              loading="lazy"
+              sizes="(max-width: 640px) 240px, 300px"
+            />
+          </a>
+          <p className="max-w-md text-center text-xs sm:text-[13px] text-content-muted leading-relaxed font-light">
+            {t("travelersChoiceSubline")}
+          </p>
         </ScrollReveal>
       </div>
     </section>

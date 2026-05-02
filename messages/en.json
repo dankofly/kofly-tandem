@@ -236,7 +236,10 @@
     "allReviews": "All reviews on Tripadvisor",
     "allReviewsLabel": "View all reviews on Tripadvisor (opens in new tab)",
     "googleReviews": "Write a review on Google",
-    "googleReviewsLabel": "Write a review on Google (opens in new tab)"
+    "googleReviewsLabel": "Write a review on Google (opens in new tab)",
+    "travelersChoiceLabel": "We did it again:",
+    "travelersChoiceAlt": "Tripadvisor Travelers' Choice 2026 award for Gleitschirm-Tandemflug.com",
+    "travelersChoiceSubline": "We rank among the top 10 % of the world's most loved activities on Tripadvisor!"
   },
   "MapContact": {
     "tagline": "Contact",
