@@ -191,8 +191,8 @@ function StatsStrip() {
             sizes="(max-width: 640px) 144px, 168px"
           />
         </a>
-        <div className="mt-3 text-xs text-content-muted text-center max-w-[220px]">
-          {t("statAwardSub")}
+        <div className="mt-3 text-xs text-content-muted text-center max-w-[260px] leading-relaxed">
+          {t.rich("statAwardSub", { br: () => <br /> })}
         </div>
       </div>
     </div>
