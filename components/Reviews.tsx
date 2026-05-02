@@ -137,16 +137,16 @@ function StatsStrip() {
   const count = useCountUp(250, inView);
 
   const baseStat =
-    "bg-white border border-[var(--border-default)] rounded-2xl p-5 sm:p-6 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md";
+    "bg-[var(--bg-input)] border border-[var(--border-default)] rounded-2xl p-5 sm:p-6 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md";
 
   return (
     <div
       ref={ref}
       className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-8 sm:mt-10"
     >
-      {/* Stat 1 — Rating */}
+      {/* Stat 1 — Rating (highlight via accent border + subtle accent ring) */}
       <div
-        className={`${baseStat} border-accent-500 bg-gradient-to-b from-white to-[#fff7f1] flex flex-col items-center justify-center`}
+        className={`${baseStat} !border-accent-500 ring-1 ring-accent-500/20 flex flex-col items-center justify-center`}
       >
         <div className="text-4xl sm:text-5xl font-black text-accent-500 tracking-tight leading-none">
           5,0
@@ -181,12 +181,24 @@ function StatsStrip() {
           aria-label={t("travelersChoiceAlt")}
           className="cursor-pointer transition-transform duration-200 hover:scale-105"
         >
+          {/* Light-theme badge (black text) */}
           <Image
             src="/images/tripadvisor-tc-badge-left-aligned.png"
             alt={t("travelersChoiceAlt")}
             width={2000}
             height={784}
-            className="h-12 sm:h-14 w-auto"
+            className="theme-asset-light h-12 sm:h-14 w-auto"
+            loading="lazy"
+            sizes="(max-width: 640px) 144px, 168px"
+          />
+          {/* Dark-theme badge (white text) */}
+          <Image
+            src="/images/tripadvisor-tc-badge-left-aligned-white.png"
+            alt=""
+            aria-hidden="true"
+            width={2000}
+            height={784}
+            className="theme-asset-dark h-12 sm:h-14 w-auto"
             loading="lazy"
             sizes="(max-width: 640px) 144px, 168px"
           />

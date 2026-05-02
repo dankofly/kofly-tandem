@@ -747,3 +747,9 @@ textarea,
     scroll-behavior: auto;
   }
 }
+
+/* Theme-conditional asset visibility (e.g., light/dark logo variants) */
+/* Default: show light, hide dark — matches defaultTheme="light" before hydration */
+.theme-asset-dark { display: none; }
+[data-theme="dark"] .theme-asset-light { display: none; }
+[data-theme="dark"] .theme-asset-dark { display: block; }
