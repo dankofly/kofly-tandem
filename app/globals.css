@@ -1,3 +1,6 @@
+/* Editorial serif for featured quotes (Reviews-Section) — must be before @tailwind */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -746,4 +749,10 @@ textarea,
   html {
     scroll-behavior: auto;
   }
+}
+
+/* Editorial serif utility for Reviews featured quotes */
+.font-editorial {
+  font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+  font-feature-settings: 'liga', 'kern';
 }

@@ -1,16 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 
 interface Review {
   name: string;
-  rating: number;
-  text: Record<string, string>;
+  featured: Record<string, string>;
   date: string;
-  sourceUrl: string;
 }
 
 const TRIPADVISOR_URL =
@@ -19,51 +17,32 @@ const TRIPADVISOR_URL =
 const reviews: Review[] = [
   {
     name: "Carmen S.",
-    rating: 5,
-    text: {
-      de: "Der Tandemflug war einfach traumhaft! Schon der Start und der Weg dorthin waren ein Erlebnis, und dann dieses Gef\u00fchl, hoch oben \u00fcber der Region zu gleiten \u2013 unbeschreiblich. Die Aussicht war atemberaubend, man konnte die Landschaft in voller Sch\u00f6nheit genie\u00dfen. Alles war super organisiert, ich habe mich die ganze Zeit sicher und bestens betreut gef\u00fchlt. Absolute Empfehlung f\u00fcr alle, die etwas Besonderes erleben wollen \u2013 ein echtes Wow-Erlebnis!",
-      en: "The tandem flight was simply amazing! Even the start and the way up were an experience, and then that feeling of gliding high above the region \u2013 indescribable. The view was breathtaking, you could enjoy the landscape in all its beauty. Everything was perfectly organized, I felt safe and well looked after the entire time. Absolute recommendation for anyone who wants to experience something special \u2013 a true wow experience!",
-      nl: "De tandemvlucht was gewoon fantastisch! Al de start en de weg ernaartoe waren een belevenis, en dan dat gevoel om hoog boven de regio te zweven \u2013 onbeschrijflijk. Het uitzicht was adembenemend, je kon het landschap in al zijn schoonheid bewonderen. Alles was perfect georganiseerd, ik voelde me de hele tijd veilig en uitstekend begeleid. Absolute aanrader voor iedereen die iets bijzonders wil beleven \u2013 een echt wow-erlebnis!",
+    featured: {
+      de: "Hoch oben über der Region zu gleiten — unbeschreiblich. Alles war super organisiert, ich habe mich sicher gefühlt.",
+      en: "Gliding high above the region — indescribable. Everything was perfectly organized, I felt safe the entire time.",
+      nl: "Hoog boven de regio zweven — onbeschrijflijk. Alles was perfect georganiseerd, ik voelde me veilig.",
     },
     date: "2025-09-01",
-    sourceUrl: TRIPADVISOR_URL,
   },
   {
     name: "Georg K.",
-    rating: 5,
-    text: {
-      de: "Einfach unvergesslich! Die Tandempiloten waren super lieb, mega erfahren und haben einem vom ersten Moment an ein absolut sicheres Gef\u00fchl gegeben. Bei traumhaftem Wetter durch die L\u00fcfte zu gleiten war der Wahnsinn \u2013 k\u00f6nnen wir jedem nur empfehlen!",
-      en: "Simply unforgettable! The tandem pilots were incredibly kind, hugely experienced and gave you an absolutely safe feeling from the very first moment. Gliding through the skies in perfect weather was incredible \u2013 we can only recommend it to everyone!",
-      nl: "Gewoon onvergetelijk! De tandempiloten waren super lief, enorm ervaren en gaven je vanaf het eerste moment een absoluut veilig gevoel. Bij prachtig weer door de lucht zweven was waanzinnig \u2013 we kunnen het iedereen aanbevelen!",
+    featured: {
+      de: "Die Tandempiloten waren super lieb, mega erfahren und haben einem vom ersten Moment an ein absolut sicheres Gefühl gegeben.",
+      en: "The tandem pilots were incredibly kind, hugely experienced and gave you an absolutely safe feeling from the very first moment.",
+      nl: "De tandempiloten waren super lief, enorm ervaren en gaven je vanaf het eerste moment een absoluut veilig gevoel.",
     },
     date: "2025-08-01",
-    sourceUrl: TRIPADVISOR_URL,
   },
   {
-    name: "Familie \u00d6vermann",
-    rating: 5,
-    text: {
-      de: "Alles hat wunderbar gepasst!! Angefangen mit dem sch\u00f6nen Gutschein, der zu uns nach Hause punktgenau zum Geburtstag unseres Sohnes geschickt wurde bis hin zur pers\u00f6nlichen Termin-Absprache vor Ort war es durchweg eine sehr sympathische und verl\u00e4ssliche Absprache. Der Flug verlief dann sehr feinf\u00fchlig und empathisch, anf\u00e4ngliche Nervosit\u00e4t war schnell verflogen. Digital begleitet mit Live-Standort, Bild vom Abflugsort sowie Kurzvideo w\u00e4hrend des Fluges. Der Blick \u00fcber Lienz und die umliegenden Bergketten sind ein Traum!! Ganz herzlichen Dank f\u00fcr dieses tolle Erlebnis!!",
-      en: "Everything came together wonderfully!! Starting with the beautiful voucher that was sent to our home right on time for our son\u2019s birthday, through to the personal appointment arrangements on site \u2013 it was a consistently friendly and reliable experience. The flight itself was very sensitive and empathetic, initial nervousness quickly disappeared. Digitally accompanied with live location, a photo from the launch site and a short video during the flight. The view over Lienz and the surrounding mountain ranges is a dream!! Heartfelt thanks for this amazing experience!!",
-      nl: "Alles klopte perfect!! Vanaf de mooie cadeaubon die precies op tijd voor de verjaardag van onze zoon naar huis werd gestuurd tot de persoonlijke afspraak ter plaatse \u2013 het was een door en door sympathieke en betrouwbare ervaring. De vlucht verliep zeer gevoelig en empathisch, de aanvankelijke zenuwen waren snel verdwenen. Digitaal begeleid met live locatie, foto van de startplaats en een kort filmpje tijdens de vlucht. Het uitzicht over Lienz en de omliggende bergketens is een droom!! Heel hartelijk dank voor deze geweldige ervaring!!",
+    name: "Familie Övermann",
+    featured: {
+      de: "Sehr feinfühliger Flug, anfängliche Nervosität war schnell verflogen. Der Blick über Lienz ist ein Traum!",
+      en: "Very sensitive flight, initial nervousness quickly disappeared. The view over Lienz is a dream!",
+      nl: "Zeer gevoelige vlucht, aanvankelijke zenuwen waren snel verdwenen. Het uitzicht over Lienz is een droom!",
     },
     date: "2025-08-01",
-    sourceUrl: TRIPADVISOR_URL,
-  },
-  {
-    name: "Christina S.",
-    rating: 5,
-    text: {
-      de: "Ein voller Erfolg, bin dem ganzen Team echt dankbar. Aber nicht nur wegen dem Flug sondern auch weil ich vom Bahnhof geholt, wieder zur\u00fcckgebracht wurde und sch\u00f6ne Fotos gemacht wurden. Aber eine gro\u00dfe positive \u00dcberraschung war, da ich gerne dichte, dass die Piloten nach dem Flug mit mir gereimt haben. All das sind keine Witze \u2013 euer ganzes Team ist spitze. So komme ich gerne ein weiteres Mal, weil durch viel Spa\u00df und Freude seid ihr genial.",
-      en: "A complete success, I\u2019m truly grateful to the whole team. Not just because of the flight, but also because I was picked up from the train station, brought back, and beautiful photos were taken. But a big positive surprise was that, since I love writing poetry, the pilots rhymed with me after the flight. None of this is a joke \u2013 your whole team is top-notch. I\u2019ll gladly come again, because with so much fun and joy, you\u2019re simply brilliant.",
-      nl: "Een volledig succes, ik ben het hele team echt dankbaar. Niet alleen vanwege de vlucht, maar ook omdat ik van het station werd gehaald, weer teruggebracht en er mooie foto\u2019s werden gemaakt. Maar een grote positieve verrassing was dat, omdat ik graag dicht, de piloten na de vlucht met mij hebben gerijmd. Dit alles is geen grap \u2013 jullie hele team is top. Zo kom ik graag nog een keer, want met zoveel plezier en vreugde zijn jullie geniaal.",
-    },
-    date: "2025-08-01",
-    sourceUrl: TRIPADVISOR_URL,
   },
 ];
-
-const TRUNCATE = 110;
 
 const dateLocaleMap: Record<string, string> = {
   de: "de-AT",
@@ -71,67 +50,9 @@ const dateLocaleMap: Record<string, string> = {
   nl: "nl-NL",
 };
 
-function ReviewCard({ review, locale }: { review: Review; locale: string }) {
-  const t = useTranslations("Reviews");
-  const [expanded, setExpanded] = useState(false);
-  const fullText = review.text[locale] || review.text.de;
-  const long = fullText.length > TRUNCATE;
-  const text =
-    !expanded && long
-      ? fullText.slice(0, TRUNCATE).trimEnd() + "\u2026"
-      : fullText;
-
-  return (
-    <article className="glass-card card-hover-glow rounded-2xl p-6 sm:p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
-      {/* Stars */}
-      <div className="flex gap-0.5 mb-4">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <svg
-            key={i}
-            className="w-4 h-4 text-accent-500"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        ))}
-      </div>
-      <p className="text-sm text-content-strong leading-relaxed font-light flex-1">
-        {text}
-      </p>
-      {long && (
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="mt-3 text-sm font-medium text-accent-400 hover:text-accent-500 self-start transition-colors cursor-pointer tracking-wide uppercase py-1"
-        >
-          {expanded ? t("readLess") : t("readMore")}
-        </button>
-      )}
-      <div className="mt-5 pt-5 border-t border-edge-subtle flex items-center gap-3">
-        <span className="w-8 h-8 rounded-full bg-accent-500/15 text-accent-500 text-xs font-bold flex items-center justify-center shrink-0">
-          {review.name.charAt(0)}
-        </span>
-        <div>
-          <p className="text-xs font-medium text-content-strong tracking-wide">
-            {review.name}
-          </p>
-          <time className="text-[11px] text-content-subtle" dateTime={review.date} suppressHydrationWarning>
-            {new Date(review.date).toLocaleDateString(dateLocaleMap[locale] || locale, {
-              year: "numeric",
-              month: "long",
-            })}
-          </time>
-        </div>
-      </div>
-    </article>
-  );
-}
-
-function RatingBadge() {
-  const t = useTranslations("Reviews");
-  const [visible, setVisible] = useState(false);
-  const [count, setCount] = useState(0);
+function useInView(threshold = 0.2) {
   const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -139,93 +60,167 @@ function RatingBadge() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
+          setInView(true);
           observer.unobserve(el);
         }
       },
-      { threshold: 0.2 }
+      { threshold }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [threshold]);
 
-  // Count-up animation with easeOutExpo
+  return { ref, inView };
+}
+
+function useCountUp(target: number, active: boolean, durationMs = 1800) {
+  const [value, setValue] = useState(0);
   useEffect(() => {
-    if (!visible) return;
-    const target = 250;
-    const duration = 2000;
+    if (!active) return;
     const startTime = performance.now();
     let raf: number;
     const step = (now: number) => {
       const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
+      const progress = Math.min(elapsed / durationMs, 1);
       const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      setCount(Math.round(eased * target));
+      setValue(Math.round(eased * target));
       if (progress < 1) raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [visible]);
+  }, [target, active, durationMs]);
+  return value;
+}
+
+function Stars({ size = "text-base" }: { size?: string }) {
+  return (
+    <div className={`flex gap-0.5 justify-center ${size}`} aria-label="5 von 5 Sternen">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <svg
+          key={i}
+          className="w-[1em] h-[1em] text-accent-500"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+        >
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+      ))}
+    </div>
+  );
+}
+
+function StatsStrip() {
+  const t = useTranslations("Reviews");
+  const { ref, inView } = useInView(0.2);
+  const count = useCountUp(250, inView);
+
+  const baseStat =
+    "bg-white border border-[var(--border-default)] rounded-2xl p-5 sm:p-6 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md";
 
   return (
-    <div className="mb-8 flex justify-center">
+    <div
+      ref={ref}
+      className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-8 sm:mt-10"
+    >
+      {/* Stat 1 — Rating (highlight) */}
       <div
-        ref={ref}
-        className={`inline-flex items-center flex-wrap justify-center gap-3 sm:gap-4 glass-card rounded-full px-5 sm:px-8 py-3 sm:py-4 border border-accent-500/20 shadow-[0_0_16px_rgba(232,104,48,0.08)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          visible ? "opacity-100 scale-100" : "opacity-0 scale-[0.92]"
-        }`}
+        className={`${baseStat} border-accent-500 bg-gradient-to-b from-white to-[#fff7f1] flex flex-col items-center justify-center`}
       >
-        {/* TripAdvisor owl logo */}
-        <svg className="w-8 h-8 shrink-0" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Tripadvisor">
-          <circle cx="32" cy="32" r="32" fill="#34E0A1"/>
-          <g transform="translate(10, 18)">
-            {/* Binocular owl eyes */}
-            <circle cx="13" cy="16" r="9" stroke="#1A1A1A" strokeWidth="2.5" fill="none"/>
-            <circle cx="31" cy="16" r="9" stroke="#1A1A1A" strokeWidth="2.5" fill="none"/>
-            {/* Pupils */}
-            <circle cx="13" cy="16" r="4" fill="#1A1A1A"/>
-            <circle cx="31" cy="16" r="4" fill="#1A1A1A"/>
-            {/* Beak */}
-            <path d="M20 20l2 4 2-4" fill="#1A1A1A"/>
-            {/* Top connector / head */}
-            <path d="M13 7C13 7 17 2 22 2C27 2 31 7 31 7" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-            {/* Left wing hint */}
-            <path d="M4 12C2 14 2 18 4 20" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-            {/* Right wing hint */}
-            <path d="M40 12C42 14 42 18 40 20" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-          </g>
-        </svg>
-
-        {/* Animated stars — pop in one by one */}
-        <div className="flex gap-1">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <svg
-              key={i}
-              className={`w-5 h-5 text-accent-500 ${visible ? "star-pop-in" : "star-init"}`}
-              style={{ animationDelay: `${300 + i * 120}ms` }}
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-          ))}
+        <div className="text-4xl sm:text-5xl font-black text-accent-500 tracking-tight leading-none">
+          5,0
         </div>
+        <div className="mt-2">
+          <Stars size="text-sm" />
+        </div>
+        <div className="mt-2 text-xs text-content-muted">
+          {t("statReviewsLabel", { count })}
+        </div>
+      </div>
 
-        {/* Score */}
-        <span className="text-xl sm:text-2xl font-bold text-accent-500 tracking-tight">5,0</span>
+      {/* Stat 2 — Ranking */}
+      <div className={`${baseStat} flex flex-col items-center justify-center`}>
+        <div className="text-4xl sm:text-5xl font-black text-accent-500 tracking-tight leading-none">
+          Nr. 1
+        </div>
+        <div className="mt-3 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-content-strong">
+          {t("statRankingLabel")}
+        </div>
+        <div className="mt-1 text-xs text-content-muted">
+          {t("statRankingSub")}
+        </div>
+      </div>
 
-        {/* Divider */}
-        <span className="w-px h-6 bg-[var(--border-default)]" aria-hidden="true" />
-
-        {/* Animated counter + text */}
-        <div className="flex flex-col text-left">
-          <span className="text-sm font-semibold text-content-strong tracking-tight">
-            {t("reviewsCount", { count })}
-          </span>
-          <span className="text-xs text-content-muted">{t("topActivity")}</span>
+      {/* Stat 3 — Award */}
+      <div className={`${baseStat} flex flex-col items-center justify-center`}>
+        <a
+          href={TRIPADVISOR_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={t("travelersChoiceAlt")}
+          className="cursor-pointer transition-transform duration-200 hover:scale-105"
+        >
+          <Image
+            src="/images/tripadvisor-travelers-choice-2026-pin.png"
+            alt={t("travelersChoiceAlt")}
+            width={400}
+            height={400}
+            className="h-[60px] sm:h-[68px] w-auto"
+            loading="lazy"
+            sizes="68px"
+          />
+        </a>
+        <div className="mt-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-content-strong">
+          Travelers&apos; Choice
+        </div>
+        <div className="mt-1 text-xs text-content-muted">
+          {t("statAwardSub")}
         </div>
       </div>
     </div>
+  );
+}
+
+function FeaturedQuote({
+  review,
+  locale,
+  isLast,
+}: {
+  review: Review;
+  locale: string;
+  isLast: boolean;
+}) {
+  const text = review.featured[locale] || review.featured.de;
+  const dateLocale = dateLocaleMap[locale] || locale;
+  const formattedDate = new Date(review.date).toLocaleDateString(dateLocale, {
+    year: "numeric",
+    month: "short",
+  });
+
+  return (
+    <article
+      className={`flex flex-col px-1 ${
+        isLast
+          ? ""
+          : "md:pr-6 lg:pr-8 md:border-r md:border-[var(--border-default)]"
+      } pb-6 md:pb-0 ${
+        isLast ? "" : "border-b border-[var(--border-default)] md:border-b-0"
+      }`}
+    >
+      <Stars size="text-[13px]" />
+      <p className="font-editorial italic text-base sm:text-[17px] leading-relaxed text-content-strong mt-3">
+        <span aria-hidden="true">“</span>
+        {text}
+        <span aria-hidden="true">”</span>
+      </p>
+      <div className="mt-4 flex items-center gap-2 text-xs text-content-muted">
+        <span className="font-semibold text-content-strong">{review.name}</span>
+        <span aria-hidden="true">·</span>
+        <time dateTime={review.date} suppressHydrationWarning>
+          {formattedDate}
+        </time>
+      </div>
+    </article>
   );
 }
 
@@ -234,13 +229,19 @@ export default function Reviews() {
   const locale = useLocale();
 
   return (
-    <section id="bewertungen" className="relative py-14 sm:py-16 lg:py-24 overflow-hidden scroll-mt-20">
+    <section
+      id="bewertungen"
+      className="relative py-14 sm:py-16 lg:py-24 overflow-hidden scroll-mt-20"
+    >
       {/* Glow orb */}
-      <div className="glow-orb glow-orb-sky w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] top-20 right-0 opacity-70 animate-glow-pulse" aria-hidden="true" />
+      <div
+        className="glow-orb glow-orb-sky w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] top-20 right-0 opacity-70 animate-glow-pulse"
+        aria-hidden="true"
+      />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         {/* Header */}
-        <ScrollReveal className="text-center mb-6">
+        <ScrollReveal className="text-center mb-2">
           <p className="text-sm tracking-premium uppercase text-accent-500 font-semibold">
             {t("tagline")}
           </p>
@@ -250,30 +251,48 @@ export default function Reviews() {
           <div className="mt-4 section-divider" />
         </ScrollReveal>
 
-        {/* Rating badge — self-animated */}
-        <RatingBadge />
+        {/* Stats strip */}
+        <ScrollReveal>
+          <StatsStrip />
+        </ScrollReveal>
 
-        {/* Review grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {reviews.map((review, i) => (
-            <ScrollReveal key={i} delay={i * 100}>
-              <ReviewCard review={review} locale={locale} />
-            </ScrollReveal>
-          ))}
-        </div>
+        {/* Featured quotes block */}
+        <ScrollReveal>
+          <div className="mt-6 sm:mt-8 bg-white border border-[var(--border-default)] rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+            {reviews.map((review, i) => (
+              <FeaturedQuote
+                key={review.name}
+                review={review}
+                locale={locale}
+                isLast={i === reviews.length - 1}
+              />
+            ))}
+          </div>
+        </ScrollReveal>
 
-        {/* CTA */}
+        {/* CTAs */}
         <ScrollReveal className="mt-8 flex flex-col items-center gap-3">
           <a
-            href="https://www.tripadvisor.com/Attraction_Review-g230011-d8720066-Reviews-Gleitschirm_Tandemflug_com-Lienz_Tirol_Austrian_Alps.html"
+            href={TRIPADVISOR_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t("allReviewsLabel")}
             className="inline-flex items-center gap-2 text-[13px] font-semibold tracking-wide uppercase text-content-subtle hover:text-accent-400 transition-colors"
           >
             {t("allReviews")}
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+            <svg
+              className="w-3.5 h-3.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+              />
             </svg>
           </a>
           <a
@@ -284,37 +303,21 @@ export default function Reviews() {
             className="inline-flex items-center gap-2 text-[13px] font-semibold tracking-wide uppercase text-content-subtle hover:text-accent-400 transition-colors"
           >
             {t("googleReviews")}
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+            <svg
+              className="w-3.5 h-3.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+              />
             </svg>
           </a>
-        </ScrollReveal>
-
-        {/* Travelers' Choice 2026 award */}
-        <ScrollReveal className="mt-12 flex flex-col items-center gap-4">
-          <p className="text-sm tracking-premium uppercase text-accent-500 font-semibold">
-            {t("travelersChoiceLabel")}
-          </p>
-          <a
-            href={TRIPADVISOR_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={t("travelersChoiceAlt")}
-            className="inline-flex items-center justify-center bg-white rounded-2xl px-6 py-5 sm:px-8 sm:py-6 shadow-[0_8px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_12px_40px_rgba(232,104,48,0.25)] hover:-translate-y-0.5 transition-all duration-300"
-          >
-            <Image
-              src="/images/tripadvisor-travelers-choice-2026.png"
-              alt={t("travelersChoiceAlt")}
-              width={2000}
-              height={784}
-              className="h-auto w-[240px] sm:w-[300px]"
-              loading="lazy"
-              sizes="(max-width: 640px) 240px, 300px"
-            />
-          </a>
-          <p className="max-w-lg text-center text-xs sm:text-[13px] text-content-muted leading-relaxed font-light">
-            {t.rich("travelersChoiceSubline", { br: () => <br /> })}
-          </p>
         </ScrollReveal>
       </div>
     </section>

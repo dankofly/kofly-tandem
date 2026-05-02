@@ -229,17 +229,15 @@
   "Reviews": {
     "tagline": "Tripadvisor",
     "title": "Beoordelingen",
-    "reviewsCount": "{count}+ beoordelingen",
-    "topActivity": "Nr. 1 buitenactiviteit in Lienz",
-    "readMore": "Meer lezen",
-    "readLess": "Minder",
     "allReviews": "Alle beoordelingen op Tripadvisor",
     "allReviewsLabel": "Alle beoordelingen op Tripadvisor bekijken (opent in nieuw tabblad)",
     "googleReviews": "Beoordeling op Google schrijven",
     "googleReviewsLabel": "Beoordeling op Google schrijven (opent in nieuw tabblad)",
-    "travelersChoiceLabel": "Het is ons weer gelukt:",
     "travelersChoiceAlt": "Tripadvisor Travelers' Choice 2026 onderscheiding voor Gleitschirm-Tandemflug.com",
-    "travelersChoiceSubline": "We behoren tot de top 10 % van de meest geliefde activiteiten ter wereld op Tripadvisor!"
+    "statReviewsLabel": "uit {count}+ beoordelingen",
+    "statRankingLabel": "Outdoor in Lienz",
+    "statRankingSub": "Tripadvisor Ranking",
+    "statAwardSub": "2026 · Top 10 % wereldwijd"
   },
   "MapContact": {
     "tagline": "Contact",
