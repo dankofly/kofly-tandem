@@ -7,8 +7,10 @@ import ScrollReveal from "./ScrollReveal";
 
 interface Review {
   name: string;
-  featured: Record<string, string>;
+  rating: number;
+  text: Record<string, string>;
   date: string;
+  sourceUrl: string;
 }
 
 const TRIPADVISOR_URL =
@@ -17,32 +19,51 @@ const TRIPADVISOR_URL =
 const reviews: Review[] = [
   {
     name: "Carmen S.",
-    featured: {
-      de: "Hoch oben über der Region zu gleiten — unbeschreiblich. Alles war super organisiert, ich habe mich sicher gefühlt.",
-      en: "Gliding high above the region — indescribable. Everything was perfectly organized, I felt safe the entire time.",
-      nl: "Hoog boven de regio zweven — onbeschrijflijk. Alles was perfect georganiseerd, ik voelde me veilig.",
+    rating: 5,
+    text: {
+      de: "Der Tandemflug war einfach traumhaft! Schon der Start und der Weg dorthin waren ein Erlebnis, und dann dieses Gefühl, hoch oben über der Region zu gleiten – unbeschreiblich. Die Aussicht war atemberaubend, man konnte die Landschaft in voller Schönheit genießen. Alles war super organisiert, ich habe mich die ganze Zeit sicher und bestens betreut gefühlt. Absolute Empfehlung für alle, die etwas Besonderes erleben wollen – ein echtes Wow-Erlebnis!",
+      en: "The tandem flight was simply amazing! Even the start and the way up were an experience, and then that feeling of gliding high above the region – indescribable. The view was breathtaking, you could enjoy the landscape in all its beauty. Everything was perfectly organized, I felt safe and well looked after the entire time. Absolute recommendation for anyone who wants to experience something special – a true wow experience!",
+      nl: "De tandemvlucht was gewoon fantastisch! Al de start en de weg ernaartoe waren een belevenis, en dan dat gevoel om hoog boven de regio te zweven – onbeschrijflijk. Het uitzicht was adembenemend, je kon het landschap in al zijn schoonheid bewonderen. Alles was perfect georganiseerd, ik voelde me de hele tijd veilig en uitstekend begeleid. Absolute aanrader voor iedereen die iets bijzonders wil beleven – een echt wow-erlebnis!",
     },
     date: "2025-09-01",
+    sourceUrl: TRIPADVISOR_URL,
   },
   {
     name: "Georg K.",
-    featured: {
-      de: "Die Tandempiloten waren super lieb, mega erfahren und haben einem vom ersten Moment an ein absolut sicheres Gefühl gegeben.",
-      en: "The tandem pilots were incredibly kind, hugely experienced and gave you an absolutely safe feeling from the very first moment.",
-      nl: "De tandempiloten waren super lief, enorm ervaren en gaven je vanaf het eerste moment een absoluut veilig gevoel.",
+    rating: 5,
+    text: {
+      de: "Einfach unvergesslich! Die Tandempiloten waren super lieb, mega erfahren und haben einem vom ersten Moment an ein absolut sicheres Gefühl gegeben. Bei traumhaftem Wetter durch die Lüfte zu gleiten war der Wahnsinn – können wir jedem nur empfehlen!",
+      en: "Simply unforgettable! The tandem pilots were incredibly kind, hugely experienced and gave you an absolutely safe feeling from the very first moment. Gliding through the skies in perfect weather was incredible – we can only recommend it to everyone!",
+      nl: "Gewoon onvergetelijk! De tandempiloten waren super lief, enorm ervaren en gaven je vanaf het eerste moment een absoluut veilig gevoel. Bij prachtig weer door de lucht zweven was waanzinnig – we kunnen het iedereen aanbevelen!",
     },
     date: "2025-08-01",
+    sourceUrl: TRIPADVISOR_URL,
   },
   {
     name: "Familie Övermann",
-    featured: {
-      de: "Sehr feinfühliger Flug, anfängliche Nervosität war schnell verflogen. Der Blick über Lienz ist ein Traum!",
-      en: "Very sensitive flight, initial nervousness quickly disappeared. The view over Lienz is a dream!",
-      nl: "Zeer gevoelige vlucht, aanvankelijke zenuwen waren snel verdwenen. Het uitzicht over Lienz is een droom!",
+    rating: 5,
+    text: {
+      de: "Alles hat wunderbar gepasst!! Angefangen mit dem schönen Gutschein, der zu uns nach Hause punktgenau zum Geburtstag unseres Sohnes geschickt wurde bis hin zur persönlichen Termin-Absprache vor Ort war es durchweg eine sehr sympathische und verlässliche Absprache. Der Flug verlief dann sehr feinfühlig und empathisch, anfängliche Nervosität war schnell verflogen. Digital begleitet mit Live-Standort, Bild vom Abflugsort sowie Kurzvideo während des Fluges. Der Blick über Lienz und die umliegenden Bergketten sind ein Traum!! Ganz herzlichen Dank für dieses tolle Erlebnis!!",
+      en: "Everything came together wonderfully!! Starting with the beautiful voucher that was sent to our home right on time for our son's birthday, through to the personal appointment arrangements on site – it was a consistently friendly and reliable experience. The flight itself was very sensitive and empathetic, initial nervousness quickly disappeared. Digitally accompanied with live location, a photo from the launch site and a short video during the flight. The view over Lienz and the surrounding mountain ranges is a dream!! Heartfelt thanks for this amazing experience!!",
+      nl: "Alles klopte perfect!! Vanaf de mooie cadeaubon die precies op tijd voor de verjaardag van onze zoon naar huis werd gestuurd tot de persoonlijke afspraak ter plaatse – het was een door en door sympathieke en betrouwbare ervaring. De vlucht verliep zeer gevoelig en empathisch, de aanvankelijke zenuwen waren snel verdwenen. Digitaal begeleid met live locatie, foto van de startplaats en een kort filmpje tijdens de vlucht. Het uitzicht over Lienz en de omliggende bergketens is een droom!! Heel hartelijk dank voor deze geweldige ervaring!!",
     },
     date: "2025-08-01",
+    sourceUrl: TRIPADVISOR_URL,
+  },
+  {
+    name: "Christina S.",
+    rating: 5,
+    text: {
+      de: "Ein voller Erfolg, bin dem ganzen Team echt dankbar. Aber nicht nur wegen dem Flug sondern auch weil ich vom Bahnhof geholt, wieder zurückgebracht wurde und schöne Fotos gemacht wurden. Aber eine große positive Überraschung war, da ich gerne dichte, dass die Piloten nach dem Flug mit mir gereimt haben. All das sind keine Witze – euer ganzes Team ist spitze. So komme ich gerne ein weiteres Mal, weil durch viel Spaß und Freude seid ihr genial.",
+      en: "A complete success, I'm truly grateful to the whole team. Not just because of the flight, but also because I was picked up from the train station, brought back, and beautiful photos were taken. But a big positive surprise was that, since I love writing poetry, the pilots rhymed with me after the flight. None of this is a joke – your whole team is top-notch. I'll gladly come again, because with so much fun and joy, you're simply brilliant.",
+      nl: "Een volledig succes, ik ben het hele team echt dankbaar. Niet alleen vanwege de vlucht, maar ook omdat ik van het station werd gehaald, weer teruggebracht en er mooie foto's werden gemaakt. Maar een grote positieve verrassing was dat, omdat ik graag dicht, de piloten na de vlucht met mij hebben gerijmd. Dit alles is geen grap – jullie hele team is top. Zo kom ik graag nog een keer, want met zoveel plezier en vreugde zijn jullie geniaal.",
+    },
+    date: "2025-08-01",
+    sourceUrl: TRIPADVISOR_URL,
   },
 ];
+
+const TRUNCATE = 110;
 
 const dateLocaleMap: Record<string, string> = {
   de: "de-AT",
@@ -92,13 +113,13 @@ function useCountUp(target: number, active: boolean, durationMs = 1800) {
   return value;
 }
 
-function Stars({ size = "text-base" }: { size?: string }) {
+function StarsRow({ size = "w-4 h-4" }: { size?: string }) {
   return (
-    <div className={`flex gap-0.5 justify-center ${size}`} aria-label="5 von 5 Sternen">
+    <div className="flex gap-0.5" aria-label="5 von 5 Sternen">
       {Array.from({ length: 5 }).map((_, i) => (
         <svg
           key={i}
-          className="w-[1em] h-[1em] text-accent-500"
+          className={`${size} text-accent-500`}
           fill="currentColor"
           viewBox="0 0 20 20"
           aria-hidden="true"
@@ -123,15 +144,15 @@ function StatsStrip() {
       ref={ref}
       className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-8 sm:mt-10"
     >
-      {/* Stat 1 — Rating (highlight) */}
+      {/* Stat 1 — Rating */}
       <div
         className={`${baseStat} border-accent-500 bg-gradient-to-b from-white to-[#fff7f1] flex flex-col items-center justify-center`}
       >
         <div className="text-4xl sm:text-5xl font-black text-accent-500 tracking-tight leading-none">
           5,0
         </div>
-        <div className="mt-2">
-          <Stars size="text-sm" />
+        <div className="mt-2 flex justify-center">
+          <StarsRow size="w-3.5 h-3.5" />
         </div>
         <div className="mt-2 text-xs text-content-muted">
           {t("statReviewsLabel", { count })}
@@ -181,44 +202,53 @@ function StatsStrip() {
   );
 }
 
-function FeaturedQuote({
-  review,
-  locale,
-  isLast,
-}: {
-  review: Review;
-  locale: string;
-  isLast: boolean;
-}) {
-  const text = review.featured[locale] || review.featured.de;
-  const dateLocale = dateLocaleMap[locale] || locale;
-  const formattedDate = new Date(review.date).toLocaleDateString(dateLocale, {
-    year: "numeric",
-    month: "short",
-  });
+function ReviewCard({ review, locale }: { review: Review; locale: string }) {
+  const t = useTranslations("Reviews");
+  const [expanded, setExpanded] = useState(false);
+  const fullText = review.text[locale] || review.text.de;
+  const long = fullText.length > TRUNCATE;
+  const text =
+    !expanded && long
+      ? fullText.slice(0, TRUNCATE).trimEnd() + "…"
+      : fullText;
+
+  const formattedDate = new Date(review.date).toLocaleDateString(
+    dateLocaleMap[locale] || locale,
+    { year: "numeric", month: "long" }
+  );
 
   return (
-    <article
-      className={`flex flex-col px-1 ${
-        isLast
-          ? ""
-          : "md:pr-6 lg:pr-8 md:border-r md:border-[var(--border-default)]"
-      } pb-6 md:pb-0 ${
-        isLast ? "" : "border-b border-[var(--border-default)] md:border-b-0"
-      }`}
-    >
-      <Stars size="text-[13px]" />
-      <p className="font-editorial italic text-base sm:text-[17px] leading-relaxed text-content-strong mt-3">
-        <span aria-hidden="true">“</span>
+    <article className="glass-card card-hover-glow rounded-2xl p-6 sm:p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
+      <div className="mb-4">
+        <StarsRow />
+      </div>
+      <p className="text-sm text-content-strong leading-relaxed font-light flex-1">
         {text}
-        <span aria-hidden="true">”</span>
       </p>
-      <div className="mt-4 flex items-center gap-2 text-xs text-content-muted">
-        <span className="font-semibold text-content-strong">{review.name}</span>
-        <span aria-hidden="true">·</span>
-        <time dateTime={review.date} suppressHydrationWarning>
-          {formattedDate}
-        </time>
+      {long && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="mt-3 text-sm font-medium text-accent-400 hover:text-accent-500 self-start transition-colors cursor-pointer tracking-wide uppercase py-1"
+        >
+          {expanded ? t("readLess") : t("readMore")}
+        </button>
+      )}
+      <div className="mt-5 pt-5 border-t border-edge-subtle flex items-center gap-3">
+        <span className="w-8 h-8 rounded-full bg-accent-500/15 text-accent-500 text-xs font-bold flex items-center justify-center shrink-0">
+          {review.name.charAt(0)}
+        </span>
+        <div>
+          <p className="text-xs font-medium text-content-strong tracking-wide">
+            {review.name}
+          </p>
+          <time
+            className="text-[11px] text-content-subtle"
+            dateTime={review.date}
+            suppressHydrationWarning
+          >
+            {formattedDate}
+          </time>
+        </div>
       </div>
     </article>
   );
@@ -251,24 +281,19 @@ export default function Reviews() {
           <div className="mt-4 section-divider" />
         </ScrollReveal>
 
-        {/* Stats strip */}
+        {/* Stats strip — Variante J: 3 boxes (Rating · Ranking · Award) */}
         <ScrollReveal>
           <StatsStrip />
         </ScrollReveal>
 
-        {/* Featured quotes block */}
-        <ScrollReveal>
-          <div className="mt-6 sm:mt-8 bg-white border border-[var(--border-default)] rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-            {reviews.map((review, i) => (
-              <FeaturedQuote
-                key={review.name}
-                review={review}
-                locale={locale}
-                isLast={i === reviews.length - 1}
-              />
-            ))}
-          </div>
-        </ScrollReveal>
+        {/* Review cards grid (4 cards, original style) */}
+        <div className="mt-6 sm:mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {reviews.map((review, i) => (
+            <ScrollReveal key={review.name} delay={i * 100}>
+              <ReviewCard review={review} locale={locale} />
+            </ScrollReveal>
+          ))}
+        </div>
 
         {/* CTAs */}
         <ScrollReveal className="mt-8 flex flex-col items-center gap-3">

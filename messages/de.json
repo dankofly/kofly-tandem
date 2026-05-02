@@ -229,6 +229,8 @@
   "Reviews": {
     "tagline": "Tripadvisor",
     "title": "Bewertungen",
+    "readMore": "Mehr lesen",
+    "readLess": "Weniger",
     "allReviews": "Alle Bewertungen auf Tripadvisor",
     "allReviewsLabel": "Alle Bewertungen auf Tripadvisor ansehen (öffnet in neuem Tab)",
     "googleReviews": "Bewertung auf Google schreiben",
