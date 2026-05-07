@@ -21,25 +21,6 @@ const nextConfig = {
     loaderFile: "./lib/image-loader.ts",
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },
-  async redirects() {
-    // Catch-all 301 for legacy thermik.net URL patterns that arrive via
-    // Plesk path-forwarding (thermik.net/foo → /de/foo). Without these,
-    // those paths would 404 on KOFLY and drop the authority transfer.
-    const legacyPatterns = [
-      "/de/archives/:slug*",
-      "/de/abenteuer-tandemfliegen-:slug*",
-      "/de/page/:num*",
-      "/de/links",
-      "/de/links/:slug*",
-      "/de/:id(\\d{4,})",
-      "/de/:id(\\d{4,})/",
-    ];
-    return legacyPatterns.map((source) => ({
-      source,
-      destination: "/de",
-      permanent: true,
-    }));
-  },
   async headers() {
     const csp = [
       "default-src 'self'",
