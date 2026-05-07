@@ -1,4 +1,5 @@
 import { getStore } from "@netlify/blobs";
+import { revalidateTag, unstable_cache } from "next/cache";
 
 const CONFIG_KEY = "images-config";
 const IMAGE_KEY_PREFIX = "image-";
@@ -163,7 +164,7 @@ function getImagesStore() {
   return getStore({ name: "images", consistency: "strong" });
 }
 
-export async function getImagesConfig(): Promise<Record<string, ImageSlot>> {
+async function loadImagesConfig(): Promise<Record<string, ImageSlot>> {
   try {
     const store = getImagesStore();
     const raw = await store.get(CONFIG_KEY, { type: "text" });
@@ -177,6 +178,11 @@ export async function getImagesConfig(): Promise<Record<string, ImageSlot>> {
   }
   return { ...DEFAULT_SLOTS };
 }
+
+export const getImagesConfig = unstable_cache(loadImagesConfig, ["images-config"], {
+  revalidate: 3600,
+  tags: ["images-config"],
+});
 
 export async function getImageUrl(slot: string): Promise<string | null> {
   const slots = await getImagesConfig();
@@ -204,6 +210,7 @@ export async function updateSlotFilename(
     slots[slot].blobbed = blobbed;
     const store = getImagesStore();
     await store.set(CONFIG_KEY, JSON.stringify({ slots }));
+    revalidateTag("images-config", "max");
   }
 }
 

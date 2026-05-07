@@ -1,14 +1,13 @@
 import createMiddleware from "next-intl/middleware";
+import { NextResponse, type NextRequest } from "next/server";
 import { routing } from "./i18n/routing";
-import type { NextRequest } from "next/server";
-import { NextResponse } from "next/server";
 
 const intlMiddleware = createMiddleware(routing);
 
-export default function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const response = intlMiddleware(request);
 
-  // SEO: Alle 307-Redirects → 308 permanent, damit Google Locale-URLs korrekt indexiert
+  // SEO: turn locale redirects into permanent redirects.
   if (response.status === 307) {
     const location = response.headers.get("location");
     if (location) {
@@ -19,8 +18,7 @@ export default function middleware(request: NextRequest) {
     }
   }
 
-  // Perf: Netlify-Edge darf HTML 1h cachen + 1d stale-while-revalidate servieren.
-  // Überschreibt den Next.js-Default `private, no-cache, no-store` für statische Locale-Seiten.
+  // Edge cache HTML while still allowing revalidation.
   if (response.status === 200) {
     response.headers.set(
       "Cache-Control",

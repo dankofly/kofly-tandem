@@ -35,6 +35,9 @@ const inter = Inter({
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://gleitschirm-tandemflug.com";
 
+export const dynamic = "force-static";
+export const revalidate = 3600;
+
 type Props = {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
