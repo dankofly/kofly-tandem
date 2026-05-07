@@ -1,5 +1,9 @@
 import { notFound, permanentRedirect } from "next/navigation";
 
+// Override layout's force-static. Catch-all needs to run server-side
+// per request to evaluate the legacy-pattern check.
+export const dynamic = "force-dynamic";
+
 // Legacy thermik.net URL patterns. thermik.net is forwarded via Plesk to
 // gleitschirm-tandemflug.com/de/<path>; these paths don't exist on KOFLY,
 // so we 308 them to /de to preserve the authority transfer of a 24-year-old
