@@ -106,6 +106,9 @@ export async function generateMetadata({
     },
     verification: {
       google: "googlefb3c4e31913cb3e3",
+      other: {
+        "msvalidate.01": "276ac0104096408b98256db069b12230",
+      },
     },
     icons: {
       icon: [
