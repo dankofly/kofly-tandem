@@ -107,7 +107,7 @@ export async function generateMetadata({
     verification: {
       google: "googlefb3c4e31913cb3e3",
       other: {
-        "msvalidate.01": "276ac0104096408b98256db069b12230",
+        "msvalidate.01": "e9d9b24bb6a94185be234573c3c01af6",
       },
     },
     icons: {
