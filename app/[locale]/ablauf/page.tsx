@@ -4,13 +4,23 @@ import Image from "next/image";
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getImageUrl } from "@/lib/images-config";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 
 const SITE_URL = "https://gleitschirm-tandemflug.com";
 
 const rich = {
   b: (chunks: ReactNode) => (
     <strong className="font-semibold text-content-strong">{chunks}</strong>
+  ),
+  bankomatLink: (chunks: ReactNode) => (
+    <a
+      href="https://bankomatsuche.at"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-accent-400 hover:text-accent-500 underline underline-offset-2 transition-colors"
+    >
+      {chunks}
+    </a>
   ),
 };
 
@@ -47,11 +57,57 @@ export default async function AblaufPage() {
     { name: t("breadcrumbCurrent"), url: `${SITE_URL}/${locale}/ablauf` },
   ]);
 
+  const nauseaPlainText = [
+    t("nauseaWhyP1"),
+    t("nauseaWhyP2"),
+    t("nauseaWhyP3"),
+    t("nauseaWhyP4"),
+    t("nauseaSignsP1"),
+    t("nauseaSignsP2"),
+    t("nauseaSignsP3"),
+    t("nauseaTipsP1"),
+    t("nauseaTipsP2"),
+    t("nauseaTipsP3"),
+    t("nauseaTipsP4"),
+    t("nauseaMedsP1"),
+    t("nauseaMedsP2"),
+    t("nauseaMedsP3"),
+    t("nauseaMedsP4"),
+    t("nauseaMedsP5"),
+  ]
+    .join(" ")
+    .replace(/<\/?b>/g, "");
+
+  const paymentPlainText = [
+    t("step10P1"),
+    `${t("step10MethodBarTitle")}: ${t("step10MethodBarP")}`,
+    `${t("step10MethodQrTitle")}: ${t("step10MethodQrP1")} ${t("step10MethodQrP2")}`,
+    `${t("step10MethodOtherTitle")}: ${t("step10MethodOtherP")}`,
+    t("step10Preferred"),
+  ]
+    .join(" ")
+    .replace(/<\/?b>/g, "")
+    .replace(/<bankomatLink>([^<]+)<\/bankomatLink>/g, "$1 (bankomatsuche.at)");
+
+  const ablaufFaq = faqSchema([
+    { name: t("nauseaTitle"), text: nauseaPlainText },
+    {
+      name: locale === "en"
+        ? "How can I pay for my tandem flight?"
+        : locale === "nl"
+        ? "Hoe kan ik mijn tandemvlucht betalen?"
+        : "Wie kann ich nach dem Tandemflug bezahlen?",
+      text: paymentPlainText,
+    },
+  ]);
+
+  const schemaPayload = [breadcrumbs, ablaufFaq];
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaPayload) }}
       />
       {/* -- Hero: Emotion & Sehnsucht -- */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
@@ -352,6 +408,137 @@ export default async function AblaufPage() {
         </div>
       </section>
 
+      {/* -- Übelkeit / Reiseübelkeit beim Tandemflug -- */}
+      <section
+        id="uebelkeit-tandemflug"
+        className="py-16 lg:py-24 scroll-mt-20"
+        aria-labelledby="nausea-heading"
+      >
+        <div className="max-w-3xl mx-auto px-6">
+          <article className="glass-card border-accent-500/20 p-8 sm:p-10">
+            <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
+              {t("nauseaTagline")}
+            </p>
+            <h2
+              id="nausea-heading"
+              className="mt-3 text-2xl sm:text-3xl font-bold text-content-primary tracking-tight"
+            >
+              {t("nauseaTitle")}
+            </h2>
+            <div className="mt-6 section-divider !mx-0" />
+
+            <p className="mt-8 text-base text-content-body leading-relaxed font-light">
+              {t("nauseaSummary")}
+            </p>
+
+            <details className="group mt-8 border-t border-edge-faint pt-6">
+              <summary className="flex items-center justify-between cursor-pointer list-none gap-4 text-sm font-semibold tracking-premium uppercase text-accent-500 hover:text-accent-400 transition-colors">
+                <span>{t("nauseaToggle")}</span>
+                <svg
+                  className="w-5 h-5 transition-transform duration-300 group-open:rotate-180 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </summary>
+
+              <div className="mt-8 space-y-10 text-base text-content-body leading-relaxed font-light">
+                {/* Warum schwindelig */}
+                <div>
+                  <h3 className="text-lg sm:text-xl font-semibold text-content-primary">
+                    {t("nauseaWhyTitle")}
+                  </h3>
+                  <div className="mt-4 space-y-4">
+                    <p>{r("nauseaWhyP1")}</p>
+                    <p>{r("nauseaWhyP2")}</p>
+                    <p>{r("nauseaWhyP3")}</p>
+                    <p>{r("nauseaWhyP4")}</p>
+                  </div>
+                </div>
+
+                {/* Erste Anzeichen */}
+                <div>
+                  <h3 className="text-lg sm:text-xl font-semibold text-content-primary">
+                    {t("nauseaSignsTitle")}
+                  </h3>
+                  <div className="mt-4 space-y-4">
+                    <p>{r("nauseaSignsP1")}</p>
+                    <p>{r("nauseaSignsP2")}</p>
+                    <p>{r("nauseaSignsP3")}</p>
+                  </div>
+                </div>
+
+                {/* Vor und während des Fluges */}
+                <div>
+                  <h3 className="text-lg sm:text-xl font-semibold text-content-primary">
+                    {t("nauseaTipsTitle")}
+                  </h3>
+                  <div className="mt-4 space-y-4">
+                    <p>{r("nauseaTipsP1")}</p>
+                    <p>{r("nauseaTipsP2")}</p>
+                    <p>{r("nauseaTipsP3")}</p>
+                    <p>{r("nauseaTipsP4")}</p>
+                  </div>
+                </div>
+
+                {/* Medikamente */}
+                <div>
+                  <h3 className="text-lg sm:text-xl font-semibold text-content-primary">
+                    {t("nauseaMedsTitle")}
+                  </h3>
+                  <div className="mt-4 space-y-4">
+                    <p>{r("nauseaMedsP1")}</p>
+                    <p>{r("nauseaMedsP2")}</p>
+                    <p>{r("nauseaMedsP3")}</p>
+                    <p>{r("nauseaMedsP4")}</p>
+                    <p>{r("nauseaMedsP5")}</p>
+                  </div>
+                </div>
+
+                {/* Checkliste */}
+                <div className="highlight-glow bg-accent-500/5 border border-accent-500/20 rounded-sm px-6 py-6">
+                  <h3 className="text-lg sm:text-xl font-semibold text-content-primary">
+                    {t("nauseaChecklistTitle")}
+                  </h3>
+                  <ul className="mt-4 space-y-2.5 text-sm sm:text-base">
+                    {[1, 2, 3, 4, 5, 6].map((n) => (
+                      <li key={n} className="flex items-start gap-3">
+                        <span
+                          className="mt-2 inline-block w-1.5 h-1.5 rounded-full bg-accent-500 flex-shrink-0"
+                          aria-hidden="true"
+                        />
+                        <span>{t(`nauseaChecklist${n}`)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-5 text-sm text-content-body">
+                    {t("nauseaChecklistFooter")}
+                  </p>
+                </div>
+
+                {/* Disclaimer */}
+                <div className="border-t border-edge-faint pt-6">
+                  <p className="text-xs tracking-premium uppercase text-content-subtle font-medium">
+                    {t("nauseaDisclaimerTitle")}
+                  </p>
+                  <p className="mt-3 text-xs sm:text-sm text-content-muted leading-relaxed">
+                    {t("nauseaDisclaimer")}
+                  </p>
+                </div>
+              </div>
+            </details>
+          </article>
+        </div>
+      </section>
+
       {/* -- Schritt 08: Der Flug (sensorisches Highlight) -- */}
       <section className="relative py-16 lg:py-24 bg-surface-secondary overflow-hidden">
         <div className="glow-orb glow-orb-accent w-[500px] h-[500px] top-1/2 -right-32 -translate-y-1/2 opacity-30 animate-glow-pulse" />
@@ -451,6 +638,46 @@ export default async function AblaufPage() {
                 </div>
                 <div className="mt-4 space-y-4 text-base text-content-body leading-relaxed font-light">
                   <p>{r("step10P1")}</p>
+                </div>
+
+                {/* Zahlungsmethoden im Detail */}
+                <div className="mt-8 space-y-7">
+                  <div>
+                    <h3 className="text-base sm:text-lg font-semibold text-content-primary">
+                      {t("step10MethodBarTitle")}
+                    </h3>
+                    <p className="mt-2 text-base text-content-body leading-relaxed font-light">
+                      {r("step10MethodBarP")}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-base sm:text-lg font-semibold text-content-primary">
+                      {t("step10MethodQrTitle")}
+                    </h3>
+                    <div className="mt-2 space-y-3 text-base text-content-body leading-relaxed font-light">
+                      <p>{r("step10MethodQrP1")}</p>
+                      <p>{r("step10MethodQrP2")}</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-base sm:text-lg font-semibold text-content-primary">
+                      {t("step10MethodOtherTitle")}
+                    </h3>
+                    <p className="mt-2 text-base text-content-body leading-relaxed font-light">
+                      {r("step10MethodOtherP")}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bevorzugte Methoden */}
+                <div className="highlight-glow mt-8 bg-accent-500/5 border border-accent-500/20 rounded-sm px-5 py-4 text-sm text-content-body">
+                  <p>{r("step10Preferred")}</p>
+                </div>
+
+                {/* Dankesnachricht / danach */}
+                <div className="mt-8 space-y-4 text-base text-content-body leading-relaxed font-light">
                   <p>{r("step10P2")}</p>
                 </div>
 
