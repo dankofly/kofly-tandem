@@ -93,6 +93,16 @@ export default async function AGBPage({ params }: Props) {
 
             <div>
               <h2 className="text-xl font-bold text-content-primary tracking-tight uppercase mb-4">
+                {t("mediationTitle")}
+              </h2>
+              <div className="space-y-4 text-sm text-content-body leading-relaxed font-light">
+                <p>{t("mediationP1")}</p>
+                <p>{t("mediationP2")}</p>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-bold text-content-primary tracking-tight uppercase mb-4">
                 {t("riskTitle")}
               </h2>
               <div className="space-y-4 text-sm text-content-body leading-relaxed font-light">
