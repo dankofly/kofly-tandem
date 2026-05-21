@@ -4,15 +4,15 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import dynamic from "next/dynamic";
+import nextDynamic from "next/dynamic";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileCTA from "@/components/MobileCTA";
 import ThemeProvider from "@/components/ThemeProvider";
 
-const ChatBotLazy = dynamic(() => import("@/components/ChatBotLazy"), { loading: () => null });
-const CookieBanner = dynamic(() => import("@/components/CookieBanner"), { loading: () => null });
-const ScrollProgress = dynamic(() => import("@/components/ScrollProgress"), { loading: () => null });
+const ChatBotLazy = nextDynamic(() => import("@/components/ChatBotLazy"), { loading: () => null });
+const CookieBanner = nextDynamic(() => import("@/components/CookieBanner"), { loading: () => null });
+const ScrollProgress = nextDynamic(() => import("@/components/ScrollProgress"), { loading: () => null });
 import {
   organizationSchema,
   serviceSchema,
