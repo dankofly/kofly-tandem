@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
+type Props = { params: Promise<{ locale: string }> };
 
 const SITE_URL = "https://gleitschirm-tandemflug.com";
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("Metadata");
   return {
     title: t("agbTitle"),
@@ -20,7 +24,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function AGBPage() {
+export default async function AGBPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("AGB");
 
   return (

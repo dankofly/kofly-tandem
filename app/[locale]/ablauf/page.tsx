@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Image from "next/image";
-import { getTranslations, getLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getImageUrl } from "@/lib/images-config";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
@@ -24,7 +24,11 @@ const rich = {
   ),
 };
 
-export async function generateMetadata(): Promise<Metadata> {
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("Metadata");
   return {
     title: t("ablaufTitle"),
@@ -40,9 +44,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function AblaufPage() {
+export default async function AblaufPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("Ablauf");
-  const locale = await getLocale();
 
   const r = (key: string) => t.rich(key, rich);
 

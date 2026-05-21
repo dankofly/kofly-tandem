@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { getTranslations, getLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
+type Props = { params: Promise<{ locale: string }> };
 import { Link } from "@/i18n/navigation";
 import {
   breadcrumbSchema,
@@ -21,7 +23,9 @@ const REGIONS = ["lienz", "sillian", "matrei", "deferrgen"] as const;
 const AREAS = ["area1", "area2", "area3", "area4", "area5", "area6", "area7"] as const;
 const FAQ_TOPICS = ["Where", "Season", "Booking", "Weather", "Transport"] as const;
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("Metadata");
   return {
     title: t("tandemflugOsttirolTitle"),
@@ -46,9 +50,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function TandemflugOsttirolPage() {
+export default async function TandemflugOsttirolPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("TandemflugOsttirol");
-  const locale = await getLocale();
   const r = (key: string) => t.rich(key, rich);
 
   const breadcrumbs = breadcrumbSchema([

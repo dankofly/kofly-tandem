@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { getTranslations, getLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
+type Props = { params: Promise<{ locale: string }> };
 import { Link } from "@/i18n/navigation";
 import {
   breadcrumbSchema,
@@ -19,7 +21,9 @@ const rich = {
 const FAQ_TOPICS = ["Experience", "Age", "Height", "Weather"] as const;
 const INCLUDED = ["1", "2", "3", "4", "5", "6"] as const;
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("Metadata");
   return {
     title: t("classicflugTitle"),
@@ -44,9 +48,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function ClassicflugPage() {
+export default async function ClassicflugPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("Classicflug");
-  const locale = await getLocale();
   const r = (key: string) => t.rich(key, rich);
 
   const breadcrumbs = breadcrumbSchema([

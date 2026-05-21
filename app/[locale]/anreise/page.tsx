@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { getTranslations, getLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
+type Props = { params: Promise<{ locale: string }> };
 import { Link } from "@/i18n/navigation";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import TravelTimeTable from "@/components/TravelTimeTable";
@@ -22,7 +24,9 @@ const FAQ_TOPICS = [
   "Lift",
 ] as const;
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("Metadata");
   return {
     title: t("anreiseTitle"),
@@ -42,9 +46,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function AnreisePage() {
+export default async function AnreisePage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("Anreise");
-  const locale = await getLocale();
   const r = (key: string) => t.rich(key, rich);
 
   const breadcrumbs = breadcrumbSchema([

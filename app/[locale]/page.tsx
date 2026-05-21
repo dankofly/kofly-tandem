@@ -1,4 +1,6 @@
-import { getTranslations, getLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
+type Props = { params: Promise<{ locale: string }> };
 import { Link } from "@/i18n/navigation";
 import Hero from "@/components/Hero";
 import Ticker from "@/components/Ticker";
@@ -20,8 +22,9 @@ const FAQ_KEYS = [
   ...Array.from({ length: 4 }, (_, i) => `6_${i + 1}`),
 ];
 
-export default async function HomePage() {
-  const locale = await getLocale();
+export default async function HomePage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "FAQ" });
   const tRegional = await getTranslations({ locale, namespace: "HomeRegional" });
 
