@@ -121,6 +121,71 @@ function esc(s: string): string {
   return s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c] || c);
 }
 
+function isISODate(s?: string): boolean {
+  return !!s && /^\d{4}-\d{2}-\d{2}$/.test(s);
+}
+
+/**
+ * Bridge zu Tandemify (booking.kofly.at): legt die Terminanfrage zusaetzlich
+ * als echte Inquiry an, damit sie die volle Customer Journey bekommt (Hub,
+ * Briefing, Status). Server-zu-Server mit geteiltem Secret, best-effort:
+ * Fehler/Timeout brechen NIE den Telegram-Flow oder die User-Response.
+ */
+async function forwardToTandemify(d: TerminPayload): Promise<void> {
+  const url = process.env.TANDEMIFY_INTAKE_URL;
+  const secret = process.env.INQUIRY_INTAKE_SECRET;
+  if (!url || !secret) {
+    console.warn("[BRIDGE] TANDEMIFY_INTAKE_URL/INQUIRY_INTAKE_SECRET fehlt, skip");
+    return;
+  }
+
+  // wishDate robust: gueltiges ISO-Datum aus wunschtermin, sonst anreise.
+  // Freitext-Wunschtermin wandert in die Nachricht statt das Datum zu brechen.
+  const wishDate = isISODate(d.wunschtermin) ? d.wunschtermin! : d.anreise;
+  const noteParts: string[] = [];
+  if (d.wunschtermin && !isISODate(d.wunschtermin)) {
+    noteParts.push(`Wunschtermin: ${d.wunschtermin}`);
+  }
+  if (d.whatsapp) noteParts.push(`WhatsApp: ${d.whatsapp}`);
+  if (d.nachricht) noteParts.push(d.nachricht);
+
+  const payload = {
+    passengerName: `${d.vorname} ${d.nachname}`.trim(),
+    passengerPhone: d.telefon,
+    passengerEmail: d.email || null,
+    wishDate,
+    arrivalDate: d.anreise || null,
+    departureDate: d.abreise || null,
+    passengerCount: d.personenanzahl ? parseInt(d.personenanzahl, 10) || 1 : 1,
+    passengerLanguage: "de",
+    flightPackageLabel: d.paket || null,
+    message: noteParts.length ? noteParts.join(" · ") : null,
+    source: "gleitschirm-tandemflug.com",
+  };
+
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 4000);
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-intake-secret": secret,
+      },
+      body: JSON.stringify(payload),
+      signal: ctrl.signal,
+    });
+    if (!res.ok) {
+      const txt = await res.text().catch(() => "");
+      console.error("[BRIDGE] Tandemify intake non-OK:", res.status, txt);
+    }
+  } catch (err) {
+    console.error("[BRIDGE] Tandemify intake failed:", err);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body: LeadPayload = await request.json();
@@ -149,8 +214,13 @@ export async function POST(request: NextRequest) {
       JSON.stringify(body, null, 2)
     );
 
-    // --- Telegram notification ---
+    // --- Telegram notification (primaer) ---
     await sendTelegram(body);
+
+    // --- Bridge: Terminanfragen zusaetzlich als Inquiry in Tandemify ---
+    if (body.type === "termin") {
+      await forwardToTandemify(body as TerminPayload);
+    }
 
     return NextResponse.json({
       success: true,
