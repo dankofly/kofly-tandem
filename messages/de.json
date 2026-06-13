@@ -193,6 +193,8 @@
     "voucherLink": "Gutschein bestellen"
   },
   "FAQ": {
+    "q3_12": "Was kostet ein Tandemflug mit dem Gleitschirm?",
+    "a3_12": "Ein Gleitschirm-Tandemflug in Lienz startet bei 150 €. Der Classic-Flug dauert 20 bis 30 Minuten, das Foto- und Videopaket kostet 20 € extra. Der längere Thermikflug beginnt bei 250 €. Alle Pakete sind auch als Gutschein erhältlich.",
     "tagline": "FAQ",
     "title": "Häufige Fragen",
     "subtitle": "Nur Fliegen ist schöner – erlebe mit uns Osttirol von oben: einfach, sicher und unvergesslich.",
@@ -910,6 +912,8 @@
     "ctaWhatsapp": "Oder direkt per WhatsApp anfragen: +43 676 7293888"
   },
   "Paragleiten": {
+    "faqWhereQ": "Wo kann man in Österreich im Sommer Paragliding machen?",
+    "faqWhereA": "Eines der besten Sommerreviere ist der Airpark Lienzer Dolomiten in Osttirol. Vom Frühjahr bis in den Herbst starten Tandemflüge am Zettersfeld und am Hochstein über Lienz, dazu Fluggebiete in Matrei, Kals und im Defereggental.",
     "breadcrumbHome": "Startseite",
     "breadcrumbCurrent": "Paragleiten in Osttirol",
     "heroTagline": "Dein Flugführer",
@@ -1327,6 +1331,8 @@
     "ctaP": "Frag uns unverbindlich an – wir koordinieren den Termin wetterabhängig."
   },
   "Sicherheit": {
+    "faqDangerQ": "Ist Paragliding gefährlich?",
+    "faqDangerA": "Tandem-Paragliding gilt als sicher, wenn es von einem ausgebildeten Piloten durchgeführt wird. Bei KOFLY fliegst du mit einem staatlich geprüften Tandempiloten, geprüfter Ausrüstung und laufender Wetterbeobachtung. Wir fliegen nur bei passenden Bedingungen und verschieben bei Zweifel.",
     "breadcrumbHome": "Startseite",
     "breadcrumbCurrent": "Sicherheit",
     "heroTagline": "Unser Anspruch",

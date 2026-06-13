@@ -193,6 +193,8 @@
     "voucherLink": "Cadeaubon bestellen"
   },
   "FAQ": {
+    "q3_12": "Wat kost een tandemvlucht met de paraglider?",
+    "a3_12": "Een tandemvlucht in Lienz start vanaf 150 €. De classic-vlucht duurt 20 tot 30 minuten, het foto- en videopakket kost 20 € extra. De langere thermiekvlucht begint vanaf 250 €. Alle pakketten zijn ook als cadeaubon verkrijgbaar.",
     "tagline": "FAQ",
     "title": "Veelgestelde vragen",
     "subtitle": "Alleen vliegen is mooier \u2013 beleef met ons Osttirol van bovenaf: eenvoudig, veilig en onvergetelijk.",
@@ -910,6 +912,8 @@
     "ctaWhatsapp": "Of neem direct contact op via WhatsApp: +43 676 7293888"
   },
   "Paragleiten": {
+    "faqWhereQ": "Waar kun je in de zomer paragliden in Oostenrijk?",
+    "faqWhereA": "Een van de beste zomergebieden is de Airpark Lienzer Dolomiten in Oost-Tirol. Van het voorjaar tot de herfst starten tandemvluchten vanaf het Zettersfeld en de Hochstein boven Lienz, plus vlieggebieden in Matrei, Kals en het Defereggental.",
     "breadcrumbHome": "Startpagina",
     "breadcrumbCurrent": "Paragliden in Oost-Tirol",
     "heroTagline": "Jouw vluchtgids",
@@ -1327,6 +1331,8 @@
     "ctaP": "Stuur ons een vrijblijvende aanvraag – we coördineren je datum afhankelijk van het weer."
   },
   "Sicherheit": {
+    "faqDangerQ": "Is paragliden gevaarlijk?",
+    "faqDangerA": "Tandemparagliden geldt als veilig wanneer het door een opgeleide piloot wordt uitgevoerd. Bij KOFLY vlieg je met een staatsgediplomeerde tandempiloot, gekeurde uitrusting en voortdurende weersobservatie. We vliegen alleen bij geschikte omstandigheden en verzetten bij twijfel.",
     "breadcrumbHome": "Startpagina",
     "breadcrumbCurrent": "Veiligheid",
     "heroTagline": "Onze standaard",

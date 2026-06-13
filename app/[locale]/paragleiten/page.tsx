@@ -20,6 +20,7 @@ const PILOT_ISELTAL = ["goldried", "virgen", "praegraten", "alkus"] as const;
 const PILOT_DRAU_MOELL = ["drautal", "moelltal"] as const;
 
 const FAQ_TOPICS = [
+  "Where",
   "Safety",
   "Clothing",
   "Media",

@@ -47,6 +47,7 @@ export default function FAQ() {
         { q: t("q3_3"), a: t("a3_3") },
         { q: t("q3_4"), a: t("a3_4") },
         { q: t("q3_5"), a: t("a3_5") },
+        { q: t("q3_12"), a: t("a3_12") },
       ],
     },
     {

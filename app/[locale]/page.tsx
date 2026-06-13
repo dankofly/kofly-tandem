@@ -16,7 +16,7 @@ import { faqSchema } from "@/lib/schema";
 const FAQ_KEYS = [
   ...Array.from({ length: 4 }, (_, i) => `1_${i + 1}`),
   ...Array.from({ length: 4 }, (_, i) => `2_${i + 1}`),
-  ...Array.from({ length: 11 }, (_, i) => `3_${i + 1}`),
+  ...Array.from({ length: 12 }, (_, i) => `3_${i + 1}`),
   ...Array.from({ length: 6 }, (_, i) => `4_${i + 1}`),
   ...Array.from({ length: 2 }, (_, i) => `5_${i + 1}`),
   ...Array.from({ length: 4 }, (_, i) => `6_${i + 1}`),

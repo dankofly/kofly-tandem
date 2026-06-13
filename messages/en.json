@@ -193,6 +193,8 @@
     "voucherLink": "Order a voucher"
   },
   "FAQ": {
+    "q3_12": "How much does a tandem paragliding flight cost?",
+    "a3_12": "A tandem paragliding flight in Lienz starts at 150 €. The classic flight lasts 20 to 30 minutes, the photo and video package costs 20 € extra. The longer thermal flight starts at 250 €. All packages are also available as a voucher.",
     "tagline": "FAQ",
     "title": "Frequently Asked Questions",
     "subtitle": "Only flying is more beautiful \u2013 experience Osttirol from above with us: simple, safe, and unforgettable.",
@@ -910,6 +912,8 @@
     "ctaWhatsapp": "Or contact us directly via WhatsApp: +43 676 7293888"
   },
   "Paragleiten": {
+    "faqWhereQ": "Where can you go paragliding in Austria in summer?",
+    "faqWhereA": "One of the best summer areas is the Airpark Lienzer Dolomiten in East Tyrol. From spring to autumn, tandem flights launch from Zettersfeld and Hochstein above Lienz, plus flying sites in Matrei, Kals and the Defereggen valley.",
     "breadcrumbHome": "Home",
     "breadcrumbCurrent": "Paragliding in East Tyrol",
     "heroTagline": "Your flight guide",
@@ -1327,6 +1331,8 @@
     "ctaP": "Send us a non-binding enquiry – we'll coordinate your date based on the weather."
   },
   "Sicherheit": {
+    "faqDangerQ": "Is paragliding dangerous?",
+    "faqDangerA": "Tandem paragliding is considered safe when flown by a trained pilot. At KOFLY you fly with a state-certified tandem pilot, certified equipment and constant weather monitoring. We only fly in suitable conditions and postpone whenever in doubt.",
     "breadcrumbHome": "Home",
     "breadcrumbCurrent": "Safety",
     "heroTagline": "Our commitment",

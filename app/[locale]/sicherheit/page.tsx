@@ -14,7 +14,7 @@ const rich = {
   ),
 };
 
-const FAQ_TOPICS = ["Kids", "Afraid", "Storm", "Cancel"] as const;
+const FAQ_TOPICS = ["Danger", "Kids", "Afraid", "Storm", "Cancel"] as const;
 const EQUIPMENT = ["1", "2", "3", "4", "5"] as const;
 const REQUIREMENTS = ["1", "2", "3", "4"] as const;
 
