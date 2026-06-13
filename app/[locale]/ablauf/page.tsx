@@ -182,6 +182,29 @@ export default async function AblaufPage({ params }: Props) {
               <p>{r("safetyP2")}</p>
               <p>{r("safetyP3")}</p>
             </div>
+
+            <div className="mt-8">
+              <Link
+                href="/briefing"
+                className="cta-lift inline-flex items-center gap-2 text-sm font-semibold tracking-wide uppercase text-accent-500 hover:text-accent-400 transition-colors"
+              >
+                {t("briefingLink")}
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
