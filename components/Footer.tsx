@@ -131,6 +131,7 @@ export default function Footer() {
                   { label: t("thermikflug"), href: "/thermikflug" },
                   { label: t("gutschein"), href: "/gutschein" },
                   { label: t("tandemflugOsttirol"), href: "/tandemflug-osttirol" },
+                  { label: t("tandemflugLienz"), href: "/tandemflug-lienz" },
                   { label: t("paragleiten"), href: "/paragleiten" },
                   { label: t("sicherheit"), href: "/sicherheit" },
                   { label: t("urlaubOsttirol"), href: "/urlaub" },

@@ -13,6 +13,7 @@ const pages = [
   { path: "/anreise", changeFrequency: "weekly" as const, priority: 0.8, lastmod: "2026-03-15" },
   { path: "/paragleiten", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-04-17" },
   { path: "/tandemflug-osttirol", changeFrequency: "weekly" as const, priority: 0.95, lastmod: "2026-04-17" },
+  { path: "/tandemflug-lienz", changeFrequency: "weekly" as const, priority: 0.95, lastmod: "2026-06-13" },
   { path: "/gutschein", changeFrequency: "weekly" as const, priority: 0.95, lastmod: "2026-04-17" },
   { path: "/premiumflug", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-04-17" },
   { path: "/thermikflug", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-04-17" },
