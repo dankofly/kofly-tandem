@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import Image from "next/image";
 
 type Props = { params: Promise<{ locale: string }> };
 import { Link } from "@/i18n/navigation";
@@ -162,6 +163,28 @@ export default async function TandemflugLienzPage({ params }: Props) {
           <p className="mt-4 text-xs text-content-muted font-light max-w-md">
             {t("heroProof")}
           </p>
+
+          {/* Hero-Bild: oranger Schirm direkt über Lienz */}
+          <figure className="mt-12 group">
+            <div className="relative overflow-hidden rounded-2xl border border-edge-secondary/40 shadow-2xl shadow-black/40">
+              <Image
+                src="/images/tandemflug-lienz-hero.webp"
+                alt={t("heroImageAlt")}
+                width={1920}
+                height={1280}
+                priority
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="w-full h-auto transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03]"
+              />
+              <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"
+                aria-hidden="true"
+              />
+            </div>
+            <figcaption className="mt-3 text-xs text-content-muted font-light text-center">
+              {t("heroImageAlt")}
+            </figcaption>
+          </figure>
 
           {/* Stats */}
           <div className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-px bg-edge-secondary/40 rounded-xl overflow-hidden">
