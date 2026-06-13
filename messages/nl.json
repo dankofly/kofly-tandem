@@ -55,7 +55,11 @@
     "sicherheitTitle": "Veiligheid Tandemvlucht – Voorwaarden & Piloten | KOFLY",
     "sicherheitDescription": "Veiligheid bij de tandemvlucht: staatsgecertificeerde piloten, gecertificeerde uitrusting, weerprotocol. Vanaf 4 jaar, 20–120 kg. FAQ & voorwaarden.",
     "sicherheitOgTitle": "Veiligheid tandemvliegen – onze standaard | KOFLY",
-    "sicherheitOgDescription": "Staatsgecertificeerde piloten, gecertificeerde uitrusting, weerprotocol. Risicovrij boeken bij KOFLY."
+    "sicherheitOgDescription": "Staatsgecertificeerde piloten, gecertificeerde uitrusting, weerprotocol. Risicovrij boeken bij KOFLY.",
+    "briefingTitle": "Pre-flight briefing – Jouw tandemvlucht stap voor stap | KOFLY",
+    "briefingDescription": "Het complete verloop van je tandemvlucht in Oost-Tirol: ontmoetingspunt, opstijgen, start, vlucht, landing en paklijst. Alles wat je vooraf moet weten.",
+    "briefingOgTitle": "Pre-flight briefing voor je tandemvlucht | KOFLY",
+    "briefingOgDescription": "Verloop, uitrusting en paklijst voor je tandem-paraglidingvlucht in de Airpark Lienzer Dolomiten."
   },
   "Navigation": {
     "erlebnis": "Beleving",
@@ -72,7 +76,48 @@
     "hauptnavigation": "Hoofdnavigatie",
     "mobileNavigation": "Mobiele navigatie",
     "whatsappMessage": "Hallo, ik heb interesse in een tandemvlucht. Wanneer is er een afspraak mogelijk?",
-    "fragMich": "Vraag mij"
+    "fragMich": "Vraag mij",
+    "briefing": "Briefing"
+  },
+  "Briefing": {
+    "breadcrumbHome": "Start",
+    "breadcrumbCurrent": "Briefing",
+    "heroTagline": "Pre-flight briefing",
+    "heroTitle": "Jouw pre-flight",
+    "heroTitleAccent": "Briefing",
+    "heroP1": "Zodat je ontspannen en goed voorbereid op je tandemvlucht aankomt, vind je hier het complete verloop, van het ontmoetingspunt tot de landing.",
+    "heroP2": "Lees het rustig door. Als iets onduidelijk is, vraag het gewoon aan onze Kofly AI of stuur ons een bericht op WhatsApp.",
+    "stepsTitle": "Zo verloopt je vlucht",
+    "steps": [
+      { "title": "Ontmoetingspunt", "body": "We ontmoeten elkaar op de afgesproken plek: bij de Lienzer Bergbahnen, op het landingsveld Touch Heaven of bij vliegschool Bruno Girstmair. Reken ontspannen 1,5 tot 2 uur voor het hele verloop." },
+      { "title": "Opstijgen Zettersfeld", "body": "Met de gondel en de stoeltjeslift ga je omhoog naar het startpunt Steinermandl op de Zettersfeld op 2.220 m. Daarvoor heb je een ticket voor 2 deeltrajecten nodig (volwassenen € 24,50, jeugd/kind € 18,00, kleine kinderen gratis)." },
+      { "title": "Opstijgen Hochstein", "body": "Naar het startpunt op de Hochstein gaan we met de taxi; de passagier betaalt zijn eigen plaats en die van de piloot. Of privé met de eigen auto plus een begeleider die de auto weer naar het dal brengt." },
+      { "title": "Instructie op het startpunt", "body": "Op het startpunt krijg je een korte, duidelijke instructie, zonder haast en zonder tijdsdruk. Je piloot legt precies uit wat je bij de start, tijdens de vlucht en bij de landing moet doen." },
+      { "title": "Start", "body": "Voor een veilige start hebben we wat wind van voren nodig. Je staat voor de piloot en loopt vlot mee tot het scherm netjes boven jullie staat. Pas op het commando van de piloot ga je zitten, tot dan gewoon doorlopen." },
+      { "title": "Vlucht", "body": "De vlucht duurt afhankelijk van het pakket en de omstandigheden ongeveer 25 tot 45 minuten. Je zweeft geruisloos over de Airpark Lienzer Dolomiten, rustig en ontspannen of wat sportiever, precies zoals jij wilt." },
+      { "title": "Weer", "body": "Mocht het weer geen veilige vlucht toelaten, dan rijden we weer terug naar het dal. Kosten voor de bergbaan of taxi kunnen dan niet worden terugbetaald. Normaal schatten we de omstandigheden echter zo in dat dat niet nodig is." },
+      { "title": "Landing", "body": "De landing is heel eenvoudig. Vlak ervoor geeft je piloot een duidelijk commando, je strekt beide voeten naar voren, en we landen zacht op de schuimprotector van het tuig." },
+      { "title": "Na de vlucht", "body": "Op het landingsveld bekijken we samen de foto's en video's uit je videopakket. Daarna ben je welkom om nog ontspannen op het landingsveld te blijven." },
+      { "title": "Betaling", "body": "We hebben een voorkeur voor contant, maar bieden ook expressoverschrijving, PayPal en kaart aan. Je betaalt direct na de vlucht aan de piloot met wie je hebt gevlogen." },
+      { "title": "Belangrijk tot slot", "body": "Spanning voor de vlucht is normaal, maar angst is niet nodig. Je piloot doet dit met veel ervaring bijna elke dag en begeleidt je rustig en veilig door het hele verloop." }
+    ],
+    "checklistTitle": "Wat je meeneemt",
+    "checklistIntro": "Kleed je weerbestendig aan en neem het volgende mee naar het ontmoetingspunt.",
+    "checklist": [
+      "Weerbestendige kleding, lange broek, warme jas",
+      "Stevige enkelhoge schoenen (wandel- of stevige sportschoenen) – verplicht",
+      "Handschoenen – bieden we ter plaatse aan, eigen mag je meenemen",
+      "Zonnebril (goed zittend) – aanbevolen",
+      "Zonnebrand – aanbevolen",
+      "Geen losse sieraden, geen open tassen",
+      "Contant geld voor de gondel en de betaling na de vlucht"
+    ],
+    "workflowTagline": "Na de boeking",
+    "workflowTitle": "Jouw persoonlijke vluchtpagina",
+    "workflowText": "Zodra we je vlucht hebben ingevoerd, krijg je van ons een eigen, persoonlijke vluchtpagina via een link. Daar zie je in één oogopslag het actuele vliegweer, de live status van je vlucht en je piloot, en kun je de briefing en het vervoerscontract gemakkelijk al vooraf afhandelen. Zo kom je ontspannen en goed voorbereid op het ontmoetingspunt.",
+    "ctaTitle": "Klaar voor je vlucht?",
+    "ctaP": "Reserveer je gewenste datum, weersafhankelijk en vrijblijvend.",
+    "ctaBook": "Vraag nu een datum aan"
   },
   "Hero": {
     "ariaLabel": "Tandem paragliden in Oost-Tirol \u2013 startgedeelte",

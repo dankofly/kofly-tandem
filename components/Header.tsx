@@ -17,6 +17,7 @@ export default function Header() {
   const navItems = [
     { label: t("erlebnis"), href: "/#erlebnis" },
     { label: t("ablauf"), href: "/ablauf" },
+    { label: t("briefing"), href: "/briefing" },
     { label: t("ueberUns"), href: "/ueber-uns" },
     { label: t("pakete"), href: "/#pakete" },
     { label: t("agb"), href: "/agb" },

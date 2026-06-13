@@ -55,7 +55,11 @@
     "sicherheitTitle": "Sicherheit Tandemflug – Voraussetzungen & Piloten | KOFLY",
     "sicherheitDescription": "Sicherheit beim Tandemflug: staatlich geprüfte Piloten, zertifizierte Ausrüstung, Wetter-Protokoll. Ab 4 Jahren, 20–120 kg. FAQ & Voraussetzungen.",
     "sicherheitOgTitle": "Sicherheit beim Tandemflug – unser Anspruch | KOFLY",
-    "sicherheitOgDescription": "Staatlich geprüfte Piloten, zertifizierte Ausrüstung, Wetter-Protokoll. Risiko-freie Buchung bei KOFLY."
+    "sicherheitOgDescription": "Staatlich geprüfte Piloten, zertifizierte Ausrüstung, Wetter-Protokoll. Risiko-freie Buchung bei KOFLY.",
+    "briefingTitle": "Pre-Flight Briefing – Ablauf deines Tandemflugs | KOFLY",
+    "briefingDescription": "Der komplette Ablauf deines Tandemflugs in Osttirol: Treffpunkt, Auffahrt, Start, Flug, Landung und Packliste. Alles, was du vorher wissen musst.",
+    "briefingOgTitle": "Pre-Flight Briefing für deinen Tandemflug | KOFLY",
+    "briefingOgDescription": "Ablauf, Ausrüstung und Packliste für deinen Gleitschirm-Tandemflug im Airpark Lienzer Dolomiten."
   },
   "Navigation": {
     "erlebnis": "Erlebnis",
@@ -72,7 +76,48 @@
     "hauptnavigation": "Hauptnavigation",
     "mobileNavigation": "Mobile Navigation",
     "whatsappMessage": "Hallo, ich interessiere mich für einen Tandemflug. Wann wäre ein Termin möglich?",
-    "fragMich": "Frag mich"
+    "fragMich": "Frag mich",
+    "briefing": "Briefing"
+  },
+  "Briefing": {
+    "breadcrumbHome": "Start",
+    "breadcrumbCurrent": "Briefing",
+    "heroTagline": "Pre-Flight Briefing",
+    "heroTitle": "Dein Pre-Flight",
+    "heroTitleAccent": "Briefing",
+    "heroP1": "Damit du entspannt und gut vorbereitet zu deinem Tandemflug kommst, findest du hier den kompletten Ablauf, vom Treffpunkt bis zur Landung.",
+    "heroP2": "Lies es in Ruhe durch. Wenn etwas unklar ist, frag einfach unsere Kofly KI oder schreib uns auf WhatsApp.",
+    "stepsTitle": "So läuft dein Flug ab",
+    "steps": [
+      { "title": "Treffpunkt", "body": "Wir treffen uns am vereinbarten Ort: bei den Lienzer Bergbahnen, am Landeplatz Touch Heaven oder bei der Flugschule Bruno Girstmair. Plane für den gesamten Ablauf entspannt 1,5 bis 2 Stunden ein." },
+      { "title": "Auffahrt Zettersfeld", "body": "Mit Gondel und Sessellift geht es hinauf zum Startplatz Steinermandl am Zettersfeld auf 2.220 m. Dafür brauchst du ein Ticket für 2 Teilstrecken (Erwachsene 24,50 €, Jugend/Kind 18,00 €, Kleinkinder frei)." },
+      { "title": "Auffahrt Hochstein", "body": "Zum Startplatz am Hochstein fahren wir mit dem Taxi, der Passagier zahlt seinen Platz und den des Piloten. Alternativ privat mit dem eigenen Auto plus einer Begleitperson, die das Auto wieder ins Tal bringt." },
+      { "title": "Einweisung am Startplatz", "body": "Am Startplatz bekommst du eine kurze, klare Einweisung, ohne Hektik und ohne Zeitdruck. Dein Pilot erklärt dir genau, was beim Start, im Flug und bei der Landung zu tun ist." },
+      { "title": "Start", "body": "Für einen sicheren Start brauchen wir etwas Wind von vorne. Du stehst vor dem Piloten und läufst zügig mit, bis der Schirm sauber über euch steht. Erst auf das Kommando des Piloten setzt du dich hin, vorher einfach weiterlaufen." },
+      { "title": "Flug", "body": "Der Flug dauert je nach Paket und Bedingungen etwa 25 bis 45 Minuten. Du gleitest lautlos über den Airpark Lienzer Dolomiten, ruhig und entspannt oder etwas sportlicher, ganz wie du magst." },
+      { "title": "Wetter", "body": "Sollte das Wetter keinen sicheren Flug zulassen, fahren wir wieder ins Tal. Kosten für Bergbahn oder Taxi können dann nicht rückerstattet werden. Im Normalfall schätzen wir die Bedingungen aber so ein, dass das nicht nötig ist." },
+      { "title": "Landung", "body": "Die Landung ist sehr einfach. Kurz davor gibt dir dein Pilot ein klares Kommando, du streckst beide Füße nach vorne aus, und wir landen sanft auf dem Schaumstoffprotektor des Gurtzeugs." },
+      { "title": "Nach dem Flug", "body": "Am Landeplatz schauen wir uns gemeinsam die Fotos und Videos aus deinem Videopaket an. Danach bist du eingeladen, noch entspannt am Landeplatz zu bleiben." },
+      { "title": "Bezahlung", "body": "Wir bevorzugen Barzahlung, bieten aber auch Expressüberweisung, PayPal und Karte an. Du bezahlst direkt nach dem Flug bei dem Piloten, mit dem du geflogen bist." },
+      { "title": "Wichtig zum Schluss", "body": "Aufregung vor dem Flug ist normal, Angst ist aber nicht nötig. Dein Pilot macht das mit viel Erfahrung fast jeden Tag und begleitet dich ruhig und sicher durch den gesamten Ablauf." }
+    ],
+    "checklistTitle": "Was du mitbringst",
+    "checklistIntro": "Bitte zieh dich wetterfest an und nimm folgende Dinge mit zum Treffpunkt.",
+    "checklist": [
+      "Wetterfeste Kleidung, lange Hose, warme Jacke",
+      "Knöchelhohe feste Schuhe (Wanderschuhe oder feste Sportschuhe) – Pflicht",
+      "Handschuhe – bieten wir vor Ort an, eigene gerne mitbringen",
+      "Sonnenbrille (fest sitzend) – empfohlen",
+      "Sonnencreme – empfohlen",
+      "Kein loser Schmuck, keine offenen Taschen",
+      "Bargeld für die Gondel und die Zahlung nach dem Flug"
+    ],
+    "workflowTagline": "Nach der Buchung",
+    "workflowTitle": "Deine persönliche Flugseite",
+    "workflowText": "Sobald wir deinen Flug eingetragen haben, bekommst du von uns eine eigene, persönliche Flugseite per Link. Dort siehst du auf einen Blick das aktuelle Flugwetter, den Live-Status deines Fluges und deinen Piloten, und du kannst das Briefing und den Beförderungsvertrag bequem schon vorab erledigen. So kommst du entspannt und gut vorbereitet zum Treffpunkt.",
+    "ctaTitle": "Bereit für deinen Flug?",
+    "ctaP": "Sichere dir deinen Wunschtermin, wetterabhängig und unverbindlich.",
+    "ctaBook": "Jetzt Termin anfragen"
   },
   "Hero": {
     "ariaLabel": "Gleitschirm Tandemflug und Paragleiten in Osttirol – Startbereich",

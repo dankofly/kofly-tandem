@@ -55,7 +55,11 @@
     "sicherheitTitle": "Tandem Flight Safety – Requirements & Pilots | KOFLY",
     "sicherheitDescription": "How we ensure safety for your tandem flight: state-certified pilots, certified equipment, weather protocol. Requirements 4–80+ years, 20–120 kg.",
     "sicherheitOgTitle": "Tandem Paragliding Safety – our commitment | KOFLY",
-    "sicherheitOgDescription": "State-certified pilots, certified equipment, weather protocol. Risk-free booking at KOFLY."
+    "sicherheitOgDescription": "State-certified pilots, certified equipment, weather protocol. Risk-free booking at KOFLY.",
+    "briefingTitle": "Pre-Flight Briefing – Your Tandem Flight Step by Step | KOFLY",
+    "briefingDescription": "The complete sequence of your tandem flight in East Tyrol: meeting point, ride up, take-off, flight, landing and packing list. Everything you need to know beforehand.",
+    "briefingOgTitle": "Pre-Flight Briefing for your tandem flight | KOFLY",
+    "briefingOgDescription": "Sequence, equipment and packing list for your paragliding tandem flight in the Airpark Lienzer Dolomiten."
   },
   "Navigation": {
     "erlebnis": "Experience",
@@ -72,7 +76,48 @@
     "hauptnavigation": "Main navigation",
     "mobileNavigation": "Mobile navigation",
     "whatsappMessage": "Hello, I\u2019m interested in a tandem flight. When would an appointment be possible?",
-    "fragMich": "Ask me"
+    "fragMich": "Ask me",
+    "briefing": "Briefing"
+  },
+  "Briefing": {
+    "breadcrumbHome": "Home",
+    "breadcrumbCurrent": "Briefing",
+    "heroTagline": "Pre-Flight Briefing",
+    "heroTitle": "Your Pre-Flight",
+    "heroTitleAccent": "Briefing",
+    "heroP1": "So you arrive relaxed and well prepared for your tandem flight, here is the complete sequence, from the meeting point to the landing.",
+    "heroP2": "Take your time reading it. If anything is unclear, just ask our Kofly AI or message us on WhatsApp.",
+    "stepsTitle": "How your flight works",
+    "steps": [
+      { "title": "Meeting point", "body": "We meet at the agreed spot: at the Lienz cable cars, at the Touch Heaven landing field or at the Bruno Girstmair flight school. Plan a relaxed 1.5 to 2 hours for the whole experience." },
+      { "title": "Ride up Zettersfeld", "body": "The gondola and chairlift take you up to the Steinermandl launch at Zettersfeld at 2,220 m. You need a ticket for 2 sections (adults €24.50, youth/child €18.00, small children free)." },
+      { "title": "Ride up Hochstein", "body": "We reach the Hochstein launch by taxi; the passenger pays for their own seat and the pilot's. Alternatively, privately in your own car plus a companion who drives it back down to the valley." },
+      { "title": "Briefing at the launch", "body": "At the launch you get a short, clear briefing, without rush or time pressure. Your pilot explains exactly what to do at take-off, in flight and on landing." },
+      { "title": "Take-off", "body": "For a safe take-off we need a little wind from the front. You stand in front of the pilot and run briskly along until the wing is cleanly above you. Only sit down on the pilot's command, until then simply keep running." },
+      { "title": "Flight", "body": "Depending on the package and conditions, the flight lasts about 25 to 45 minutes. You glide silently over the Airpark Lienzer Dolomiten, calm and relaxed or a bit more sporty, just as you like." },
+      { "title": "Weather", "body": "If the weather does not allow a safe flight, we drive back down to the valley. Costs for the cable car or taxi cannot be refunded in that case. Normally, though, we assess the conditions so that this is not necessary." },
+      { "title": "Landing", "body": "Landing is very easy. Just before, your pilot gives you a clear command, you stretch both feet forward, and we land gently on the foam protector of the harness." },
+      { "title": "After the flight", "body": "At the landing field we look at the photos and videos from your video package together. Afterwards you are welcome to stay and enjoy the flying life." },
+      { "title": "Payment", "body": "We prefer cash, but also offer instant bank transfer, PayPal and card. You pay right after the flight to the pilot you flew with." },
+      { "title": "Important to close", "body": "Excitement before the flight is normal, but fear is not necessary. Your pilot does this with a lot of experience almost every day and guides you calmly and safely through the whole process." }
+    ],
+    "checklistTitle": "What to bring",
+    "checklistIntro": "Please dress for the weather and bring the following to the meeting point.",
+    "checklist": [
+      "Weatherproof clothing, long trousers, warm jacket",
+      "Sturdy ankle-high shoes (hiking or solid sports shoes) – required",
+      "Gloves – we provide them on site, feel free to bring your own",
+      "Sunglasses (well-fitting) – recommended",
+      "Sunscreen – recommended",
+      "No loose jewellery, no open bags",
+      "Cash for the gondola and for payment after the flight"
+    ],
+    "workflowTagline": "After booking",
+    "workflowTitle": "Your personal flight page",
+    "workflowText": "As soon as we have entered your flight, you get your own personal flight page via a link. There you see at a glance the current flight weather, the live status of your flight and your pilot, and you can complete the briefing and the transport contract conveniently in advance. So you arrive relaxed and well prepared at the meeting point.",
+    "ctaTitle": "Ready for your flight?",
+    "ctaP": "Secure your preferred date, weather-dependent and without obligation.",
+    "ctaBook": "Request a date now"
   },
   "Hero": {
     "ariaLabel": "Tandem paragliding and paragliding in East Tyrol \u2013 hero section",
