@@ -1,0 +1,69 @@
+# =====================================================================
+# thermik.net  →  gleitschirm-tandemflug.com
+# Path-Aware SEO-Migration (überschreibt Catch-All vom 2026-05-08)
+#
+# Ziel:  Domain-Equity-Transfer von thermik.net (24 Jahre alt) auf
+#        gleitschirm-tandemflug.com — SEO-optimal, kein Soft-404.
+#
+# Strategie (siehe Tandemflug/DECISIONS.md):
+#   1. Root-Pages  → 301 → /de        (Domain-Equity-Transfer)
+#   2. 4 topisch-äquivalente Pages    → 301 → spezifische Tandem-Pages
+#   3. Alle anderen alten Pfade       → 410 Gone
+#      (vermeidet Soft-404-Penalty den Catch-All-301-zu-Homepage erzeugt)
+#
+# Document-Root: /httpdocs/  (Plesk-Standard)
+# Updated: 2026-05-11
+# =====================================================================
+
+RewriteEngine On
+
+# ---------------------------------------------------------------------
+# 0) dev.thermik.net  →  410 Gone (komplette Subdomain decommissioned)
+# ---------------------------------------------------------------------
+RewriteCond %{HTTP_HOST} ^dev\.thermik\.net$ [NC]
+RewriteRule ^.*$ - [G,L]
+
+# ---------------------------------------------------------------------
+# 1) Topisch-äquivalente Page-Maps (echter Link-Equity-Transfer)
+# ---------------------------------------------------------------------
+
+# Service-Pages
+RewriteRule ^kontakt/?$                                                   https://gleitschirm-tandemflug.com/de/buchen      [R=301,L]
+RewriteRule ^links/?$                                                     https://gleitschirm-tandemflug.com/de             [R=301,L]
+
+# Tandem-spezifische Blog-Artikel
+RewriteRule ^archives/14161-tandem-lienz-vom-zettersfeld\.html$           https://gleitschirm-tandemflug.com/de/urlaub      [R=301,L]
+RewriteRule ^archives/8300-faszination-gleitschirm-tandemfliegen\.html$   https://gleitschirm-tandemflug.com/de/paragleiten [R=301,L]
+
+# ---------------------------------------------------------------------
+# 2) Root + Index-Varianten  →  /de  (Hauptwert: Domain-Equity)
+# ---------------------------------------------------------------------
+RewriteRule ^$                          https://gleitschirm-tandemflug.com/de  [R=301,L]
+RewriteRule ^index\.(php|html?)$        https://gleitschirm-tandemflug.com/de  [R=301,L]
+
+# Alte Serendipity-Language-Switcher-URL (verifiziert in GSC)
+RewriteCond %{QUERY_STRING} serendipity\[lang_selected\]=en
+RewriteRule ^index\.php$ https://gleitschirm-tandemflug.com/en? [R=301,L]
+
+# ---------------------------------------------------------------------
+# 3) Catchall  →  410 Gone
+#    Alle alten Blog-Archive, Tags, Permalinks, Feeds, Pagination etc.
+#    haben keine topisch-äquivalente Page auf der neuen Site.
+#    410 = "permanent weg" → Google entfernt aus Index (vs. 301-to-Homepage
+#    das als Soft-404 verworfen würde und GSC-Errors verursacht).
+# ---------------------------------------------------------------------
+RewriteRule ^.+$ - [G,L]
+
+# ---------------------------------------------------------------------
+# 4) Security Defense-in-Depth
+#    Falls .htaccess umgangen wird: alte WP/Serendipity-Admin blockieren
+# ---------------------------------------------------------------------
+<FilesMatch "^(wp-config\.php|xmlrpc\.php|wp-login\.php|serendipity_admin\.php)$">
+    Require all denied
+</FilesMatch>
+
+# Disable Directory Indexing
+Options -Indexes
+
+# Optional: Custom 410-Page (falls Plesk template default zu generic)
+# ErrorDocument 410 "<!DOCTYPE html><html><head><title>410 Gone</title></head><body><h1>Diese Seite wurde dauerhaft entfernt.</h1><p>thermik.net existiert nicht mehr in dieser Form. Aktuelle Inhalte: <a href=\"https://gleitschirm-tandemflug.com/de\">gleitschirm-tandemflug.com</a></p></body></html>"

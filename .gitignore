@@ -31,3 +31,10 @@ marketingskills/
 # Local Netlify folder
 .netlify
 .gstack/
+
+# local dev logs & scratch
+.next-start.log
+.next-start.err.log
+.preview/
+nul
+skills-lock.json
