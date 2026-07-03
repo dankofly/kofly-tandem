@@ -217,8 +217,8 @@ export function organizationSchema(locale: string = "de") {
       ratingValue: "5.0",
       bestRating: "5",
       worstRating: "1",
-      ratingCount: "284",
-      reviewCount: "284",
+      ratingCount: "303",
+      reviewCount: "303",
     },
     contactPoint: {
       "@type": "ContactPoint",
@@ -442,8 +442,8 @@ export function productSchema(locale: string = "de") {
       ratingValue: "5.0",
       bestRating: "5",
       worstRating: "1",
-      ratingCount: "284",
-      reviewCount: "284",
+      ratingCount: "303",
+      reviewCount: "303",
     },
     offers: {
       "@type": "AggregateOffer",
@@ -760,8 +760,8 @@ export function packageProductSchema(opts: {
       ratingValue: "5.0",
       bestRating: "5",
       worstRating: "1",
-      ratingCount: "284",
-      reviewCount: "284",
+      ratingCount: "303",
+      reviewCount: "303",
     },
     offers: {
       "@type": "Offer",

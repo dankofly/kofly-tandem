@@ -70,7 +70,7 @@ export default function Footer() {
               </div>
               <span className="text-xs text-content-muted group-hover:text-accent-400 transition-colors">
                 <span className="font-semibold text-content-primary">5.0</span>{" "}
-                · 284+ {t("bewertungen")}
+                · 303 {t("bewertungen")}
               </span>
             </a>
 
