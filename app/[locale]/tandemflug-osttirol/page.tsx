@@ -8,6 +8,7 @@ import {
   breadcrumbSchema,
   faqSchema,
   flightAreaSchemas,
+  packageProductSchema,
   touristTripSchema,
 } from "@/lib/schema";
 
@@ -72,6 +73,14 @@ export default async function TandemflugOsttirolPage({ params }: Props) {
     text: t(`faq${topic}A`),
   }));
 
+  const tm = await getTranslations("Metadata");
+  const osttirolProduct = packageProductSchema({
+    name: "Tandemflug Osttirol",
+    description: tm("tandemflugOsttirolDescription"),
+    price: "150.00",
+    url: `${SITE_URL}/${locale}/tandemflug-osttirol`,
+  });
+
   return (
     <>
       <script
@@ -87,6 +96,10 @@ export default async function TandemflugOsttirolPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqSchema(faqItems)),
         }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(osttirolProduct) }}
       />
       {areaSchemas.map((schema, i) => (
         <script

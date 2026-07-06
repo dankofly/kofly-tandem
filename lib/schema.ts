@@ -468,7 +468,7 @@ export function touristAttractionSchema(locale: string = "de") {
       "Tandemflug Lienzer Dolomiten",
     ],
     description:
-      "Tandem-Paragliding im Airpark Lienzer Dolomiten – Start ab Zettersfeld (1.750 m) oder Hochstein (2.057 m) mit Panoramablick auf über 100 Alpengipfel. Nr. 1 Outdoor-Aktivität in Lienz.",
+      "Tandem-Paragliding im Airpark Lienzer Dolomiten – Start ab Zettersfeld (2.220 m) oder Hochstein (2.000 m) mit Panoramablick auf über 100 Alpengipfel. Nr. 1 Outdoor-Aktivität in Lienz.",
     url: `${localeBase(locale)}`,
     image: `${SITE_URL}/images/hero-1771273007982.webp`,
     geo: {
@@ -628,7 +628,7 @@ export function flightAreaSchemas() {
       "@type": "Place",
       name: "Hochstein – Paragliding Startplatz",
       description:
-        "Fluggebiet auf 2.057 m direkt über Lienz mit dramatischem Flug entlang der Dolomiten-Felswände.",
+        "Fluggebiet auf 2.000 m direkt über Lienz mit dramatischem Flug entlang der Dolomiten-Felswände.",
       geo: {
         "@type": "GeoCoordinates",
         latitude: 46.8333,

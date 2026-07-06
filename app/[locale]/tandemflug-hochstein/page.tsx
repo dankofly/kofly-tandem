@@ -21,64 +21,65 @@ const rich = {
   ),
 };
 
-const LAUNCH_SITES = ["zettersfeld", "hochstein"] as const;
-const FAQ_TOPICS = ["Meeting", "FromTown", "Season", "Weather", "Duration"] as const;
+const EXPERIENCES = ["exp1", "exp2"] as const;
+const STEPS = ["step1", "step2", "step3", "step4"] as const;
+const FAQ_TOPICS = ["Access", "Sunrise", "Season", "Duration", "Weather"] as const;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
   return {
-    title: t("tandemflugLienzTitle"),
-    description: t("tandemflugLienzDescription"),
+    title: t("tandemflugHochsteinTitle"),
+    description: t("tandemflugHochsteinDescription"),
     openGraph: {
-      title: t("tandemflugLienzOgTitle"),
-      description: t("tandemflugLienzOgDescription"),
+      title: t("tandemflugHochsteinOgTitle"),
+      description: t("tandemflugHochsteinOgDescription"),
     },
     twitter: {
       card: "summary_large_image",
-      title: t("tandemflugLienzOgTitle"),
-      description: t("tandemflugLienzOgDescription"),
+      title: t("tandemflugHochsteinOgTitle"),
+      description: t("tandemflugHochsteinOgDescription"),
     },
     alternates: {
       languages: {
-        de: `${SITE_URL}/de/tandemflug-lienz`,
-        en: `${SITE_URL}/en/tandemflug-lienz`,
-        nl: `${SITE_URL}/nl/tandemflug-lienz`,
-        "x-default": `${SITE_URL}/de/tandemflug-lienz`,
+        de: `${SITE_URL}/de/tandemflug-hochstein`,
+        en: `${SITE_URL}/en/tandemflug-hochstein`,
+        nl: `${SITE_URL}/nl/tandemflug-hochstein`,
+        "x-default": `${SITE_URL}/de/tandemflug-hochstein`,
       },
     },
   };
 }
 
-export default async function TandemflugLienzPage({ params }: Props) {
+export default async function TandemflugHochsteinPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("TandemflugLienz");
+  const t = await getTranslations("TandemflugHochstein");
   const r = (key: string) => t.rich(key, rich);
 
   const breadcrumbs = breadcrumbSchema([
     { name: t("breadcrumbHome"), url: `${SITE_URL}/${locale}` },
     {
       name: t("breadcrumbCurrent"),
-      url: `${SITE_URL}/${locale}/tandemflug-lienz`,
+      url: `${SITE_URL}/${locale}/tandemflug-hochstein`,
     },
   ]);
 
-  // Nur die beiden Lienzer Hausberge, nicht alle 7 Fluggebiete (Fokus auf Lienz).
-  const lienzAreaSchemas = flightAreaSchemas().slice(0, 2);
+  // Nur das Hochstein-Place-Schema (Index 1 in flightAreaSchemas).
+  const hochsteinSchema = flightAreaSchemas().slice(1, 2);
 
   const faqItems = FAQ_TOPICS.map((topic) => ({
     name: t(`faq${topic}Q`),
     text: t(`faq${topic}A`),
   }));
 
-  const tm = await getTranslations("Metadata");
-  const lienzProduct = packageProductSchema({
-    name: "Tandemflug Lienz",
-    description: tm("tandemflugLienzDescription"),
+  // Product-Schema mit AggregateRating + Offer -> Stern- und Preis-Rich-Results.
+  const hochsteinProduct = packageProductSchema({
+    name: t("productName"),
+    description: t("productDescription"),
     price: "150.00",
-    url: `${SITE_URL}/${locale}/tandemflug-lienz`,
+    url: `${SITE_URL}/${locale}/tandemflug-hochstein`,
     image: `${SITE_URL}/images/tandemflug-lienz-hero.webp`,
   });
 
@@ -96,15 +97,13 @@ export default async function TandemflugLienzPage({ params }: Props) {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema(faqItems)),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faqItems)) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(lienzProduct) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(hochsteinProduct) }}
       />
-      {lienzAreaSchemas.map((schema, i) => (
+      {hochsteinSchema.map((schema, i) => (
         <script
           key={i}
           type="application/ld+json"
@@ -127,10 +126,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
           <nav aria-label="Breadcrumb" className="mb-10">
             <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
               <li>
-                <Link
-                  href="/"
-                  className="hover:text-accent-400 transition-colors"
-                >
+                <Link href="/" className="hover:text-accent-400 transition-colors">
                   {t("breadcrumbHome")}
                 </Link>
               </li>
@@ -178,7 +174,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
             {t("heroProof")}
           </p>
 
-          {/* Hero-Bild: oranger Schirm direkt über Lienz */}
+          {/* Hero-Bild */}
           <figure className="mt-12 group">
             <div className="relative overflow-hidden rounded-2xl border border-edge-secondary/40 shadow-2xl shadow-black/40">
               <Image
@@ -203,9 +199,9 @@ export default async function TandemflugLienzPage({ params }: Props) {
           {/* Stats */}
           <div className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-px bg-edge-secondary/40 rounded-xl overflow-hidden">
             {[
-              { value: "10.000+", label: t("statFlightsLabel") },
+              { value: "2.000 m", label: t("statHeightLabel") },
               { value: "5,0★", label: t("statRatingLabel") },
-              { value: "2.220 m", label: t("statHeightLabel") },
+              { value: t("statSunriseValue"), label: t("statSunriseLabel") },
               { value: "ab €150", label: t("statPriceLabel") },
             ].map((stat) => (
               <div key={stat.label} className="bg-surface-primary p-5 text-center">
@@ -221,7 +217,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Social Proof – Vertrauen vor der Handlung */}
+      {/* Social Proof */}
       <section className="-mt-4 pb-4">
         <div className="max-w-3xl mx-auto px-6">
           <div className="glass-card border-accent-500/20 p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-6">
@@ -255,7 +251,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Warum Lienz */}
+      {/* Warum Hochstein */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
@@ -277,34 +273,31 @@ export default async function TandemflugLienzPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Zwei Startplätze über Lienz */}
+      {/* Flugerlebnisse am Hochstein */}
       <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
-            {t("launchTitle")}
+            {t("expTitle")}
           </h2>
           <div className="mt-5 section-divider !mx-0" />
           <p className="mt-6 text-base text-content-body leading-relaxed font-light">
-            {t("launchIntro")}
+            {t("expIntro")}
           </p>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {LAUNCH_SITES.map((site) => (
-              <div key={site} className="glass-card card-hover-glow p-6 sm:p-8 h-full border-accent-500/20">
+            {EXPERIENCES.map((exp) => (
+              <div key={exp} className="glass-card card-hover-glow p-6 sm:p-8 h-full border-accent-500/20">
                 <div className="flex items-center justify-between">
                   <h3 className="text-xl font-bold text-content-primary">
-                    {t(`${site}Name`)}
+                    {t(`${exp}Name`)}
                   </h3>
                   <span className="text-xs font-medium text-accent-500 bg-accent-500/10 px-2 py-1 rounded">
-                    {t(`${site}Height`)}
+                    {t(`${exp}Tag`)}
                   </span>
                 </div>
-                <p className="mt-1 text-xs tracking-premium uppercase text-content-muted font-medium">
-                  {t(`${site}Tag`)}
-                </p>
                 <div className="mt-4 space-y-3 text-sm text-content-body leading-relaxed font-light">
-                  <p>{r(`${site}P1`)}</p>
-                  <p>{r(`${site}P2`)}</p>
+                  <p>{r(`${exp}P1`)}</p>
+                  <p>{r(`${exp}P2`)}</p>
                 </div>
               </div>
             ))}
@@ -312,8 +305,39 @@ export default async function TandemflugLienzPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Treffpunkt & Anreise in Lienz */}
+      {/* Ablauf am Hochstein */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
+            {t("stepTitle")}
+          </h2>
+          <div className="mt-5 section-divider !mx-0" />
+          <p className="mt-6 text-base text-content-body leading-relaxed font-light">
+            {t("stepIntro")}
+          </p>
+
+          <ol className="mt-10 space-y-4">
+            {STEPS.map((step, i) => (
+              <li key={step} className="glass-card p-6 flex gap-5 border-l-2 border-accent-500/20">
+                <span className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full bg-accent-500/10 text-accent-500 font-bold text-sm">
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 className="text-sm font-semibold text-content-primary">
+                    {t(`${step}Title`)}
+                  </h3>
+                  <p className="mt-2 text-sm text-content-body leading-relaxed font-light">
+                    {r(`${step}P`)}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Treffpunkt & Anreise */}
+      <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6">
           <div className="glass-card border-accent-500/20 p-6 sm:p-10">
             <h2 className="text-2xl font-bold text-content-primary tracking-tight">
@@ -340,7 +364,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 lg:py-24">
+      <section className="py-16 lg:py-24 bg-surface-secondary">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
             {t("faqTitle")}
@@ -354,7 +378,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
                   {t(`faq${topic}Q`)}
                 </h3>
                 <p className="mt-3 text-sm text-content-body leading-relaxed font-light">
-                  {r(`faq${topic}A`)}
+                  {t(`faq${topic}A`)}
                 </p>
               </div>
             ))}
@@ -363,7 +387,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
       </section>
 
       {/* E-E-A-T */}
-      <section className="py-16 lg:py-24 bg-surface-secondary">
+      <section className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-6">
           <div className="glass-card border-accent-500/20 p-6 sm:p-10">
             <h2 className="text-2xl font-bold text-content-primary tracking-tight">
@@ -379,12 +403,12 @@ export default async function TandemflugLienzPage({ params }: Props) {
       </section>
 
       {/* Cross-Links */}
-      <section className="py-12 lg:py-16">
+      <section className="py-12 lg:py-16 bg-surface-secondary">
         <div className="max-w-3xl mx-auto px-6">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { href: "/tandemflug-osttirol", key: "Osttirol" },
-              { href: "/anreise", key: "Anreise" },
+              { href: "/tandemflug-zettersfeld", key: "Zettersfeld" },
+              { href: "/tandemflug-lienz", key: "Lienz" },
               { href: "/buchen", key: "Buchen" },
               { href: "/ueber-uns", key: "UeberUns" },
             ].map((link) => (
@@ -409,7 +433,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
       </section>
 
       {/* CTA */}
-      <section className="relative py-20 lg:py-28 overflow-hidden bg-surface-secondary">
+      <section className="relative py-20 lg:py-28 overflow-hidden">
         <div
           className="glow-orb glow-orb-accent w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 animate-glow-pulse"
           aria-hidden="true"
