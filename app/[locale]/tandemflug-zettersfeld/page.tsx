@@ -9,6 +9,7 @@ import {
   breadcrumbSchema,
   faqSchema,
   flightAreaSchemas,
+  packageProductSchema,
   touristAttractionSchema,
 } from "@/lib/schema";
 
@@ -73,6 +74,17 @@ export default async function TandemflugZettersfeldPage({ params }: Props) {
     text: t(`faq${topic}A`),
   }));
 
+  // Product-Schema mit AggregateRating + Offer -> berechtigt für Stern- und
+  // Preis-Rich-Results im SERP. Die Konkurrenz-Seite (nur BreadcrumbList) ist
+  // dafür strukturell nicht qualifiziert.
+  const zettersfeldProduct = packageProductSchema({
+    name: t("productName"),
+    description: t("productDescription"),
+    price: "150.00",
+    url: `${SITE_URL}/${locale}/tandemflug-zettersfeld`,
+    image: `${SITE_URL}/images/tandemflug-zettersfeld-hero.webp`,
+  });
+
   return (
     <>
       <script
@@ -88,6 +100,10 @@ export default async function TandemflugZettersfeldPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faqItems)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(zettersfeldProduct) }}
       />
       {zettersfeldSchema.map((schema, i) => (
         <script
