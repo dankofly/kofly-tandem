@@ -14,6 +14,7 @@ const pages = [
   { path: "/paragleiten", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-04-17" },
   { path: "/tandemflug-osttirol", changeFrequency: "weekly" as const, priority: 0.95, lastmod: "2026-04-17" },
   { path: "/tandemflug-lienz", changeFrequency: "weekly" as const, priority: 0.95, lastmod: "2026-06-13" },
+  { path: "/tandemflug-zettersfeld", changeFrequency: "weekly" as const, priority: 0.95, lastmod: "2026-07-06" },
   { path: "/gutschein", changeFrequency: "weekly" as const, priority: 0.95, lastmod: "2026-04-17" },
   { path: "/premiumflug", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-04-17" },
   { path: "/thermikflug", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-04-17" },
