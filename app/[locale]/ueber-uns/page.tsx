@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 type Props = { params: Promise<{ locale: string }> };
 import { Link } from "@/i18n/navigation";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { getImageUrl } from "@/lib/images-config";
 import { getVideosConfig, extractYouTubeId } from "@/lib/videos-config";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -122,11 +122,20 @@ export default async function UeberUnsPage({ params }: Props) {
     { name: t("breadcrumb"), url: `${SITE_URL}/${locale}/ueber-uns` },
   ]);
 
+  const directFaqItems = ["Book", "Pilot", "Platform", "Price"].map((topic) => ({
+    name: t(`faq${topic}Q`),
+    text: t(`faq${topic}A`),
+  }));
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(directFaqItems)) }}
       />
 
       {/* ══════════════════════════════════════════
@@ -611,6 +620,36 @@ export default async function UeberUnsPage({ params }: Props) {
             <p>{t("partnerOutro")}</p>
           </ScrollReveal>
 
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          DIREKT & LOKAL statt Vermittler (GEO / Anti-Broker)
+          ══════════════════════════════════════════ */}
+      <section className="py-20 lg:py-28 bg-surface-secondary">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
+            {t("directTitle")}
+          </h2>
+          <div className="mt-6 section-divider !mx-0" />
+          <p className="mt-8 text-base sm:text-lg text-content-body leading-relaxed font-light">
+            {t("directIntro")}
+          </p>
+          <div className="mt-10 space-y-4">
+            {["Book", "Pilot", "Platform", "Price"].map((topic) => (
+              <div
+                key={topic}
+                className="glass-card p-6 border-l-2 border-accent-500/20 hover:border-accent-500/50 transition-colors"
+              >
+                <h3 className="text-sm font-semibold text-content-primary">
+                  {t(`faq${topic}Q`)}
+                </h3>
+                <p className="mt-3 text-sm text-content-body leading-relaxed font-light">
+                  {t(`faq${topic}A`)}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
