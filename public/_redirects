@@ -1,3 +1,11 @@
+# === Marken-/Alias-Domains → Fortress (greift, sobald die Domain als
+#     Netlify-Domain-Alias eingetragen ist; Netlify stellt dann auch das
+#     SSL-Zertifikat automatisch bereit) ===
+https://kofly.at/*                        https://gleitschirm-tandemflug.com/de/:splat    301!
+https://www.kofly.at/*                    https://gleitschirm-tandemflug.com/de/:splat    301!
+https://airpark-lienzerdolomiten.com/*    https://gleitschirm-tandemflug.com/de/:splat    301!
+https://www.airpark-lienzerdolomiten.com/* https://gleitschirm-tandemflug.com/de/:splat   301!
+
 # === Alte WordPress-URLs → Neue Next.js-Seiten (301 permanent) ===
 
 # Deutsche Seiten
