@@ -101,7 +101,7 @@ export default function MapContact() {
     starts: [
       {
         name: t("startHochstein"),
-        elevation: "2.057 m",
+        elevation: "2.000 m",
         description: t("startHochsteinDesc"),
         lat: 46.81857480488911,
         lng: 12.70694815874197,

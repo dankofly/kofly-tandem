@@ -2,6 +2,16 @@
 
 **Stand:** 2026-07-07. Projekt: thermik.net als Thermik-/Flugwetter-Content-Asset, das die Fortress (gleitschirm-tandemflug.com) mit alten Backlinks stärkt.
 
+## ✅ GEBAUT + LIVE (2026-07-07)
+- **Astro-Projekt:** `~/.claude/projects/thermik-net/` (eigenes Git-Repo, `astro build` grün, 7 Seiten). Layout + Hub + Zettersfeld + Hochstein + Tandemflug-Lienz + Flugwetter + Streckenflug + 404-Fallback. Inhalte aus dem echten DB-Dump.
+- **Live-Deploy (Netlify):** https://precious-speculoos-3f0576.netlify.app (Site-ID `51dfdedd-29e8-4eb5-886d-848731383796`). Alle Seiten 200.
+- **301-Map aktiv:** topische Alt-Slugs → passende Seite (Equity fließt), `/archives/*` + `/permalink/*` etc. → Hub. Bare `/*`-Catch-All greift bei Netlify nicht (Eigenheit `/* → /`); dafür fängt die 404-Seite den seltenen Rest ab und leitet zum Hub.
+- **thermik.net als Custom-Domain** auf der Netlify-Site vorbereitet (updateSite). Cert kommt automatisch, sobald DNS zeigt.
+
+### DER EINE OFFENE SCHRITT (Daniel): DNS umstellen
+thermik.net liegt aktuell auf dem alten Host (Plesk-301). Um die neue Site live zu schalten: DNS von thermik.net auf die Netlify-Site zeigen (A-Record → 75.2.60.5 bzw. Netlify-DNS). Dann sind alle alten Backlinks unter thermik.net erreichbar und die Fortress profitiert. **Der 301 zum Fortress am alten Host wird dabei ersetzt** (bewusst: die neue Site verlinkt selbst in die Fortress).
+
+
 ## Kern-Entscheidung (Option B)
 thermik.net NICHT nur als 301-Redirect, sondern als eigenständige Content-Site wiederbeleben. Informationelle Schicht (Fluggebiete, Flugwetter, Wissen), die kontextuell in die kommerzielle Fortress verlinkt. Tech: **Astro**. Content: **KI-Entwurf + Daniels Fachreview**. Design: **Instrument-/Vario-Look** (freigegeben).
 
@@ -29,7 +39,8 @@ thermik.net NICHT nur als 301-Redirect, sondern als eigenständige Content-Site 
 
 ## Offene FACHCHECKs (Daniel)
 - **Zettersfeld-Ausrichtung:** Daniels alte "Fluggebiets Info Lienz" sagt **zwei Startplätze, ostseitig (Sommer) / westseitig (Winter)** neben dem Sesselliftausstieg. Das ist präziser als der Live-Fix "nach Südwesten". → Prüfen, ob die LIVE-Fortress-Seiten (Zettersfeld + Lienz, de/en/nl) von "südwestseitig" auf "ost-/westseitig" geändert werden sollen. (Der frühere "Nordhang" war definitiv falsch und ist bereits behoben.)
-- **Hochstein-Höhe:** live/Draft = 2.000 m (Daniels Angabe). paragliding365/DHV = 2.057-2.060 m. Entscheidung offen.
+- **Hochstein-Höhe:** ENTSCHIEDEN 2026-07-07. Fortress bleibt bei **2.000 m** (Marketing-Zahl), der widersprüchliche 2.057-m-Wert wurde überall bereinigt (de/en/nl, llms.txt, MapContact). thermik.net nutzt bewusst die touchheaven-Fachzahl **1.920 m**. Zwei Zahlen, zwei Seiten, mit Absicht.
+- **Zettersfeld-Höhe:** Fortress durchgängig **2.220 m** (verirrte 2.214-m-Reste in ablaufDescription + llms.txt auf 2.220 vereinheitlicht). thermik.net = touchheaven **2.195 m**.
 - **220-km-FAI vom Zettersfeld:** Jahr/Pilot ergänzen.
 - **thermik.net "seit wann":** genaues Gründungsjahr für die Hub-Startseite.
 

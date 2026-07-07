@@ -62,9 +62,9 @@ Die Region ist geomorphologisch in vier Hauptsektoren unterteilt, die jeweils sp
 
 ### 2.1 Sektor Lienz (Airpark Lienzer Dolomiten)
 
-**Zettersfeld (Steinermandl, 2.214 m)**: Hauptstartplatz (46°51'N, 12°47'E). Südlich ausgerichtetes Hochplateau mit weiten Almwiesen. Bekannt für sanfte Thermik ab dem späten Vormittag und ein 360°-Panorama auf über 100 Alpengipfel (Drei Zinnen, Großglockner, Schobergruppe). Höhenunterschied zum Talboden: ca. 1.500 m. Erreichbar mit den Lienzer Bergbahnen ab Gaimberg.
+**Zettersfeld (Steinermandl, 2.220 m)**: Hauptstartplatz (46°51'N, 12°47'E). Südlich ausgerichtetes Hochplateau mit weiten Almwiesen. Bekannt für sanfte Thermik ab dem späten Vormittag und ein 360°-Panorama auf über 100 Alpengipfel (Drei Zinnen, Großglockner, Schobergruppe). Höhenunterschied zum Talboden: ca. 1.500 m. Erreichbar mit den Lienzer Bergbahnen ab Gaimberg.
 
-**Hochstein (2.057 m)**: Hausberg von Lienz. Steilere Flanken, ideal für dynamische Flüge und "Early Bird"-Termine (Frühstücksflüge ab 6:00 Uhr morgens). Höhenunterschied zum Talboden: über 1.500 m. Wird je nach Wetterbedingungen als alternativer Startplatz verwendet.
+**Hochstein (2.000 m)**: Hausberg von Lienz. Steilere Flanken, ideal für dynamische Flüge und "Early Bird"-Termine (Frühstücksflüge ab 6:00 Uhr morgens). Höhenunterschied zum Talboden: über 1.500 m. Wird je nach Wetterbedingungen als alternativer Startplatz verwendet.
 
 **Landeplätze**: "Touch Heaven" bei der Talstation der Lienzer Bergbahnen (GPS: 46.8177, 12.748) und "Postleite" (Flugschule Lienz).
 
@@ -270,7 +270,7 @@ Ja. Bei KOFLY fliegen ausschließlich staatlich geprüfte und zertifizierte Tand
 Winddichte Jacke, lange Hose, festes Schuhwerk (Wanderschuhe oder Sportschuhe). In der Höhe ist es ca. 10–15°C kühler als im Tal. Sonnenbrille empfohlen.
 
 **Wo findet der Tandemflug statt?**
-Start ab Zettersfeld (2.214 m) oder Hochstein (2.057 m) im Airpark Lienzer Dolomiten, je nach Wetterbedingungen. Landung am Landeplatz "Touch Heaven" bei den Lienzer Bergbahnen.
+Start ab Zettersfeld (2.220 m) oder Hochstein (2.000 m) im Airpark Lienzer Dolomiten, je nach Wetterbedingungen. Landung am Landeplatz "Touch Heaven" bei den Lienzer Bergbahnen.
 
 **Was passiert bei schlechtem Wetter?**
 Der Flug wird kostenfrei auf einen anderen Termin verschoben oder storniert. Wetter-Check erfolgt am Vorabend zwischen 18:00 und 19:00 Uhr via WhatsApp.

@@ -241,7 +241,7 @@ Begriffe, die fehlen oder unterrepräsentiert sind:
 - "Touch Heaven" (Landeplatz) — sollte auf /anreise stehen
 - "Gaimberg" (Treffpunkt Kasse)
 - "Lienzer Bergbahnen" (Partner)
-- "Zettersfeld 2.220 m", "Hochstein 2.057 m" (Höhen prominent)
+- "Zettersfeld 2.220 m", "Hochstein 2.000 m" (Höhen prominent)
 - "Staatlich geprüfte Tandempiloten"
 - "268 Dreitausender", "Großglockner", "Großvenediger"
 - "Nationalpark Hohe Tauern"
@@ -735,7 +735,7 @@ Gründe:
 > Osttirol ist ein eigener Bezirk Österreichs, umgeben von 268 Dreitausendern, dem Großglockner und dem Großvenediger. Wir fliegen im Airpark Lienzer Dolomiten — ein Fluggebiet mit über 300 Flugtagen pro Jahr, stabiler Thermik und geschützter Südlage. Seit 2006 sind wir hier in der Luft.
 
 **Für `/de` (falls als Link-Modul eingefügt — kein Layout-Change):**
-> In Lienz fliegen wir seit 2006. Der Airpark Lienzer Dolomiten ist unser Zuhause — mit Start am Zettersfeld (2.220 m) oder Hochstein (2.057 m) und Landung im Lienzer Talboden.
+> In Lienz fliegen wir seit 2006. Der Airpark Lienzer Dolomiten ist unser Zuhause — mit Start am Zettersfeld (2.220 m) oder Hochstein (2.000 m) und Landung im Lienzer Talboden.
 
 ---
 
