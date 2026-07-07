@@ -1,0 +1,282 @@
+<style>
+  :root{
+    color-scheme: light dark;
+    --bg:#e9eef3;--panel:#fff;--tile:#f3f7fb;--ink:#15202b;--muted:#54636f;--faint:#8996a3;
+    --line:#d4dde6;--line-strong:#c2cdd8;--accent:#c85a17;--accent-soft:#e8712a;--sky:#3a6f8f;--warn:#b5651d;
+    --shadow:0 1px 2px rgba(20,40,60,.06),0 12px 34px rgba(20,40,60,.08);
+    --mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0d141c;--panel:#131d27;--tile:#17222e;--ink:#e6edf3;--muted:#93a1af;--faint:#5f6d7b;
+    --line:#233240;--line-strong:#2d3e4e;--accent:#f0813a;--accent-soft:#f0813a;--sky:#5f95b6;--warn:#e0913f;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 40px rgba(0,0,0,.45);}}
+  :root[data-theme="light"]{color-scheme:light;--bg:#e9eef3;--panel:#fff;--tile:#f3f7fb;--ink:#15202b;--muted:#54636f;--faint:#8996a3;--line:#d4dde6;--line-strong:#c2cdd8;--accent:#c85a17;--accent-soft:#e8712a;--sky:#3a6f8f;--warn:#b5651d;--shadow:0 1px 2px rgba(20,40,60,.06),0 12px 34px rgba(20,40,60,.08);}
+  :root[data-theme="dark"]{color-scheme:dark;--bg:#0d141c;--panel:#131d27;--tile:#17222e;--ink:#e6edf3;--muted:#93a1af;--faint:#5f6d7b;--line:#233240;--line-strong:#2d3e4e;--accent:#f0813a;--accent-soft:#f0813a;--sky:#5f95b6;--warn:#e0913f;--shadow:0 1px 2px rgba(0,0,0,.4),0 14px 40px rgba(0,0,0,.45);}
+
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  .page{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh;}
+  .wrap{max-width:770px;margin:0 auto;padding:0 22px;}
+
+  header.bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(9px);border-bottom:1px solid var(--line);}
+  .bar-in{max-width:770px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .brand{font-family:var(--mono);font-weight:600;font-size:15px;letter-spacing:.02em;white-space:nowrap;}
+  .brand span{color:var(--accent);}
+  nav.tabs{display:flex;gap:2px;flex-wrap:wrap;}
+  nav.tabs a{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:6px 9px;border-radius:7px;white-space:nowrap;}
+  nav.tabs a:hover{color:var(--ink);background:var(--tile);}
+  nav.tabs a.on{color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);}
+
+  .view{display:none;animation:fade .3s ease;}
+  .view.on{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+  .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:44px 0 16px;}
+  h1{font-size:clamp(32px,5.6vw,50px);line-height:1.05;font-weight:800;letter-spacing:-.022em;margin:0 0 16px;text-wrap:balance;}
+  .dek{font-size:clamp(16px,2.3vw,19px);color:var(--muted);max-width:60ch;margin:0 0 6px;}
+
+  .instruments{margin:28px 0 6px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
+  .tile{background:var(--panel);padding:16px 15px;min-height:96px;display:flex;flex-direction:column;justify-content:space-between;}
+  .tile .lab{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);}
+  .tile .val{font-family:var(--mono);font-size:22px;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;margin-top:8px;}
+  .tile .val small{font-size:13px;color:var(--muted);font-weight:500;}
+  .tile.dir .val{font-size:16px;color:var(--accent);}
+  @media (max-width:600px){.instruments{grid-template-columns:repeat(2,1fr);}}
+
+  .prose{padding:30px 0 4px;}
+  .prose h2{font-size:13px;font-family:var(--mono);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:34px 0 13px;padding-bottom:9px;border-bottom:1px solid var(--line);}
+  .prose h2:first-child{margin-top:4px;}
+  .prose p{margin:0 0 15px;max-width:66ch;}
+  .prose strong{font-weight:650;}
+  .note{background:var(--tile);border:1px solid var(--line);border-left:3px solid var(--sky);border-radius:10px;padding:15px 17px;margin:18px 0;font-size:14.5px;color:var(--muted);max-width:66ch;}
+  .note b{color:var(--ink);}
+  .hazards{list-style:none;padding:0;margin:4px 0;display:grid;gap:10px;max-width:66ch;}
+  .hazards li{position:relative;padding-left:25px;color:var(--muted);}
+  .hazards li::before{content:"";position:absolute;left:2px;top:.6em;width:8px;height:8px;border:2px solid var(--warn);border-radius:2px;transform:rotate(45deg);}
+  .hazards li b{color:var(--ink);}
+
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:16px 0;}
+  @media (max-width:600px){.cards{grid-template-columns:1fr;}}
+  .card{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:18px 18px 16px;transition:transform .15s,border-color .15s;box-shadow:var(--shadow);}
+  .card:hover{transform:translateY(-2px);border-color:var(--line-strong);}
+  .card .ct{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);}
+  .card .ch{font-size:18px;font-weight:750;letter-spacing:-.01em;margin:9px 0 6px;}
+  .card .cs{font-size:13.5px;color:var(--muted);line-height:1.5;}
+
+  .handoff{margin:36px 0 8px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow);display:flex;flex-wrap:wrap;align-items:center;gap:18px;justify-content:space-between;}
+  .handoff .h{font-size:18px;font-weight:750;margin:0 0 5px;}
+  .handoff .s{font-size:14px;color:var(--muted);margin:0;max-width:42ch;}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-family:var(--mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;font-weight:600;padding:12px 19px;border-radius:10px;text-decoration:none;white-space:nowrap;transition:transform .15s,background .15s;}
+  .btn:hover{background:var(--accent-soft);transform:translateY(-1px);}
+  .btn:focus-visible{outline:2px solid var(--sky);outline-offset:3px;}
+  .btn .arw{transition:transform .15s;}.btn:hover .arw{transform:translateX(3px);}
+
+  .sources{margin:26px 0 8px;background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .sources .st{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
+  .sources ul{margin:0;padding:0;list-style:none;display:grid;gap:5px;}
+  .sources li{font-family:var(--mono);font-size:12px;color:var(--muted);word-break:break-all;}
+  .sources li b{color:var(--sky);}
+
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:20px 0 44px;color:var(--faint);font-size:12px;font-family:var(--mono);letter-spacing:.03em;display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:space-between;}
+  .flag{color:var(--accent);}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+
+<div class="page">
+  <header class="bar">
+    <div class="bar-in">
+      <div class="brand">thermik<span>.net</span></div>
+      <nav class="tabs" id="tabs">
+        <a href="#home">Start</a>
+        <a href="#zettersfeld">Zettersfeld</a>
+        <a href="#hochstein">Hochstein</a>
+        <a href="#tandem">Tandemflug Lienz</a>
+        <a href="#flugwetter">Flugwetter</a>
+        <a href="#strecke">Streckenflug</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <!-- HOME / HUB -->
+    <section class="view" id="v-home">
+      <div class="kicker">Thermik &amp; Flugwetter · Ostalpen</div>
+      <h1>Thermik verstehen. Fluggebiete kennen. Sicher fliegen.</h1>
+      <p class="dek">Die Wissens-Basis rund um Gleitschirmfliegen in Osttirol, Oberkärnten und Südtirol. Fluggebiets-Guides, Flugwetter und Meteorologie für Piloten. Seit über 20 Jahren aus Lienz.</p>
+
+      <div class="prose"><h2>Fluggebiete</h2></div>
+      <div class="cards">
+        <a class="card" href="#zettersfeld"><div class="ct">Lienz · 2.220 m</div><div class="ch">Zettersfeld</div><div class="cs">Hauptstartplatz über Lienz, 360-Grad-Panorama, sanfte Thermik ab dem späten Vormittag.</div></a>
+        <a class="card" href="#hochstein"><div class="ct">Lienz · 2.000 m</div><div class="ch">Hochstein</div><div class="cs">Frühe Thermikauslöse, ideal für FAI-Dreiecke Richtung Pustertal. Der Frühstücksflug-Berg.</div></a>
+        <a class="card" href="#tandem"><div class="ct">Osttirol</div><div class="ch">Tandemflug &amp; Flugtaxi Lienz</div><div class="cs">Fliegen ohne eigene Lizenz, mit staatlich geprüftem Piloten vom Zettersfeld.</div></a>
+        <a class="card" href="#strecke"><div class="ct">XC</div><div class="ch">Streckenflug in Osttirol</div><div class="cs">Vom Zettersfeld Richtung Matrei, Venediger und Glockner. Routen und Bedingungen.</div></a>
+      </div>
+
+      <div class="prose"><h2>Flugwetter &amp; Thermik verstehen</h2></div>
+      <div class="cards">
+        <a class="card" href="#flugwetter"><div class="ct">Meteorologie</div><div class="ch">Flugwetter &amp; Wetterkunde</div><div class="cs">Wer das Wetter richtig liest, fliegt sicher und weiter. Quellen, Vorbereitung, Alpenthermik.</div></a>
+        <a class="card" href="#strecke"><div class="ct">Historie</div><div class="ch">Szene &amp; Wettbewerbe Lienz</div><div class="cs">Osttirol Open, Dolomitenmann, Paragliding World Cup: das Archiv der Szene aus Lienz.</div></a>
+      </div>
+
+      <section class="handoff">
+        <div><p class="h">Du fliegst (noch) nicht selbst?</p><p class="s">Erlebe Zettersfeld und Hochstein im Tandemflug mit einem staatlich geprüften Piloten. Ohne Ausrüstung, ohne Erfahrung.</p></div>
+        <a class="btn" href="https://gleitschirm-tandemflug.com/de" target="_blank" rel="noopener">Tandemflug erleben <span class="arw">→</span></a>
+      </section>
+    </section>
+
+    <!-- ZETTERSFELD -->
+    <section class="view" id="v-zettersfeld">
+      <div class="kicker">Fluggebiet · Osttirol · Lienz</div>
+      <h1>Thermik am Zettersfeld</h1>
+      <p class="dek">Der Hauptstartplatz im Airpark Lienzer Dolomiten. 2.220 Meter, mit dem Sessellift erreichbar, 360-Grad-Panorama auf über 100 Alpengipfel.</p>
+      <div class="instruments">
+        <div class="tile"><div class="lab">Starthöhe</div><div class="val">2.220<small> m</small></div></div>
+        <div class="tile dir"><div class="lab">Startplätze</div><div class="val">Ost · West</div></div>
+        <div class="tile"><div class="lab">Höhendiff.</div><div class="val">~1.600<small> m</small></div></div>
+        <div class="tile"><div class="lab">Saison</div><div class="val">III–XI</div></div>
+      </div>
+      <div class="prose">
+        <h2>Lage &amp; Zugang</h2>
+        <p>Das Zettersfeld über Lienz ist der Hauptstartplatz im Airpark Lienzer Dolomiten. Vom Start auf <strong>2.220 m</strong> (Pepo/Steinermandl) öffnet sich ein 360-Grad-Panorama: Lienzer Dolomiten, Schobergruppe, Hohe Tauern, bei klarer Sicht bis Großglockner und Drei Zinnen.</p>
+        <div class="note">Erreichbar wunderschön mit dem <b>Sessellift</b> ab Gaimberg (Lienzer Bergbahnen), im Sommer auch per Taxi bis zum "Stich". An der Bergstation flankieren <b>zwei Startplätze</b> den Liftausstieg: der <b>ostseitige</b> (meist im Sommer, für die Thermik) und der <b>westseitige</b> (meist im Winter). Dazwischen Bergstation und Restaurant. Wer den Thermikflug will, wandert die 20 Minuten hinauf zum Pepo.</div>
+        <h2>Thermik &amp; Fliegen</h2>
+        <p>Das Zettersfeld ist Hauptausgangspunkt für <strong>Streckenflüge, Soaringflüge und gemütliche Gleitflüge</strong>. Die Thermik ist gutmütig und setzt ab dem späten Vormittag ein. Belegt: vom Zettersfeld wurde ein <strong>220-km-FAI-Dreieck</strong> geflogen. Für XC-Piloten mehr als ein Hausberg.</p>
+        <h2>Gefahren</h2>
+        <ul class="hazards">
+          <li><b>Starker Talwind</b> im Sommer, frischt nachmittags auf.</li>
+          <li><b>Mindestabstand</b> zu Sessel- und Schleppliftseil beachten.</li>
+          <li>Im Winter auf <b>Schifahrer</b> achten, im Sommer stehen Kühe am Startplatz.</li>
+          <li><b>Hochspannungsleitungen</b> im Landeanflug Richtung Lienz.</li>
+        </ul>
+      </div>
+      <section class="handoff">
+        <div><p class="h">Ohne eigene Lizenz erleben</p><p class="s">Das Zettersfeld im Tandemflug, mit staatlich geprüftem Piloten. Ohne Erfahrung, ohne Ausrüstung.</p></div>
+        <a class="btn" href="https://gleitschirm-tandemflug.com/de/tandemflug-zettersfeld" target="_blank" rel="noopener">Tandemflug am Zettersfeld <span class="arw">→</span></a>
+      </section>
+      <div class="sources"><div class="st">Alte thermik.net-URLs → 301 hierher</div><ul>
+        <li><b>/gleitschirmfliegen-am-zettersfeld-...-fluggebiets-info</b></li>
+        <li><b>/fluggebiets-info-lienz</b> · <b>/soaring-am-zettersfeld</b> · <b>/traumtag-am-zettersfeld</b></li>
+        <li><b>/1500-e-fur-ein-220km-fai-vom-zettersfeld</b> · <b>/epicsoaring-zettersfeld-video</b></li>
+        <li><b>/erste-fruhjahrsthermik-zettersfeld</b> · <b>/hike-biwak-fly-paragleiten-zettersfeld</b></li>
+      </ul></div>
+    </section>
+
+    <!-- HOCHSTEIN -->
+    <section class="view" id="v-hochstein">
+      <div class="kicker">Fluggebiet · Osttirol · Lienz</div>
+      <h1>Thermik am Hochstein</h1>
+      <p class="dek">Der zweite Hausberg über Lienz. Frühe Thermikauslöse, ideale Position Richtung Pustertal, der Berg für Frühstücksflug und FAI-Dreiecke.</p>
+      <div class="instruments">
+        <div class="tile"><div class="lab">Starthöhe</div><div class="val">2.000<small> m</small></div></div>
+        <div class="tile dir"><div class="lab">Charakter</div><div class="val">XC · Früh</div></div>
+        <div class="tile"><div class="lab">Zugang</div><div class="val">Taxi</div></div>
+        <div class="tile"><div class="lab">Treffpunkt</div><div class="val">8:00–8:30</div></div>
+      </div>
+      <div class="prose">
+        <h2>Warum der Hochstein</h2>
+        <p>Der Hochstein in Lienz ist ein idealer Ausgangspunkt für <strong>Streckenflüge, speziell FAI-Dreiecke</strong>. Seine <strong>frühe Thermikauslöse</strong> und die gute Position Richtung Pustertal ziehen immer mehr Streckenpiloten an. An guten Tagen stehen morgens über 40 Piloten oben, der Hochstein ist längst kein Geheimtipp mehr.</p>
+        <h2>Frühstücksflug &amp; Ablauf</h2>
+        <p>Am schönsten früh am Morgen: Bei Hammertag-Alarm trifft man sich zwischen <strong>8:00 und 8:30 Uhr am Landeplatz Touch Heaven Lienz</strong>. Von dort geht es mit dem Taxi hinauf. Die Auffahrt über die gut ausgebaute Bergstraße ist ab 1. Mai nach der Wintersperre befahrbar.</p>
+      </div>
+      <section class="handoff">
+        <div><p class="h">Der Frühstücksflug im Tandem</p><p class="s">Start in den Sonnenaufgang am Hochstein, mit staatlich geprüftem Piloten aus dem Osttiroler Team.</p></div>
+        <a class="btn" href="https://gleitschirm-tandemflug.com/de/tandemflug-hochstein" target="_blank" rel="noopener">Tandemflug am Hochstein <span class="arw">→</span></a>
+      </section>
+      <div class="sources"><div class="st">Alte thermik.net-URLs → 301 hierher</div><ul>
+        <li><b>/xc-startplatz-hochstein-kein-geheimtipp-mehr</b></li>
+        <li><b>/proximity-speedlfying-am-hochstein-h2000-lowleveln</b></li>
+        <li><b>/hochstein-freestyle-session-abgesagt</b></li>
+      </ul></div>
+    </section>
+
+    <!-- TANDEM -->
+    <section class="view" id="v-tandem">
+      <div class="kicker">Osttirol · Lienz</div>
+      <h1>Tandemflug &amp; Flugtaxi Lienz</h1>
+      <p class="dek">Osttirol einmal anders erleben. Ein Gleitschirm-Tandemflug im Airpark Lienzer Dolomiten, mit erfahrenem, staatlich geprüftem Piloten.</p>
+      <div class="prose">
+        <h2>Fliegen ohne Vorkenntnisse</h2>
+        <p>Heben Sie mit einem erfahrenen, <strong>staatlich geprüften Piloten</strong> ab und genießen Sie das Abenteuer Gleitschirm-Tandem inmitten der Osttiroler Bergwelt. Die ausgezeichnete Thermik und die günstig gelegenen Südhänge machen Osttirol zu einem der schönsten Fluggebiete der Alpen. Durch den großen Höhenunterschied ergeben sich Flugzeiten von rund 30 Minuten.</p>
+        <p>Ob jung oder alt: Die kurze, effiziente Einweisung erfordert keine besonderen Vorkenntnisse. Es gibt keine Altersbegrenzung, und zwischen <strong>25 und 125 kg</strong> kann jeder mitfliegen. Gefragt sind nur Vorfreude und Motivation.</p>
+        <div class="note">Jede Jahreszeit hat ihren Reiz: im Frühjahr sind die Hänge im Tal schon frei, während oben noch Schnee liegt, ideale Voraussetzungen für entspannte Thermikflüge.</div>
+      </div>
+      <section class="handoff">
+        <div><p class="h">Jetzt Termin sichern</p><p class="s">Buchung, Preise und Termine direkt beim lokalen Osttiroler Team, ohne Vermittler.</p></div>
+        <a class="btn" href="https://gleitschirm-tandemflug.com/de/tandemflug-lienz" target="_blank" rel="noopener">Tandemflug Lienz buchen <span class="arw">→</span></a>
+      </section>
+      <div class="sources"><div class="st">Alte thermik.net-URLs → 301 hierher</div><ul>
+        <li><b>/flugtaxi-airtaxi-gleitschirm-tandemflug-in-lienz</b> · <b>/gleitschirm-tandemflug-lienz</b></li>
+        <li><b>/airtaxi-osttirol-gleitschirm-tandemfluge</b> · <b>/tandemfluge-lienz</b> · <b>/tandem-sessions</b></li>
+        <li><b>/tandemflug-in-lienz-videos</b> · <b>/faszination-gleitschirm-tandemfliegen</b></li>
+        <li><b>/tandem-lienz-vom-zettersfeld</b> · <b>/abenteuer-tandemfliegen-lienz-zettersfeld-osttirol</b></li>
+      </ul></div>
+    </section>
+
+    <!-- FLUGWETTER -->
+    <section class="view" id="v-flugwetter">
+      <div class="kicker">Meteorologie · Wissen</div>
+      <h1>Flugwetter &amp; Wetterkunde</h1>
+      <p class="dek">Gleitschirmfliegen hängt wie kaum ein anderer Sport vom Wetter ab. Wer das Wetter richtig liest, fliegt sicher und näher an sein Ziel.</p>
+      <div class="prose">
+        <h2>Warum Wetterkunde</h2>
+        <p>Vom Wetter hängt beim Fliegen viel ab. Ob Wettkampfpilot oder Genussflieger: Wetterkunde und meteorologische Vorbereitung erhöhen Reichweite und Sicherheit zugleich. Die flugbaren Tage sind in den Alpen weniger geworden, umso wichtiger ist es, die guten zu erkennen.</p>
+        <h2>Brauchbare Quellen für Piloten</h2>
+        <p>Das Internet bietet riesige Datenmengen, aber nur wenige Seiten liefern wirklich brauchbare Auskünfte für Tuchflieger. Bewährt haben sich <strong>AustroControl mit Alptherm</strong>, die <strong>ZAMG</strong>, sowie per E-Mail das Abo des Flugwetterservices <strong>Gleitsegelwetter</strong>.</p>
+        <div class="note">Dieser Artikel wird im Fachreview von Daniel um die aktuelle Alpenthermik-Kunde ergänzt (Thermik-Phasen, Lienzer Talwind, Föhn).</div>
+      </div>
+      <section class="handoff">
+        <div><p class="h">Lieber fliegen lassen?</p><p class="s">Im Tandem entscheidet dein Pilot über das Wetterfenster, du genießt nur.</p></div>
+        <a class="btn" href="https://gleitschirm-tandemflug.com/de/thermikflug" target="_blank" rel="noopener">Thermikflug erleben <span class="arw">→</span></a>
+      </section>
+      <div class="sources"><div class="st">Alte thermik.net-URLs → 301 hierher</div><ul>
+        <li><b>/flugwetter</b> · <b>/flugwetter-2</b></li>
+        <li><b>/flugwetter-wetterkunde-und-meteorlogische-vorbereitung</b></li>
+        <li><b>/thermik-magazine</b> · <b>/thermik-magazine-zeitschrift-fur-gleitschirmflieger</b></li>
+      </ul></div>
+    </section>
+
+    <!-- STRECKE / HISTORIE -->
+    <section class="view" id="v-strecke">
+      <div class="kicker">XC · Szene · Osttirol</div>
+      <h1>Streckenflug &amp; Szene in Lienz</h1>
+      <p class="dek">Vom Zettersfeld Richtung Matrei, Venediger und Glockner. Und das Archiv der Osttiroler Flugsport-Szene.</p>
+      <div class="prose">
+        <h2>Streckenflug ab Zettersfeld</h2>
+        <p>Der Ausgangspunkt Zettersfeld ist etwas anspruchsvoller als Sillian oder Greifenburg, da schon am Anfang zwei Talquerungen liegen (<strong>Hochstein und Ederplan</strong>). Der Schwierigkeitsgrad ist wetterabhängig. Ein Streckenflug Richtung <strong>Matrei</strong> bietet einen wunderschönen Blick auf Venediger und Glockner, die man bei guten Verhältnissen (größte Flughöhe bis 4.300 m) sogar überfliegen kann.</p>
+        <h2>Szene &amp; Wettbewerbe</h2>
+        <p>Lienz war jahrelang Bühne für <strong>Osttirol Open, Dolomiten Open, Paragliding World Cup und Red Bull X-Alps</strong>. Diese Berichte bilden das Archiv der Szene und leiten künftig auf den passenden Fluggebiets-Guide oder den Hub.</p>
+      </div>
+      <section class="handoff">
+        <div><p class="h">Die Region aus der Luft</p><p class="s">Auch als Passagier: Osttirols XC-Landschaft im Tandem-Panoramaflug.</p></div>
+        <a class="btn" href="https://gleitschirm-tandemflug.com/de/tandemflug-osttirol" target="_blank" rel="noopener">Tandemflug Osttirol <span class="arw">→</span></a>
+      </section>
+      <div class="sources"><div class="st">Alte thermik.net-URLs → 301 hierher</div><ul>
+        <li><b>/streckenfliegen-mit-dem-gleitschirm-in-lienz</b> · <b>/gleitschirm-fliegen-in-lienz-osttirol</b></li>
+        <li><b>/walk-and-fly-in-osttirol</b></li>
+        <li>Events (Dolomitenmann, Osttirol Open, PWC, X-Alps) → topischer 301 auf Hub</li>
+      </ul></div>
+    </section>
+
+    <footer>
+      <span>thermik.net · Thermik &amp; Flugwetter Ostalpen · seit Lienz</span>
+      <span class="flag">Vorschau · Blueprint zum Fachreview</span>
+    </footer>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var views={home:"v-home",zettersfeld:"v-zettersfeld",hochstein:"v-hochstein",tandem:"v-tandem",flugwetter:"v-flugwetter",strecke:"v-strecke"};
+    var tabs=document.getElementById("tabs").getElementsByTagName("a");
+    function show(key){
+      if(!views[key])key="home";
+      for(var id in views){var el=document.getElementById(views[id]);if(el)el.classList.toggle("on",id===key);}
+      for(var i=0;i<tabs.length;i++){tabs[i].classList.toggle("on",tabs[i].getAttribute("href")==="#"+key);}
+      window.scrollTo({top:0,behavior:"instant"in window?"instant":"auto"});
+    }
+    window.addEventListener("hashchange",function(){show(location.hash.replace("#",""));});
+    show(location.hash.replace("#","")||"home");
+  })();
+</script>
