@@ -1,0 +1,253 @@
+<style>
+  :root{
+    color-scheme: light dark;
+    --bg:#e9eef3;
+    --panel:#ffffff;
+    --tile:#f3f7fb;
+    --ink:#15202b;
+    --muted:#54636f;
+    --faint:#8996a3;
+    --line:#d4dde6;
+    --line-strong:#c2cdd8;
+    --accent:#c85a17;      /* thermal orange, deepened for light ground */
+    --accent-soft:#e8712a;
+    --sky:#3a6f8f;
+    --warn:#b5651d;
+    --shadow: 0 1px 2px rgba(20,40,60,.06), 0 12px 34px rgba(20,40,60,.08);
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, monospace;
+    --sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d141c;
+      --panel:#131d27;
+      --tile:#17222e;
+      --ink:#e6edf3;
+      --muted:#93a1af;
+      --faint:#5f6d7b;
+      --line:#233240;
+      --line-strong:#2d3e4e;
+      --accent:#f0813a;
+      --accent-soft:#f0813a;
+      --sky:#5f95b6;
+      --warn:#e0913f;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 14px 40px rgba(0,0,0,.45);
+    }
+  }
+  :root[data-theme="light"]{
+    color-scheme: light;
+    --bg:#e9eef3;--panel:#ffffff;--tile:#f3f7fb;--ink:#15202b;--muted:#54636f;--faint:#8996a3;
+    --line:#d4dde6;--line-strong:#c2cdd8;--accent:#c85a17;--accent-soft:#e8712a;--sky:#3a6f8f;--warn:#b5651d;
+    --shadow: 0 1px 2px rgba(20,40,60,.06), 0 12px 34px rgba(20,40,60,.08);
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0d141c;--panel:#131d27;--tile:#17222e;--ink:#e6edf3;--muted:#93a1af;--faint:#5f6d7b;
+    --line:#233240;--line-strong:#2d3e4e;--accent:#f0813a;--accent-soft:#f0813a;--sky:#5f95b6;--warn:#e0913f;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 14px 40px rgba(0,0,0,.45);
+  }
+
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  .page{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px;}
+
+  /* top bar */
+  .topbar{
+    display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+    padding:22px 0 20px;border-bottom:1px solid var(--line);
+  }
+  .brand{font-family:var(--mono);font-weight:600;font-size:15px;letter-spacing:.02em;color:var(--ink);}
+  .brand span{color:var(--accent);}
+  .breadcrumb{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);}
+
+  /* hero */
+  .hero{padding:46px 0 30px;}
+  .kicker{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:18px;
+  }
+  h1{
+    font-size:clamp(34px,6vw,52px);line-height:1.04;font-weight:800;letter-spacing:-.022em;
+    margin:0 0 18px;text-wrap:balance;
+  }
+  .dek{font-size:clamp(16px,2.4vw,19px);color:var(--muted);max-width:58ch;margin:0;}
+
+  /* instrument panel */
+  .instruments{
+    margin:30px 0 8px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .tile{background:var(--panel);padding:18px 16px 16px;min-height:112px;display:flex;flex-direction:column;justify-content:space-between;}
+  .tile .lab{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);}
+  .tile .val{font-family:var(--mono);font-size:26px;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;margin-top:8px;}
+  .tile .val small{font-size:14px;color:var(--muted);font-weight:500;}
+  .tile.dir .val{font-size:19px;color:var(--accent);}
+  .rose{display:block;margin-top:2px;}
+  @media (max-width:620px){
+    .instruments{grid-template-columns:repeat(2,1fr);}
+  }
+
+  /* prose */
+  .prose{padding:34px 0 8px;}
+  .prose h2{
+    font-size:13px;font-family:var(--mono);font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);margin:38px 0 14px;padding-bottom:9px;border-bottom:1px solid var(--line);
+  }
+  .prose h2:first-child{margin-top:6px;}
+  .prose p{margin:0 0 16px;max-width:65ch;}
+  .prose strong{font-weight:650;color:var(--ink);}
+
+  .note{
+    background:var(--tile);border:1px solid var(--line);border-left:3px solid var(--sky);
+    border-radius:10px;padding:16px 18px;margin:20px 0;font-size:15px;color:var(--muted);max-width:65ch;
+  }
+  .note b{color:var(--ink);font-weight:600;}
+
+  .hazards{list-style:none;padding:0;margin:6px 0 4px;display:grid;gap:11px;max-width:65ch;}
+  .hazards li{position:relative;padding-left:26px;color:var(--muted);}
+  .hazards li::before{
+    content:"";position:absolute;left:2px;top:.62em;width:9px;height:9px;
+    border:2px solid var(--warn);border-radius:2px;transform:rotate(45deg);
+  }
+  .hazards li b{color:var(--ink);font-weight:600;}
+
+  /* schedule */
+  .schedule{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:8px 0 6px;}
+  .slot{background:var(--panel);padding:14px 15px;}
+  .slot .t{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+  .slot .d{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.5;}
+  @media (max-width:620px){.schedule{grid-template-columns:1fr;}}
+
+  /* tandem handoff */
+  .handoff{
+    margin:40px 0 10px;background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:26px 24px;box-shadow:var(--shadow);display:flex;flex-wrap:wrap;align-items:center;gap:20px;justify-content:space-between;
+  }
+  .handoff .txt{max-width:42ch;}
+  .handoff .h{font-size:19px;font-weight:750;letter-spacing:-.01em;margin:0 0 6px;}
+  .handoff .s{font-size:14.5px;color:var(--muted);margin:0;}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;
+    font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+    padding:13px 20px;border-radius:10px;text-decoration:none;white-space:nowrap;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn:hover{background:var(--accent-soft);transform:translateY(-1px);}
+  .btn:focus-visible{outline:2px solid var(--sky);outline-offset:3px;}
+  .btn .arw{transition:transform .15s ease;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 40px;color:var(--faint);font-size:12.5px;font-family:var(--mono);letter-spacing:.03em;display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:space-between;}
+  .draftflag{color:var(--accent);}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+
+<div class="page">
+  <div class="wrap">
+
+    <header class="topbar">
+      <div class="brand">thermik<span>.net</span></div>
+      <div class="breadcrumb">Fluggebiete · Ostalpen</div>
+    </header>
+
+    <section class="hero">
+      <div class="kicker">Fluggebiet · Osttirol · Lienz</div>
+      <h1>Thermik am Zettersfeld</h1>
+      <p class="dek">Der Hauptstartplatz im Airpark Lienzer Dolomiten. 2.220 Meter, Südwest-Exposition, 360-Grad-Panorama auf über 100 Alpengipfel.</p>
+    </section>
+
+    <section class="instruments" aria-label="Flugdaten">
+      <div class="tile">
+        <div class="lab">Starthöhe</div>
+        <div class="val">2.220<small> m</small></div>
+      </div>
+      <div class="tile dir">
+        <div class="lab">Startrichtung</div>
+        <svg class="rose" width="66" height="66" viewBox="0 0 120 120" role="img" aria-label="Startrichtungen Südost, Süd, Südwest">
+          <circle cx="60" cy="60" r="49" fill="none" stroke="var(--line-strong)" stroke-width="1.4"/>
+          <!-- faint ticks -->
+          <g stroke="var(--faint)" stroke-width="2" opacity=".5">
+            <line x1="60" y1="12" x2="60" y2="23"/>
+            <line x1="94" y1="26" x2="86" y2="34"/>
+            <line x1="108" y1="60" x2="97" y2="60"/>
+            <line x1="26" y1="26" x2="34" y2="34"/>
+            <line x1="12" y1="60" x2="23" y2="60"/>
+          </g>
+          <!-- active SO S SW -->
+          <g stroke="var(--accent)" stroke-width="3.4" stroke-linecap="round">
+            <line x1="94" y1="94" x2="82" y2="82"/>
+            <line x1="60" y1="108" x2="60" y2="94"/>
+            <line x1="26" y1="94" x2="38" y2="82"/>
+          </g>
+          <circle cx="60" cy="60" r="3.4" fill="var(--accent)"/>
+          <text x="60" y="9" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="var(--faint)">N</text>
+        </svg>
+        <div class="val">SO · S · SW</div>
+      </div>
+      <div class="tile">
+        <div class="lab">Höhendifferenz</div>
+        <div class="val">~1.500<small> m</small></div>
+      </div>
+      <div class="tile">
+        <div class="lab">Saison</div>
+        <div class="val">III–XI</div>
+      </div>
+    </section>
+
+    <article class="prose">
+      <h2>Lage &amp; Zugang</h2>
+      <p>Das Zettersfeld über Lienz ist der Hauptstartplatz im Airpark Lienzer Dolomiten und einer der bekanntesten Startplätze Osttirols. Vom Start auf <strong>2.220&nbsp;m</strong> öffnet sich ein 360-Grad-Panorama auf über 100 Alpengipfel: Lienzer Dolomiten, Schobergruppe, Hohe Tauern, bei klarer Sicht bis Großglockner und Drei Zinnen.</p>
+      <div class="note">
+        Erreichbar ist der Start <b>wunderschön mit dem Sessellift</b> ab Gaimberg. An der Bergstation liegen <b>zwei Startplätze, einer links und einer rechts</b> der Liftstation. Dazwischen die Bergstation und ein <b>Restaurant</b>, ideal fürs Warten aufs Wetterfenster oder danach.
+      </div>
+
+      <h2>Ausrichtung &amp; Thermik</h2>
+      <p>Die Startplätze sind <strong>nach Südost bis Südwest ausgerichtet</strong> (SO · S · SW). Das macht das Zettersfeld sonnenbegünstigt und thermisch aktiv. Bei <strong>Südwestlage</strong> herrschen am Hang Hammer-Soaringbedingungen. Die Thermik ist bekannt gutmütig und setzt typischerweise ab dem späten Vormittag ein, ideal für ruhige Panoramaflüge wie für längere Thermik- und Streckenflüge.</p>
+
+      <h2>Beste Tageszeit</h2>
+      <div class="schedule">
+        <div class="slot"><div class="t">Vormittag</div><div class="d">Ruhige Luft, sanfte Panoramaflüge, erste Höhenmeter.</div></div>
+        <div class="slot"><div class="t">Mittag</div><div class="d">Einsetzende Thermik, beste Zeit zum Steigen und für Strecke.</div></div>
+        <div class="slot"><div class="t">Nachmittag</div><div class="d">Talwind aus Südost frischt auf, anspruchsvoller.</div></div>
+      </div>
+
+      <h2>Flugmöglichkeiten</h2>
+      <p>Vom Zettersfeld ist alles möglich, vom entspannten Absteiger bis zum großen Streckenflug in mehrere Richtungen. Historisch belegt: vom Zettersfeld wurde bereits ein <strong>220-km-FAI-Dreieck</strong> geflogen. Für XC-Piloten ist das Zettersfeld mehr als ein Hausberg.</p>
+
+      <h2>Gefahren &amp; Besonderheiten</h2>
+      <ul class="hazards">
+        <li><b>Nordföhn</b> aus West/Nord, Lee-Situation beachten.</li>
+        <li><b>Talwindsystem</b> meist aus Südost, frischt nachmittags kräftig auf.</li>
+        <li><b>Verwirbelungen</b> und Mittagsturbulenz im Tal.</li>
+        <li><b>Hochspannungsleitungen</b> im Landeanflug Richtung Lienz.</li>
+      </ul>
+    </article>
+
+    <section class="handoff">
+      <div class="txt">
+        <p class="h">Ohne eigene Lizenz erleben</p>
+        <p class="s">Das Zettersfeld im Tandemflug, mit einem staatlich geprüften Piloten. Ohne Erfahrung, ohne Ausrüstung.</p>
+      </div>
+      <a class="btn" href="https://gleitschirm-tandemflug.com/de/tandemflug-zettersfeld" target="_blank" rel="noopener">
+        Tandemflug am Zettersfeld <span class="arw">→</span>
+      </a>
+    </section>
+
+    <footer>
+      <span>thermik.net · Thermik &amp; Flugwetter Ostalpen</span>
+      <span class="draftflag">Vorschau · Draft zum Fachreview</span>
+    </footer>
+
+  </div>
+</div>
