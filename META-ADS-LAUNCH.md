@@ -6,6 +6,18 @@
 
 ## Voraussetzungen (einmalig, vor Launch) — exakter Klickpfad
 
+**Status 2026-07-10 (per Business-Suite-Screenshots verifiziert): ALLE SETUP-SCHRITTE ERLEDIGT.**
+- FB-Seite existiert und liegt im Business-Portfolio "Gleitschirm-Tandemflug.com" ✓
+- Instagram @tandemfluglienz mit der Seite verknüpft ✓
+- WhatsApp-Konto "Daniel Kofler" (WhatsApp Business App) im Portfolio registriert, Business verification: Verified, Account status: Approved ✓ (keine Migration nötig, Nummer lief schon auf WA Business)
+- Hinweis: "No payment method" im WhatsApp-Screen = API-Abrechnung, irrelevant für CTWA mit Business App
+
+**Letztes Gate vor Launch:** Werbekonto mit Zahlungsmethode (Settings → Werbekonten). Ohne hinterlegte Karte startet keine Kampagne.
+
+**Launch-Shortcut Creatives:** Die Website bettet bereits 6 Instagram-Reels ein (@tandemfluglienz). Für den schnellsten Start: DE-Ad-Set mit "Vorhandenen Beitrag verwenden" auf die 2-3 stärksten Reels aufsetzen, statt auf den Videoschnitt zu warten. NL-Versionen (mit NL-Overlays) folgen als zweite Welle.
+
+Historischer Klickpfad (war nötig, ist erledigt):
+
 **Update 2026-07-10:** Facebook-Seite existiert: **https://www.facebook.com/GleitschirmTandemflug.Osttirol/** (Titel noch alter Brand "Gleitschirm-Tandemflug.com | Nußdorf").
 
 ### Schritt 0: Bestehende Facebook-Seite fit machen (~10 Min)
