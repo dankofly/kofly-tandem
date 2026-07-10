@@ -6,17 +6,13 @@
 
 ## Voraussetzungen (einmalig, vor Launch) — exakter Klickpfad
 
-**Befund 2026-07-10:** Es existiert keine auffindbare KOFLY-Facebook-Seite (Website verlinkt nur Instagram @tandemfluglienz). Ohne FB-Seite laufen keine Click-to-WhatsApp-Ads, auch nicht auf Instagram. Daher Schritt 0 zuerst.
+**Update 2026-07-10:** Facebook-Seite existiert: **https://www.facebook.com/GleitschirmTandemflug.Osttirol/** (Titel noch alter Brand "Gleitschirm-Tandemflug.com | Nußdorf").
 
-### Schritt 0: Facebook-Seite anlegen (~10 Min)
+### Schritt 0: Bestehende Facebook-Seite fit machen (~10 Min)
 
-1. Vorher in der FB-Suche nach "Gleitschirm Tandemflug" / "KOFLY" suchen: falls eine alte Seite existiert, die übernehmen statt neu anlegen
-2. facebook.com → Menü → Seiten → **Neue Seite erstellen**
-   - Name: `KOFLY Gleitschirm Tandemflug`
-   - Kategorie: Outdoor- und Sportartikel / Sport & Freizeit ("Paragliding" wird als Unterkategorie angeboten)
-   - Adresse: Weidachweg 16, 9990 Nußdorf-Debant · Telefon: +43 676 7293888 · Website: gleitschirm-tandemflug.com
-   - Profilbild: KOFLY-Logo · Titelbild: bestes Panoramafoto mit Gast
-3. 2-3 Posts veröffentlichen (aus GBP-BEITRAEGE-VORRAT.md ziehen), damit die Seite nicht leer wirkt, wenn Ad-Klicker draufschauen
+1. Admin-Zugriff prüfen: Meta Business Suite (business.facebook.com) → wird die Seite dort angezeigt?
+2. Profil aktualisieren: Website-Link, Telefon +43 676 7293888, Adresse, aktuelles Titelbild (Panorama mit Gast). Seitenname kann vorerst bleiben (Namensänderung ist bei FB ein Antragsprozess), KOFLY in die "Über uns"-Beschreibung aufnehmen
+3. 2-3 frische Posts veröffentlichen, damit die Seite nicht verwaist wirkt, wenn Ad-Klicker draufschauen: **A1 (Saison), A4 (Ohne Vorkenntnisse), A6 (Social Proof) aus `GBP-BEITRAEGE-VORRAT.md` 1:1 übernehmen**
 
 ### Schritt 1: Instagram verknüpfen (~2 Min)
 

@@ -279,6 +279,7 @@ export function organizationSchema(locale: string = "de") {
     ],
     sameAs: [
       "https://www.instagram.com/tandemfluglienz/",
+      "https://www.facebook.com/GleitschirmTandemflug.Osttirol/",
       "https://www.tripadvisor.com/Attraction_Review-g190432-d12963049-Reviews-Gleitschirm_Tandemflug-Lienz_Tirol_Austrian_Alps.html",
     ],
     keywords:
