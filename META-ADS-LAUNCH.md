@@ -4,11 +4,43 @@
 
 ---
 
-## Voraussetzungen (einmalig, vor Launch)
+## Voraussetzungen (einmalig, vor Launch) — exakter Klickpfad
 
-1. **Facebook-Seite + Instagram** (@tandemfluglienz) im Meta Business Manager verbunden
-2. **WhatsApp Business** auf +43 676 7293888 (App reicht, kein API-Konto nötig) und mit der FB-Seite verknüpft (Seiten-Einstellungen → WhatsApp)
-3. Kein Pixel nötig. Messung läuft über "begonnene Unterhaltungen" im Ads Manager.
+**Befund 2026-07-10:** Es existiert keine auffindbare KOFLY-Facebook-Seite (Website verlinkt nur Instagram @tandemfluglienz). Ohne FB-Seite laufen keine Click-to-WhatsApp-Ads, auch nicht auf Instagram. Daher Schritt 0 zuerst.
+
+### Schritt 0: Facebook-Seite anlegen (~10 Min)
+
+1. Vorher in der FB-Suche nach "Gleitschirm Tandemflug" / "KOFLY" suchen: falls eine alte Seite existiert, die übernehmen statt neu anlegen
+2. facebook.com → Menü → Seiten → **Neue Seite erstellen**
+   - Name: `KOFLY Gleitschirm Tandemflug`
+   - Kategorie: Outdoor- und Sportartikel / Sport & Freizeit ("Paragliding" wird als Unterkategorie angeboten)
+   - Adresse: Weidachweg 16, 9990 Nußdorf-Debant · Telefon: +43 676 7293888 · Website: gleitschirm-tandemflug.com
+   - Profilbild: KOFLY-Logo · Titelbild: bestes Panoramafoto mit Gast
+3. 2-3 Posts veröffentlichen (aus GBP-BEITRAEGE-VORRAT.md ziehen), damit die Seite nicht leer wirkt, wenn Ad-Klicker draufschauen
+
+### Schritt 1: Instagram verknüpfen (~2 Min)
+
+Meta Business Suite (business.facebook.com) → Einstellungen → Verknüpfte Konten → Instagram → mit @tandemfluglienz einloggen.
+
+### Schritt 2: WhatsApp auf Business umstellen (~10 Min, VORSICHT)
+
+Die Nummer +43 676 7293888 läuft vermutlich auf normalem WhatsApp. Für CTWA-Ads muss sie auf **WhatsApp Business** (die kostenlose App reicht):
+
+1. **ZUERST Backup:** WhatsApp → Einstellungen → Chats → Chat-Backup → Jetzt sichern
+2. WhatsApp Business App installieren → öffnen → +43 676 7293888 bestätigen → Migration übernimmt Chats vom selben Gerät
+3. Business-Profil ausfüllen: Name KOFLY, Kategorie, Adresse, Website, Beschreibung ("Sag uns, wann du in Osttirol bist...")
+4. ⚠️ **Gotchas:**
+   - Danach ist die Nummer NUR noch in WA Business, die normale App ist für diese Nummer tot
+   - Der whatsapp-MCP am Rechner (verknüpftes Gerät) verliert die Kopplung → in WA Business: Einstellungen → Verknüpfte Geräte → QR neu scannen
+
+### Schritt 3: WhatsApp mit der FB-Seite verknüpfen (~2 Min)
+
+FB-Seite → Einstellungen → WhatsApp → Nummer eingeben → Code aus WhatsApp Business eintragen.
+(Alternative: Beim ersten Anzeigen-Erstellen mit Ziel WhatsApp fragt der Ads Manager die Verknüpfung automatisch ab.)
+
+### Verifikation
+
+Meta Business Suite → Einstellungen → WhatsApp-Konten: Nummer wird angezeigt → CTWA-ready. Kein Pixel nötig, Messung läuft über "begonnene Unterhaltungen" im Ads Manager.
 
 ---
 
