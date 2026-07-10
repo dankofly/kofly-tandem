@@ -75,7 +75,9 @@ const statConfigs: StatConfig[] = [
 ];
 
 function useCountUp(target: number, duration: number, started: boolean) {
-  const [count, setCount] = useState(0);
+  // Initialize with the target so SSR/no-JS output (and crawlers) see the real
+  // value instead of "0" — the count-up animation overwrites it on the client.
+  const [count, setCount] = useState(target);
 
   useEffect(() => {
     if (!started) return;

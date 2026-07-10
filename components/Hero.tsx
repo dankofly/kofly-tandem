@@ -124,6 +124,21 @@ export default async function Hero() {
               {t("whatsappHint")}
             </a>
           </div>
+
+          {/* Trust line — risk reversal */}
+          <ul className="hero-enter hero-enter-5 mt-6 sm:mt-5 flex flex-wrap justify-center sm:justify-start gap-x-4 gap-y-1.5">
+            {[t("trustPay"), t("trustCancelRebook"), t("trustFlex")].map((item) => (
+              <li
+                key={item}
+                className="flex items-center gap-1.5 text-xs text-hero-secondary font-medium whitespace-nowrap"
+              >
+                <svg className="w-3.5 h-3.5 text-accent-500 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 

@@ -44,6 +44,8 @@ function Linkify({ text, isUser }: { text: string; isUser: boolean }) {
 
 export default function ChatBot() {
   const t = useTranslations("ChatBot");
+  const tNav = useTranslations("Navigation");
+  const whatsappUrl = `https://wa.me/436767293888?text=${encodeURIComponent(tNav("whatsappMessage"))}`;
   const [isOpen, setIsOpen] = useState(false);
 
   // Listen for open-chat event from Header
@@ -213,7 +215,7 @@ export default function ChatBot() {
             {showWhatsAppCTA && !isLoading && (
               <div className="flex justify-center py-2">
                 <a
-                  href="https://wa.me/436767293888?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Tandemflug!"
+                  href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#25D366] hover:bg-[#20BD5A] text-white text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 highlight-glow shadow-md"
@@ -250,7 +252,7 @@ export default function ChatBot() {
                 <p>
                   {t("rateLimited")}{" "}
                   <a
-                    href="https://wa.me/436767293888?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Tandemflug!"
+                    href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#25D366] font-medium hover:underline"
