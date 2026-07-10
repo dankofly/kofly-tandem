@@ -5,6 +5,8 @@ import { useTranslations } from "next-intl";
 
 export default function MobileCTA() {
   const t = useTranslations("MobileCTA");
+  const tNav = useTranslations("Navigation");
+  const whatsappUrl = `https://wa.me/436767293888?text=${encodeURIComponent(tNav("whatsappMessage"))}`;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-[var(--bg-header-mobile)] backdrop-blur-xl border-t border-edge-faint px-4 py-3 safe-area-bottom">
@@ -16,7 +18,7 @@ export default function MobileCTA() {
           {t("anfragen")}
         </Link>
         <a
-          href="https://wa.me/436767293888"
+          href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-press flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[#25D366]/10 border border-[#25D366]/30 hover:bg-[#25D366]/20 hover:border-[#25D366]/50 text-[#25D366] text-sm font-bold tracking-wide uppercase transition-all min-h-[44px]"
