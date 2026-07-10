@@ -133,6 +133,28 @@ Je Video eine DE- und eine NL-Overlay-Version (Overlays sind Text, schnell dupli
 - **Nach 7 Tagen:** schwächstes Creative je Ad Set pausieren, bestes dupliziert testen.
 - **Kill:** Ad Set nach 30 Tagen ohne einzige Unterhaltung unter €15/Konversation → pausieren, Creative-Problem lösen, nicht Budget erhöhen.
 - **Skalieren:** Kosten/Unterhaltung stabil unter Ziel → Budget in 20%-Schritten alle 3-4 Tage rauf (nie verdoppeln, das resettet die Lernphase).
+- **Frequenz beobachten (wichtig bei kleinem Touristen-Pool):** Frequenz >3 innerhalb einer Woche = Sättigung. Dann Creative rotieren statt Budget halten. Spalte "Frequenz" im Ads Manager einblenden.
+- **Creative-Fatigue-Regel:** CTR fällt >15% über 3 Tage UND Frequenz >3 → Creative tauschen. Fallende CTR bei niedriger Frequenz = Creative-Problem, bei hoher Frequenz = Sättigung.
+
+---
+
+## Phase 2: Steuerung aus Claude Code (meta-ads-mcp) — NACH bewiesenem manuellen Lauf
+
+**Prinzip:** Automatisierung ist ein Multiplikator. Erst aktivieren, wenn die manuelle Kampagne ~2 Wochen Daten hat und Kosten/Unterhaltung im Zielkorridor liegen. Dann übernimmt Claude Code Reporting + Optimierungsvorschläge, und der Weekly Review liest die Meta-Zahlen automatisch mit (wie GSC).
+
+**Setup (einmalig, ~45 Min, Daniel + Claude gemeinsam):**
+
+1. **Meta-App anlegen:** developers.facebook.com → App erstellen → Typ "Business" → mit dem Business-Portfolio "Gleitschirm-Tandemflug.com" verknüpfen
+2. **Marketing API hinzufügen** (Produkt in der App aktivieren)
+3. **Access Token generieren:** zuerst nur Scope `ads_read` (Reporting). `ads_management` (Schreibzugriff für Pause/Budget) erst in Phase 2b, wenn der Lese-Loop sich bewährt hat
+4. **MCP-Server:** `meta-ads-mcp` von Pipeboard (github.com/pipeboard-co/meta-ads-mcp, Python/uvx). Eigenes App-Token nutzen, NICHT die Pipeboard-Cloud-Auth (Token bleibt lokal). Exakte Start-Flags beim Setup aus dem README ziehen
+5. **Token-Ablage:** als Umgebungsvariable / lokale Config, nie ins Repo oder Vault. Eintrag in `Zugaenge/_MASTER.md` nur als Pfad-Referenz
+6. **Testlauf:** Kampagnen-Insights lesen (Spend, Unterhaltungen, Frequenz je Ad Set), bevor irgendein Schreibzugriff aktiviert wird
+
+**Was der Loop dann macht (Lese-Modus):**
+- Wöchentlich: Spend, Kosten/Unterhaltung, Frequenz, CTR-Trend je Ad Set in den Weekly Review
+- Regel-Checks gegen die Entscheidungsregeln oben (Kill/Skalier/Fatigue) → Vorschlag an Daniel, kein Auto-Execute
+- Phase 2b (frühestens nach 4 Wochen sauberem Lese-Loop): Schreibrechte für Pausieren/Budget-Schritte nach expliziter Freigabe
 
 ---
 
