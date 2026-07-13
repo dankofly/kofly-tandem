@@ -11,8 +11,8 @@ import {
   packageProductSchema,
   touristTripSchema,
 } from "@/lib/schema";
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
 const rich = {
   b: (chunks: ReactNode) => (
@@ -28,27 +28,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "/tandemflug-osttirol",
     title: t("tandemflugOsttirolTitle"),
     description: t("tandemflugOsttirolDescription"),
-    openGraph: {
-      title: t("tandemflugOsttirolOgTitle"),
-      description: t("tandemflugOsttirolOgDescription"),
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("tandemflugOsttirolOgTitle"),
-      description: t("tandemflugOsttirolOgDescription"),
-    },
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/tandemflug-osttirol`,
-        en: `${SITE_URL}/en/tandemflug-osttirol`,
-        nl: `${SITE_URL}/nl/tandemflug-osttirol`,
-        "x-default": `${SITE_URL}/de/tandemflug-osttirol`,
-      },
-    },
-  };
+    ogTitle: t("tandemflugOsttirolOgTitle"),
+    ogDescription: t("tandemflugOsttirolOgDescription"),
+  });
 }
 
 export default async function TandemflugOsttirolPage({ params }: Props) {

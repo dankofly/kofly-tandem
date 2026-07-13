@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import { REVIEWS } from "@/lib/reviews-config";
 
 export default function Footer() {
   const t = useTranslations("Footer");
@@ -69,8 +70,8 @@ export default function Footer() {
                 ))}
               </div>
               <span className="text-xs text-content-muted group-hover:text-accent-400 transition-colors">
-                <span className="font-semibold text-content-primary">5.0</span>{" "}
-                · 303 {t("bewertungen")}
+                <span className="font-semibold text-content-primary">{REVIEWS.ratingValue}</span>{" "}
+                · {REVIEWS.displayLabel} {t("bewertungen")}
               </span>
             </a>
 
@@ -145,6 +146,8 @@ export default function Footer() {
                   { label: t("gutschein"), href: "/gutschein" },
                   { label: t("tandemflugOsttirol"), href: "/tandemflug-osttirol" },
                   { label: t("tandemflugLienz"), href: "/tandemflug-lienz" },
+                  { label: t("tandemflugZettersfeld"), href: "/tandemflug-zettersfeld" },
+                  { label: t("tandemflugHochstein"), href: "/tandemflug-hochstein" },
                   { label: t("paragleiten"), href: "/paragleiten" },
                   { label: t("sicherheit"), href: "/sicherheit" },
                   { label: t("urlaubOsttirol"), href: "/urlaub" },
@@ -214,6 +217,10 @@ export default function Footer() {
               {[
                 { label: t("terminAnfragen"), href: "/buchen" },
                 { label: t("gutscheinBestellen"), href: "/buchen#gutschein" },
+                { label: t("tandemflugLienz"), href: "/tandemflug-lienz" },
+                { label: t("tandemflugZettersfeld"), href: "/tandemflug-zettersfeld" },
+                { label: t("tandemflugHochstein"), href: "/tandemflug-hochstein" },
+                { label: t("tandemflugOsttirol"), href: "/tandemflug-osttirol" },
                 { label: t("urlaubOsttirol"), href: "/urlaub" },
                 { label: t("anreise"), href: "/anreise" },
                 { label: t("paragleiten"), href: "/paragleiten" },

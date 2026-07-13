@@ -9,25 +9,19 @@ import { getImageUrl } from "@/lib/images-config";
 import { getVideosConfig, extractYouTubeId } from "@/lib/videos-config";
 import ScrollReveal from "@/components/ScrollReveal";
 import ReviewsSlider from "@/components/ReviewsSlider";
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "/ueber-uns",
     title: t("ueberUnsTitle"),
     description: t("ueberUnsDescription"),
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/ueber-uns`,
-        en: `${SITE_URL}/en/ueber-uns`,
-        nl: `${SITE_URL}/nl/ueber-uns`,
-        "x-default": `${SITE_URL}/de/ueber-uns`,
-      },
-    },
-  };
+  });
 }
 
 /* ── tiny svg icons (inline to avoid extra deps) ── */

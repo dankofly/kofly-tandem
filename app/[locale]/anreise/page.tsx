@@ -6,8 +6,8 @@ type Props = { params: Promise<{ locale: string }> };
 import { Link } from "@/i18n/navigation";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import TravelTimeTable from "@/components/TravelTimeTable";
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
 const rich = {
   b: (chunks: ReactNode) => (
@@ -28,22 +28,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "/anreise",
     title: t("anreiseTitle"),
     description: t("anreiseDescription"),
-    openGraph: {
-      title: t("anreiseOgTitle"),
-      description: t("anreiseOgDescription"),
-    },
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/anreise`,
-        en: `${SITE_URL}/en/anreise`,
-        nl: `${SITE_URL}/nl/anreise`,
-        "x-default": `${SITE_URL}/de/anreise`,
-      },
-    },
-  };
+    ogTitle: t("anreiseOgTitle"),
+    ogDescription: t("anreiseOgDescription"),
+  });
 }
 
 export default async function AnreisePage({ params }: Props) {

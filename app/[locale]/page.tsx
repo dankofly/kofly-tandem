@@ -11,7 +11,7 @@ import Packages from "@/components/Packages";
 import FAQ from "@/components/FAQ";
 import Gallery from "@/components/Gallery";
 import MapContact from "@/components/MapContact";
-import { faqSchema } from "@/lib/schema";
+import { faqSchema, productSchema } from "@/lib/schema";
 
 const FAQ_KEYS = [
   ...Array.from({ length: 4 }, (_, i) => `1_${i + 1}`),
@@ -39,6 +39,12 @@ export default async function HomePage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqSchema(faqItems)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(productSchema(locale)),
         }}
       />
 

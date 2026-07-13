@@ -1,27 +1,22 @@
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
   return {
-    title: t("impressumTitle"),
-    description: t("impressumDescription"),
+    ...(await buildPageMetadata({
+      locale,
+      path: "/impressum",
+      title: t("impressumTitle"),
+      description: t("impressumDescription"),
+    })),
     robots: { index: false, follow: true },
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/impressum`,
-        en: `${SITE_URL}/en/impressum`,
-        nl: `${SITE_URL}/nl/impressum`,
-        "x-default": `${SITE_URL}/de/impressum`,
-      },
-    },
   };
 }
 

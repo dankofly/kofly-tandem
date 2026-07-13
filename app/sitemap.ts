@@ -1,31 +1,9 @@
 import type { MetadataRoute } from "next";
+import { ROUTES, LOCALES, SITE_URL } from "@/lib/routes";
 
-const SITE_URL = "https://gleitschirm-tandemflug.com";
-const locales = ["de", "en", "nl"] as const;
-
-// Echte lastmod pro Seite (manuell bei Content-Update aktualisieren).
+// Die Routen-Registry (lib/routes.ts) ist die einzige Quelle: nur indexierbare
+// Seiten landen in der Sitemap, lastmod wird dort manuell gepflegt.
 // Google bevorzugt stabile lastmod-Werte gegenüber Build-Timestamps.
-const pages = [
-  { path: "", changeFrequency: "weekly" as const, priority: 1.0, lastmod: "2026-04-17" },
-  { path: "/ablauf", changeFrequency: "monthly" as const, priority: 0.8, lastmod: "2026-03-15" },
-  { path: "/buchen", changeFrequency: "monthly" as const, priority: 0.9, lastmod: "2026-03-15" },
-  { path: "/urlaub", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-04-01" },
-  { path: "/anreise", changeFrequency: "weekly" as const, priority: 0.8, lastmod: "2026-03-15" },
-  { path: "/paragleiten", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-04-17" },
-  { path: "/tandemflug-osttirol", changeFrequency: "weekly" as const, priority: 0.95, lastmod: "2026-04-17" },
-  { path: "/tandemflug-lienz", changeFrequency: "weekly" as const, priority: 0.95, lastmod: "2026-06-13" },
-  { path: "/tandemflug-zettersfeld", changeFrequency: "weekly" as const, priority: 0.95, lastmod: "2026-07-06" },
-  { path: "/tandemflug-hochstein", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-07-06" },
-  { path: "/gutschein", changeFrequency: "weekly" as const, priority: 0.95, lastmod: "2026-04-17" },
-  { path: "/premiumflug", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-04-17" },
-  { path: "/thermikflug", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-04-17" },
-  { path: "/classicflug", changeFrequency: "weekly" as const, priority: 0.9, lastmod: "2026-04-17" },
-  { path: "/sicherheit", changeFrequency: "monthly" as const, priority: 0.8, lastmod: "2026-04-17" },
-  { path: "/ueber-uns", changeFrequency: "monthly" as const, priority: 0.7, lastmod: "2026-03-15" },
-  { path: "/agb", changeFrequency: "yearly" as const, priority: 0.3, lastmod: "2026-02-01" },
-  { path: "/datenschutz", changeFrequency: "yearly" as const, priority: 0.3, lastmod: "2026-02-01" },
-  { path: "/impressum", changeFrequency: "yearly" as const, priority: 0.3, lastmod: "2026-02-01" },
-];
 
 function localeUrl(locale: string, path: string): string {
   return `${SITE_URL}/${locale}${path}`;
@@ -34,8 +12,9 @@ function localeUrl(locale: string, path: string): string {
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
-  for (const page of pages) {
-    for (const locale of locales) {
+  for (const page of ROUTES) {
+    if (!page.indexable) continue;
+    for (const locale of LOCALES) {
       entries.push({
         url: localeUrl(locale, page.path),
         lastModified: page.lastmod,
@@ -44,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: {
           languages: {
             ...Object.fromEntries(
-              locales.map((l) => [l, localeUrl(l, page.path)])
+              LOCALES.map((l) => [l, localeUrl(l, page.path)])
             ),
             "x-default": localeUrl("de", page.path),
           },

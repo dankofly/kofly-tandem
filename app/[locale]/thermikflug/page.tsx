@@ -9,8 +9,8 @@ import {
   faqSchema,
   packageProductSchema,
 } from "@/lib/schema";
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
 const rich = {
   b: (chunks: ReactNode) => (
@@ -24,27 +24,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "/thermikflug",
     title: t("thermikflugTitle"),
     description: t("thermikflugDescription"),
-    openGraph: {
-      title: t("thermikflugOgTitle"),
-      description: t("thermikflugOgDescription"),
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("thermikflugOgTitle"),
-      description: t("thermikflugOgDescription"),
-    },
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/thermikflug`,
-        en: `${SITE_URL}/en/thermikflug`,
-        nl: `${SITE_URL}/nl/thermikflug`,
-        "x-default": `${SITE_URL}/de/thermikflug`,
-      },
-    },
-  };
+    ogTitle: t("thermikflugOgTitle"),
+    ogDescription: t("thermikflugOgDescription"),
+  });
 }
 
 export default async function ThermikflugPage({ params }: Props) {

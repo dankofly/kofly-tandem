@@ -38,3 +38,9 @@ marketingskills/
 .preview/
 nul
 skills-lock.json
+
+# lokale Verifikations- und Audit-Artefakte
+/test-results/
+/playwright-report/
+/audit-output/
+__pycache__/

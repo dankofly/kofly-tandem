@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "verify:consistency": "node scripts/seo-verify/consistency-check.mjs",
+    "verify:seo": "npm run verify:consistency && npm run build && playwright test",
+    "verify:seo:live": "node -e \"process.env.BASE_URL='https://gleitschirm-tandemflug.com'; require('child_process').execSync('npx playwright test', {stdio:'inherit', env:process.env})\""
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.29",

@@ -1,3 +1,5 @@
+import { REVIEWS } from "@/lib/reviews-config";
+
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://gleitschirm-tandemflug.com";
 const BUSINESS_NAME = "Gleitschirm-Tandemflug.com";
@@ -212,14 +214,10 @@ export function organizationSchema(locale: string = "de") {
         closes: "17:00",
       },
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5.0",
-      bestRating: "5",
-      worstRating: "1",
-      ratingCount: "303",
-      reviewCount: "303",
-    },
+    // Kein aggregateRating und keine review-Objekte auf der Organization:
+    // Google wertet selbstpublizierte Bewertungen der eigenen Organisation
+    // nicht ("self-serving reviews", Richtlinie seit 2019). Bewertungen leben
+    // auf GBP/Tripadvisor; aggregateRating gibt es nur auf den Product-Schemas.
     contactPoint: {
       "@type": "ContactPoint",
       telephone: PHONE,
@@ -227,56 +225,6 @@ export function organizationSchema(locale: string = "de") {
       contactType: "customer service",
       availableLanguage: ["German", "English", "Dutch"],
     },
-    review: [
-      {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-        },
-        author: { "@type": "Person", name: "Markus W." },
-        datePublished: "2024-07-01",
-        reviewBody:
-          "Awesome experience! Daniel and Rene are awesome instructors who are happy to explain every detail of the experience! The flight itself was on a beautiful day, the takeoff was smooth as butter and the same goes for the landing.",
-      },
-      {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-        },
-        author: { "@type": "Person", name: "Sophie K." },
-        datePublished: "2023-09-01",
-        reviewBody:
-          "Dieses wunderbare Erlebnis wurde von Anfang bis Ende sehr professionell und sehr freundlich auf unsere Bedürfnisse zugeschnitten. Die Fotos und kleinen Videos sind eine Erinnerung fürs Leben.",
-      },
-      {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-        },
-        author: { "@type": "Person", name: "Thomas B." },
-        datePublished: "2023-06-01",
-        reviewBody:
-          "Hervorragende Betreuung, super sympathisch. Jederzeit wieder. Absolut empfehlenswert. Bei Daniel fühlt man sich absolut sicher und optimal aufgehoben.",
-      },
-      {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-        },
-        author: { "@type": "Person", name: "Anna S." },
-        datePublished: "2023-03-01",
-        reviewBody:
-          "Me and my kids had a lifetime experience – we will never forget this. The team is very keen on safety so it felt all very good to go up the mountain and fly.",
-      },
-    ],
     sameAs: [
       "https://www.instagram.com/tandemfluglienz/",
       "https://www.facebook.com/GleitschirmTandemflug.Osttirol/",
@@ -385,8 +333,11 @@ export function voucherServiceSchema(locale: string = "de") {
     url: `${localeBase(locale)}/buchen#gutschein`,
     availableLanguage: ["German", "English", "Dutch"],
     offers: {
-      "@type": "Offer",
-      price: "150.00",
+      // Preisspanne statt Fixpreis: Gutscheine sind fuer alle Pakete
+      // (€150 Classic bis €250 Thermik) einloesbar.
+      "@type": "AggregateOffer",
+      lowPrice: "150.00",
+      highPrice: "250.00",
       priceCurrency: "EUR",
       availability: "https://schema.org/InStock",
       url: `${localeBase(locale)}/buchen#gutschein`,
@@ -440,11 +391,11 @@ export function productSchema(locale: string = "de") {
     },
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "5.0",
+      ratingValue: REVIEWS.ratingValue,
       bestRating: "5",
       worstRating: "1",
-      ratingCount: "303",
-      reviewCount: "303",
+      ratingCount: String(REVIEWS.countExact),
+      reviewCount: String(REVIEWS.countExact),
     },
     offers: {
       "@type": "AggregateOffer",
@@ -758,11 +709,11 @@ export function packageProductSchema(opts: {
     brand: { "@type": "Brand", name: "KOFLY" },
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "5.0",
+      ratingValue: REVIEWS.ratingValue,
       bestRating: "5",
       worstRating: "1",
-      ratingCount: "303",
-      reviewCount: "303",
+      ratingCount: String(REVIEWS.countExact),
+      reviewCount: String(REVIEWS.countExact),
     },
     offers: {
       "@type": "Offer",

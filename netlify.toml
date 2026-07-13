@@ -63,6 +63,12 @@
   [headers.values]
     Cache-Control = "public, max-age=86400"
 
+[[headers]]
+  for = "/pricing.md"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "text/markdown; charset=utf-8"
+
 # sitemap.xml – 1 Stunde, Google crawlt regelmäßig
 [[headers]]
   for = "/sitemap.xml"
