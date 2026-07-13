@@ -31,6 +31,21 @@ const ZERO_REVIEW_PATTERNS = [
   /uit 0\+? beoordelingen/i,
 ];
 
+// Live-Modus (BASE_URL gesetzt): Bilder/Fonts/Media nicht laden. Alle
+// Assertions arbeiten auf dem SSR-HTML; das volle Asset-Volumen von 61
+// Seiten triggert sonst Netlifys Bot-Schutz (intermittierende 403).
+// Gegen Produktion zusätzlich immer --workers=1 fahren.
+test.beforeEach(async ({ page }) => {
+  if (!process.env.BASE_URL) return;
+  await page.route("**/*", (route) => {
+    const type = route.request().resourceType();
+    if (type === "image" || type === "media" || type === "font") {
+      return route.abort();
+    }
+    return route.continue();
+  });
+});
+
 for (const route of ROUTES) {
   for (const locale of LOCALES) {
     const path = `/${locale}${route.path}`;
