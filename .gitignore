@@ -44,3 +44,6 @@ skills-lock.json
 /playwright-report/
 /audit-output/
 __pycache__/
+
+# GSC-Automation Screenshots
+ops/gsc/shots/
