@@ -20,8 +20,11 @@ from pathlib import Path
 import requests
 
 ENV_FILE = Path(r"C:\Users\DanKof\.claude\meta-ads-mcp\.env")
-GRAPH = "https://graph.facebook.com"  # unversioniert: neue App nutzt aktuelle Default-Version
+GRAPH = "https://graph.facebook.com/v24.0"  # unversioniert liefert 2635 deprecated-Fehler
 BUSINESS_ID = "1642197189236205"  # Portfolio "Gleitschirm-Tandemflug.com" (aus Business-Suite-URL)
+# Seiten-ID der FB-Seite "Gleitschirm-Tandemflug.com" (asset_id aus der Ad-Center-URL der Business Suite).
+# Fallback, wenn der Token keine business_management/pages-Rechte hat.
+PAGE_ID_FALLBACK = "1641811262766565"
 
 CAMPAIGN_NAME = "KOFLY_CTWA_Urlauber"
 # Lienz Zentrum; 40 km Radius deckt Matrei, Sillian, Defereggental, Drautal
@@ -53,7 +56,7 @@ def load_env() -> dict:
     return {"token": token, "account": account}
 
 
-def api(method: str, path: str, token: str, **params):
+def api(method: str, path: str, token: str, _soft: bool = False, **params):
     params["access_token"] = token
     url = f"{GRAPH}/{path}"
     if method == "GET":
@@ -62,6 +65,8 @@ def api(method: str, path: str, token: str, **params):
         resp = requests.post(url, data=params, timeout=30)
     body = resp.json()
     if "error" in body:
+        if _soft:
+            return body
         err = body["error"]
         sys.exit(f"[api-fehler] {path}: ({err.get('code')}) {err.get('message')} "
                  f"| subcode={err.get('error_subcode')} | {err.get('error_user_msg', '')}")
@@ -69,15 +74,17 @@ def api(method: str, path: str, token: str, **params):
 
 
 def find_page(token: str) -> dict:
-    """Seite ueber das Business-Portfolio finden (braucht business_management)."""
-    pages = api("GET", f"{BUSINESS_ID}/owned_pages", token, fields="id,name").get("data", [])
+    """Seite finden: Business-Portfolio -> User-Seiten -> Fallback auf bekannte ID."""
+    res = api("GET", f"{BUSINESS_ID}/owned_pages", token, _soft=True, fields="id,name")
+    pages = res.get("data", []) if "error" not in res else []
     if not pages:
-        # Fallback: Seiten des Users
-        pages = api("GET", "me/accounts", token, fields="id,name").get("data", [])
+        res = api("GET", "me/accounts", token, _soft=True, fields="id,name")
+        pages = res.get("data", []) if "error" not in res else []
     for p in pages:
         if "Gleitschirm" in p.get("name", "") or "KOFLY" in p.get("name", "").upper():
             return p
-    sys.exit(f"[abbruch] Seite nicht gefunden. Gefundene Seiten: {json.dumps(pages, ensure_ascii=False)}")
+    print(f"[info] Seite per API nicht auflistbar (fehlende pages-Rechte), nutze bekannte ID {PAGE_ID_FALLBACK}")
+    return {"id": PAGE_ID_FALLBACK, "name": "Gleitschirm-Tandemflug.com (Fallback-ID)"}
 
 
 def resolve_locale(token: str, query: str) -> int:
