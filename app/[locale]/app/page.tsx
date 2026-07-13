@@ -50,7 +50,7 @@ export default async function AppInfoPage({ params }: Props) {
         </h1>
         <div className="mt-6 section-divider !mx-0" />
 
-        <p className="mt-6 text-xs text-content-subtle font-light">
+        <p className="mt-6 text-base text-content-body leading-relaxed">
           {t("subtitle")}
         </p>
 

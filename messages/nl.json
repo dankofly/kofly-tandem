@@ -495,7 +495,7 @@
   "AppInfo": {
     "tagline": "Interne applicatie",
     "title": "Tandemflug",
-    "subtitle": "Deze pagina beschrijft de applicatie \"Tandemflug\" die wordt gebruikt in het Google-inlogscherm (OAuth) van dit bedrijf.",
+    "subtitle": "Tandemflug is de interne app van Daniel Kofler (KOFLY). De app dient om prestatiegegevens van zijn eigen Google-accounts uit Google Search Console en Google Ads te lezen en daarvan interne rapporten voor dit bedrijf te maken. Deze pagina is de startpagina van de applicatie die in het Google-inlogscherm (OAuth) wordt gebruikt.",
     "breadcrumbHome": "Home",
     "breadcrumbCurrent": "App",
     "wasTitle": "Waarvoor dient de applicatie?",

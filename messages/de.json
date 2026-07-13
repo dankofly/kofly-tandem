@@ -495,7 +495,7 @@
   "AppInfo": {
     "tagline": "Interne Anwendung",
     "title": "Tandemflug",
-    "subtitle": "Diese Seite beschreibt die Anwendung \"Tandemflug\", die im Google-Anmeldebildschirm (OAuth) dieses Betriebs verwendet wird.",
+    "subtitle": "Tandemflug ist die interne App von Daniel Kofler (KOFLY). Die App dient dazu, Leistungsdaten der eigenen Google-Konten aus Google Search Console und Google Ads zu lesen und daraus interne Berichte für diesen Betrieb zu erstellen. Diese Seite ist die Startseite der Anwendung, die im Google-Anmeldebildschirm (OAuth) verwendet wird.",
     "breadcrumbHome": "Startseite",
     "breadcrumbCurrent": "App",
     "wasTitle": "Wozu dient die Anwendung?",
