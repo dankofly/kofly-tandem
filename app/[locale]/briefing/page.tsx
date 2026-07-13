@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { breadcrumbSchema } from "@/lib/schema";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
 type Props = { params: Promise<{ locale: string }> };
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
 
 interface Step {
   title: string;
@@ -16,27 +16,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "/briefing",
     title: t("briefingTitle"),
     description: t("briefingDescription"),
-    openGraph: {
-      title: t("briefingOgTitle"),
-      description: t("briefingOgDescription"),
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("briefingOgTitle"),
-      description: t("briefingOgDescription"),
-    },
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/briefing`,
-        en: `${SITE_URL}/en/briefing`,
-        nl: `${SITE_URL}/nl/briefing`,
-        "x-default": `${SITE_URL}/de/briefing`,
-      },
-    },
-  };
+    ogTitle: t("briefingOgTitle"),
+    ogDescription: t("briefingOgDescription"),
+  });
 }
 
 export default async function BriefingPage({ params }: Props) {

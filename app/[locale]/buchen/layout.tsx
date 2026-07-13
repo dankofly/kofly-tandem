@@ -1,28 +1,26 @@
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { breadcrumbSchema } from "@/lib/schema";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://gleitschirm-tandemflug.com";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("Metadata");
-  return {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  // Locale explizit binden: ohne sie lieferte /en/buchen und /nl/buchen
+  // die deutschen Meta-Texte (Befund URL-Inventar 2026-07-13).
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+  return buildPageMetadata({
+    locale,
+    path: "/buchen",
     title: t("buchenTitle"),
     description: t("buchenDescription"),
-    openGraph: {
-      title: t("buchenOgTitle"),
-      description: t("buchenOgDescription"),
-    },
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/buchen`,
-        en: `${SITE_URL}/en/buchen`,
-        nl: `${SITE_URL}/nl/buchen`,
-        "x-default": `${SITE_URL}/de/buchen`,
-      },
-    },
-  };
+    ogTitle: t("buchenOgTitle"),
+    ogDescription: t("buchenOgDescription"),
+  });
 }
 
 export default async function BuchenLayout({

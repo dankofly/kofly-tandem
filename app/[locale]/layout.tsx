@@ -18,22 +18,18 @@ import {
   serviceSchema,
   voucherServiceSchema,
   webSiteSchema,
-  productSchema,
   touristAttractionSchema,
   siteNavigationSchema,
   personSchema,
 } from "@/lib/schema";
-import { getImageUrl } from "@/lib/images-config";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
 });
-
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://gleitschirm-tandemflug.com";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
@@ -47,63 +43,28 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-const ogLocaleMap: Record<string, string> = {
-  de: "de_AT",
-  en: "en_US",
-  nl: "nl_NL",
-};
-
 export async function generateMetadata({
   params,
 }: Omit<Props, "children">): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
 
-  const ogImagePath = await getImageUrl("og-image");
-  const ogImage = ogImagePath
-    ? `${SITE_URL}${ogImagePath}`
-    : `${SITE_URL}/images/hero-1771273007982.webp`;
+  const og = { title: t("homeOgTitle"), description: t("homeOgDescription") };
 
   return {
     metadataBase: new URL(SITE_URL),
     title: {
       default: t("homeTitle"),
-      template: `%s | ${t("siteName")}`,
+      // Kurzes Brand-Suffix: Kern der Seitentitel muss in ~60 Zeichen passen,
+      // das Suffix wird von Google in der SERP oft abgeschnitten oder ersetzt.
+      template: "%s | KOFLY - Gleitschirm-Tandemflug.com",
     },
     description: t("homeDescription"),
     keywords: t("homeKeywords").split(","),
     authors: [{ name: "Gleitschirm-Tandemflug.com" }],
-    openGraph: {
-      type: "website",
-      locale: ogLocaleMap[locale] || "de_AT",
-      url: `${SITE_URL}/${locale}`,
-      siteName: "Gleitschirm-Tandemflug.com",
-      title: t("homeOgTitle"),
-      description: t("homeOgDescription"),
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: t("homeOgTitle"),
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("homeOgTitle"),
-      description: t("homeOgDescription"),
-      images: [ogImage],
-    },
-    alternates: {
-      canonical: `${SITE_URL}/${locale}`,
-      languages: {
-        de: `${SITE_URL}/de`,
-        en: `${SITE_URL}/en`,
-        nl: `${SITE_URL}/nl`,
-        "x-default": `${SITE_URL}/de`,
-      },
-    },
+    openGraph: await buildOpenGraph(locale, "", og),
+    twitter: await buildTwitter(og),
+    alternates: buildAlternates(locale),
     verification: {
       google: "googlefb3c4e31913cb3e3",
       other: {
@@ -151,7 +112,9 @@ export default async function LocaleLayout({ children, params }: Props) {
                 serviceSchema(locale),
                 voucherServiceSchema(locale),
                 webSiteSchema(locale),
-                productSchema(locale),
+                // Kein Product im sitewide @graph: jede Seite traegt hoechstens
+                // EIN Product (Startseite productSchema, Landingpages ihr
+                // packageProductSchema), sonst doppelte Entitaeten je URL.
                 touristAttractionSchema(locale),
                 siteNavigationSchema(locale),
                 personSchema(locale),

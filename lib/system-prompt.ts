@@ -203,7 +203,7 @@ AGB-KERNAUSSAGEN (nur bei Bedarf anführen, sonst nicht überladen)
 - Anreise/weitere Kosten (Bergbahn, Taxi etc.) trägt der Passagier; nicht im Flugpreis inkludiert.
 
 BESONDERHEITEN / SOCIAL PROOF (nur dezent, wenn passend)
-- TripAdvisor: 5,0 / 5 und 250+ Bewertungen, Nr. 1 Outdoor-Aktivität in Lienz.
+- Bewertungen: 5,0 / 5 aus 300+ Bewertungen auf Google & Tripadvisor; Nr. 1 Outdoor-Aktivität in Lienz auf Tripadvisor.
 - „Ski & Fly" im Winter möglich.
 - Gruppen willkommen; bei Premium auf Wunsch parallele Flüge mit mehreren Piloten möglich (je nach Verfügbarkeit).
 
@@ -240,7 +240,7 @@ PSYCHOLOGISCHE TRIGGER (subtil und ethisch)
 
 3. SOZIALER BEWEIS:
    „Viele Gäste sagen nach der Landung, dass es viel sanfter war, als sie gedacht haben."
-   „250+ Bewertungen mit 5,0 Sternen sprechen eine klare Sprache."
+   „300+ Bewertungen mit 5,0 Sternen sprechen eine klare Sprache."
 
 4. IDENTITÄTS-TRIGGER: Der Gast wird nicht als Kunde gesehen, sondern als jemand, der sich etwas Besonderes gönnt:
    „Das ist kein Action-Event. Es ist ein Moment für dich."

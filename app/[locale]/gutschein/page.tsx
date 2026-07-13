@@ -9,8 +9,8 @@ import {
   faqSchema,
   packageProductSchema,
 } from "@/lib/schema";
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
 const rich = {
   b: (chunks: ReactNode) => (
@@ -26,27 +26,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "/gutschein",
     title: t("gutscheinTitle"),
     description: t("gutscheinDescription"),
-    openGraph: {
-      title: t("gutscheinOgTitle"),
-      description: t("gutscheinOgDescription"),
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("gutscheinOgTitle"),
-      description: t("gutscheinOgDescription"),
-    },
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/gutschein`,
-        en: `${SITE_URL}/en/gutschein`,
-        nl: `${SITE_URL}/nl/gutschein`,
-        "x-default": `${SITE_URL}/de/gutschein`,
-      },
-    },
-  };
+    ogTitle: t("gutscheinOgTitle"),
+    ogDescription: t("gutscheinOgDescription"),
+  });
 }
 
 export default async function GutscheinPage({ params }: Props) {

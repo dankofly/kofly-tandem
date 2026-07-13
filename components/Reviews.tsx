@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
+import { REVIEWS } from "@/lib/reviews-config";
 
 interface Review {
   name: string;
@@ -95,7 +96,9 @@ function useInView(threshold = 0.2) {
 }
 
 function useCountUp(target: number, active: boolean, durationMs = 1800) {
-  const [value, setValue] = useState(0);
+  // Mit dem Zielwert initialisieren, damit SSR/no-JS (und Crawler) die echte
+  // Zahl sehen statt "0" — die Animation überschreibt den Wert am Client.
+  const [value, setValue] = useState(target);
   useEffect(() => {
     if (!active) return;
     const startTime = performance.now();
@@ -134,7 +137,7 @@ function StarsRow({ size = "w-4 h-4" }: { size?: string }) {
 function StatsStrip() {
   const t = useTranslations("Reviews");
   const { ref, inView } = useInView(0.2);
-  const count = useCountUp(250, inView);
+  const count = useCountUp(REVIEWS.countUpTarget, inView);
 
   const baseStat =
     "bg-[var(--bg-input)] border border-[var(--border-default)] rounded-2xl p-5 sm:p-6 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md";

@@ -87,11 +87,12 @@ export default async function Hero() {
             </span>
           </h1>
 
-          {/* Description — short on mobile, full on desktop */}
+          {/* Description: Zeilen 1+2 immer, 3+4 nur ab sm. Text steht genau
+              einmal im DOM (kein Duplicate Content im SSR-HTML). */}
           <p className="hero-enter hero-enter-3 mt-5 sm:mt-6 text-base sm:text-lg text-hero-secondary leading-relaxed font-light max-w-sm sm:max-w-none mx-auto sm:mx-0">
-            <span className="sm:hidden">{t("descLine1")} {t("descLine2")}</span>
+            {t("descLine1")} {t("descLine2")}
             <span className="hidden sm:inline">
-              {t("descLine1")} {t("descLine2")}{" "}
+              {" "}
               {t("descLine3")} {t("descLine4")}
             </span>
           </p>

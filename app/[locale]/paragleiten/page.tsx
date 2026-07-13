@@ -5,8 +5,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 type Props = { params: Promise<{ locale: string }> };
 import { Link } from "@/i18n/navigation";
 import { breadcrumbSchema, flightAreaSchemas, faqSchema } from "@/lib/schema";
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
 const rich = {
   b: (chunks: ReactNode) => (
@@ -33,22 +33,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "/paragleiten",
     title: t("paragleitenTitle"),
     description: t("paragleitenDescription"),
-    openGraph: {
-      title: t("paragleitenOgTitle"),
-      description: t("paragleitenOgDescription"),
-    },
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/paragleiten`,
-        en: `${SITE_URL}/en/paragleiten`,
-        nl: `${SITE_URL}/nl/paragleiten`,
-        "x-default": `${SITE_URL}/de/paragleiten`,
-      },
-    },
-  };
+    ogTitle: t("paragleitenOgTitle"),
+    ogDescription: t("paragleitenOgDescription"),
+  });
 }
 
 export default async function ParagleitenPage({ params }: Props) {

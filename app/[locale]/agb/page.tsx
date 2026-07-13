@@ -1,27 +1,20 @@
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "/agb",
     title: t("agbTitle"),
     description: t("agbDescription"),
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/agb`,
-        en: `${SITE_URL}/en/agb`,
-        nl: `${SITE_URL}/nl/agb`,
-        "x-default": `${SITE_URL}/de/agb`,
-      },
-    },
-  };
+  });
 }
 
 export default async function AGBPage({ params }: Props) {

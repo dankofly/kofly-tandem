@@ -9,8 +9,8 @@ import {
   faqSchema,
   packageProductSchema,
 } from "@/lib/schema";
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
 const rich = {
   b: (chunks: ReactNode) => (
@@ -25,27 +25,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "/classicflug",
     title: t("classicflugTitle"),
     description: t("classicflugDescription"),
-    openGraph: {
-      title: t("classicflugOgTitle"),
-      description: t("classicflugOgDescription"),
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("classicflugOgTitle"),
-      description: t("classicflugOgDescription"),
-    },
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/classicflug`,
-        en: `${SITE_URL}/en/classicflug`,
-        nl: `${SITE_URL}/nl/classicflug`,
-        "x-default": `${SITE_URL}/de/classicflug`,
-      },
-    },
-  };
+    ogTitle: t("classicflugOgTitle"),
+    ogDescription: t("classicflugOgDescription"),
+  });
 }
 
 export default async function ClassicflugPage({ params }: Props) {

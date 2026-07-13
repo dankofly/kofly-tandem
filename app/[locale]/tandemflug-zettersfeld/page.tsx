@@ -10,10 +10,9 @@ import {
   faqSchema,
   flightAreaSchemas,
   packageProductSchema,
-  touristAttractionSchema,
 } from "@/lib/schema";
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
 const rich = {
   b: (chunks: ReactNode) => (
@@ -29,27 +28,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "/tandemflug-zettersfeld",
     title: t("tandemflugZettersfeldTitle"),
     description: t("tandemflugZettersfeldDescription"),
-    openGraph: {
-      title: t("tandemflugZettersfeldOgTitle"),
-      description: t("tandemflugZettersfeldOgDescription"),
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("tandemflugZettersfeldOgTitle"),
-      description: t("tandemflugZettersfeldOgDescription"),
-    },
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/tandemflug-zettersfeld`,
-        en: `${SITE_URL}/en/tandemflug-zettersfeld`,
-        nl: `${SITE_URL}/nl/tandemflug-zettersfeld`,
-        "x-default": `${SITE_URL}/de/tandemflug-zettersfeld`,
-      },
-    },
-  };
+    ogTitle: t("tandemflugZettersfeldOgTitle"),
+    ogDescription: t("tandemflugZettersfeldOgDescription"),
+  });
 }
 
 export default async function TandemflugZettersfeldPage({ params }: Props) {
@@ -91,12 +77,8 @@ export default async function TandemflugZettersfeldPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(touristAttractionSchema(locale)),
-        }}
-      />
+      {/* TouristAttraction kommt sitewide aus dem Layout-@graph,
+          hier kein zweites Mal ausliefern (doppelte Entitaet). */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faqItems)) }}

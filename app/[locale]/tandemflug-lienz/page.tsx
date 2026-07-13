@@ -10,10 +10,9 @@ import {
   faqSchema,
   flightAreaSchemas,
   packageProductSchema,
-  touristAttractionSchema,
 } from "@/lib/schema";
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
 const rich = {
   b: (chunks: ReactNode) => (
@@ -28,27 +27,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "/tandemflug-lienz",
     title: t("tandemflugLienzTitle"),
     description: t("tandemflugLienzDescription"),
-    openGraph: {
-      title: t("tandemflugLienzOgTitle"),
-      description: t("tandemflugLienzOgDescription"),
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("tandemflugLienzOgTitle"),
-      description: t("tandemflugLienzOgDescription"),
-    },
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/tandemflug-lienz`,
-        en: `${SITE_URL}/en/tandemflug-lienz`,
-        nl: `${SITE_URL}/nl/tandemflug-lienz`,
-        "x-default": `${SITE_URL}/de/tandemflug-lienz`,
-      },
-    },
-  };
+    ogTitle: t("tandemflugLienzOgTitle"),
+    ogDescription: t("tandemflugLienzOgDescription"),
+  });
 }
 
 export default async function TandemflugLienzPage({ params }: Props) {
@@ -88,12 +74,8 @@ export default async function TandemflugLienzPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(touristAttractionSchema(locale)),
-        }}
-      />
+      {/* TouristAttraction kommt sitewide aus dem Layout-@graph,
+          hier kein zweites Mal ausliefern (doppelte Entitaet). */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

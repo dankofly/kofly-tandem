@@ -12,8 +12,8 @@ import {
   packageProductSchema,
   touristAttractionSchema,
 } from "@/lib/schema";
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
 const rich = {
   b: (chunks: ReactNode) => (
@@ -29,27 +29,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "/tandemflug-hochstein",
     title: t("tandemflugHochsteinTitle"),
     description: t("tandemflugHochsteinDescription"),
-    openGraph: {
-      title: t("tandemflugHochsteinOgTitle"),
-      description: t("tandemflugHochsteinOgDescription"),
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("tandemflugHochsteinOgTitle"),
-      description: t("tandemflugHochsteinOgDescription"),
-    },
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/tandemflug-hochstein`,
-        en: `${SITE_URL}/en/tandemflug-hochstein`,
-        nl: `${SITE_URL}/nl/tandemflug-hochstein`,
-        "x-default": `${SITE_URL}/de/tandemflug-hochstein`,
-      },
-    },
-  };
+    ogTitle: t("tandemflugHochsteinOgTitle"),
+    ogDescription: t("tandemflugHochsteinOgDescription"),
+  });
 }
 
 export default async function TandemflugHochsteinPage({ params }: Props) {

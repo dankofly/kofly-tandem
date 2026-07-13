@@ -5,8 +5,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getImageUrl } from "@/lib/images-config";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
-
-const SITE_URL = "https://gleitschirm-tandemflug.com";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/routes";
 
 const rich = {
   b: (chunks: ReactNode) => (
@@ -30,18 +30,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Metadata");
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "/ablauf",
     title: t("ablaufTitle"),
     description: t("ablaufDescription"),
-    alternates: {
-      languages: {
-        de: `${SITE_URL}/de/ablauf`,
-        en: `${SITE_URL}/en/ablauf`,
-        nl: `${SITE_URL}/nl/ablauf`,
-        "x-default": `${SITE_URL}/de/ablauf`,
-      },
-    },
-  };
+  });
 }
 
 export default async function AblaufPage({ params }: Props) {
