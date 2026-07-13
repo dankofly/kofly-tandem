@@ -28,6 +28,8 @@
     "agbDescription": "Algemene voorwaarden en transportvoorwaarden voor paraglide tandemvluchten in het Airpark Lienzer Dolomiten.",
     "datenschutzTitle": "Privacyverklaring",
     "datenschutzDescription": "Privacyverklaring van Gleitschirm-Tandemflug.com \u2013 Informatie over de omgang met jouw gegevens.",
+    "appInfoTitle": "Tandemflug: interne applicatie van KOFLY",
+    "appInfoDescription": "Informatie over de interne applicatie Tandemflug: doel, gegevenstoegang en contact.",
     "impressumTitle": "Colofon",
     "impressumDescription": "Colofon van Gleitschirm-Tandemflug.com \u2013 Daniel Kofler, Assling, Osttirol.",
     "urlaubTitle": "Vakantie Oost-Tirol: tandemvlucht als highlight in Lienz",
@@ -489,6 +491,23 @@
     "text": "Deze website gebruikt geen cookies en geen tracking.",
     "link": "Privacybeleid",
     "button": "Begrepen"
+  },
+  "AppInfo": {
+    "tagline": "Interne applicatie",
+    "title": "Tandemflug",
+    "subtitle": "Deze pagina beschrijft de applicatie \"Tandemflug\" die wordt gebruikt in het Google-inlogscherm (OAuth) van dit bedrijf.",
+    "breadcrumbHome": "Home",
+    "breadcrumbCurrent": "App",
+    "wasTitle": "Waarvoor dient de applicatie?",
+    "wasText": "Tandemflug is de interne softwareapplicatie van Daniel Kofler, exploitant van deze website (KOFLY, Gleitschirm-Tandemflug.com). Ze analyseert prestatiegegevens van zijn eigen Google-accounts, bijvoorbeeld zoekgegevens uit Google Search Console en advertentierapporten uit Google Ads, en maakt daaruit interne rapporten voor dit bedrijf.",
+    "zugriffTitle": "Welke gegevens gebruikt ze?",
+    "zugriffText": "De applicatie gebruikt officiële Google-interfaces (Google Search Console API, Google Ads API) met alleen-lezen toegang en uitsluitend voor accounts die eigendom zijn van Daniel Kofler. Er worden geen gegevens van websitebezoekers, klanten of derden verwerkt. Alle opgehaalde gegevens blijven lokaal bij de exploitant en worden niet gedeeld of verkocht.",
+    "nutzerTitle": "Wie gebruikt de applicatie?",
+    "nutzerText": "De enige gebruiker is Daniel Kofler zelf. De applicatie is niet openbaar toegankelijk, wordt niet verspreid en is niet beschikbaar voor derden.",
+    "kontaktTitle": "Contact",
+    "kontaktText": "Daniel Kofler, Assling, Oost-Tirol, Oostenrijk. Vragen over de applicatie via de contactgegevens in het colofon.",
+    "datenschutzIntro": "Details over de omgang met persoonsgegevens op deze website:",
+    "datenschutzLink": "Privacyverklaring"
   },
   "Datenschutz": {
     "breadcrumbHome": "Home",

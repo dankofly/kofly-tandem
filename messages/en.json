@@ -28,6 +28,8 @@
     "agbDescription": "General terms and conditions of business and transport for tandem paragliding flights in the Airpark Lienzer Dolomiten.",
     "datenschutzTitle": "Privacy Policy",
     "datenschutzDescription": "Privacy policy of Gleitschirm-Tandemflug.com \u2013 Information on how we handle your data.",
+    "appInfoTitle": "Tandemflug: Internal application by KOFLY",
+    "appInfoDescription": "Information about the internal application Tandemflug: purpose, data access and contact.",
     "impressumTitle": "Legal Notice",
     "impressumDescription": "Legal notice of Gleitschirm-Tandemflug.com \u2013 Daniel Kofler, Assling, Osttirol.",
     "urlaubTitle": "East Tyrol Holiday: Tandem Flight Highlight in Lienz",
@@ -489,6 +491,23 @@
     "text": "This website does not use cookies or tracking.",
     "link": "Privacy Policy",
     "button": "Got it"
+  },
+  "AppInfo": {
+    "tagline": "Internal application",
+    "title": "Tandemflug",
+    "subtitle": "This page describes the application \"Tandemflug\" that is used in the Google sign-in (OAuth) screen of this business.",
+    "breadcrumbHome": "Home",
+    "breadcrumbCurrent": "App",
+    "wasTitle": "What is this application for?",
+    "wasText": "Tandemflug is the internal software application of Daniel Kofler, operator of this website (KOFLY, Gleitschirm-Tandemflug.com). It analyses performance data of his own Google accounts, for example search data from Google Search Console and advertising reports from Google Ads, and creates internal reports for this business.",
+    "zugriffTitle": "What data does it access?",
+    "zugriffText": "The application uses official Google interfaces (Google Search Console API, Google Ads API) with read-only access and only for accounts owned by Daniel Kofler. No data of website visitors, customers or third parties is processed. All retrieved data remains local with the operator and is not shared or sold.",
+    "nutzerTitle": "Who uses the application?",
+    "nutzerText": "The only user is Daniel Kofler himself. The application is not publicly accessible, is not distributed and is not available to third parties.",
+    "kontaktTitle": "Contact",
+    "kontaktText": "Daniel Kofler, Assling, East Tyrol, Austria. Questions about the application via the contact details in the legal notice.",
+    "datenschutzIntro": "Details on how personal data is handled on this website:",
+    "datenschutzLink": "Privacy Policy"
   },
   "Datenschutz": {
     "breadcrumbHome": "Home",

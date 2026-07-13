@@ -28,6 +28,8 @@
     "agbDescription": "Allgemeine Geschäfts- und Transportbedingungen für Gleitschirm-Tandemflüge im Airpark Lienzer Dolomiten.",
     "datenschutzTitle": "Datenschutzerklärung",
     "datenschutzDescription": "Datenschutzerklärung von Gleitschirm-Tandemflug.com – Informationen zum Umgang mit Ihren Daten.",
+    "appInfoTitle": "Tandemflug: Interne Anwendung von KOFLY",
+    "appInfoDescription": "Informationen zur internen Anwendung Tandemflug: Zweck, Datenzugriff und Kontakt.",
     "impressumTitle": "Impressum",
     "impressumDescription": "Impressum von Gleitschirm-Tandemflug.com – Daniel Kofler, Assling, Osttirol.",
     "urlaubTitle": "Urlaub Osttirol: Tandemflug als Highlight in Lienz",
@@ -489,6 +491,23 @@
     "text": "Diese Website verwendet keine Cookies und kein Tracking.",
     "link": "Datenschutzerklärung",
     "button": "Verstanden"
+  },
+  "AppInfo": {
+    "tagline": "Interne Anwendung",
+    "title": "Tandemflug",
+    "subtitle": "Diese Seite beschreibt die Anwendung \"Tandemflug\", die im Google-Anmeldebildschirm (OAuth) dieses Betriebs verwendet wird.",
+    "breadcrumbHome": "Startseite",
+    "breadcrumbCurrent": "App",
+    "wasTitle": "Wozu dient die Anwendung?",
+    "wasText": "Tandemflug ist die interne Software-Anwendung von Daniel Kofler, dem Betreiber dieser Website (KOFLY, Gleitschirm-Tandemflug.com). Sie wertet Leistungsdaten der eigenen Google-Konten aus, zum Beispiel Suchdaten aus der Google Search Console und Werbeberichte aus Google Ads, und erstellt daraus interne Auswertungen und Reports für diesen Betrieb.",
+    "zugriffTitle": "Auf welche Daten greift sie zu?",
+    "zugriffText": "Die Anwendung nutzt offizielle Google-Schnittstellen (Google Search Console API, Google Ads API) ausschließlich mit Lesezugriff und ausschließlich für Konten, die Daniel Kofler selbst gehören. Es werden keine Daten von Website-Besuchern, Kunden oder Dritten verarbeitet. Alle abgerufenen Daten verbleiben lokal beim Betreiber und werden nicht weitergegeben oder verkauft.",
+    "nutzerTitle": "Wer nutzt die Anwendung?",
+    "nutzerText": "Einziger Nutzer ist Daniel Kofler selbst. Die Anwendung ist nicht öffentlich zugänglich, wird nicht vertrieben und steht keinen Dritten zur Verfügung.",
+    "kontaktTitle": "Kontakt",
+    "kontaktText": "Daniel Kofler, Assling, Osttirol. Fragen zur Anwendung gerne über die im Impressum angegebenen Kontaktdaten.",
+    "datenschutzIntro": "Details zum Umgang mit personenbezogenen Daten auf dieser Website:",
+    "datenschutzLink": "Datenschutzerklärung"
   },
   "Datenschutz": {
     "breadcrumbHome": "Startseite",
