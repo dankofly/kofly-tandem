@@ -132,7 +132,9 @@ def cmd_create(env: dict):
                    objective="OUTCOME_ENGAGEMENT",
                    status="PAUSED",
                    special_ad_categories="[]",
-                   buying_type="AUCTION")
+                   buying_type="AUCTION",
+                   # Pflichtfeld seit v24 ohne Kampagnen-Budget; false = DE/NL behalten fixe 15 EUR
+                   is_adset_budget_sharing_enabled="false")
         campaign_id = camp["id"]
         print(f"[ok] Kampagne angelegt (PAUSED): {campaign_id}")
 
@@ -140,12 +142,18 @@ def cmd_create(env: dict):
         locale_key = resolve_locale(token, spec["locale_query"])
         targeting = {
             "geo_locations": {
+                # location_types ("travel_in") wurde von Meta entfernt (subcode 1870199,
+                # verifiziert 2026-07-15): Geo trifft jetzt immer Wohnort + kuerzlich dort.
+                # Urlauber-Filter laeuft damit nur noch ueber die Sprache (NL sauber,
+                # DE enthaelt auch Einheimische).
                 "custom_locations": [LIENZ],
-                "location_types": ["travel_in"],  # Personen, die an diesen Ort reisen
             },
             "locales": [locale_key],
             "age_min": AGE_MIN,
             "age_max": AGE_MAX,
+            # Pflicht seit v24 (subcode 1870227). 0 = aus, damit Meta die
+            # DE/NL-Sprachtrennung nicht per Audience-Expansion aufweicht.
+            "targeting_automation": {"advantage_audience": 0},
         }
         adset = api("POST", f"{account}/adsets", token,
                     name=spec["name"],
@@ -153,9 +161,13 @@ def cmd_create(env: dict):
                     daily_budget=DAILY_BUDGET_CENTS,
                     billing_event="IMPRESSIONS",
                     optimization_goal="CONVERSATIONS",
+                    bid_strategy="LOWEST_COST_WITHOUT_CAP",
                     destination_type="WHATSAPP",
                     promoted_object=json.dumps({"page_id": page["id"]}),
                     targeting=json.dumps(targeting),
+                    # DSA-Pflicht bei EU-Targeting (subcode 3858081): Begünstigter + Zahler
+                    dsa_beneficiary="Daniel Kofler - Gleitschirm-Tandemflug.com",
+                    dsa_payor="Daniel Kofler - Gleitschirm-Tandemflug.com",
                     status="PAUSED")
         print(f"[ok] Ad Set angelegt (PAUSED): {spec['name']} -> {adset['id']}")
 
