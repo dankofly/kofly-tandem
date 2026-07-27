@@ -81,7 +81,7 @@ export default async function Hero() {
             </span>
             <span className="block text-5xl sm:text-5xl lg:text-7xl font-black uppercase">
               {t("titleLine2")}
-            </span>
+            </span>{" "}
             <span className="block mt-3 sm:mt-3 text-xl sm:text-xl lg:text-2xl font-bold text-hero-secondary">
               {t("subtitle")}
             </span>

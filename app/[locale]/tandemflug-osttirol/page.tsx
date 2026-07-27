@@ -66,6 +66,7 @@ export default async function TandemflugOsttirolPage({ params }: Props) {
     description: tm("tandemflugOsttirolDescription"),
     price: "150.00",
     url: `${SITE_URL}/${locale}/tandemflug-osttirol`,
+    locale,
   });
 
   return (

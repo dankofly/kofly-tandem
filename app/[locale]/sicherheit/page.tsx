@@ -158,6 +158,33 @@ export default async function SicherheitPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Cross-Links: die Seite war bis 2026-07-27 eine Sackgasse (nur /buchen) */}
+      <section className="py-12 lg:py-16">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("crosslinkTitle")}</h2>
+          <div className="mt-5 section-divider !mx-0" />
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { href: "/ablauf", key: "Ablauf" },
+              { href: "/briefing", key: "Briefing" },
+              { href: "/ueber-uns", key: "UeberUns" },
+              { href: "/buchen", key: "Buchen" },
+            ].map((link) => (
+              <Link key={link.key} href={link.href} className="block group">
+                <div className="glass-card card-hover-glow p-6 h-full">
+                  <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
+                    {t(`crosslink${link.key}Title`)}
+                  </h3>
+                  <p className="mt-2 text-sm text-content-body font-light">
+                    {t(`crosslink${link.key}P`)}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="relative py-20 lg:py-28 overflow-hidden bg-surface-secondary">
         <div className="glow-orb glow-orb-accent w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 animate-glow-pulse" aria-hidden="true" />
         <div className="relative max-w-2xl mx-auto px-6 text-center">

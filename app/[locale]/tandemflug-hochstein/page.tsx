@@ -68,6 +68,7 @@ export default async function TandemflugHochsteinPage({ params }: Props) {
     price: "150.00",
     url: `${SITE_URL}/${locale}/tandemflug-hochstein`,
     image: `${SITE_URL}/images/tandemflug-lienz-hero.webp`,
+    locale,
   });
 
   return (

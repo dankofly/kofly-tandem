@@ -2,6 +2,8 @@
 
 import { useState, type FormEvent } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { getAttribution } from "@/lib/attribution";
+import { splitName } from "@/lib/split-name";
 
 const INPUT_CLS =
   "w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 input-glow transition-colors";
@@ -30,12 +32,17 @@ export default function BookingForm() {
       return;
     }
 
+    // Ein sichtbares Namensfeld, serverseitiger Vertrag (vorname/nachname)
+    // bleibt unveraendert: Telegram, Netlify Forms und die Tandemify-Bridge
+    // lesen weiterhin beide Felder.
+    const { vorname, nachname } = splitName(String(data.get("name") || ""));
+
     const payload = {
       type: "termin",
-      vorname: data.get("vorname"),
-      nachname: data.get("nachname"),
+      vorname,
+      nachname,
       telefon: data.get("telefon"),
-      whatsapp: data.get("whatsapp"),
+      whatsapp: data.get("whatsapp") ? "ja" : "nein",
       email: data.get("email"),
       wunschtermin: data.get("wunschtermin"),
       anreise: data.get("anreise"),
@@ -43,6 +50,7 @@ export default function BookingForm() {
       personenanzahl: data.get("personenanzahl"),
       paket: data.get("paket"),
       nachricht: data.get("nachricht"),
+      attribution: getAttribution(),
     };
 
     try {
@@ -92,63 +100,49 @@ export default function BookingForm() {
         <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
-      {/* Vorname + Nachname */}
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label htmlFor="vorname" className={LABEL_CLS}>
-            {t("vorname")}
-          </label>
-          <input
-            type="text"
-            id="vorname"
-            name="vorname"
-            required
-            className={INPUT_CLS}
-            placeholder={t("vornamePlaceholder")}
-          />
-        </div>
-        <div>
-          <label htmlFor="nachname" className={LABEL_CLS}>
-            {t("nachname")}
-          </label>
-          <input
-            type="text"
-            id="nachname"
-            name="nachname"
-            required
-            className={INPUT_CLS}
-            placeholder={t("nachnamePlaceholder")}
-          />
-        </div>
+      {/* Name (ein Feld statt zwei) */}
+      <div>
+        <label htmlFor="name" className={LABEL_CLS}>
+          {t("name")}
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          autoComplete="name"
+          className={INPUT_CLS}
+          placeholder={t("namePlaceholder")}
+        />
       </div>
 
-      {/* Telefon + WhatsApp */}
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label htmlFor="telefon" className={LABEL_CLS}>
-            {t("telefon")}
-          </label>
+      {/* Telefon + WhatsApp-Haken */}
+      <div>
+        <label htmlFor="telefon" className={LABEL_CLS}>
+          {t("telefon")}
+        </label>
+        <input
+          type="tel"
+          id="telefon"
+          name="telefon"
+          required
+          autoComplete="tel"
+          className={INPUT_CLS}
+          placeholder={t("telefonPlaceholder")}
+        />
+        <label htmlFor="whatsapp" className="mt-3 flex items-center gap-3 text-sm text-content-muted">
           <input
-            type="tel"
-            id="telefon"
-            name="telefon"
-            required
-            className={INPUT_CLS}
-            placeholder={t("telefonPlaceholder")}
+            type="checkbox"
+            id="whatsapp"
+            name="whatsapp"
+            defaultChecked
+            className="checkbox-pop w-4 h-4 border-edge-secondary rounded bg-surface-input text-accent-500 focus:ring-accent-500"
           />
-        </div>
-        <div>
-          <label htmlFor="whatsapp" className={LABEL_CLS}>
-            {t("whatsapp")}
-          </label>
-          <select id="whatsapp" name="whatsapp" className={INPUT_CLS}>
-            <option value="ja">{t("whatsappJa")}</option>
-            <option value="nein">{t("whatsappNein")}</option>
-          </select>
-        </div>
+          {t("whatsappInline")}
+        </label>
       </div>
 
-      {/* Email */}
+      {/* E-Mail: optional, Telefon/WhatsApp ist der eigentliche Kanal */}
       <div>
         <label htmlFor="email" className={LABEL_CLS}>
           {t("email")}
@@ -157,22 +151,9 @@ export default function BookingForm() {
           type="email"
           id="email"
           name="email"
-          required
+          autoComplete="email"
           className={INPUT_CLS}
           placeholder={t("emailPlaceholder")}
-        />
-      </div>
-
-      {/* Wunschtermin */}
-      <div>
-        <label htmlFor="wunschtermin" className={LABEL_CLS}>
-          {t("wunschtermin")}
-        </label>
-        <input
-          type="date"
-          id="wunschtermin"
-          name="wunschtermin"
-          className={INPUT_CLS}
         />
       </div>
 
@@ -269,19 +250,39 @@ export default function BookingForm() {
         </div>
       </fieldset>
 
-      {/* Anmerkungen & Fragen */}
-      <div>
-        <label htmlFor="nachricht" className={LABEL_CLS}>
-          {t("nachricht")}
-        </label>
-        <textarea
-          id="nachricht"
-          name="nachricht"
-          rows={3}
-          className={`${INPUT_CLS} resize-y`}
-          placeholder={t("nachrichtPlaceholder")}
-        />
-      </div>
+      {/* Optionales hinter einer Aufklapp-Sektion: Wunschtermin und Nachricht
+          waren die beiden laengsten Felder ohne Pflichtcharakter. */}
+      <details className="border border-edge-input bg-surface-input/40">
+        <summary className="cursor-pointer px-4 py-3 text-sm text-content-body select-none">
+          {t("moreDetails")}
+        </summary>
+        <div className="space-y-6 px-4 pb-4">
+          <p className="text-xs text-content-muted font-light">{t("moreDetailsHint")}</p>
+          <div>
+            <label htmlFor="wunschtermin" className={LABEL_CLS}>
+              {t("wunschtermin")}
+            </label>
+            <input
+              type="date"
+              id="wunschtermin"
+              name="wunschtermin"
+              className={INPUT_CLS}
+            />
+          </div>
+          <div>
+            <label htmlFor="nachricht" className={LABEL_CLS}>
+              {t("nachricht")}
+            </label>
+            <textarea
+              id="nachricht"
+              name="nachricht"
+              rows={3}
+              className={`${INPUT_CLS} resize-y`}
+              placeholder={t("nachrichtPlaceholder")}
+            />
+          </div>
+        </div>
+      </details>
 
       {/* AGB Warning + Checkbox */}
       <div className="highlight-glow bg-accent-500/10 border border-accent-500/30 p-4">

@@ -51,6 +51,7 @@ export default async function ClassicflugPage({ params }: Props) {
     description: t("heroP2").replace(/<\/?b>/g, ""),
     price: "150.00",
     url: `${SITE_URL}/${locale}/classicflug`,
+    locale,
   });
 
   const faqItems = FAQ_TOPICS.map((topic) => ({

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>KOFLY Afterflight-Beilage</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { size: A4; margin: 0; }
+  body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; }
+
+  .page {
+    width: 210mm; height: 297mm;
+    position: relative; overflow: hidden;
+    background: #0a1a22; color: #fff;
+    page-break-after: always;
+    display: flex; flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .kicker {
+    font-size: 7pt; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: #89c4e1;
+  }
+  .kicker.orange { color: #f07942; }
+
+  /* ───────── Seite 1 ───────── */
+  /* Kein Gradient-Overlay: Chrome baut Alpha-Gradients beim PDF-Export in eine
+     Transparenz-Maske um, die manche Viewer (pdf.js u.a.) magenta rendern. */
+  .hero { position: relative; height: 92mm; flex-shrink: 0; }
+  .hero img.photo { width: 100%; height: 100%; object-fit: cover; object-position: 50% 70%; display: block; }
+  .brandbar {
+    position: absolute; top: 9mm; left: 13mm; right: 13mm;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 3mm;
+    background: rgba(10,26,34,0.55); border: 0.35mm solid rgba(255,255,255,0.35);
+    border-radius: 10mm; padding: 1.6mm 5mm 1.6mm 2mm;
+  }
+  .brand img { width: 8.5mm; height: 8.5mm; border-radius: 2.1mm; }
+  .brand .word { font-size: 13.5pt; font-weight: 800; letter-spacing: 0.2em; }
+  .brand .sub { font-size: 5.6pt; letter-spacing: 0.16em; color: rgba(255,255,255,0.85); text-transform: uppercase; margin-top: 0.8mm; }
+  .badge {
+    background: rgba(10,26,34,0.55); border: 0.35mm solid rgba(255,255,255,0.35);
+    border-radius: 10mm; padding: 2mm 4.5mm;
+    font-size: 6.5pt; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+
+  .p1-content { padding: 10mm 16mm 10mm; flex: 1; display: flex; flex-direction: column; position: relative; z-index: 2; }
+  h1 { font-size: 28pt; font-weight: 800; letter-spacing: -0.01em; line-height: 1.12; }
+  .h1-sub { font-size: 11.5pt; font-weight: 300; color: #89c4e1; margin-top: 5mm; }
+  .lead {
+    font-size: 10.2pt; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.82);
+    margin-top: 6mm; max-width: 172mm;
+  }
+
+  .review-block {
+    margin-top: 8mm; background: #142832;
+    border: 0.35mm solid #2d4f5f; border-radius: 5mm;
+    padding: 10mm 11mm 9mm; flex: 1;
+    display: flex; flex-direction: column;
+  }
+  .review-block h2 { font-size: 18pt; font-weight: 700; margin-top: 3mm; }
+  .review-block .copy {
+    font-size: 9.8pt; font-weight: 300; line-height: 1.68; color: rgba(255,255,255,0.82);
+    margin-top: 4mm;
+  }
+  .proof { margin-top: 4.5mm; font-size: 9pt; color: #89c4e1; display: flex; align-items: center; gap: 2.2mm; }
+  .stars { color: #f07942; font-size: 10pt; letter-spacing: 0.08em; }
+
+  .qr-row { display: flex; gap: 6mm; margin-top: 7mm; }
+  .qr-card {
+    flex: 1; background: #fff; color: #142832; border-radius: 4mm;
+    padding: 6.5mm 7mm; display: flex; align-items: center; gap: 6mm;
+  }
+  .qr-card img { width: 31mm; height: 31mm; flex-shrink: 0; }
+  .qr-card .label { font-size: 7.4pt; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #e86830; }
+  .qr-card .title { font-size: 12.5pt; font-weight: 800; margin-top: 1.4mm; line-height: 1.15; }
+  .qr-card .meta { font-size: 7.8pt; font-weight: 400; color: #4e7a92; margin-top: 1.8mm; line-height: 1.5; }
+
+  .howto { margin-top: auto; padding-top: 6mm; text-align: center; font-size: 8.8pt; color: rgba(255,255,255,0.6); font-weight: 300; }
+  .howto b { color: #fff; font-weight: 600; }
+
+  /* ───────── Seite 2 ───────── */
+  .p2-content { padding: 15mm 16mm 9mm; flex: 1; display: flex; flex-direction: column; }
+  h2.section { font-size: 17pt; font-weight: 800; margin-top: 2.5mm; }
+  .p2-copy { font-size: 9.2pt; font-weight: 300; line-height: 1.62; color: rgba(255,255,255,0.82); margin-top: 3mm; max-width: 172mm; }
+  .p2-copy b { font-weight: 600; color: #fff; }
+
+  .phones { display: flex; gap: 9mm; margin-top: 9mm; justify-content: center; }
+  .phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 2.8mm; }
+  .phone {
+    width: 46mm; background: #0d2029;
+    border: 0.45mm solid #2d4f5f; border-radius: 5.5mm;
+    padding: 1.8mm; overflow: hidden;
+  }
+  .phone img { width: 100%; display: block; border-radius: 4mm; }
+  .caption { font-size: 7.6pt; font-weight: 600; color: #89c4e1; }
+
+  .offers { display: flex; gap: 5mm; margin-top: 9mm; }
+  .offer {
+    flex: 1; background: #142832; border: 0.35mm solid #2d4f5f;
+    border-radius: 4mm; padding: 6.5mm 5.5mm 6mm;
+    display: flex; flex-direction: column;
+  }
+  .offer.hot { border-color: #e86830; box-shadow: 0 0 6mm rgba(232,104,48,0.22); }
+  .offer .name { font-size: 7pt; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #f07942; }
+  .offer .price { font-size: 15.5pt; font-weight: 800; margin-top: 1.6mm; }
+  .offer .price small { font-size: 8pt; font-weight: 400; color: rgba(255,255,255,0.55); }
+  .offer .desc { font-size: 7.6pt; font-weight: 300; line-height: 1.5; color: rgba(255,255,255,0.75); margin-top: 2.2mm; }
+
+  .cta {
+    margin-top: 10mm;
+    background: linear-gradient(120deg, #d05525 0%, #e86830 55%, #f07942 100%);
+    border-radius: 5mm; padding: 9.5mm 10mm;
+    display: flex; align-items: center; gap: 8mm;
+  }
+  .cta .qr { background: #fff; border-radius: 3mm; padding: 2.4mm; flex-shrink: 0; }
+  .cta .qr img { width: 26mm; height: 26mm; display: block; }
+  .cta h3 { font-size: 15.5pt; font-weight: 800; line-height: 1.2; }
+  .cta .lines { margin-top: 3mm; display: flex; flex-direction: column; gap: 1.6mm; }
+  .cta .line { display: flex; align-items: center; gap: 2.6mm; font-size: 9.6pt; font-weight: 600; }
+  .cta .line svg { width: 4.2mm; height: 4.2mm; flex-shrink: 0; }
+  .cta .line .soft { font-weight: 300; opacity: 0.9; }
+  .cta .trust { margin-top: 3mm; font-size: 7.6pt; font-weight: 400; color: rgba(255,255,255,0.92); }
+
+  .footer {
+    margin-top: auto; padding-top: 4.5mm; border-top: 0.25mm solid #2d4f5f;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 6.8pt; color: rgba(255,255,255,0.5); font-weight: 300;
+  }
+  .footer b { color: rgba(255,255,255,0.85); font-weight: 700; letter-spacing: 0.14em; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ SEITE 1 · AFTERFLIGHT ═══════════ -->
+<div class="page">
+  <div class="hero">
+    <img class="photo" src="{{HERO_IMG}}" alt="">
+    <div class="brandbar">
+      <div class="brand">
+        <img src="{{LOGO_IMG}}" alt="">
+        <div>
+          <div class="word">KOFLY</div>
+          <div class="sub">Gleitschirm-Tandemflug.com</div>
+        </div>
+      </div>
+      <div class="badge">Beilage zu deinem Foto- &amp; Videopaket</div>
+    </div>
+  </div>
+
+  <div class="p1-content">
+    <h1>Willkommen zurück<br>am Boden.</h1>
+    <div class="h1-sub">Deine Fotos und Videos sind da. Mittendrin: du, hoch über den Lienzer Dolomiten.</div>
+
+    <p class="lead">
+      Danke, dass du mit uns geflogen bist. Ein paar Schritte am Startplatz, dann hat dich die Luft getragen.
+      Deine Aufnahmen halten genau das fest. Schau sie in Ruhe an und zeig sie den Menschen,
+      die du gern dabei gehabt hättest.
+    </p>
+
+    <div class="review-block">
+      <div class="kicker orange">Eine Bitte, solange das Gefühl noch frisch ist</div>
+      <h2>Warst du gern mit uns oben?</h2>
+      <p class="copy">
+        Irgendwo plant gerade jemand seinen ersten Tandemflug und zögert noch. So wie du vielleicht, bevor du
+        gebucht hast. Genau dieser Person hilft deine Bewertung mehr als jede Werbung. Drei ehrliche Sätze
+        reichen: wie der Start war und wie sich das Fliegen angefühlt hat. Nenn deinen Piloten ruhig beim
+        Namen, er liest mit.
+      </p>
+      <div class="proof">
+        <span class="stars">★★★★★</span>
+        <span>Über 300 Fluggäste haben bisher 5,0 Sterne dagelassen.</span>
+      </div>
+
+      <div class="qr-row">
+        <div class="qr-card">
+          <img src="{{QR_GOOGLE}}" alt="QR Google-Bewertung">
+          <div>
+            <div class="label">Google</div>
+            <div class="title">Bewertung<br>schreiben</div>
+            <div class="meta">Direkt zum Bewertungs&shy;fenster, ohne Suchen.</div>
+          </div>
+        </div>
+        <div class="qr-card">
+          <img src="{{QR_TRIPADVISOR}}" alt="QR Tripadvisor">
+          <div>
+            <div class="label">Tripadvisor</div>
+            <div class="title">Erlebnis<br>bewerten</div>
+            <div class="meta">Travelers&rsquo; Choice 2026, Nr.&nbsp;1 Outdoor-Aktivität in Osttirol.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="howto"><b>So geht&rsquo;s:</b> Handykamera aufs Quadrat halten. Der Rest dauert keine zwei Minuten.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SEITE 2 · SERVICE + ANGEBOT + CTA ═══════════ -->
+<div class="page">
+  <div class="p2-content">
+    <div class="kicker">Der KOFLY-Service</div>
+    <h2 class="section">Eine App, die mitfliegt</h2>
+    <p class="p2-copy">
+      Vom ersten Kontakt bis zur Landung hattest du deine persönliche Flugseite auf <b>booking.kofly.at</b>:
+      Live-Status mit Ampel, Countdown zum Flugtag, Wetter-Briefing, Treffpunkt mit Karte und alles Wissen rund
+      um deinen Flug. Du brauchst dafür keinen App-Store und kein Konto, nur den Link von uns. Die Seite gibt
+      es in Deutsch, Englisch und Niederländisch.
+    </p>
+
+    <div class="phones">
+      <div class="phone-wrap">
+        <div class="phone"><img src="{{SHOT_FLUGPASS}}" alt="App-Screen Flugpass"></div>
+        <div class="caption">Flugpass, Countdown &amp; Live-Status</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone"><img src="{{SHOT_TREFFPUNKT}}" alt="App-Screen Treffpunkt"></div>
+        <div class="caption">Treffpunkt &amp; Landeplatz</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone"><img src="{{SHOT_AFTER}}" alt="App-Screen nach der Landung"></div>
+        <div class="caption">Nach der Landung</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 11mm">
+      <div class="kicker orange">Lust auf mehr Luft?</div>
+      <h2 class="section" style="font-size: 14.5pt">Beim nächsten Mal länger oben</h2>
+    </div>
+
+    <div class="offers">
+      <div class="offer">
+        <div class="name">Premiumflug</div>
+        <div class="price">&euro;190 <small>pro Person</small></div>
+        <div class="desc">30 bis 45 Minuten Flugzeit, Start am Zettersfeld oder Hochstein. Foto- und Videopaket inklusive.</div>
+      </div>
+      <div class="offer hot">
+        <div class="name">Thermikflug</div>
+        <div class="price">ab &euro;250 <small>pro Person</small></div>
+        <div class="desc">45 bis 90 Minuten in der Luft. Du spürst, wie der Schirm in der Thermik trägt und wir hunderte Meter über den Start steigen.</div>
+      </div>
+      <div class="offer">
+        <div class="name">Geschenk-Gutschein</div>
+        <div class="price">ab &euro;150 <small>&nbsp;</small></div>
+        <div class="desc">Verschenke das Gefühl, das du gerade hattest. Persönlich gestaltet und 3 Jahre gültig.</div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <div class="qr"><img src="{{QR_WHATSAPP}}" alt="QR WhatsApp"></div>
+      <div>
+        <h3>Der nächste Flug ist eine Nachricht entfernt.</h3>
+        <div class="lines">
+          <div class="line">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span>WhatsApp&nbsp; <span class="soft">+43 676 7293888</span></span>
+          </div>
+          <div class="line">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 013.5 2h1.148a1.5 1.5 0 011.465 1.175l.716 3.223a1.5 1.5 0 01-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 006.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 011.767-1.052l3.223.716A1.5 1.5 0 0118 15.352V16.5a1.5 1.5 0 01-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 012.43 8.326 13.019 13.019 0 012 5V3.5z" clip-rule="evenodd"/></svg>
+            <span>Anrufen&nbsp; <span class="soft">+43 676 7293888</span></span>
+          </div>
+          <div class="line">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zM5.94 5.5c.944-.945 2.56-.276 2.56 1.06V8a1 1 0 001 1h1.5a1 1 0 001-1V6.56c0-1.336 1.616-2.005 2.56-1.06a6 6 0 11-8.62 0z"/></svg>
+            <span class="soft">gleitschirm-tandemflug.com</span>
+          </div>
+        </div>
+        <div class="trust">Bezahlt wird nach dem Erlebnis. Umbuchen und Stornieren sind kostenlos.</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div><b>KOFLY</b> &nbsp;&middot;&nbsp; Airpark Lienzer Dolomiten &middot; Lienz, Osttirol</div>
+      <div>info@gleitschirm-tandemflug.com &nbsp;&middot;&nbsp; Instagram @tandemfluglienz</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

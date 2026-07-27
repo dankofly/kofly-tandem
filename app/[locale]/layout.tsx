@@ -13,6 +13,7 @@ import ThemeProvider from "@/components/ThemeProvider";
 const ChatBotLazy = nextDynamic(() => import("@/components/ChatBotLazy"), { loading: () => null });
 const CookieBanner = nextDynamic(() => import("@/components/CookieBanner"), { loading: () => null });
 const ScrollProgress = nextDynamic(() => import("@/components/ScrollProgress"), { loading: () => null });
+const AttributionCapture = nextDynamic(() => import("@/components/AttributionCapture"), { loading: () => null });
 import {
   organizationSchema,
   serviceSchema,
@@ -24,6 +25,7 @@ import {
 } from "@/lib/schema";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 import { SITE_URL } from "@/lib/routes";
+import { pickClientMessages } from "@/lib/client-messages";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -55,9 +57,11 @@ export async function generateMetadata({
     metadataBase: new URL(SITE_URL),
     title: {
       default: t("homeTitle"),
-      // Kurzes Brand-Suffix: Kern der Seitentitel muss in ~60 Zeichen passen,
-      // das Suffix wird von Google in der SERP oft abgeschnitten oder ersetzt.
-      template: "%s | KOFLY - Gleitschirm-Tandemflug.com",
+      // Suffix bewusst kurz (8 Zeichen). Google rendert ~580px, praktisch etwa
+      // 60 Zeichen. Das alte Suffix "| KOFLY - Gleitschirm-Tandemflug.com" war
+      // 36 Zeichen lang und hat 17 von 18 Seitentiteln in der SERP abgeschnitten
+      // (Audit 2026-07-27: gemessene Title-Längen 78 bis 97 Zeichen).
+      template: "%s | KOFLY",
     },
     description: t("homeDescription"),
     keywords: t("homeKeywords").split(","),
@@ -97,7 +101,9 @@ export default async function LocaleLayout({ children, params }: Props) {
     notFound();
   }
   setRequestLocale(locale);
-  const messages = await getMessages({ locale });
+  // Nur die Client-Namespaces in den Provider, nicht das ganze Message-File.
+  // Siehe lib/client-messages.ts.
+  const messages = pickClientMessages(await getMessages({ locale }));
 
   return (
     <html lang={locale} className={inter.variable} suppressHydrationWarning>
@@ -131,6 +137,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             <MobileCTA />
             <ChatBotLazy />
             <CookieBanner />
+            <AttributionCapture />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

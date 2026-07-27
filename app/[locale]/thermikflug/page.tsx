@@ -50,6 +50,7 @@ export default async function ThermikflugPage({ params }: Props) {
     description: t("heroP1").replace(/<\/?b>/g, ""),
     price: "250.00",
     url: `${SITE_URL}/${locale}/thermikflug`,
+    locale,
   });
 
   const faqItems = FAQ_TOPICS.map((topic) => ({
@@ -141,6 +142,27 @@ export default async function ThermikflugPage({ params }: Props) {
                 <p className="mt-3 text-sm text-content-body leading-relaxed font-light">{t(`faq${topic}A`)}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 lg:py-24 bg-surface-secondary">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("comparisonTitle")}</h2>
+          <div className="mt-5 section-divider !mx-0" />
+          <div className="mt-8 space-y-4">
+            <Link href="/classicflug" className="block glass-card card-hover-glow p-5">
+              <span className="text-xs tracking-premium uppercase text-content-muted font-medium">Classic</span>
+              <p className="mt-2 text-sm text-content-body font-light">{t("compareClassic")}</p>
+            </Link>
+            <Link href="/premiumflug" className="block glass-card card-hover-glow p-5">
+              <span className="text-xs tracking-premium uppercase text-content-muted font-medium">Premium</span>
+              <p className="mt-2 text-sm text-content-body font-light">{t("comparePremium")}</p>
+            </Link>
+            <Link href="/thermikflug" className="block glass-card p-5 border-l-2 border-accent-500/40">
+              <span className="text-xs tracking-premium uppercase text-accent-500 font-medium">Thermik</span>
+              <p className="mt-2 text-sm text-content-body font-light">{t("compareThermik")}</p>
+            </Link>
           </div>
         </div>
       </section>

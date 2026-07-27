@@ -69,6 +69,7 @@ export default async function TandemflugZettersfeldPage({ params }: Props) {
     price: "150.00",
     url: `${SITE_URL}/${locale}/tandemflug-zettersfeld`,
     image: `${SITE_URL}/images/tandemflug-zettersfeld-hero.webp`,
+    locale,
   });
 
   return (

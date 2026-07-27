@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { getAttribution } from "@/lib/attribution";
 
 const INPUT_CLS =
   "w-full px-4 py-3 border border-edge-input bg-surface-input text-content-strong placeholder:text-content-placeholder focus:border-accent-500 focus:ring-1 focus:ring-accent-500/20 input-glow transition-colors";
@@ -44,6 +45,7 @@ export default function VoucherForm() {
       versandart: data.get("versandart"),
       postStrasse: data.get("post_strasse"),
       postPlzOrt: data.get("post_plz_ort"),
+      attribution: getAttribution(),
     };
 
     try {

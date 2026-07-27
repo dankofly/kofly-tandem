@@ -5,7 +5,7 @@
  * messages/, public/llms.txt und public/pricing.md nicht auseinanderlaufen
  * und dass die Message-Dateien strukturgleich sind (Key-Parität).
  */
-import { readFileSync } from "fs";
+import { readFileSync, readdirSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
@@ -94,6 +94,86 @@ if (!/letztes Update: (Juli|August|September|Oktober|November|Dezember) 2026/.te
   fail("public/llms.txt: Update-Stempel ist nicht aktuell (erwartet: Juli 2026 oder später)");
 }
 ok("llms.txt Update-Stempel aktuell");
+
+// 7. Title-Laengen: Kern + Brand-Suffix muessen in die SERP passen.
+// Google rendert rund 580px, praktisch etwa 60 Zeichen. Der Suffix aus dem
+// title.template in app/[locale]/layout.tsx zaehlt mit (homeTitle traegt ihn
+// selbst und wird als default nicht getemplatet).
+{
+  const layout = read("app/[locale]/layout.tsx");
+  const suffix = layout.match(/template:\s*"%s([^"]*)"/)?.[1] ?? "";
+  const LIMIT = 60;
+  let worst = 0;
+  for (const l of ["de", "en", "nl"]) {
+    const meta = JSON.parse(read(`messages/${l}.json`)).Metadata;
+    for (const [key, value] of Object.entries(meta)) {
+      if (!/Title$/.test(key) || /OgTitle$/.test(key)) continue;
+      const full = key === "homeTitle" ? value : value + suffix;
+      worst = Math.max(worst, full.length);
+      if (full.length > LIMIT) {
+        fail(`messages/${l}.json: ${key} ergibt ${full.length} Zeichen (max ${LIMIT}): "${full}"`);
+      }
+    }
+  }
+  ok(`Title-Laengen <= ${LIMIT} Zeichen inkl. Suffix "${suffix}" (laengster: ${worst})`);
+}
+
+// 8. CLIENT_NAMESPACES deckt alle useTranslations()-Aufrufe in Client-Dateien ab.
+// Der Provider bekommt nur diese Namespaces (lib/client-messages.ts). Fehlt einer,
+// stirbt die Komponente zur Laufzeit mit MISSING_MESSAGE, nicht im Build.
+{
+  const allow = new Set(
+    [...read("lib/client-messages.ts").matchAll(/^\s*"([A-Za-z]+)",$/gm)].map((m) => m[1])
+  );
+  const files = [];
+  const walk = (dir) => {
+    for (const e of readdirSync(join(root, dir), { withFileTypes: true })) {
+      const rel = `${dir}/${e.name}`;
+      if (e.isDirectory()) {
+        if (e.name !== "node_modules") walk(rel);
+      } else if (/\.tsx?$/.test(e.name)) files.push(rel);
+    }
+  };
+  walk("components");
+  walk("app");
+
+  const used = new Map();
+  for (const f of files) {
+    const src = read(f);
+    if (!/^\s*["']use client["']/m.test(src)) continue;
+    if (/useTranslations\(\s*\)/.test(src)) {
+      fail(`${f}: useTranslations() ohne Namespace, mit getrimmtem Provider nicht erlaubt`);
+    }
+    for (const m of src.matchAll(/useTranslations\(\s*["'`]([^"'`]+)["'`]/g)) {
+      used.set(m[1].split(".")[0], f);
+    }
+  }
+  for (const [ns, f] of used) {
+    if (!allow.has(ns)) fail(`lib/client-messages.ts: Namespace "${ns}" fehlt (benutzt in ${f})`);
+  }
+  const unused = [...allow].filter((ns) => !used.has(ns));
+  if (unused.length) console.log(`  ..  CLIENT_NAMESPACES ungenutzt (kein Fehler): ${unused.join(", ")}`);
+  ok(`CLIENT_NAMESPACES deckt ${used.size} genutzte Namespaces ab`);
+}
+
+// 9. splitName: das Buchungsformular hat ein Namensfeld, der Payload zwei.
+{
+  const { splitName } = await import("../../lib/split-name.ts");
+  const cases = [
+    ["Max Mustermann", "Max", "Mustermann"],
+    ["Anna Maria Huber", "Anna Maria", "Huber"],
+    ["Max", "Max", ""],
+    ["  Max   Mustermann  ", "Max", "Mustermann"],
+    ["", "", ""],
+  ];
+  for (const [input, vorname, nachname] of cases) {
+    const r = splitName(input);
+    if (r.vorname !== vorname || r.nachname !== nachname) {
+      fail(`splitName(${JSON.stringify(input)}) = ${JSON.stringify(r)}, erwartet ${vorname} / ${nachname}`);
+    }
+  }
+  ok(`splitName: ${cases.length} Faelle korrekt`);
+}
 
 if (errors.length) {
   console.error(`\n${errors.length} Konsistenz-Fehler.`);
