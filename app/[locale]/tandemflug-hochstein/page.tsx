@@ -68,6 +68,7 @@ export default async function TandemflugHochsteinPage({ params }: Props) {
     price: "150.00",
     url: `${SITE_URL}/${locale}/tandemflug-hochstein`,
     image: `${SITE_URL}/images/tandemflug-lienz-hero.webp`,
+    locale,
   });
 
   return (
@@ -335,12 +336,21 @@ export default async function TandemflugHochsteinPage({ params }: Props) {
               <p>{r("meetP1")}</p>
               <p>{r("meetP2")}</p>
             </div>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
               <Link
                 href="/anreise"
                 className="inline-flex items-center gap-2 text-sm font-medium text-accent-500 hover:text-accent-400 transition-colors"
               >
                 {t("meetLink")}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+              <Link
+                href="/tandemflug-zettersfeld"
+                className="inline-flex items-center gap-2 text-sm font-medium text-accent-500 hover:text-accent-400 transition-colors"
+              >
+                {t("otherStartLink")}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>

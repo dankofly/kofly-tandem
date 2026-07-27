@@ -133,32 +133,23 @@ export default async function UeberUnsPage({ params }: Props) {
       />
 
       {/* ══════════════════════════════════════════
-          HERO – Cinematic Opening with staggered entrance
+          HERO – matches sitewide subpage pattern (theme-aware)
           ══════════════════════════════════════════ */}
-      <section className="relative pt-32 pb-24 lg:pt-44 lg:pb-36 overflow-hidden">
-        {/* Multi-layer background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800" />
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.03\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
-          }}
-        />
-        {/* Glow orbs with staggered pulse */}
-        <div className="glow-orb glow-orb-accent w-[500px] h-[500px] sm:w-[700px] sm:h-[700px] -top-60 -right-40 opacity-25 animate-glow-pulse" />
-        <div className="glow-orb glow-orb-sky w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] -bottom-40 -left-40 opacity-15 animate-glow-pulse [animation-delay:2s]" />
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+        <div className="glow-orb glow-orb-accent w-[500px] h-[500px] -top-40 -right-40 opacity-40 animate-glow-pulse" aria-hidden="true" />
+        <div className="glow-orb glow-orb-sky w-[400px] h-[400px] -bottom-32 -left-32 opacity-30 animate-glow-pulse [animation-delay:2s]" aria-hidden="true" />
 
-        <div className="relative max-w-4xl mx-auto px-6">
+        <div className="relative max-w-3xl mx-auto px-6">
           {/* Breadcrumb – immediate */}
           <nav aria-label="Breadcrumb" className="hero-enter hero-enter-1 mb-10">
-            <ol className="flex items-center gap-2 text-xs text-white/50 font-light">
+            <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
               <li>
                 <Link href="/" className="hover:text-accent-400 transition-colors">
                   Home
                 </Link>
               </li>
-              <li aria-hidden="true" className="text-white/30">/</li>
-              <li className="text-white/80 font-medium">{t("breadcrumb")}</li>
+              <li aria-hidden="true" className="text-content-faint">/</li>
+              <li className="text-content-strong font-medium">{t("breadcrumb")}</li>
             </ol>
           </nav>
 
@@ -167,24 +158,24 @@ export default async function UeberUnsPage({ params }: Props) {
             {t("heroOverline")}
           </p>
 
-          <h1 className="hero-enter hero-enter-3 mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1]">
+          <h1 className="hero-enter hero-enter-3 mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-content-primary tracking-tight leading-[1.15] text-balance">
             {t("heroHighlight1")}{" "}
             <span className="shimmer-text text-transparent bg-clip-text bg-gradient-to-r from-accent-400 via-accent-500 to-accent-400">
               {t("heroHighlight2")}
             </span>
           </h1>
 
-          <div className="hero-enter hero-enter-4 mt-8 section-divider !mx-0" />
+          <div className="hero-enter hero-enter-4 mt-6 section-divider !mx-0" />
 
-          <p className="hero-enter hero-enter-5 mt-8 text-lg sm:text-xl text-white/80 leading-relaxed font-light max-w-2xl">
+          <p className="hero-enter hero-enter-5 mt-8 text-base sm:text-lg text-content-body leading-relaxed font-light">
             {t("heroDescription")}
           </p>
 
           {/* Hero CTA – above the fold */}
-          <div className="hero-enter hero-enter-5 mt-8 flex flex-col sm:flex-row gap-3">
+          <div className="hero-enter hero-enter-5 mt-10 flex flex-col sm:flex-row gap-4">
             <Link
               href="/buchen"
-              className="cta-lift btn-glow cursor-pointer inline-flex items-center justify-center px-7 py-3.5 min-h-[44px] bg-accent-500 hover:bg-accent-400 text-white text-xs font-medium tracking-wide uppercase transition-colors duration-200"
+              className="cta-lift btn-glow cursor-pointer inline-flex items-center justify-center px-8 py-4 min-h-[44px] bg-accent-500 hover:bg-accent-400 text-white text-xs font-medium tracking-wide uppercase transition-colors"
             >
               {t("ctaBooking")}
             </Link>
@@ -192,7 +183,7 @@ export default async function UeberUnsPage({ params }: Props) {
               href="https://wa.me/436767293888"
               target="_blank"
               rel="noopener noreferrer"
-              className="cta-lift cursor-pointer inline-flex items-center justify-center gap-2 px-7 py-3.5 min-h-[44px] border border-white/20 text-white/80 hover:text-accent-400 hover:border-accent-500 text-xs font-medium tracking-wide uppercase transition-colors duration-200"
+              className="cta-lift cursor-pointer inline-flex items-center justify-center gap-2 px-8 py-4 min-h-[44px] border border-edge-secondary text-content-body hover:text-accent-400 hover:border-accent-500 text-xs font-medium tracking-wide uppercase transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
@@ -202,34 +193,27 @@ export default async function UeberUnsPage({ params }: Props) {
             </a>
           </div>
 
-          {/* Hero Image with entrance animation */}
-          <div className="hero-enter hero-enter-6 mt-12 relative rounded-2xl overflow-hidden border border-white/10 aspect-[21/9] card-hover-glow">
-            {ueberHero ? (
-              <Image
-                src={ueberHero}
-                alt={t("heroImageAlt")}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 900px"
+          {/* Hero Image – figure style shared with landing pages */}
+          <figure className="hero-enter hero-enter-6 mt-12 group">
+            <div className="relative overflow-hidden rounded-2xl border border-edge-secondary/40 shadow-2xl shadow-black/40 aspect-[21/9]">
+              {ueberHero ? (
+                <Image
+                  src={ueberHero}
+                  alt={t("heroImageAlt")}
+                  fill
+                  priority
+                  className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03]"
+                  sizes="(max-width: 768px) 100vw, 768px"
+                />
+              ) : (
+                <ImagePlaceholder label={t("heroImagePlaceholder")} />
+              )}
+              <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"
+                aria-hidden="true"
               />
-            ) : (
-              <div className="absolute inset-0 bg-gradient-to-br from-navy-800 to-navy-700 flex items-center justify-center">
-                <div className="text-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-16 h-16 text-white/20 mx-auto">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
-                  </svg>
-                  <p className="mt-3 text-sm text-white/30 font-light">{t("heroImagePlaceholder")}</p>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Scroll hint */}
-          <div className="mt-10 flex justify-center hero-enter hero-enter-6">
-            <div className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center p-1.5">
-              <div className="w-1 h-2 rounded-full bg-white/40 animate-scroll-hint" />
             </div>
-          </div>
+          </figure>
         </div>
       </section>
 
@@ -430,9 +414,9 @@ export default async function UeberUnsPage({ params }: Props) {
                     {value.icon}
                   </div>
                   <div className="mt-5 w-8 h-px bg-accent-500/30 mx-auto" />
-                  <h4 className="mt-4 text-base font-semibold text-content-primary tracking-wide">
+                  <h3 className="mt-4 text-base font-semibold text-content-primary tracking-wide">
                     {value.title}
-                  </h4>
+                  </h3>
                   <p className="mt-2 text-sm text-content-body leading-relaxed font-light">
                     {value.text}
                   </p>
@@ -702,6 +686,34 @@ export default async function UeberUnsPage({ params }: Props) {
               </a>
             </p>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Cross-Links: staerkste Seite nach der Startseite (401 Impressionen,
+          18 Klicks / 90 Tage), verlinkte bis 2026-07-27 nur auf /buchen. */}
+      <section className="py-12 lg:py-16">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("crosslinkTitle")}</h2>
+          <div className="mt-5 section-divider !mx-0" />
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { href: "/tandemflug-lienz", key: "Lienz" },
+              { href: "/sicherheit", key: "Sicherheit" },
+              { href: "/ablauf", key: "Ablauf" },
+              { href: "/buchen", key: "Buchen" },
+            ].map((link) => (
+              <Link key={link.key} href={link.href} className="block group">
+                <div className="glass-card card-hover-glow p-6 h-full">
+                  <h3 className="text-lg font-semibold text-content-primary group-hover:text-accent-400 transition-colors">
+                    {t(`crosslink${link.key}Title`)}
+                  </h3>
+                  <p className="mt-2 text-sm text-content-body font-light">
+                    {t(`crosslink${link.key}P`)}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </>

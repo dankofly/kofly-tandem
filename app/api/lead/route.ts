@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import type { Attribution } from "@/lib/attribution";
 
 interface TerminPayload {
   type: "termin";
@@ -6,13 +7,14 @@ interface TerminPayload {
   nachname: string;
   telefon: string;
   whatsapp?: string;
-  email: string;
+  email?: string;
   wunschtermin?: string;
   anreise: string;
   abreise: string;
   personenanzahl?: string;
   paket?: string;
   nachricht?: string;
+  attribution?: Attribution | null;
 }
 
 interface GutscheinPayload {
@@ -28,15 +30,22 @@ interface GutscheinPayload {
   versandart: string;
   postStrasse?: string;
   postPlzOrt?: string;
+  attribution?: Attribution | null;
 }
 
 type LeadPayload = TerminPayload | GutscheinPayload;
 
+/**
+ * Pflichtfelder der Terminanfrage: Name, Telefon, Anreise, Abreise.
+ *
+ * Nachname und E-Mail sind seit 2026-07-27 optional. Das Formular hat nur noch
+ * EIN Namensfeld und splittet es clientseitig, ein Gast ohne Leerzeichen im
+ * Namen liefert also einen leeren Nachnamen. Kontaktkanal ist Telefon/WhatsApp,
+ * die E-Mail war reine Reibung (Konkurrenz bucht mit Sofortbestaetigung).
+ */
 function validateTermin(data: TerminPayload): string | null {
-  if (!data.vorname?.trim()) return "Vorname ist erforderlich.";
-  if (!data.nachname?.trim()) return "Nachname ist erforderlich.";
+  if (!data.vorname?.trim()) return "Name ist erforderlich.";
   if (!data.telefon?.trim()) return "Telefon ist erforderlich.";
-  if (!data.email?.trim()) return "E-Mail ist erforderlich.";
   if (!data.anreise) return "Anreise ist erforderlich.";
   if (!data.abreise) return "Abreise ist erforderlich.";
   return null;
@@ -66,16 +75,17 @@ async function sendTelegram(body: LeadPayload) {
     text = [
       `✈️ <b>Neue Terminanfrage</b>`,
       ``,
-      `👤 <b>Name:</b> ${esc(d.vorname)} ${esc(d.nachname)}`,
+      `👤 <b>Name:</b> ${esc(`${d.vorname} ${d.nachname || ""}`.trim())}`,
       `📞 <b>Telefon:</b> ${esc(d.telefon)}`,
       `📱 <b>WhatsApp:</b> ${esc(d.whatsapp || "–")}`,
-      `📧 <b>E-Mail:</b> ${esc(d.email)}`,
+      `📧 <b>E-Mail:</b> ${esc(d.email || "–")}`,
       d.wunschtermin ? `🎯 <b>Wunschtermin:</b> ${esc(d.wunschtermin)}` : "",
       `📅 <b>Anreise:</b> ${esc(d.anreise)}`,
       `📅 <b>Abreise:</b> ${esc(d.abreise)}`,
       `👥 <b>Personen:</b> ${esc(d.personenanzahl || "1")}`,
       d.paket ? `🎒 <b>Paket:</b> ${esc(d.paket)}` : "",
       d.nachricht ? `\n💬 <b>Nachricht:</b>\n${esc(d.nachricht)}` : "",
+      formatAttribution(d.attribution),
     ]
       .filter(Boolean)
       .join("\n");
@@ -93,6 +103,7 @@ async function sendTelegram(body: LeadPayload) {
       d.empfaengername ? `🎯 <b>Empfänger:</b> ${esc(d.empfaengername)}` : "",
       d.widmung ? `✍️ <b>Widmung:</b> ${esc(d.widmung)}` : "",
       d.nachricht ? `\n💬 <b>Nachricht:</b>\n${esc(d.nachricht)}` : "",
+      formatAttribution(d.attribution),
     ]
       .filter(Boolean)
       .join("\n");
@@ -119,6 +130,25 @@ async function sendTelegram(body: LeadPayload) {
 
 function esc(s: string): string {
   return s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c] || c);
+}
+
+/**
+ * Kampagnen-Herkunft fuer die Telegram-Nachricht. Der gclid wird vollstaendig
+ * mitgeschickt: er ist der Schluessel fuer den Offline-Conversion-Upload in
+ * Google Ads (siehe ops/google-ads/RESTART-PLAN.md).
+ */
+function formatAttribution(attr?: Attribution | null): string {
+  if (!attr || typeof attr !== "object") return "";
+  const source = [attr.utm_source, attr.utm_medium, attr.utm_campaign]
+    .filter(Boolean)
+    .join(" / ");
+  const lines = [
+    source ? `📈 <b>Quelle:</b> ${esc(source)}` : "",
+    attr.utm_content ? `🏷 <b>Content:</b> ${esc(attr.utm_content)}` : "",
+    attr.landing ? `🛬 <b>Einstieg:</b> ${esc(attr.landing)}` : "",
+    attr.gclid ? `🔑 <b>gclid:</b> <code>${esc(attr.gclid)}</code>` : "",
+  ].filter(Boolean);
+  return lines.length ? `\n${lines.join("\n")}` : "";
 }
 
 function isISODate(s?: string): boolean {

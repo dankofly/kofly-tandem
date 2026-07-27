@@ -109,9 +109,9 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-x-8">
             {/* Navigation column */}
             <div>
-              <h4 className="text-[11px] font-semibold uppercase tracking-premium text-content-faint mb-3">
+              <h2 className="text-[11px] font-semibold uppercase tracking-premium text-content-faint mb-3">
                 {t("navigation")}
-              </h4>
+              </h2>
               <ul className="space-y-2.5">
                 {[
                   { label: t("erlebnis"), href: "/#erlebnis" },
@@ -134,9 +134,9 @@ export default function Footer() {
             </div>
             {/* Buchen column */}
             <div>
-              <h4 className="text-[11px] font-semibold uppercase tracking-premium text-content-faint mb-3">
+              <h2 className="text-[11px] font-semibold uppercase tracking-premium text-content-faint mb-3">
                 {t("buchen")}
-              </h4>
+              </h2>
               <ul className="space-y-2.5">
                 {[
                   { label: t("terminAnfragen"), href: "/buchen" },
@@ -184,9 +184,9 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <h4 className="text-[13px] font-semibold uppercase tracking-premium text-content-faint mb-4">
+            <h2 className="text-[13px] font-semibold uppercase tracking-premium text-content-faint mb-4">
               {t("navigation")}
-            </h4>
+            </h2>
             <ul className="space-y-3">
               {[
                 { label: t("erlebnis"), href: "/#erlebnis" },
@@ -210,9 +210,9 @@ export default function Footer() {
 
           {/* Buchen */}
           <div>
-            <h4 className="text-[13px] font-semibold uppercase tracking-premium text-content-faint mb-4">
+            <h2 className="text-[13px] font-semibold uppercase tracking-premium text-content-faint mb-4">
               {t("buchen")}
-            </h4>
+            </h2>
             <ul className="space-y-3">
               {[
                 { label: t("terminAnfragen"), href: "/buchen" },
@@ -239,9 +239,9 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-[13px] font-semibold uppercase tracking-premium text-content-faint mb-4">
+            <h2 className="text-[13px] font-semibold uppercase tracking-premium text-content-faint mb-4">
               {t("kontakt")}
-            </h4>
+            </h2>
             <div className="space-y-3">
               <a
                 href="tel:+436767293888"
@@ -276,12 +276,14 @@ export default function Footer() {
             <div className="flex items-center gap-6">
               <Link
                 href="/impressum"
+                prefetch={false}
                 className="text-xs text-content-faint hover:text-content-muted transition-colors font-light"
               >
                 {t("impressum")}
               </Link>
               <Link
                 href="/datenschutz"
+                prefetch={false}
                 className="text-xs text-content-faint hover:text-content-muted transition-colors font-light"
               >
                 {t("datenschutz")}

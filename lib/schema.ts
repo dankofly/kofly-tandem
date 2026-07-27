@@ -1,4 +1,4 @@
-import { REVIEWS } from "@/lib/reviews-config";
+import { REVIEWS, REVIEW_QUOTES } from "@/lib/reviews-config";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://gleitschirm-tandemflug.com";
@@ -376,6 +376,30 @@ export function webSiteSchema(locale: string = "de") {
   };
 }
 
+/**
+ * Die auf der Seite sichtbaren Gaeste-Stimmen als schema.org-Review-Objekte.
+ *
+ * Warum: ein aggregateRating ohne belegende review-Objekte ist der Fall, den
+ * Google bei "self-serving markup" aufgreift. Die Zahl 300+ bleibt, sie steht
+ * sichtbar mit Quellen-Label auf der Seite und deckt sich mit dem Markup.
+ * Die vier Reviews stammen aus derselben Quelle wie das Reviews-Widget
+ * (lib/reviews-config.ts), damit Markup und sichtbarer Inhalt nie auseinanderlaufen.
+ */
+function reviewObjects(locale: string = "de") {
+  return REVIEW_QUOTES.map((r) => ({
+    "@type": "Review",
+    author: { "@type": "Person", name: r.name },
+    datePublished: r.date,
+    reviewBody: r.text[locale] || r.text.de,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: String(r.rating),
+      bestRating: "5",
+      worstRating: "1",
+    },
+  }));
+}
+
 export function productSchema(locale: string = "de") {
   return {
     "@context": "https://schema.org/",
@@ -397,6 +421,7 @@ export function productSchema(locale: string = "de") {
       ratingCount: String(REVIEWS.countExact),
       reviewCount: String(REVIEWS.countExact),
     },
+    review: reviewObjects(locale),
     offers: {
       "@type": "AggregateOffer",
       lowPrice: "150.00",
@@ -698,6 +723,7 @@ export function packageProductSchema(opts: {
   price: string;
   url: string;
   image?: string;
+  locale?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -715,6 +741,7 @@ export function packageProductSchema(opts: {
       ratingCount: String(REVIEWS.countExact),
       reviewCount: String(REVIEWS.countExact),
     },
+    review: reviewObjects(opts.locale),
     offers: {
       "@type": "Offer",
       price: opts.price,

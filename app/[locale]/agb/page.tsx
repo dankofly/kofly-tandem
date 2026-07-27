@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildPageMetadata } from "@/lib/seo";
+import { breadcrumbSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/routes";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -22,8 +24,17 @@ export default async function AGBPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations("AGB");
 
+  // Sichtbarer Breadcrumb ohne BreadcrumbList war die einzige Seite, auf der
+  // Markup und Darstellung auseinanderliefen (Audit 2026-07-27, Skill-Durchlauf).
+  const breadcrumbs = breadcrumbSchema([
+    { name: t("breadcrumbHome"), url: `${SITE_URL}/${locale}` },
+    { name: t("breadcrumbCurrent"), url: `${SITE_URL}/${locale}/agb` },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
+
       {/* Hero */}
       <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden">
         <div className="glow-orb glow-orb-accent w-[500px] h-[500px] -top-40 -right-40 opacity-40 animate-glow-pulse" />

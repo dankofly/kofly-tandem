@@ -52,6 +52,7 @@ export default async function GutscheinPage({ params }: Props) {
     description: t("heroP2").replace(/<\/?b>/g, ""),
     price: "150.00",
     url: `${SITE_URL}/${locale}/gutschein`,
+    locale,
   });
 
   const faqItems = FAQ_TOPICS.map((topic) => ({

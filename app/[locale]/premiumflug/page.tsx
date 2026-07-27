@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 type Props = { params: Promise<{ locale: string }> };
 import { Link } from "@/i18n/navigation";
+import PackageComparison from "@/components/PackageComparison";
 import {
   breadcrumbSchema,
   faqSchema,
@@ -52,6 +53,7 @@ export default async function PremiumflugPage({ params }: Props) {
     description: t("heroP2").replace(/<\/?b>/g, ""),
     price: "190.00",
     url: `${SITE_URL}/${locale}/premiumflug`,
+    locale,
   });
 
   const faqItems = FAQ_TOPICS.map((topic) => ({
@@ -144,6 +146,14 @@ export default async function PremiumflugPage({ params }: Props) {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 lg:py-24">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("comparisonTitle")}</h2>
+          <div className="mt-5 section-divider !mx-0" />
+          <PackageComparison current="premium" />
         </div>
       </section>
 

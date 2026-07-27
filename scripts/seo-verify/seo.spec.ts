@@ -12,8 +12,10 @@ import { REVIEWS } from "../../lib/reviews-config";
  * (SITE_URL), unabhängig davon, wo der Server läuft.
  */
 
-const TITLE_SUFFIX = " | KOFLY - Gleitschirm-Tandemflug.com";
-const TITLE_CORE_MAX = 60;
+// Was in der SERP zaehlt, ist der gerenderte Gesamttitel inklusive Suffix.
+// Bis 2026-07-27 stand hier der alte 36-Zeichen-Suffix und wurde vor der
+// Messung abgeschnitten; der Check konnte damit nichts mehr finden.
+const TITLE_MAX = 60;
 const DESC_MIN = 70;
 const DESC_MAX = 160;
 
@@ -73,15 +75,12 @@ for (const route of ROUTES) {
       // Genau eine H1
       await expect(page.locator("h1"), `H1-Anzahl auf ${path}`).toHaveCount(1);
 
-      // Titel: Kern (ohne Brand-Suffix) maximal 60 Zeichen
+      // Titel: gerenderter Gesamttitel maximal 60 Zeichen
       const title = await page.title();
-      const core = title.endsWith(TITLE_SUFFIX)
-        ? title.slice(0, -TITLE_SUFFIX.length)
-        : title;
       expect(
-        core.length,
-        `Titel-Kern zu lang (${core.length}): "${core}"`
-      ).toBeLessThanOrEqual(TITLE_CORE_MAX);
+        title.length,
+        `Titel zu lang (${title.length}): "${title}"`
+      ).toBeLessThanOrEqual(TITLE_MAX);
 
       // Meta description in Ziel-Länge (nur indexierbare Seiten)
       const desc = await page
@@ -166,4 +165,127 @@ test("Sitemap == indexierbare Registry-URLs, robots.txt verweist auf Sitemap", a
 
   const robots = await (await request.get("/robots.txt")).text();
   expect(robots).toContain("Sitemap: https://gleitschirm-tandemflug.com/sitemap.xml");
+});
+
+/**
+ * Accessibility-Regressionen aus dem Skill-Durchlauf 2026-07-27.
+ * Alle drei Punkte kamen aus der Vorlage von technical-seo-checker
+ * ("Tap targets sized", "Mobile-friendly") und aus WCAG 2.4.1 / 2.5.8.
+ * Eine Seite reicht: Header, Footer und die Crosslink-Muster sind geteilt.
+ */
+test.describe("Accessibility-Grundlagen", () => {
+  test("Skip-Link zeigt auf #main und ist per Tastatur erreichbar", async ({ page }) => {
+    await page.goto("/de");
+    const skip = page.locator("a.skip-link");
+    await expect(skip).toHaveCount(1);
+    expect(await skip.getAttribute("href")).toBe("#main");
+    await expect(page.locator("main#main")).toHaveCount(1);
+    // Unsichtbar bis Fokus: oberhalb des Viewports geparkt.
+    expect((await skip.boundingBox())!.y).toBeLessThan(0);
+    await skip.focus();
+    // Der Link faehrt per 0,2s-Transition ein, deshalb pollen statt sofort messen.
+    await expect
+      .poll(async () => (await skip.boundingBox())!.y, { timeout: 2000 })
+      .toBeGreaterThanOrEqual(0);
+  });
+
+  test("Ueberschriften steigen ohne Sprung (h2 nach h1, kein h4 ohne h3)", async ({ page }) => {
+    for (const path of ["/de", "/de/sicherheit", "/de/agb", "/de/tandemflug-lienz", "/de/ueber-uns", "/de/ablauf", "/de/buchen", "/de/urlaub", "/de/anreise", "/de/paragleiten"]) {
+      await page.goto(path);
+      const levels = await page.$$eval("h1,h2,h3,h4,h5,h6", (els) =>
+        els.map((e) => Number(e.tagName[1]))
+      );
+      const skips = levels
+        .map((lvl, i) => (i > 0 && lvl - levels[i - 1] > 1 ? `h${levels[i - 1]}->h${lvl}` : null))
+        .filter(Boolean);
+      expect(skips, `Ebenensprung auf ${path}: ${skips.join(", ")}`).toHaveLength(0);
+    }
+  });
+
+  // WCAG 2.5.8 verlangt 24x24 px ODER genug Abstand: um jedes zu kleine Ziel
+  // wird ein 24-px-Kreis gelegt, der kein anderes Ziel und keinen anderen
+  // solchen Kreis schneiden darf. Der Footer besteht diese Alternative mit
+  // 26 px Zeilenabstand. Der Test prueft deshalb beide Wege, nicht nur die
+  // Groesse; sonst erzwingt er Layout-Aenderungen ohne Nutzen.
+  for (const path of ["/de", "/de/sicherheit", "/de/buchen"]) {
+    test(`Tap-Targets erfuellen Groesse oder Abstand (WCAG 2.5.8) auf ${path}`, async ({ page }) => {
+      await page.setViewportSize({ width: 412, height: 915 });
+      await page.goto(path);
+      const violations = await page.$$eval("a,button,[role='button']", (els) => {
+        const targets = els
+          .map((el) => {
+            const r = el.getBoundingClientRect();
+            const p = el.parentElement;
+            // Ausnahme "inline": Link mitten im Fliesstext, also wenn der
+            // Elterntext neben dem Link noch eigenen Text traegt.
+            const own = (el.textContent || "").trim();
+            const around = ((p?.textContent || "").trim().replace(own, "")).trim();
+            const inline =
+              !!p && ["P", "LABEL", "SPAN"].includes(p.tagName) && around.length >= 3;
+            // checkVisibility filtert eingeklappte Panels heraus: ein Element
+            // mit visibility:hidden hat weiterhin ein Rechteck.
+            const shown = el.checkVisibility({
+              visibilityProperty: true,
+              opacityProperty: true,
+              contentVisibilityAuto: true,
+            });
+            return { r, inline, shown, txt: own.slice(0, 28) };
+          })
+          .filter((t) => t.shown && t.r.width > 0 && t.r.height > 0 && !t.inline);
+
+        const undersized = targets.filter((t) => t.r.width < 24 || t.r.height < 24);
+        const centre = (r: DOMRect) => ({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
+        // Abstand Kreismittelpunkt zum naechsten Punkt eines Rechtecks.
+        const distToRect = (c: { x: number; y: number }, r: DOMRect) => {
+          const dx = Math.max(r.left - c.x, 0, c.x - r.right);
+          const dy = Math.max(r.top - c.y, 0, c.y - r.bottom);
+          return Math.hypot(dx, dy);
+        };
+
+        const bad: string[] = [];
+        for (const t of undersized) {
+          const c = centre(t.r);
+          const hitsOther = targets.some((o) => o !== t && distToRect(c, o.r) < 12);
+          const hitsCircle = undersized.some((o) => {
+            if (o === t) return false;
+            const oc = centre(o.r);
+            return Math.hypot(oc.x - c.x, oc.y - c.y) < 24;
+          });
+          if (hitsOther || hitsCircle) {
+            bad.push(
+              `${t.txt || "(icon)"} ${Math.round(t.r.width)}x${Math.round(t.r.height)}`
+            );
+          }
+        }
+        return bad;
+      });
+      expect(
+        violations,
+        `Zu klein UND zu dicht: ${violations.join(" | ")}`
+      ).toHaveLength(0);
+    });
+  }
+});
+
+/**
+ * Das geschlossene Mobile-Menue darf nicht im Fokus-Pfad liegen. Vorher hielt
+ * es max-height:0 nur optisch zu, die sechs Links blieben fokussierbar.
+ */
+test("Geschlossenes Mobile-Menue ist nicht fokussierbar", async ({ page }) => {
+  await page.setViewportSize({ width: 412, height: 915 });
+  await page.goto("/de/sicherheit");
+  const menu = page.locator("div.mobile-menu");
+  await expect(menu).toHaveAttribute("data-open", "false");
+  const links = menu.locator("a");
+  expect(await links.count()).toBeGreaterThan(0);
+  for (const l of await links.all()) {
+    expect(
+      await l.evaluate((el) => el.checkVisibility({ visibilityProperty: true })),
+      "Link im geschlossenen Menue ist noch sichtbar/fokussierbar"
+    ).toBe(false);
+  }
+  // Geoeffnet muss es wieder erreichbar sein.
+  await page.locator("button[aria-expanded]").first().click();
+  await expect(menu).toHaveAttribute("data-open", "true");
+  await expect(links.first()).toBeVisible();
 });
