@@ -57,7 +57,11 @@ export default async function PackageComparison({
               >
                 <th scope="row" className="px-4 py-3 align-top">
                   {active ? (
-                    <span className="text-sm font-semibold text-accent-500">
+                    // Nicht text-accent-500: das Marken-Orange ergibt auf der
+                    // hellen Flaeche 2,91:1 und faellt damit durch WCAG AA.
+                    // Die aktive Zeile ist ohnehin schon durch ihren
+                    // Hintergrund und den Balken markiert.
+                    <span className="text-sm font-bold text-content-primary border-l-2 border-accent-500 -ml-4 pl-[14px]">
                       {row.label}
                     </span>
                   ) : (
