@@ -289,3 +289,60 @@ test("Geschlossenes Mobile-Menue ist nicht fokussierbar", async ({ page }) => {
   await expect(menu).toHaveAttribute("data-open", "true");
   await expect(links.first()).toBeVisible();
 });
+
+/**
+ * Kontrast der reinen Text-Tokens (WCAG 2.1 AA, 4.5:1 fuer Text unter
+ * 18.66px bold / 24px normal). faint und ghost tragen Footer-Labels,
+ * Impressum, Datenschutz und den Tabellenkopf und lagen am 2026-07-27 bei
+ * 2,32 bzw. 1,68 zu 1.
+ *
+ * Nicht abgedeckt und bewusst offen: weiss auf accent-500 (#e86830) ergibt
+ * 3,25:1 und betrifft den primaeren CTA-Button. Das zu beheben heisst, das
+ * Marken-Orange zu aendern, siehe Audit 2026-07-27.
+ */
+test.describe("Farbkontrast", () => {
+  const SURFACES = {
+    light: ["#f8fafb", "#eef3f6"],
+    dark: ["#0a1a22", "#142832"],
+  } as const;
+
+  for (const theme of ["light", "dark"] as const) {
+    test(`Text-Tokens erfuellen 4.5:1 (${theme})`, async ({ page }) => {
+      await page.goto("/de");
+      const measured = await page.evaluate(
+        ({ mode, surfaces }) => {
+          // globals.css scoped ueber [data-theme], nicht ueber Klassen.
+          document.documentElement.setAttribute("data-theme", mode);
+          const cs = getComputedStyle(document.documentElement);
+          const hex = (h: string) =>
+            [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+          const lum = ([r, g, b]: number[]) => {
+            const f = (c: number) => {
+              c /= 255;
+              return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+            };
+            return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+          };
+          const ratio = (a: number[], b: number[]) => {
+            const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m);
+            return Math.round(((x + 0.05) / (y + 0.05)) * 100) / 100;
+          };
+          const out: { token: string; bg: string; cr: number }[] = [];
+          for (const token of ["--text-faint", "--text-ghost", "--text-subtle", "--text-muted"]) {
+            const v = cs.getPropertyValue(token).trim();
+            if (!/^#[0-9a-f]{6}$/i.test(v)) continue;
+            for (const bg of surfaces) out.push({ token, bg, cr: ratio(hex(v), hex(bg)) });
+          }
+          return out;
+        },
+        { mode: theme, surfaces: SURFACES[theme] }
+      );
+      expect(measured.length, "keine Tokens gelesen").toBeGreaterThan(0);
+      const failing = measured.filter((m) => m.cr < 4.5);
+      expect(
+        failing,
+        `unter 4.5:1 -> ${failing.map((f) => `${f.token} auf ${f.bg} = ${f.cr}`).join(", ")}`
+      ).toHaveLength(0);
+    });
+  }
+});

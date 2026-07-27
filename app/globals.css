@@ -28,9 +28,14 @@
   --text-strong: #d8e8f0;
   --text-body: #89b4c8;
   --text-muted: #6a96ad;
-  --text-subtle: #4e7a92;
-  --text-faint: #3d6478;
-  --text-ghost: #2d4f5f;
+  --text-subtle: #6392ab;
+  /* faint und ghost trugen echten Text (Footer-Labels, Impressum,
+     Datenschutz, Tabellenkopf) und lagen bei 2,4 bzw. 1,7 zu 1. WCAG AA
+     verlangt 4,5 zu 1 bei diesen Groessen. Gleicher Farbton, nur so weit
+     aufgehellt, dass es gegen beide Flaechen (#0a1a22 und #142832) traegt.
+     Gemessen 2026-07-27: faint 5,26/4,52, ghost 5,24/4,50. */
+  --text-faint: #5e93ad;
+  --text-ghost: #5a95b1;
 
   /* Borders */
   --border-default: #2d4f5f;
@@ -40,7 +45,9 @@
   --border-secondary: #3d6478;
 
   /* Placeholder */
-  --text-placeholder: #3d6478;
+  /* Platzhalter im Buchungsformular lagen bei 1,76 (hell) und 2,39
+     (dunkel) zu 1. Gemessen 2026-07-27 gegen --bg-input. */
+  --text-placeholder: #5e93ad;
 
   /* Glass card */
   --glass-bg: rgba(30, 58, 72, 0.4);
@@ -94,9 +101,12 @@
   --text-strong: #1a3544;
   --text-body: #355b6d;
   --text-muted: #476f88;
-  --text-subtle: #5f8ca2;
-  --text-faint: #7fadc2;
-  --text-ghost: #a5c9d9;
+  --text-subtle: #4e7386;
+  /* Siehe Kommentar im Dark-Block. Hell gemessen 2026-07-27:
+     faint war 2,32/2,17 und ist jetzt 4,94/4,62, ghost war 1,68/1,57
+     und ist jetzt 4,81/4,51, jeweils gegen #f8fafb und #eef3f6. */
+  --text-faint: #42738a;
+  --text-ghost: #3a738b;
 
   /* Borders */
   --border-default: #b8d4e2;
@@ -106,7 +116,7 @@
   --border-secondary: #74a5b8;
 
   /* Placeholder */
-  --text-placeholder: #a5c9d9;
+  --text-placeholder: #3f7c96;
 
   /* Glass card – frosted white */
   --glass-bg: rgba(255, 255, 255, 0.7);
