@@ -26,8 +26,12 @@ export default function CookieBanner() {
       <div className="max-w-xl mx-auto glass-card rounded-xl px-5 py-4 flex items-center gap-4 shadow-lg border border-edge-faint">
         <p className="flex-1 text-xs text-content-muted font-light leading-relaxed">
           {t("text")}{" "}
+          {/* prefetch aus: der Banner steht auf jeder Seite im Viewport und
+              zog damit den RSC-Payload von /datenschutz (rund 19 KB) bei
+              jedem Aufruf mit, fuer eine Seite die kaum jemand oeffnet. */}
           <Link
             href="/datenschutz"
+            prefetch={false}
             className="text-accent-500 hover:text-accent-400 underline underline-offset-2 font-medium"
           >
             {t("link")}

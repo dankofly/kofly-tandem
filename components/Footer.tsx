@@ -276,12 +276,14 @@ export default function Footer() {
             <div className="flex items-center gap-6">
               <Link
                 href="/impressum"
+                prefetch={false}
                 className="text-xs text-content-faint hover:text-content-muted transition-colors font-light"
               >
                 {t("impressum")}
               </Link>
               <Link
                 href="/datenschutz"
+                prefetch={false}
                 className="text-xs text-content-faint hover:text-content-muted transition-colors font-light"
               >
                 {t("datenschutz")}

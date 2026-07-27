@@ -1332,10 +1332,7 @@
     "faqDiffThermikA": "Der Thermikflug geht 45+ Minuten und nutzt aktiv die Aufwinde für Höhengewinne – intensiver, dynamischer. Der Premiumflug ist länger und entspannter als der Classicflug, aber ruhiger als der Thermikflug.",
     "ctaTitle": "Bereit für den Premiumflug?",
     "ctaP": "Frag uns unverbindlich an – wir finden deinen Termin und bestätigen wetterabhängig.",
-    "comparisonTitle": "Classic, Premium oder Thermik?",
-    "compareClassic": "20–30 Min Flugzeit · Standardstartplatz · ab €150 · ideal für den ersten Flug",
-    "comparePremium": "30–45 Min Flugzeit · freie Startplatzwahl · ab €190 · mehr Zeit, mehr Ruhe",
-    "compareThermik": "45–90 Min Flugzeit · Aufwinde aktiv · ab €250 · echtes freies Fliegen"
+    "comparisonTitle": "Classic, Premium oder Thermik?"
   },
   "Thermikflug": {
     "breadcrumbHome": "Startseite",
@@ -1369,10 +1366,27 @@
     "faqSafetyA": "Ja, mit erfahrenem Piloten und zertifizierter Ausrüstung. Die Thermik ist unser Arbeitsplatz – wir lesen sie jeden Tag. Reservefallschirm ist immer an Bord.",
     "ctaTitle": "Bereit fürs echte Fliegen?",
     "ctaP": "Frag uns an – wir checken das Wetterfenster und finden den Tag mit der besten Thermik.",
-    "comparisonTitle": "Classic, Premium oder Thermik?",
-    "compareClassic": "20–30 Min Flugzeit · Standardstartplatz · ab €150 · ideal für den ersten Flug",
-    "comparePremium": "30–45 Min Flugzeit · freie Startplatzwahl · ab €190 · mehr Zeit, mehr Ruhe",
-    "compareThermik": "45–90 Min Flugzeit · Aufwinde aktiv · ab €250 · echtes freies Fliegen"
+    "comparisonTitle": "Classic, Premium oder Thermik?"
+  },
+  "PaketVergleich": {
+    "col1": "Paket",
+    "col2": "Flugzeit",
+    "col3": "Startplatz",
+    "col4": "Preis",
+    "col5": "Passt, wenn",
+    "caption": "Die drei Flugpakete im Vergleich: Flugzeit, Startplatz und Preis.",
+    "classicZeit": "20–30 Min",
+    "classicStart": "Standardstartplatz",
+    "classicPreis": "ab €150",
+    "classicWen": "ideal für den ersten Flug",
+    "premiumZeit": "30–45 Min",
+    "premiumStart": "freie Startplatzwahl",
+    "premiumPreis": "ab €190",
+    "premiumWen": "mehr Zeit, mehr Ruhe",
+    "thermikZeit": "45–90 Min",
+    "thermikStart": "Aufwinde aktiv",
+    "thermikPreis": "ab €250",
+    "thermikWen": "echtes freies Fliegen"
   },
   "Classicflug": {
     "breadcrumbHome": "Startseite",
@@ -1396,9 +1410,6 @@
     "included5": "Optionale Foto-/Videoaufnahmen gegen Aufpreis",
     "included6": "Ausführliche Nachbesprechung am Landeplatz",
     "comparisonTitle": "Classic, Premium oder Thermik?",
-    "compareClassic": "20–30 Min Flugzeit · Standardstartplatz · ab €150 · ideal für den ersten Flug",
-    "comparePremium": "30–45 Min Flugzeit · freie Startplatzwahl · ab €190 · mehr Zeit, mehr Ruhe",
-    "compareThermik": "45–90 Min Flugzeit · Aufwinde aktiv · ab €250 · echtes freies Fliegen",
     "faqTitle": "Häufige Fragen",
     "faqExperienceQ": "Brauche ich Vorkenntnisse?",
     "faqExperienceA": "Nein. Du läufst beim Start wenige Meter mit, alles andere machen wir. Die Einweisung dauert 5 Minuten.",
@@ -1535,7 +1546,11 @@
     "crosslinkUeberUnsP": "Das KOFLY-Team und die Geschichte hinter den Flügen.",
     "ctaTitle": "Bereit für deinen Flug über Lienz?",
     "ctaP": "Sag uns deinen Wunschzeitraum, wir finden gemeinsam das passende Wetterfenster.",
-    "ctaWhatsapp": "Am schnellsten geht's per WhatsApp: +43 676 7293888"
+    "ctaWhatsapp": "Am schnellsten geht's per WhatsApp: +43 676 7293888",
+    "crosslinkZettersfeldTitle": "Startplatz Zettersfeld",
+    "crosslinkZettersfeldP": "Start auf 2.220 m, Auffahrt mit der Bergbahn. Der Klassiker für Panorama- und Thermikflüge über Lienz.",
+    "crosslinkHochsteinTitle": "Startplatz Hochstein",
+    "crosslinkHochsteinP": "Der Startplatz für den Frühstücksflug in den Sonnenaufgang, direkt über der Stadt."
   },
   "TandemflugZettersfeld": {
     "breadcrumbHome": "Home",
@@ -1614,7 +1629,8 @@
     "crosslinkUeberUnsP": "Das KOFLY-Team und die Geschichte hinter den Flügen.",
     "ctaTitle": "Bereit für deinen Flug vom Zettersfeld?",
     "ctaP": "Sag uns deinen Wunschzeitraum, wir finden gemeinsam das passende Wetterfenster.",
-    "ctaWhatsapp": "Am schnellsten geht's per WhatsApp: +43 676 7293888"
+    "ctaWhatsapp": "Am schnellsten geht's per WhatsApp: +43 676 7293888",
+    "otherStartLink": "Startplatz Hochstein im Vergleich"
   },
   "TandemflugHochstein": {
     "breadcrumbHome": "Home",
@@ -1694,6 +1710,7 @@
     "ctaP": "Sag uns deinen Wunschzeitraum, wir finden gemeinsam das passende Wetterfenster.",
     "ctaWhatsapp": "Am schnellsten geht's per WhatsApp: +43 676 7293888",
     "productName": "Tandemflug Hochstein, Frühstücks- und Panoramaflug ab 2.000 m",
-    "productDescription": "Tandem-Gleitschirmflug vom Startplatz Hochstein auf rund 2.000 m über Lienz, ideal als Frühstücksflug in den Sonnenaufgang. Durchgeführt von einem lizenzierten Osttiroler Tandempiloten. 5,0 Sterne aus 300+ Bewertungen."
+    "productDescription": "Tandem-Gleitschirmflug vom Startplatz Hochstein auf rund 2.000 m über Lienz, ideal als Frühstücksflug in den Sonnenaufgang. Durchgeführt von einem lizenzierten Osttiroler Tandempiloten. 5,0 Sterne aus 300+ Bewertungen.",
+    "otherStartLink": "Startplatz Zettersfeld im Vergleich"
   }
 }

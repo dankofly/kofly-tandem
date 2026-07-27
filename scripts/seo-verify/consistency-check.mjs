@@ -64,6 +64,38 @@ for (const file of ["public/llms.txt"]) {
 }
 ok("Flugzeiten in llms.txt entsprechen den Paketseiten");
 
+// 3b. Paketvergleichs-Tabelle (messages/*.PaketVergleich) gegen dieselben
+// Sollwerte plus die Preise aus pricing.md. Die Tabelle steht auf allen drei
+// Paketseiten und ist seit 2026-07-27 die einzige Quelle dafür; ohne diesen
+// Check kann sie unbemerkt von pricing.md wegdriften.
+{
+  const prices = [
+    ["classic", "150"],
+    ["premium", "190"],
+    ["thermik", "250"],
+  ];
+  const pricing = read("public/pricing.md");
+  for (const [key, amount] of prices) {
+    if (!pricing.includes(amount)) fail(`public/pricing.md: Preis ${amount} für ${key} fehlt`);
+  }
+  for (const l of ["de", "en", "nl"]) {
+    const pv = JSON.parse(read(`messages/${l}.json`)).PaketVergleich;
+    if (!pv) { fail(`messages/${l}.json: Namespace PaketVergleich fehlt`); continue; }
+    for (const [key, amount] of prices) {
+      if (!pv[`${key}Preis`]?.includes(amount)) {
+        fail(`messages/${l}.json: PaketVergleich.${key}Preis ist "${pv[`${key}Preis`]}", erwartet €${amount}`);
+      }
+    }
+    for (const [name, re] of durations) {
+      const cell = pv[`${name.toLowerCase()}Zeit`] ?? "";
+      if (!re.test(cell + " Min")) {
+        fail(`messages/${l}.json: PaketVergleich.${name.toLowerCase()}Zeit ist "${cell}", erwartet ${re}`);
+      }
+    }
+  }
+  ok("Paketvergleichs-Tabelle deckt sich mit pricing.md und den Flugzeiten");
+}
+
 // 4. Key-Parität de/en/nl (rekursiv)
 const flatten = (obj, prefix = "") =>
   Object.entries(obj).flatMap(([k, v]) =>

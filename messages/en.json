@@ -1332,10 +1332,7 @@
     "faqDiffThermikA": "The Thermal flight is 45+ minutes and actively uses thermals to gain altitude – more intense, more dynamic. The Premium flight is longer and calmer than the Classic, but calmer than the Thermal.",
     "ctaTitle": "Ready for the Premium flight?",
     "ctaP": "Send us a non-binding enquiry – we'll find your date and confirm based on weather.",
-    "comparisonTitle": "Classic, Premium or Thermal?",
-    "compareClassic": "20–30 min flight · standard launch · from €150 · ideal for the first flight",
-    "comparePremium": "30–45 min flight · free launch choice · from €190 · more time, more calm",
-    "compareThermik": "45–90 min flight · active thermals · from €250 · real free flying"
+    "comparisonTitle": "Classic, Premium or Thermal?"
   },
   "Thermikflug": {
     "breadcrumbHome": "Home",
@@ -1369,10 +1366,27 @@
     "faqSafetyA": "Yes, with an experienced pilot and certified equipment. Thermals are our workplace – we read them every day. Reserve parachute is always on board.",
     "ctaTitle": "Ready for real flying?",
     "ctaP": "Send us an enquiry – we'll check the weather window and find the day with the best thermals.",
-    "comparisonTitle": "Classic, Premium or Thermal?",
-    "compareClassic": "20–30 min flight · standard launch · from €150 · ideal for the first flight",
-    "comparePremium": "30–45 min flight · free launch choice · from €190 · more time, more calm",
-    "compareThermik": "45–90 min flight · active thermals · from €250 · real free flying"
+    "comparisonTitle": "Classic, Premium or Thermal?"
+  },
+  "PaketVergleich": {
+    "col1": "Package",
+    "col2": "Flight time",
+    "col3": "Launch site",
+    "col4": "Price",
+    "col5": "Right if",
+    "caption": "The three flight packages compared: flight time, launch site and price.",
+    "classicZeit": "20–30 min",
+    "classicStart": "standard launch",
+    "classicPreis": "from €150",
+    "classicWen": "ideal for the first flight",
+    "premiumZeit": "30–45 min",
+    "premiumStart": "free launch choice",
+    "premiumPreis": "from €190",
+    "premiumWen": "more time, more calm",
+    "thermikZeit": "45–90 min",
+    "thermikStart": "active thermals",
+    "thermikPreis": "from €250",
+    "thermikWen": "real free flying"
   },
   "Classicflug": {
     "breadcrumbHome": "Home",
@@ -1396,9 +1410,6 @@
     "included5": "Optional photo/video at extra cost",
     "included6": "Detailed debrief at the landing spot",
     "comparisonTitle": "Classic, Premium or Thermal?",
-    "compareClassic": "20–30 min flight · standard launch · from €150 · ideal for the first flight",
-    "comparePremium": "30–45 min flight · free launch choice · from €190 · more time, more calm",
-    "compareThermik": "45–90 min flight · active thermals · from €250 · real free flying",
     "faqTitle": "Frequently asked questions",
     "faqExperienceQ": "Do I need prior experience?",
     "faqExperienceA": "No. You run a few metres at take-off, we do the rest. The briefing takes 5 minutes.",
@@ -1535,7 +1546,11 @@
     "crosslinkUeberUnsP": "The KOFLY team and the story behind the flights.",
     "ctaTitle": "Ready for your flight over Lienz?",
     "ctaP": "Tell us your preferred dates and we'll find the right weather window together.",
-    "ctaWhatsapp": "Fastest via WhatsApp: +43 676 7293888"
+    "ctaWhatsapp": "Fastest via WhatsApp: +43 676 7293888",
+    "crosslinkZettersfeldTitle": "Zettersfeld launch site",
+    "crosslinkZettersfeldP": "Launch at 2,220 m, reached by cable car. The classic for panorama and thermal flights above Lienz.",
+    "crosslinkHochsteinTitle": "Hochstein launch site",
+    "crosslinkHochsteinP": "The launch site for the sunrise breakfast flight, right above the town."
   },
   "TandemflugZettersfeld": {
     "breadcrumbHome": "Home",
@@ -1614,7 +1629,8 @@
     "crosslinkUeberUnsP": "The KOFLY team and the story behind the flights.",
     "ctaTitle": "Ready for your flight from Zettersfeld?",
     "ctaP": "Tell us your preferred dates and we'll find the right weather window together.",
-    "ctaWhatsapp": "Fastest via WhatsApp: +43 676 7293888"
+    "ctaWhatsapp": "Fastest via WhatsApp: +43 676 7293888",
+    "otherStartLink": "Compare the Hochstein launch site"
   },
   "TandemflugHochstein": {
     "breadcrumbHome": "Home",
@@ -1694,6 +1710,7 @@
     "ctaP": "Tell us your preferred dates and we'll find the right weather window together.",
     "ctaWhatsapp": "Fastest via WhatsApp: +43 676 7293888",
     "productName": "Tandem Paragliding Hochstein, breakfast and panorama flight from 2,000 m",
-    "productDescription": "Tandem paragliding flight from the Hochstein launch at around 2,000 m above Lienz, ideal as a breakfast flight into the sunrise. Flown by a licensed East Tyrol tandem pilot. 5.0 stars from 300+ reviews."
+    "productDescription": "Tandem paragliding flight from the Hochstein launch at around 2,000 m above Lienz, ideal as a breakfast flight into the sunrise. Flown by a licensed East Tyrol tandem pilot. 5.0 stars from 300+ reviews.",
+    "otherStartLink": "Compare the Zettersfeld launch site"
   }
 }

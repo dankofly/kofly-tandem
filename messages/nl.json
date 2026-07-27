@@ -1332,10 +1332,7 @@
     "faqDiffThermikA": "De Thermiekvlucht duurt 45+ minuten en gebruikt actief de thermiek – intenser, dynamischer. De Premiumvlucht is langer en rustiger dan Classic, maar rustiger dan Thermiek.",
     "ctaTitle": "Klaar voor de Premiumvlucht?",
     "ctaP": "Stuur ons vrijblijvend een aanvraag – we vinden je datum en bevestigen afhankelijk van het weer.",
-    "comparisonTitle": "Classic, Premium of Thermiek?",
-    "compareClassic": "20–30 min vlucht · standaard start · vanaf €150 · ideaal voor de eerste vlucht",
-    "comparePremium": "30–45 min vlucht · vrije startkeuze · vanaf €190 · meer tijd, meer rust",
-    "compareThermik": "45–90 min vlucht · actieve thermiek · vanaf €250 · echt vrij vliegen"
+    "comparisonTitle": "Classic, Premium of Thermiek?"
   },
   "Thermikflug": {
     "breadcrumbHome": "Startpagina",
@@ -1369,10 +1366,27 @@
     "faqSafetyA": "Ja, met ervaren piloot en gecertificeerde uitrusting. Thermiek is onze werkplek – we lezen hem elke dag. Reserveparachute is altijd aan boord.",
     "ctaTitle": "Klaar voor echt vliegen?",
     "ctaP": "Stuur ons een aanvraag – we checken het weervenster en vinden de dag met de beste thermiek.",
-    "comparisonTitle": "Classic, Premium of Thermiek?",
-    "compareClassic": "20–30 min vlucht · standaard start · vanaf €150 · ideaal voor de eerste vlucht",
-    "comparePremium": "30–45 min vlucht · vrije startkeuze · vanaf €190 · meer tijd, meer rust",
-    "compareThermik": "45–90 min vlucht · actieve thermiek · vanaf €250 · echt vrij vliegen"
+    "comparisonTitle": "Classic, Premium of Thermiek?"
+  },
+  "PaketVergleich": {
+    "col1": "Pakket",
+    "col2": "Vluchttijd",
+    "col3": "Startplaats",
+    "col4": "Prijs",
+    "col5": "Past als",
+    "caption": "De drie vluchtpakketten vergeleken: vluchttijd, startplaats en prijs.",
+    "classicZeit": "20–30 min",
+    "classicStart": "standaard start",
+    "classicPreis": "vanaf €150",
+    "classicWen": "ideaal voor de eerste vlucht",
+    "premiumZeit": "30–45 min",
+    "premiumStart": "vrije startkeuze",
+    "premiumPreis": "vanaf €190",
+    "premiumWen": "meer tijd, meer rust",
+    "thermikZeit": "45–90 min",
+    "thermikStart": "actieve thermiek",
+    "thermikPreis": "vanaf €250",
+    "thermikWen": "echt vrij vliegen"
   },
   "Classicflug": {
     "breadcrumbHome": "Startpagina",
@@ -1396,9 +1410,6 @@
     "included5": "Optionele foto/video tegen meerprijs",
     "included6": "Uitgebreid nagesprek op de landingsplek",
     "comparisonTitle": "Classic, Premium of Thermiek?",
-    "compareClassic": "20–30 min vlucht · standaard start · vanaf €150 · ideaal voor de eerste vlucht",
-    "comparePremium": "30–45 min vlucht · vrije startkeuze · vanaf €190 · meer tijd, meer rust",
-    "compareThermik": "45–90 min vlucht · actieve thermiek · vanaf €250 · echt vrij vliegen",
     "faqTitle": "Veelgestelde vragen",
     "faqExperienceQ": "Heb ik voorkennis nodig?",
     "faqExperienceA": "Nee. Je loopt bij de start enkele meters mee, de rest doen wij. De briefing duurt 5 minuten.",
@@ -1535,7 +1546,11 @@
     "crosslinkUeberUnsP": "Het KOFLY-team en het verhaal achter de vluchten.",
     "ctaTitle": "Klaar voor je vlucht boven Lienz?",
     "ctaP": "Geef je gewenste periode door, samen vinden we het juiste weervenster.",
-    "ctaWhatsapp": "Het snelst via WhatsApp: +43 676 7293888"
+    "ctaWhatsapp": "Het snelst via WhatsApp: +43 676 7293888",
+    "crosslinkZettersfeldTitle": "Startplaats Zettersfeld",
+    "crosslinkZettersfeldP": "Start op 2.220 m, met de bergbaan omhoog. De klassieker voor panorama- en thermiekvluchten boven Lienz.",
+    "crosslinkHochsteinTitle": "Startplaats Hochstein",
+    "crosslinkHochsteinP": "De startplaats voor de ontbijtvlucht bij zonsopgang, direct boven de stad."
   },
   "TandemflugZettersfeld": {
     "breadcrumbHome": "Home",
@@ -1614,7 +1629,8 @@
     "crosslinkUeberUnsP": "Het KOFLY-team en het verhaal achter de vluchten.",
     "ctaTitle": "Klaar voor je vlucht vanaf de Zettersfeld?",
     "ctaP": "Geef je gewenste periode door, samen vinden we het juiste weervenster.",
-    "ctaWhatsapp": "Het snelst via WhatsApp: +43 676 7293888"
+    "ctaWhatsapp": "Het snelst via WhatsApp: +43 676 7293888",
+    "otherStartLink": "Startplaats Hochstein vergelijken"
   },
   "TandemflugHochstein": {
     "breadcrumbHome": "Home",
@@ -1694,6 +1710,7 @@
     "ctaP": "Geef je gewenste periode door, samen vinden we het juiste weervenster.",
     "ctaWhatsapp": "Het snelst via WhatsApp: +43 676 7293888",
     "productName": "Tandemvlucht Hochstein, ontbijt- en panoramavlucht vanaf 2.000 m",
-    "productDescription": "Tandem-paraglidingvlucht vanaf de startplaats Hochstein op ongeveer 2.000 m boven Lienz, ideaal als ontbijtvlucht in de zonsopgang. Uitgevoerd door een gediplomeerde Oost-Tiroolse tandempiloot. 5,0 sterren uit 300+ beoordelingen."
+    "productDescription": "Tandem-paraglidingvlucht vanaf de startplaats Hochstein op ongeveer 2.000 m boven Lienz, ideaal als ontbijtvlucht in de zonsopgang. Uitgevoerd door een gediplomeerde Oost-Tiroolse tandempiloot. 5,0 sterren uit 300+ beoordelingen.",
+    "otherStartLink": "Startplaats Zettersfeld vergelijken"
   }
 }

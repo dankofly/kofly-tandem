@@ -364,8 +364,14 @@ export default async function TandemflugLienzPage({ params }: Props) {
       {/* Cross-Links */}
       <section className="py-12 lg:py-16">
         <div className="max-w-3xl mx-auto px-6">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Zettersfeld und Hochstein standen bis 2026-07-27 in keinem
+              In-Content-Link der Site und waren nur ueber den Footer
+              erreichbar. Die Lienz-Seite ist der natuerliche Einstieg:
+              beide Startplaetze gehoeren zu dieser Stadt. */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
+              { href: "/tandemflug-zettersfeld", key: "Zettersfeld" },
+              { href: "/tandemflug-hochstein", key: "Hochstein" },
               { href: "/tandemflug-osttirol", key: "Osttirol" },
               { href: "/anreise", key: "Anreise" },
               { href: "/buchen", key: "Buchen" },
