@@ -308,7 +308,21 @@ test.describe("Farbkontrast", () => {
 
   for (const theme of ["light", "dark"] as const) {
     test(`Text-Tokens erfuellen 4.5:1 (${theme})`, async ({ page }) => {
-      await page.goto("/de");
+      await page.goto("/de", { waitUntil: "domcontentloaded" });
+      // Gegen die Live-Domain kam der erste Lauf einmal an die Tokens, bevor
+      // das inline-CSS angewandt war, und meldete damit einen Fehlschlag, der
+      // sich nicht reproduzieren liess. Erst warten, bis ein Token aufloest.
+      await expect
+        .poll(
+          async () =>
+            page.evaluate(() =>
+              getComputedStyle(document.documentElement)
+                .getPropertyValue("--text-faint")
+                .trim()
+            ),
+          { timeout: 5000 }
+        )
+        .toMatch(/^#[0-9a-f]{6}$/i);
       const measured = await page.evaluate(
         ({ mode, surfaces }) => {
           // globals.css scoped ueber [data-theme], nicht ueber Klassen.
