@@ -125,11 +125,7 @@ export default function Header() {
       </div>
 
       {/* Mobile menu */}
-      <div
-        className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${
-          menuOpen ? "max-h-screen" : "max-h-0"
-        }`}
-      >
+      <div className="lg:hidden mobile-menu" data-open={menuOpen}>
         <div className="bg-[var(--bg-header-mobile)] backdrop-blur-xl border-t border-edge-faint">
           <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-6" aria-label={t("mobileNavigation")}>
             {navItems.map((item, i) => (

@@ -25,7 +25,7 @@
     "buchenOgTitle": "Tandemvlucht boeken – Paragliden Oost-Tirol | KOFLY",
     "buchenOgDescription": "Boek nu je tandemvlucht in Oost-Tirol of bestel een cadeaubon. Airpark Lienzer Dolomiten – Lienz, Sillian & Matrei.",
     "agbTitle": "Algemene Voorwaarden",
-    "agbDescription": "Algemene voorwaarden en transportvoorwaarden voor paraglide tandemvluchten in het Airpark Lienzer Dolomiten.",
+    "agbDescription": "Algemene voorwaarden voor paraglide tandemvluchten in het Airpark Lienzer Dolomiten: boeking, annulering, weerafgelasting en aansprakelijkheid.",
     "datenschutzTitle": "Privacyverklaring",
     "datenschutzDescription": "Privacyverklaring van Gleitschirm-Tandemflug.com – Informatie over de omgang met jouw gegevens.",
     "appInfoTitle": "Tandemflug: interne applicatie van KOFLY",
@@ -91,7 +91,8 @@
     "mobileNavigation": "Mobiele navigatie",
     "whatsappMessage": "Hallo! Wij zijn van [datum] tot [datum] in Oost-Tirol, [aantal] personen. Welke dag zou de mooiste zijn voor onze tandemvlucht?",
     "fragMich": "Vraag mij",
-    "briefing": "Briefing"
+    "briefing": "Briefing",
+    "skipToContent": "Naar de inhoud"
   },
   "Briefing": {
     "breadcrumbHome": "Start",

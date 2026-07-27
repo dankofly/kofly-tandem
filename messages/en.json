@@ -91,7 +91,8 @@
     "mobileNavigation": "Mobile navigation",
     "whatsappMessage": "Hello! We're in East Tyrol from [date] to [date], [number] people. Which day would be the most beautiful for our tandem flight?",
     "fragMich": "Ask me",
-    "briefing": "Briefing"
+    "briefing": "Briefing",
+    "skipToContent": "Skip to content"
   },
   "Briefing": {
     "breadcrumbHome": "Home",

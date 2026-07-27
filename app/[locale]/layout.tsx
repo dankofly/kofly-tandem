@@ -104,6 +104,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   // Nur die Client-Namespaces in den Provider, nicht das ganze Message-File.
   // Siehe lib/client-messages.ts.
   const messages = pickClientMessages(await getMessages({ locale }));
+  const tNav = await getTranslations({ locale, namespace: "Navigation" });
 
   return (
     <html lang={locale} className={inter.variable} suppressHydrationWarning>
@@ -131,8 +132,14 @@ export default async function LocaleLayout({ children, params }: Props) {
         <ThemeProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <ScrollProgress />
+            {/* WCAG 2.4.1 Bypass Blocks: Header und Footer tragen zusammen rund
+                30 Links, ohne diesen Sprung muss eine Tastatur- oder
+                Screenreader-Navigation sie auf jeder Seite durchtabben. */}
+            <a href="#main" className="skip-link">
+              {tNav("skipToContent")}
+            </a>
             <Header />
-            <main>{children}</main>
+            <main id="main">{children}</main>
             <Footer />
             <MobileCTA />
             <ChatBotLazy />

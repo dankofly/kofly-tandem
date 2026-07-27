@@ -25,7 +25,7 @@
     "buchenOgTitle": "Tandemflug buchen – Gleitschirm Paragleiten Osttirol | KOFLY",
     "buchenOgDescription": "Jetzt Tandemflug in Osttirol buchen oder Gutschein bestellen. Airpark Lienzer Dolomiten – Lienz, Sillian & Matrei.",
     "agbTitle": "AGB – Geschäftsbedingungen",
-    "agbDescription": "Allgemeine Geschäfts- und Transportbedingungen für Gleitschirm-Tandemflüge im Airpark Lienzer Dolomiten.",
+    "agbDescription": "Allgemeine Geschäfts- und Transportbedingungen für Gleitschirm-Tandemflüge im Airpark Lienzer Dolomiten: Buchung, Stornierung, Wetterabsage und Haftung.",
     "datenschutzTitle": "Datenschutzerklärung",
     "datenschutzDescription": "Datenschutzerklärung von Gleitschirm-Tandemflug.com – Informationen zum Umgang mit Ihren Daten.",
     "appInfoTitle": "Tandemflug: Interne Anwendung von KOFLY",
@@ -91,7 +91,8 @@
     "mobileNavigation": "Mobile Navigation",
     "whatsappMessage": "Hallo! Wir sind von [Datum] bis [Datum] in Osttirol, [Anzahl] Personen. Welcher Tag wäre der schönste für unseren Tandemflug?",
     "fragMich": "Frag mich",
-    "briefing": "Briefing"
+    "briefing": "Briefing",
+    "skipToContent": "Zum Inhalt springen"
   },
   "Briefing": {
     "breadcrumbHome": "Start",

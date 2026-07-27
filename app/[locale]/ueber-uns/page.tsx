@@ -414,9 +414,9 @@ export default async function UeberUnsPage({ params }: Props) {
                     {value.icon}
                   </div>
                   <div className="mt-5 w-8 h-px bg-accent-500/30 mx-auto" />
-                  <h4 className="mt-4 text-base font-semibold text-content-primary tracking-wide">
+                  <h3 className="mt-4 text-base font-semibold text-content-primary tracking-wide">
                     {value.title}
-                  </h4>
+                  </h3>
                   <p className="mt-2 text-sm text-content-body leading-relaxed font-light">
                     {value.text}
                   </p>
