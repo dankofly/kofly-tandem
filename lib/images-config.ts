@@ -204,7 +204,9 @@ export async function updateSlotFilename(
   filename: string | null,
   blobbed = false
 ): Promise<void> {
-  const slots = await getImagesConfig();
+  // Immer frisch aus dem Store lesen, nie aus dem unstable_cache:
+  // eine stale Config wuerde beim Zurueckschreiben die Uploads anderer Slots loeschen
+  const slots = await loadImagesConfig();
   if (slots[slot]) {
     slots[slot].filename = filename;
     slots[slot].blobbed = blobbed;

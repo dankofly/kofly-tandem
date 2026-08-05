@@ -151,7 +151,7 @@ Nach Anfrage oder Buchung bekommt der Gast von uns eine eigene, persönliche Flu
 
 SICHERHEIT & VERSICHERUNG
 - Sicherheit hat oberste Priorität: Wir fliegen nur bei passenden, flugtechnisch sicheren Wetterbedingungen.
-- Piloten: erfahren, zertifiziert; (in AGB: staatlich geprüft/lizenziert; Zusammenarbeit mit selbständigen Tandempiloten).
+- Piloten: erfahren, zertifiziert; (in AGB: zertifiziert/lizenziert; Zusammenarbeit mit selbständigen Tandempiloten).
 - Ausrüstung: regelmäßig nach gesetzlichen Vorgaben geprüft.
 - Gewerbliche Haftpflicht- und Unfallversicherung über AIR&MORE.
 - Wenn Bedingungen nicht passen: wir starten nicht; wir verschieben.

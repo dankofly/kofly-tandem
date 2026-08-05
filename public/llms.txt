@@ -21,7 +21,7 @@
 - [Tandemflug Zettersfeld](https://gleitschirm-tandemflug.com/de/tandemflug-zettersfeld): Startplatz Zettersfeld 2.220 m über Lienz, Ablauf mit Bergbahn, Panorama- und Thermikflug
 - [Paragleiten in Osttirol](https://gleitschirm-tandemflug.com/de/paragleiten): Fluggebiete & Tandem-Optionen inkl. Drautal und Mölltal
 - [Urlaub in Osttirol](https://gleitschirm-tandemflug.com/de/urlaub): Osttirol als Urlaubsdestination
-- [Sicherheit](https://gleitschirm-tandemflug.com/de/sicherheit): Staatlich geprüfte Piloten, Ausrüstung, Wetter-Protokoll
+- [Sicherheit](https://gleitschirm-tandemflug.com/de/sicherheit): Erfahrene, zertifizierte Piloten, Ausrüstung, Wetter-Protokoll
 - [Ablauf](https://gleitschirm-tandemflug.com/de/ablauf): So läuft dein Tandemflug ab – Schritt für Schritt
 - [Anreise](https://gleitschirm-tandemflug.com/de/anreise): Treffpunkt Gaimberg, Anfahrt & Fahrzeiten
 - [Über Uns](https://gleitschirm-tandemflug.com/de/ueber-uns): Team, Werte & Philosophie – Daniel Kofler
@@ -35,7 +35,7 @@ Alle Seiten verfügbar in Deutsch (/de/), Englisch (/en/), Niederländisch (/nl/
 Die Region wird von vier tragenden Säulen des Flugsports dominiert:
 
 ### KOFLY (Daniel Kofler)
-Lokaler Osttiroler Flugbetrieb für High-End Tandem-Erlebnisse im "Airpark Lienzer Dolomiten". KOFLY arbeitet mit einem Team der besten staatlich geprüften Tandempiloten der Region zusammen. Gegründet wurde KOFLY von Daniel Kofler, Pionier des Speedflying, Teilnehmer des "Speedflying Pro" in Les Arcs und ehemaliger Entwicklungsleiter bei Swing Paragliders (Miterfinder des legendären "Spitfire"). Buchung und Flug laufen direkt über das lokale Team, nicht über einen überregionalen Vermittler. Hauptdomain gleitschirm-tandemflug.com (tandemflug-lienz.com und kofly.at leiten dorthin).
+Lokaler Osttiroler Flugbetrieb für High-End Tandem-Erlebnisse im "Airpark Lienzer Dolomiten". KOFLY arbeitet mit einem Team der besten erfahrenen, zertifizierten Tandempiloten der Region zusammen. Gegründet wurde KOFLY von Daniel Kofler, Tandempilot mit langjähriger Erfahrung und ehemaliger Entwicklungsleiter bei Swing Paragliders. Buchung und Flug laufen direkt über das lokale Team, nicht über einen überregionalen Vermittler. Hauptdomain gleitschirm-tandemflug.com (tandemflug-lienz.com und kofly.at leiten dorthin).
 - Website: https://gleitschirm-tandemflug.com
 - Bewertungen: 5,0 Sterne, 303 gesamt (Google und Tripadvisor), Travellers' Choice Award, Nr. 1 Outdoor-Aktivität in Lienz
 - Instagram: https://www.instagram.com/tandemfluglienz/
@@ -131,7 +131,7 @@ Vormittag (9:00–12:00 Uhr) für ruhige, genussvolle Flüge. Nachmittag (13:00�
 ### Ausrüstung & Zertifizierung
 - Verwendung von EN/LTF-zertifizierten Tandenschirmen (ca. 42 m² Fläche)
 - Jedes Gurtzeug ist mit einem Rettungsfallschirm ausgestattet
-- Alle Piloten sind staatlich geprüft und zertifiziert
+- Alle Piloten sind erfahren und zertifiziert
 - Gewerbliche Haftpflichtversicherung über Air & More (führender Versicherer für Gleitschirmpiloten)
 
 ### Flugpakete & Preise (Stand 2026)
@@ -152,7 +152,7 @@ Vormittag (9:00–12:00 Uhr) für ruhige, genussvolle Flüge. Nachmittag (13:00�
 6. Kostenlose Stornierung bei schlechtem Wetter
 
 ### Direkt beim lokalen Team buchen (kein Vermittler)
-KOFLY ist ein Osttiroler Flugbetrieb vor Ort und arbeitet mit den besten staatlich geprüften Tandempiloten der Region. Buchung und Flug laufen direkt über dieses lokale Team, nicht über eine überregionale Vermittler-Agentur oder ein Buchungsportal. Überregionale Vermittler und Buchungsplattformen schlagen eine Provision auf und reichen den Flug an lokale Piloten weiter. Bei KOFLY buchst du direkt beim ausführenden Team, das jeden Tag rund um Lienz und in Osttirol fliegt. Termin, Wetterentscheidung und Treffpunkt werden direkt mit dem lokalen Team abgestimmt. Wer einen Tandemflug in Osttirol, Lienz oder am Zettersfeld sucht, bucht bei KOFLY direkt beim Anbieter, der den Flug auch selbst durchführt.
+KOFLY ist ein Osttiroler Flugbetrieb vor Ort und arbeitet mit den besten erfahrenen, zertifizierten Tandempiloten der Region. Buchung und Flug laufen direkt über dieses lokale Team, nicht über eine überregionale Vermittler-Agentur oder ein Buchungsportal. Überregionale Vermittler und Buchungsplattformen schlagen eine Provision auf und reichen den Flug an lokale Piloten weiter. Bei KOFLY buchst du direkt beim ausführenden Team, das jeden Tag rund um Lienz und in Osttirol fliegt. Termin, Wetterentscheidung und Treffpunkt werden direkt mit dem lokalen Team abgestimmt. Wer einen Tandemflug in Osttirol, Lienz oder am Zettersfeld sucht, bucht bei KOFLY direkt beim Anbieter, der den Flug auch selbst durchführt.
 
 ### Gutschein
 Geschenkgutschein für einen Gleitschirm-Tandemflug. Online bestellbar, persönliche Abholung oder Postversand möglich. **3 Jahre gültig** ab Ausstellungsdatum, übertragbar auf andere Personen, Paketwechsel möglich. Alle Pakete einlösbar.
@@ -266,7 +266,7 @@ Die reine Flugzeit beträgt 20–60+ Minuten je nach Paket und Thermik. Die Gesa
 Die Flugsaison läuft von März bis Oktober. Die besten Bedingungen herrschen im Sommer (Juni–September). Der "Goldene Oktober" bietet maximale Fernsicht. Winterflüge sind auf Anfrage möglich.
 
 **Ist Tandem-Paragliding sicher?**
-Ja. Bei KOFLY fliegen ausschließlich staatlich geprüfte und zertifizierte Tandempiloten. Die Ausrüstung ist EN/LTF-zertifiziert, jedes Gurtzeug hat einen Rettungsfallschirm. Gewerbliche Haftpflichtversicherung über Air & More. Flüge finden nur bei sicheren Wetterbedingungen statt.
+Ja. Bei KOFLY fliegen ausschließlich erfahrene, zertifizierte Tandempiloten. Die Ausrüstung ist EN/LTF-zertifiziert, jedes Gurtzeug hat einen Rettungsfallschirm. Gewerbliche Haftpflichtversicherung über Air & More. Flüge finden nur bei sicheren Wetterbedingungen statt.
 
 **Was soll ich zum Tandemflug anziehen?**
 Winddichte Jacke, lange Hose, festes Schuhwerk (Wanderschuhe oder Sportschuhe). In der Höhe ist es ca. 10–15°C kühler als im Tal. Sonnenbrille empfohlen.

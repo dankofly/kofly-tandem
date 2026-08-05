@@ -242,7 +242,7 @@ Begriffe, die fehlen oder unterrepräsentiert sind:
 - "Gaimberg" (Treffpunkt Kasse)
 - "Lienzer Bergbahnen" (Partner)
 - "Zettersfeld 2.220 m", "Hochstein 2.000 m" (Höhen prominent)
-- "Staatlich geprüfte Tandempiloten"
+- "Erfahrene, zertifizierte Tandempiloten"
 - "268 Dreitausender", "Großglockner", "Großvenediger"
 - "Nationalpark Hohe Tauern"
 
@@ -262,7 +262,7 @@ Begriffe, die fehlen oder unterrepräsentiert sind:
 | **Meta-Description** | `Gutschein für einen Tandemflug in Osttirol – sofort per E-Mail oder Post. Einlösbar 3 Jahre. Classic, Premium, Thermik. 5,0★ aus 284 Bewertungen.` (150 Z.) |
 | **H1** | Gutschein für einen Tandemflug in Osttirol |
 | **H2-Struktur** | 1. Warum ein Tandemflug-Gutschein · 2. Welches Flugpaket passt (3 Karten) · 3. So bekommst du deinen Gutschein (E-Mail / Post / PDF) · 4. Einlösung & Gültigkeit · 5. FAQ · 6. Bestellen |
-| **Entitäten** | Zettersfeld, Hochstein, Airpark Lienzer Dolomiten, Classicflugpaket, Premiumflug, Thermikflug, Gaimberg, staatlich geprüfte Piloten |
+| **Entitäten** | Zettersfeld, Hochstein, Airpark Lienzer Dolomiten, Classicflugpaket, Premiumflug, Thermikflug, Gaimberg, erfahrene, zertifizierte Piloten |
 | **FAQ-Fragen** | Wie lange ist der Gutschein gültig? (3 Jahre) · Kann ich den Gutschein umtauschen? · Versand per Post oder E-Mail? · Kann ich ein bestimmtes Datum eintragen? · Was passiert bei schlechtem Wetter am Einlösetag? · Ist ein Personenwechsel möglich? |
 | **Interne Links** | /classicflug, /premiumflug, /thermikflug, /buchen, /ueber-uns |
 | **Bildmotive** | Gutschein-Mockup auf Holz-Hintergrund · Pärchen mit Gutschein · Start am Zettersfeld · Landeszene mit Lächeln |
@@ -330,10 +330,10 @@ Begriffe, die fehlen oder unterrepräsentiert sind:
 | **Intent** | Informational / Trust |
 | **URL** | `/de/sicherheit` |
 | **SEO-Title** | `Sicherheit Tandemflug – Voraussetzungen, Piloten, Wetter | KOFLY` |
-| **Meta-Description** | `So sorgen wir für Sicherheit beim Tandemflug: staatlich geprüfte Piloten, zertifizierte Ausrüstung, Wetter-Protokoll. Voraussetzungen 4–80+ Jahre, 20–120 kg.` |
+| **Meta-Description** | `So sorgen wir für Sicherheit beim Tandemflug: erfahrene, zertifizierte Piloten, geprüfte Ausrüstung, Wetter-Protokoll. Voraussetzungen 4–80+ Jahre, 20–120 kg.` |
 | **H1** | Sicherheit beim Tandemflug — unser Anspruch |
-| **H2** | 1. Staatlich geprüfte Tandempiloten · 2. Ausrüstung & Wartung · 3. Wetter & Entscheidungsprotokoll · 4. Voraussetzungen (Alter/Gewicht/Gesundheit/Kinder) · 5. Versicherung · 6. FAQ |
-| **Entitäten** | Staatliche Prüfung, LTE-Flugschulen, Acro-/Tandemlizenz, DHV-zertifizierte Schirme, Reservefallschirm, GPS |
+| **H2** | 1. Erfahrene, zertifizierte Tandempiloten · 2. Ausrüstung & Wartung · 3. Wetter & Entscheidungsprotokoll · 4. Voraussetzungen (Alter/Gewicht/Gesundheit/Kinder) · 5. Versicherung · 6. FAQ |
+| **Entitäten** | Zertifizierung, LTE-Flugschulen, Acro-/Tandemlizenz, DHV-zertifizierte Schirme, Reservefallschirm, GPS |
 | **Länge** | 1.000–1.400 Wörter |
 
 ### F.6 `/de/paragleiten` (UPGRADE, nicht neu)
@@ -366,7 +366,7 @@ Begriffe, die fehlen oder unterrepräsentiert sind:
 [Tagline]       Paragleiten im Airpark Lienzer Dolomiten
 [H1]            [Paket-Name] in Osttirol
 [Sub]           [Preis-Anker] · [Flugzeit] · [USP in 5 Wörtern]
-[Trust-Row]     5,0★ 284 Bewertungen · Seit 2006 · Staatlich geprüfte Piloten
+[Trust-Row]     5,0★ 284 Bewertungen · Seit 2006 · Erfahrene, zertifizierte Piloten
 [CTA-Pair]      [Termin anfragen] [Gutschein bestellen]
 [Mobile only]   + WhatsApp-Button
 ```
@@ -378,7 +378,7 @@ Begriffe, die fehlen oder unterrepräsentiert sind:
 | 5,0★ 284 Bewertungen | Authority + Social Proof | Hero + vor CTA |
 | Seit 2006 · 10.000+ Flüge | Erfahrung | Stats-Bar |
 | Kofler-Story kompakt (Speedflying-Pionier, Swing-Entwickler) | Expertise | Mid-Page |
-| Staatlich geprüfte Piloten | Sicherheit | Near CTA |
+| Erfahrene, zertifizierte Piloten | Sicherheit | Near CTA |
 | Tripadvisor-Badge | External Validation | Footer-Near |
 | "Kostenlose Verschiebung bei Wetter" | Risk-Reversal | vor Form |
 | Echte Kundenzitate (4 Reviews Schema) | Emotionaler Anker | Mid-Page |
@@ -638,7 +638,7 @@ Gründe:
 
 **`/de/sicherheit`:**
 - H1: Sicherheit beim Tandemflug — unser Anspruch
-- Sub: Staatlich geprüfte Piloten · zertifizierte Ausrüstung · Wetter-Protokoll
+- Sub: Erfahrene, zertifizierte Piloten · geprüfte Ausrüstung · Wetter-Protokoll
 
 ### K.2 Meta Titles / Descriptions (kopierfertig)
 
@@ -669,8 +669,8 @@ Gründe:
 
 /de/sicherheit
   Title: Sicherheit Tandemflug – Voraussetzungen & Piloten | KOFLY
-  Desc:  So sorgen wir für Sicherheit beim Tandemflug: staatlich
-         geprüfte Piloten, zertifizierte Ausrüstung, Wetter-Protokoll.
+  Desc:  So sorgen wir für Sicherheit beim Tandemflug: erfahrene,
+         zertifizierte Piloten, zertifizierte Ausrüstung, Wetter-Protokoll.
          Voraussetzungen 4–80+ Jahre, 20–120 kg.
 ```
 
@@ -680,7 +680,7 @@ Gründe:
 >
 > Wir nehmen dich nicht einfach mit. Wir lassen dich freies Fliegen wirklich erleben.
 >
-> Das heißt: wir fliegen nur, wenn das Wetter passt. Wir nehmen uns Zeit für dich — vor dem Start, während des Flugs, nach der Landung. Wir erklären, was wir tun, und warum. Wir fliegen mit zertifizierter Ausrüstung, die wir selbst warten. Unsere Piloten sind staatlich geprüft.
+> Das heißt: wir fliegen nur, wenn das Wetter passt. Wir nehmen uns Zeit für dich — vor dem Start, während des Flugs, nach der Landung. Wir erklären, was wir tun, und warum. Wir fliegen mit zertifizierter Ausrüstung, die wir selbst warten. Unsere Piloten sind zertifiziert.
 >
 > Wenn das Wetter nicht passt, verschieben wir — kostenlos, ohne Diskussion. Wenn du lieber gar nicht fliegen willst, stornieren wir — kostenlos, ohne Diskussion.
 >

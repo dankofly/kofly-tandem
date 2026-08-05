@@ -8,7 +8,7 @@ ausführenden Team ohne Vermittler. Bezahlt wird nach dem Erlebnis.
 - Preis: €150 pro Person
 - Flugzeit: 20 bis 30 Minuten
 - Start: Zettersfeld (2.220 m) oder Hochstein (2.000 m), je nach Wetter
-- Enthalten: Tandemflug mit staatlich geprüftem Piloten, Einweisung, Ausrüstung
+- Enthalten: Tandemflug mit erfahrenem, zertifiziertem Piloten, Einweisung, Ausrüstung
 - Geeignet für: Einsteiger, Urlauber, Familien
 
 ## Classicflugpaket inkl. Foto & Video

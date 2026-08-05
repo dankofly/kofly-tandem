@@ -695,7 +695,7 @@ export function personSchema(locale: string = "de") {
     image: `${SITE_URL}/images/hero-1771273007982.webp`,
     url: `${localeBase(locale)}/ueber-uns`,
     description:
-      "Pionier des Speedflying, Teilnehmer des Speedflying Pro in Les Arcs, ehemaliger Entwicklungsleiter bei Swing Paragliders und Miterfinder des legendären Spitfire. Erfahrenster Tandempilot im Raum Lienz mit über 10.000 Tandemflügen seit 2006.",
+      "Tandempilot mit langjähriger Erfahrung im Raum Lienz, über 10.000 Tandemflüge seit 2006. Ehemaliger Entwicklungsleiter bei Swing Paragliders.",
     knowsAbout: [
       "Tandem Paragliding",
       "Speedflying",

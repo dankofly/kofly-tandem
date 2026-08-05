@@ -34,7 +34,7 @@ Karten-Grid, je ein Guide:
 ## Sektion: Tandemflug (dezenter Handoff, kein Verkaufsdruck)
 
 **Du fliegst (noch) nicht selbst?**
-Das Gebiet rund um Lienz gehört zu den schönsten der Ostalpen, auch als Passagier. Im Tandemflug erlebst du Zettersfeld und Hochstein mit einem staatlich geprüften Piloten, ohne Ausrüstung und ohne Erfahrung.
+Das Gebiet rund um Lienz gehört zu den schönsten der Ostalpen, auch als Passagier. Im Tandemflug erlebst du Zettersfeld und Hochstein mit einem erfahrenen, zertifizierten Piloten, ohne Ausrüstung und ohne Erfahrung.
 
 → **[Tandemflug in Osttirol erleben](https://gleitschirm-tandemflug.com/de)** (KOFLY)
 

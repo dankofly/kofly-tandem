@@ -39,7 +39,7 @@ Alle Bedingungen werden vor jedem Flug über eine professionelle Wetterbeurteilu
 
 ## Das Zettersfeld ohne eigene Lizenz erleben
 
-Du willst das Zettersfeld erleben, hast aber keinen eigenen Schein? Dann geht es im **Tandemflug**: gemeinsam mit einem staatlich geprüften Tandempiloten, ohne Erfahrung und ohne Ausrüstung.
+Du willst das Zettersfeld erleben, hast aber keinen eigenen Schein? Dann geht es im **Tandemflug**: gemeinsam mit einem erfahrenen, zertifizierten Tandempiloten, ohne Erfahrung und ohne Ausrüstung.
 
 → **[Tandemflug am Zettersfeld](https://gleitschirm-tandemflug.com/de/tandemflug-zettersfeld)** (KOFLY, lokales Osttiroler Piloten-Team, ab 150 Euro)
 

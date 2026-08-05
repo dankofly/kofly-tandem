@@ -10,7 +10,7 @@
 
 ### A1 — Saison & Buchung
 **Titel:** Tandemflug über den Lienzer Dolomiten, ab 150 Euro
-Die Sommersaison läuft. Du startest mit deinem Tandempiloten vom Zettersfeld auf 2.220 Metern, gleitest über den Lienzer Talboden und landest sanft im Tal. Kein Vorwissen nötig. Seit 2006 fliegen wir hier, mit staatlich geprüften Piloten und 5,0 Sternen. Classic ab 150 Euro. Wetter passt, Plätze sind frei.
+Die Sommersaison läuft. Du startest mit deinem Tandempiloten vom Zettersfeld auf 2.220 Metern, gleitest über den Lienzer Talboden und landest sanft im Tal. Kein Vorwissen nötig. Seit 2006 fliegen wir hier, mit erfahrenen, zertifizierten Piloten und 5,0 Sternen. Classic ab 150 Euro. Wetter passt, Plätze sind frei.
 **Button:** Online buchen → /de/buchen
 
 ### A2 — Gutschein / Geschenk
