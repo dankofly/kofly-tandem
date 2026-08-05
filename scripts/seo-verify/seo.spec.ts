@@ -33,6 +33,29 @@ const ZERO_REVIEW_PATTERNS = [
   /uit 0\+? beoordelingen/i,
 ];
 
+// Wording-Verbote (Daniel, 2026-08-05): "staatlich geprüft" ist sitewide
+// tabu, erlaubt ist "erfahrene, zertifizierte Tandempiloten". Die
+// Pionier-/Superlativ-Claims zu Daniel Kofler dürfen zusätzlich nicht in
+// SERP-Feldern (Title, Descriptions, JSON-LD) stehen; Team-Body-Copy wie
+// "der erfahrensten Tandempiloten Osttirols" bleibt bewusst erlaubt.
+const FORBIDDEN_EVERYWHERE = [
+  /staatlich gepr/i,
+  /staatlich zertifiziert/i,
+  /state-?certified/i,
+  /state-?licensed/i,
+  /staatsgecertificeerd/i,
+  /staatsgediplomeerd/i,
+  /staatsexamen/i,
+];
+const FORBIDDEN_IN_SERP_FIELDS = [
+  /erfahrenster Tandempilot/i,
+  /most experienced tandem pilot(?!s)/i,
+  /Speedflying[- ]Pionier/i,
+  /Speedflying[- ]pioneer/i,
+  /Speedriding[- ]Pionier/i,
+  /Pionier des Speedflying/i,
+];
+
 // Live-Modus (BASE_URL gesetzt): Bilder/Fonts/Media nicht laden. Alle
 // Assertions arbeiten auf dem SSR-HTML; das volle Asset-Volumen von 61
 // Seiten triggert sonst Netlifys Bot-Schutz (intermittierende 403).
@@ -42,7 +65,10 @@ test.beforeEach(async ({ page }) => {
   await page.route("**/*", (route) => {
     const type = route.request().resourceType();
     if (type === "image" || type === "media" || type === "font") {
-      return route.abort();
+      // Leere 200 statt abort(): abgebrochene Requests werfen unhandled
+      // Rejections ("A network error occurred"), die der JS-Fehler-Check
+      // sonst faelschlich als Seitenfehler meldet.
+      return route.fulfill({ status: 200, body: Buffer.alloc(0) });
     }
     return route.continue();
   });
@@ -54,6 +80,16 @@ for (const route of ROUTES) {
     const prodUrl = `${SITE_URL}${path}`;
 
     test(`SEO ${path}`, async ({ page, request }) => {
+      // Echte Fehler einsammeln: uncaught Exceptions und 4xx/5xx-Subrequests.
+      // Im Live-Modus abgebrochene Bild-/Font-Requests erzeugen keine
+      // Response und landen deshalb nicht faelschlich hier.
+      const pageErrors: string[] = [];
+      page.on("pageerror", (e) => pageErrors.push(e.message));
+      const badResponses: string[] = [];
+      page.on("response", (r) => {
+        if (r.status() >= 400) badResponses.push(`${r.status()} ${r.url()}`);
+      });
+
       const response = await page.goto(path);
       expect(response?.status(), `HTTP-Status für ${path}`).toBe(200);
 
@@ -132,6 +168,21 @@ for (const route of ROUTES) {
       for (const pattern of ZERO_REVIEW_PATTERNS) {
         expect(raw, `SSR zeigt Null-Review-Artefakt auf ${path}`).not.toMatch(pattern);
       }
+
+      // Wording: sitewide-Verbote im kompletten SSR-HTML (inkl. RSC-Payload),
+      // SERP-Verbote nur in Title, Descriptions und JSON-LD.
+      for (const pattern of FORBIDDEN_EVERYWHERE) {
+        expect(raw, `Verbotenes Wording ${pattern} auf ${path}`).not.toMatch(pattern);
+      }
+      const ogDesc =
+        (await page.locator('meta[property="og:description"]').getAttribute("content").catch(() => null)) ?? "";
+      const serpFields = [title, desc ?? "", ogDesc, ...ldBlocks].join("\n");
+      for (const pattern of FORBIDDEN_IN_SERP_FIELDS) {
+        expect(serpFields, `SERP-Feld trägt verbotenen Claim ${pattern} auf ${path}`).not.toMatch(pattern);
+      }
+
+      expect(pageErrors, `JS-Fehler auf ${path}: ${pageErrors.join(" | ")}`).toHaveLength(0);
+      expect(badResponses, `Requests mit 4xx/5xx auf ${path}: ${badResponses.join(" | ")}`).toHaveLength(0);
       if (route.path === "") {
         const descLine1: string | undefined =
           messagesByLocale[locale]?.Hero?.descLine1;
