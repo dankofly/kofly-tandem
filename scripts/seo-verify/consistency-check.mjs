@@ -207,6 +207,135 @@ ok("llms.txt Update-Stempel aktuell");
   ok(`splitName: ${cases.length} Faelle korrekt`);
 }
 
+// ===========================================================================
+// Design-System-Regeln aus DESIGN.md, statischer Teil.
+// Die Laufzeit-Regeln (Glow gleich Akzent, Fokusring gleich Akzent) stehen
+// in seo.spec.ts, weil sie berechnete Werte brauchen.
+// ===========================================================================
+{
+  // Alle TSX-Dateien einsammeln, node_modules und .next ausgenommen.
+  const tsxFiles = [];
+  const walk = (dir) => {
+    for (const e of readdirSync(join(root, dir), { withFileTypes: true })) {
+      if (e.name === "node_modules" || e.name.startsWith(".")) continue;
+      const rel = `${dir}/${e.name}`;
+      if (e.isDirectory()) walk(rel);
+      else if (e.name.endsWith(".tsx")) tsxFiles.push(rel);
+    }
+  };
+  walk("app");
+  walk("components");
+
+  // --- Die Container-Regel -------------------------------------------------
+  // Inhaltsbreiten kommen aus container-page / -wide / -cta, nie inline.
+  // Schwebende Overlays sind ausgenommen: sie haengen an keinem Seitenraster
+  // und bringen ihre Geometrie selbst mit. Namentlich, damit jede Ausnahme
+  // sichtbar bleibt statt hinter einem Muster zu verschwinden.
+  const CONTAINER_AUSNAHMEN = [
+    "/components/CookieBanner.tsx",
+    "/components/MobileCTA.tsx",
+    "/app/admin/page.tsx",
+  ];
+  const inlineWrapper = /max-w-(?:\[[^\]]+\]|[a-z0-9]+)\s+mx-auto\s+px-\d/;
+  const wrapperTreffer = [];
+  for (const f of tsxFiles) {
+    if (CONTAINER_AUSNAHMEN.some((a) => f.endsWith(a) || f === a.slice(1))) continue;
+    read(f)
+      .split("\n")
+      .forEach((line, i) => {
+        if (inlineWrapper.test(line)) wrapperTreffer.push(`${f}:${i + 1}`);
+      });
+  }
+  if (wrapperTreffer.length) {
+    fail(`Container-Regel: inline max-w-Wrapper statt Container-Klasse in ${wrapperTreffer.join(", ")}`);
+  } else {
+    ok("Container-Regel: keine inline Breiten-Wrapper");
+  }
+
+  // --- Die Drei-Stufen-Regel ----------------------------------------------
+  // Drei Grundstufen, dazu eine weichere Dreipunkt-Fassung der Standardstufe,
+  // die drei Marketing-Module nutzen. Die erste Fassung dieser Regel hat nur
+  // "py-N lg:py-N" erfasst und die sm:-Zwischenstufe uebersehen; sie meldete
+  // deshalb korrekten Code als Fehler. Geprueft wird die vollstaendige Kette.
+  // Vollstaendig ausgezaehlt am 2026-08-07, nicht geschaetzt.
+  const RHYTHMEN = new Set([
+    "py-16 lg:py-24", //          85x  Standard
+    "py-20 lg:py-28", //          24x  grosszuegig
+    "py-12 lg:py-16", //          10x  gedraengt
+    "py-14 sm:py-16 lg:py-24", //  3x  Standard mit weicherem Einstieg
+    "py-12 sm:py-16 lg:py-24", //  1x  MapContact, flacherer Einstieg
+    "py-8 sm:py-10 lg:py-14", //   1x  StatsBar, bewusst schmales Band
+  ]);
+  // not-found bestimmt seine Hoehe ueber min-h-[70vh], das Padding ist dort
+  // nicht der Taktgeber.
+  const RHYTHMUS_AUSNAHMEN = ["app/not-found.tsx", "app/[locale]/not-found.tsx"];
+  const rhythmusTreffer = [];
+  for (const f of tsxFiles) {
+    if (RHYTHMUS_AUSNAHMEN.includes(f)) continue;
+    for (const m of read(f).matchAll(/<section[^>]*className="([^"]*)"/g)) {
+      const py = m[1].match(/py-\d+(?:\s+(?:sm|md|lg|xl):py-\d+)*/);
+      if (py && !RHYTHMEN.has(py[0])) rhythmusTreffer.push(`${f}: "${py[0]}"`);
+    }
+  }
+  if (rhythmusTreffer.length) {
+    fail(`Drei-Stufen-Regel: unerlaubter Sektions-Rhythmus in ${rhythmusTreffer.join(", ")}`);
+  } else {
+    ok(`Drei-Stufen-Regel: nur die ${RHYTHMEN.size} erlaubten Sektions-Rhythmen`);
+  }
+
+  // --- Die Dark-First-Regel ------------------------------------------------
+  // Themes laufen ueber [data-theme] und CSS-Variablen, nie ueber Utilities.
+  const darkTreffer = tsxFiles.filter((f) => /\bdark:[a-z[]/.test(read(f)));
+  if (darkTreffer.length) {
+    fail(`Dark-First-Regel: dark:-Utility gefunden in ${darkTreffer.join(", ")}`);
+  } else {
+    ok("Dark-First-Regel: keine dark:-Utilities");
+  }
+
+  // --- Die Ein-Quellen-Regel -----------------------------------------------
+  // Die Markenfarbe existiert nur im Token-Block. Alles andere leitet ab.
+  // Geprueft wird auf Orange-Hex ausserhalb der --accent-Definitionen sowie
+  // auf jedes Orange in TSX. Fremdmarken (WhatsApp, Instagram) sind erlaubt.
+  const FREMDMARKEN = ["#25d366", "#20bd5a", "#fd1d1d", "#f77737", "#833ab4"];
+  const istOrange = (hex) => {
+    const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+    return r > 150 && r - g > 45 && g >= b && r - b > 70;
+  };
+  const orangeTreffer = [];
+  for (const f of tsxFiles) {
+    read(f)
+      .split("\n")
+      .forEach((line, i) => {
+        for (const hex of line.match(/#[0-9a-fA-F]{6}/g) || []) {
+          const low = hex.toLowerCase();
+          if (FREMDMARKEN.includes(low)) continue;
+          if (istOrange(low)) orangeTreffer.push(`${f}:${i + 1} ${hex}`);
+        }
+      });
+  }
+  // In globals.css darf Orange nur in den --accent-Zeilen stehen.
+  // Kommentare werden vorher entfernt: dort stehen bewusst Messwerte und
+  // Alternativen als Hex, und die sind Dokumentation, keine Verwendung.
+  // Die erste Fassung dieser Regel hat genau daran Fehlalarme geworfen.
+  const cssOhneKommentare = read("app/globals.css").replace(
+    /\/\*[\s\S]*?\*\//g,
+    (m) => m.replace(/[^\n]/g, " ") // Zeilennummern erhalten
+  );
+  cssOhneKommentare.split("\n").forEach((line, i) => {
+    if (/--accent-[a-z0-9-]+:/.test(line)) return;
+    for (const hex of line.match(/#[0-9a-fA-F]{6}/g) || []) {
+      if (istOrange(hex.toLowerCase())) {
+        orangeTreffer.push(`app/globals.css:${i + 1} ${hex}`);
+      }
+    }
+  });
+  if (orangeTreffer.length) {
+    fail(`Ein-Quellen-Regel: Markenfarbe hardcodiert in ${orangeTreffer.join(", ")}`);
+  } else {
+    ok("Ein-Quellen-Regel: Markenfarbe nur im Token-Block");
+  }
+}
+
 if (errors.length) {
   console.error(`\n${errors.length} Konsistenz-Fehler.`);
   process.exit(1);

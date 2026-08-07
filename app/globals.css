@@ -54,15 +54,15 @@
   --glass-border: rgba(137, 196, 225, 0.08);
 
   /* Glow effects */
-  --glow-orb-accent: rgba(232, 104, 48, 0.15);
+  --glow-orb-accent: rgb(var(--accent-500-rgb) / 0.15);
   --glow-orb-sky: rgba(137, 196, 225, 0.1);
-  --glow-btn: rgba(232, 104, 48, 0.4);
+  --glow-btn: rgb(var(--accent-500-rgb) / 0.4);
   --glow-card: rgba(137, 196, 225, 0.1);
   --glow-card-border: rgba(137, 196, 225, 0.15);
-  --glow-section-divider: rgba(232, 104, 48, 0.5);
+  --glow-section-divider: rgb(var(--accent-500-rgb) / 0.5);
 
   /* Selection */
-  --selection-bg: rgba(232, 104, 48, 0.2);
+  --selection-bg: rgb(var(--accent-500-rgb) / 0.2);
   --selection-text: #edf4f8;
 
   /* Hero gradient */
@@ -71,7 +71,7 @@
   --hero-overlay-to: rgba(10, 26, 34, 0.4);
 
   /* Focus */
-  --focus-ring: #e86830;
+  --focus-ring: var(--accent-500);
 
   /* Lesbares Textmass, siehe Layout-Container am Dateiende. Als Variable,
      damit .measure und die container-page-Regel nicht auseinanderlaufen.
@@ -113,6 +113,10 @@
   --accent-400-rgb: 255 116 56;
   --accent-500-rgb: 249 96 31;
   --accent-600-rgb: 227 75 0;
+  /* Heller Glanzpunkt im Shimmer-Verlauf der Hero-Akzentwoerter. Steht hier
+     und nicht inline im Verlauf, damit die Markenfarbe eine Quelle behaelt.
+     Aufgehellter Markenton, bewusst etwas entsaettigt. */
+  --accent-shimmer: #f5a070;
 }
 
 [data-theme="light"] {
@@ -152,15 +156,15 @@
   --glass-border: rgba(150, 190, 210, 0.45);
 
   /* Glow effects – softened for light */
-  --glow-orb-accent: rgba(232, 104, 48, 0.08);
+  --glow-orb-accent: rgb(var(--accent-500-rgb) / 0.08);
   --glow-orb-sky: rgba(70, 130, 169, 0.06);
-  --glow-btn: rgba(232, 104, 48, 0.3);
+  --glow-btn: rgb(var(--accent-500-rgb) / 0.3);
   --glow-card: rgba(70, 130, 169, 0.08);
   --glow-card-border: rgba(70, 130, 169, 0.15);
-  --glow-section-divider: rgba(232, 104, 48, 0.35);
+  --glow-section-divider: rgb(var(--accent-500-rgb) / 0.35);
 
   /* Selection */
-  --selection-bg: rgba(232, 104, 48, 0.15);
+  --selection-bg: rgb(var(--accent-500-rgb) / 0.15);
   --selection-text: #0a1a22;
 
   /* Hero gradient – light version */
@@ -182,7 +186,7 @@
      booking.kofly.at zurueckgenommen worden. */
 
   /* Focus */
-  --focus-ring: #f9601f;
+  --focus-ring: var(--accent-500);
 }
 
 html {
@@ -432,8 +436,8 @@ textarea,
 }
 
 .highlight-glow:hover {
-  border-color: rgba(232, 104, 48, 0.35);
-  box-shadow: 0 0 20px rgba(232, 104, 48, 0.08);
+  border-color: rgb(var(--accent-500-rgb) / 0.35);
+  box-shadow: 0 0 20px rgb(var(--accent-500-rgb) / 0.08);
 }
 
 /* ===== Star pop-in animation ===== */
@@ -488,7 +492,7 @@ textarea,
 }
 
 .check-glow {
-  text-shadow: 0 0 20px rgba(232, 104, 48, 0.3);
+  text-shadow: 0 0 20px rgb(var(--accent-500-rgb) / 0.3);
 }
 
 .hero-enter {
@@ -697,7 +701,7 @@ textarea,
   left: 0;
   width: 50%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(232, 104, 48, 0.06), transparent);
+  background: linear-gradient(90deg, transparent, rgb(var(--accent-500-rgb) / 0.06), transparent);
   animation: card-shimmer 4s ease-in-out infinite;
   will-change: transform;
   pointer-events: none;
@@ -733,7 +737,7 @@ textarea,
 
 /* Input focus glow — subtle accent shadow on focus */
 .input-glow:focus {
-  box-shadow: 0 0 0 3px rgba(232, 104, 48, 0.1), 0 0 16px rgba(232, 104, 48, 0.06);
+  box-shadow: 0 0 0 3px rgb(var(--accent-500-rgb) / 0.1), 0 0 16px rgb(var(--accent-500-rgb) / 0.06);
 }
 
 /* Radio card — selection pop with scale + shadow */
@@ -747,7 +751,7 @@ textarea,
 }
 
 .radio-card.selected {
-  box-shadow: 0 0 0 1px rgba(232, 104, 48, 0.4), 0 4px 20px rgba(232, 104, 48, 0.1);
+  box-shadow: 0 0 0 1px rgb(var(--accent-500-rgb) / 0.4), 0 4px 20px rgb(var(--accent-500-rgb) / 0.1);
 }
 
 /* Popular badge shimmer sweep */
@@ -761,7 +765,7 @@ textarea,
     110deg,
     var(--accent-500) 0%,
     var(--accent-500) 35%,
-    #f5a070 50%,
+    var(--accent-shimmer) 50%,
     var(--accent-500) 65%,
     var(--accent-500) 100%
   );

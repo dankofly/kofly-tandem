@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-07T00:00:00.000Z",
+  "title": "Design System: KOFLY Gleitschirm-Tandemflug",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Schirm-Orange",
+        "canonical": "oklch(0.68 0.2 40)",
+        "note": "Normative Quelle ist OKLCH, identisch mit --primary auf booking.kofly.at. #f9601f ist die Ableitung, nicht die Quelle.",
+        "tonalRamp": ["#500000", "#730000", "#950000", "#b91b00", "#e34b00", "#f9601f", "#ff8147", "#ffaa70"]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Schirm-Orange hell",
+        "canonical": "oklch(0.74 0.2 40)",
+        "note": "Ausschliesslich Hover-Status. 45x hover:bg-, 118x hover:text-, sonst nirgends."
+      },
+      "accent-deep": {
+        "role": "primary",
+        "displayName": "Schirm-Orange tief",
+        "canonical": "oklch(0.62 0.2 40)",
+        "note": "Vorgehalten, derzeit unbenutzt. Im Dark-Theme bei 4,23:1, vor Texteinsatz abdunkeln."
+      },
+      "navy-abyss": {
+        "role": "neutral",
+        "displayName": "Navy Abgrund",
+        "canonical": "#0a1a22",
+        "note": "Grundflaeche im Dark-Theme.",
+        "tonalRamp": ["#0a1a22", "#142832", "#1e3a48", "#2d4f5f", "#3d6478", "#4e7a92", "#6a96ad", "#89b4c8"]
+      },
+      "navy-haze": {
+        "role": "neutral",
+        "displayName": "Himmeldunst",
+        "canonical": "#89b4c8",
+        "note": "Fliesstext im Dark-Theme."
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Papier",
+        "canonical": "#f8fafb",
+        "note": "Grundflaeche im Light-Theme.",
+        "tonalRamp": ["#0a1a22", "#122630", "#1a3544", "#355b6d", "#476f88", "#4e7386", "#dfe8ed", "#f8fafb"]
+      },
+      "sky-glare": {
+        "role": "tertiary",
+        "displayName": "Himmelsblendung",
+        "canonical": "#89c4e1",
+        "note": "Kuehles Gegengewicht. Glimmen an nicht handlungsbezogenen Stellen, Glaskanten, Orbs.",
+        "tonalRamp": ["#001931", "#00324c", "#1a4d68", "#386a86", "#5b8dab", "#6da0be", "#8bbfde", "#b1e6ff"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Die H1 jeder Seite. Das Akzentwort darin traegt die Markenfarbe." },
+      "headline": { "displayName": "Headline", "purpose": "Sektions-Ueberschriften, immer gefolgt von der Trennlinie." },
+      "title": { "displayName": "Title", "purpose": "Kartenueberschriften und Rasterelemente." },
+      "body": { "displayName": "Body", "purpose": "Fliesstext, begrenzt auf 56ch. Gemessen 64 bis 76 Zeichen pro Zeile." },
+      "label": { "displayName": "Label", "purpose": "Overlines, Buttons, Metadaten. Die weite Laufweite von 0.2em ist das Erkennungsmerkmal." }
+    },
+    "contrast": {
+      "note": "Gemessen 2026-08-07. Der Akzent liegt im Light-Theme bewusst unter WCAG AA, siehe DESIGN.md.",
+      "accent-on-dark": 5.68,
+      "accent-on-light": 2.98,
+      "white-on-accent": 3.12,
+      "body-on-dark": 4.68,
+      "body-on-light": 5.42
+    },
+    "shadows": [
+      { "name": "glow-button", "value": "0 0 30px rgb(var(--accent-500-rgb) / 0.4)", "purpose": "Nur im Hover des Primaerbuttons." },
+      { "name": "glow-card", "value": "0 0 60px var(--glow-card), 0 20px 40px rgba(0, 0, 0, 0.1)", "purpose": "Flugkarten im Hover. Einzige Stelle, an der Glimmen und Schatten zusammen auftreten." },
+      { "name": "glow-divider", "value": "0 0 16px rgb(var(--accent-500-rgb) / 0.5)", "purpose": "Unter jeder Sektions-Trennlinie." },
+      { "name": "glow-focus", "value": "0 0 0 3px rgb(var(--accent-500-rgb) / 0.1), 0 0 16px rgb(var(--accent-500-rgb) / 0.06)", "purpose": "Fokus auf Eingabefeldern." },
+      { "name": "flat", "value": "0 2px 12px rgba(0, 0, 0, 0.08)", "purpose": "Der einzige konventionelle Schlagschatten im gesamten System." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Standard fuer Zustandswechsel. 7 Vorkommen." },
+      { "name": "ease-overshoot", "value": "cubic-bezier(0.34, 1.56, 0.64, 1)", "purpose": "Ueberschwingen bei Pop-Effekten, z.B. Sterne und Haken. 6 Vorkommen." },
+      { "name": "ease-decelerate", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Weiches Abbremsen bei Einblendungen. 3 Vorkommen." },
+      { "name": "reduced-motion", "value": "@media (prefers-reduced-motion: reduce)", "purpose": "Deckt alle 18 Keyframes ab, inklusive der Scroll-Reveals." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "1024px" }
+    ],
+    "containers": [
+      { "name": "container-page", "value": "72rem", "purpose": "Jede Inhaltssektion. Bringt das Fliesstextmass mit." },
+      { "name": "container-wide", "value": "72rem", "purpose": "Shell und Marketing-Module ohne Textmass-Regel." },
+      { "name": "container-cta", "value": "42rem", "purpose": "Zentriertes Abschlussband, 17 identische Vorkommen." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primaerbutton",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Der eine Hauptaufruf pro Sektion. Scharfkantig, Versalien, hebt sich im Hover und glimmt.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Termin anfragen</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; background: var(--accent-500, #f9601f); color: #fff; font-family: Inter, system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.025em; text-transform: uppercase; border: 0; border-radius: 0; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-primary:hover { background: var(--accent-400, #ff7438); transform: translateY(-2px); box-shadow: 0 0 30px rgb(249 96 31 / 0.4); } .ds-btn-primary:focus-visible { outline: 2px solid var(--accent-500, #f9601f); outline-offset: 2px; }"
+    },
+    {
+      "name": "Header-CTA",
+      "kind": "button",
+      "refersTo": "button-header",
+      "description": "Kompakte Variante in der Kopfleiste. Traegt einen Radius, weil sie in einer gerundeten Leiste sitzt.",
+      "html": "<button class=\"ds-btn-header\" type=\"button\">Anfragen</button>",
+      "css": ".ds-btn-header { display: inline-flex; align-items: center; justify-content: center; padding: 0.625rem 1.25rem; border-radius: 0.5rem; background: var(--accent-500, #f9601f); color: #fff; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.025em; text-transform: uppercase; border: 0; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-header:hover { background: var(--accent-400, #ff7438); } .ds-btn-header:focus-visible { outline: 2px solid var(--accent-500, #f9601f); outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost-Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Zweitrangige Handlung. Steht immer neben einem Primaerbutton, nie allein.",
+      "html": "<button class=\"ds-btn-ghost\" type=\"button\">FAQ zu Voraussetzungen</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; background: transparent; color: var(--text-base, #edf4f8); font-family: Inter, system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.025em; text-transform: uppercase; border: 1px solid var(--border-default, #2d4f5f); border-radius: 0; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-ghost:hover { border-color: var(--accent-500, #f9601f); color: var(--accent-500, #f9601f); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--accent-500, #f9601f); outline-offset: 2px; }"
+    },
+    {
+      "name": "Milchglas-Karte",
+      "kind": "card",
+      "refersTo": "card-glass",
+      "description": "Die Grundflaeche fuer alles Erhobene. Scharfkantig, 1px Kante, Hintergrundunschaerfe.",
+      "html": "<div class=\"ds-card-glass\"><p class=\"ds-card-glass__label\">Im Airpark Lienzer Dolomiten</p><h3 class=\"ds-card-glass__title\">Zwei Startplaetze ueber Lienz</h3><p class=\"ds-card-glass__body\">Zettersfeld auf 2.220 Metern, Hochstein auf 2.000. Welcher es wird, entscheidet das Wetter am Flugtag.</p></div>",
+      "css": ".ds-card-glass { background: var(--glass-bg, rgba(30, 58, 72, 0.4)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--glass-border, rgba(137, 196, 225, 0.08)); padding: 1.5rem; font-family: Inter, system-ui, sans-serif; } .ds-card-glass__label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-500, #f9601f); margin: 0; } .ds-card-glass__title { font-size: 1.125rem; font-weight: 600; line-height: 1.4; color: var(--text-primary, #fff); margin: 0.5rem 0 0; } .ds-card-glass__body { font-size: 1rem; font-weight: 300; line-height: 1.625; color: var(--text-body, #89b4c8); max-width: 56ch; margin: 0.5rem 0 0; }"
+    },
+    {
+      "name": "Sektions-Trennlinie",
+      "kind": "custom",
+      "description": "Das am haeufigsten wiederholte Erkennungsmerkmal. Folgt der Ausrichtung ihrer Ueberschrift.",
+      "html": "<div class=\"ds-divider\"></div>",
+      "css": ".ds-divider { width: 48px; height: 2px; background: var(--accent-500, #f9601f); box-shadow: 0 0 16px rgb(249 96 31 / 0.5); margin: 0; }"
+    },
+    {
+      "name": "Navigations-Link",
+      "kind": "nav",
+      "description": "Versalien mit weiter Laufweite. Die Unterstreichung waechst im Hover aus der Mitte.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\">Erlebnis</a>",
+      "css": ".ds-nav-link { position: relative; display: inline-block; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.025em; text-transform: uppercase; color: var(--text-body, #89b4c8); text-decoration: none; padding-bottom: 2px; transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1); } .ds-nav-link::after { content: \"\"; position: absolute; left: 50%; bottom: 0; width: 0; height: 1px; background: var(--accent-500, #f9601f); transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), left 0.3s cubic-bezier(0.4, 0, 0.2, 1); } .ds-nav-link:hover { color: var(--text-primary, #fff); } .ds-nav-link:hover::after { left: 0; width: 100%; } .ds-nav-link:focus-visible { outline: 2px solid var(--accent-500, #f9601f); outline-offset: 3px; }"
+    },
+    {
+      "name": "Eingabefeld",
+      "kind": "input",
+      "refersTo": "input-text",
+      "description": "Label immer ueber dem Feld, nie als Platzhalter. Fokus bringt Akzentring plus weiches Glimmen.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field__label\" for=\"ds-name\">Name *</label><input class=\"ds-field__input\" id=\"ds-name\" type=\"text\" placeholder=\"Vor- und Nachname\"></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 0.5rem; font-family: Inter, system-ui, sans-serif; } .ds-field__label { font-size: 0.75rem; font-weight: 500; color: var(--text-muted, #6a96ad); } .ds-field__input { width: 100%; padding: 0.75rem 1rem; background: var(--bg-input, #142832); color: var(--text-base, #edf4f8); border: 1px solid var(--border-input, #2d4f5f); border-radius: 0; font-family: inherit; font-size: 1rem; font-weight: 300; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); } .ds-field__input::placeholder { color: var(--text-placeholder, #5e93ad); } .ds-field__input:focus { outline: none; border-color: var(--accent-500, #f9601f); box-shadow: 0 0 0 3px rgb(249 96 31 / 0.1), 0 0 16px rgb(249 96 31 / 0.06); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Das Hochgebirgs-Fenster",
+    "overview": "Das Interface ist der Rahmen, nicht das Bild. Wer hierherkommt, will zwei Dinge wissen: wie es dort oben aussieht, und ob er dem Menschen am anderen Ende der Leine trauen kann. Beides beantwortet das Panorama besser als jedes Chrom. Also tritt die Oberflaeche zurueck. Tiefes Navy als Daemmerungshimmel, viel Luft, und ein einziger warmer Ton, der nur dort auftaucht, wo etwas passiert.\n\nDie Seite ist bewusst leise gebaut, und das laesst sich zaehlen. font-light ist mit 283 Vorkommen das haeufigste Schriftgewicht im Projekt, deutlich vor font-medium (208) und font-bold (203). Tiefe entsteht durch Glimmen statt durch Schlagschatten: das gesamte System kennt genau einen konventionellen Schatten. Kanten sind eckig, wo andere abrunden wuerden, allen voran der Primaerbutton.\n\nDer Ton ist ruhig, weil das Produkt es verlangt. Ein Anbieter, der Menschen in 2.220 Metern Hoehe an einen Schirm haengt, gewinnt nicht durch Lautstaerke. Er gewinnt durch Verlaesslichkeit, und ein System, in dem jede Kante fluchtet und jeder Abstand aus drei erlaubten Stufen stammt, kommuniziert genau das, bevor ein einziges Wort gelesen wird.",
+    "keyCharacteristics": [
+      "Ein Akzent, sparsam eingesetzt, immer handlungsbezogen",
+      "Licht statt Schatten",
+      "Eine Seitenbreite, ein Textmass, drei vertikale Abstaende",
+      "Themes ueber Variablen, nie ueber Utility-Klassen",
+      "Eckig als Grundhaltung, Radius als begruendete Ausnahme"
+    ],
+    "rules": [
+      { "name": "Die Ein-Quellen-Regel", "body": "Die Markenfarbe steht an genau einer Stelle: dem Token-Block in app/globals.css. Glow, Selection und Fokusring leiten sie ueber var(--accent-500-rgb) ab, sie wiederholen sie nicht. Wer irgendwo ein Orange als Hex oder rgba tippt, bricht das System.", "section": "colors", "enforced": true },
+      { "name": "Die Sparsamkeits-Regel", "body": "Der Akzent liegt auf hoechstens einem Zehntel einer Ansicht. Seine Seltenheit ist der Grund, warum er wirkt.", "section": "colors", "enforced": false },
+      { "name": "Die Handlungs-Regel", "body": "Orange markiert, wo etwas passiert. Blau markiert, wo etwas ist.", "section": "colors", "enforced": false },
+      { "name": "Die Mass-Regel", "body": "Fliesstext laeuft nie ueber 75 Zeichen. Raster, Tabellen und Medien sind ausgenommen, sie brauchen die Breite.", "section": "typography", "enforced": true },
+      { "name": "Die Leise-Regel", "body": "Fliesstext ist font-light. Gewicht ist ein Betonungsmittel, kein Grundzustand.", "section": "typography", "enforced": false },
+      { "name": "Die Rahmen-Regel", "body": "Ein Modul mit sichtbarer Kante muss diese Kante auf der Seitenbreite ziehen. Ein Modul ohne Kante darf seine Textspalte frei verschmaelern.", "section": "layout", "enforced": true },
+      { "name": "Die Drei-Stufen-Regel", "body": "Sektionen kennen genau drei vertikale Abstaende. Eine vierte Kombination ist ein Fehler, keine Nuance.", "section": "layout", "enforced": true },
+      { "name": "Die Container-Regel", "body": "Inhaltsbreiten werden nie inline gesetzt. max-w-* zusammen mit mx-auto und px-* im JSX ist verboten.", "section": "layout", "enforced": true },
+      { "name": "Die Glimmen-Regel", "body": "Tiefe entsteht durch Licht. Ein Schlagschatten braucht eine funktionale Begruendung.", "section": "elevation", "enforced": false },
+      { "name": "Die Ruhe-Regel", "body": "Erhebung ist ein Zustand, kein Grundzustand. Flaechen liegen im Ruhezustand flach.", "section": "elevation", "enforced": false },
+      { "name": "Die Kanten-Regel", "body": "Eckig ist der Grundzustand. Ein Radius braucht eine Begruendung aus dem Kontext.", "section": "shapes", "enforced": false },
+      { "name": "Die Ein-Verb-Regel", "body": "Dieselbe Handlung heisst ueberall gleich: Termin anfragen. Produktnamen duerfen variieren, Handlungen nicht.", "section": "components", "enforced": false },
+      { "name": "Die Dark-First-Regel", "body": "Themes laufen ausschliesslich ueber [data-theme] und CSS-Variablen. Eine dark:-Klasse im Code ist ein Regelbruch.", "section": "colors", "enforced": true }
+    ],
+    "dos": [
+      "Do jede Inhaltssektion in container-page setzen. Eine Seitenbreite, eine Kante.",
+      "Do Fliesstext auf 56ch begrenzen und Raster davon ausnehmen.",
+      "Do genau drei vertikale Sektions-Abstaende verwenden.",
+      "Do Tiefe ueber Glimmen loesen und Erhebung an einen Zustand binden.",
+      "Do dieselbe Handlung ueberall gleich benennen.",
+      "Do neue Farben als Token in app/globals.css anlegen, mit Kontrastwert im Kommentar.",
+      "Do jede Animation gegen prefers-reduced-motion absichern."
+    ],
+    "donts": [
+      "Don't max-w-* mit mx-auto inline schreiben. Dafuer gibt es die Container-Klassen.",
+      "Don't eine dark:-Klasse verwenden.",
+      "Don't ein Orange als Hex oder rgba hardcodieren.",
+      "Don't dem Primaerbutton einen Radius geben.",
+      "Don't eine vierte Abstandsstufe erfinden.",
+      "Don't md: fuer neue Arbeit verwenden. Das System bricht bei sm und lg.",
+      "Don't Akzentfarbe fuer dekorative Flaechen einsetzen.",
+      "Don't eine Regel entfernen, weil ein Test rot ist. Erst pruefen, ob der Code falsch liegt."
+    ]
+  }
+}
