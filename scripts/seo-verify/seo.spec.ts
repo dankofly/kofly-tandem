@@ -526,3 +526,70 @@ test.describe("Layout-Raster", () => {
     }
   });
 });
+
+/**
+ * Design-System: die Ein-Quellen-Regel zur Laufzeit.
+ *
+ * Der statische Teil (kein Orange-Hex ausserhalb des Token-Blocks) steht in
+ * consistency-check.mjs. Hier wird geprueft, was erst der Browser aufloest:
+ * ob die abgeleiteten Werte tatsaechlich denselben Ton tragen wie der Akzent.
+ *
+ * Hintergrund: Nach dem Wechsel auf das Markenorange trugen 16 Stellen
+ * weiterhin das alte #e86830. Glimmen, Textmarkierung und Fokusring waren
+ * monatelang ein anderes Orange als der Akzent, ohne dass es auffiel.
+ */
+test.describe("Design-System", () => {
+  const kanaele = (v: string) => {
+    const m = v.match(/(\d+(?:\.\d+)?)[,\s]+(\d+(?:\.\d+)?)[,\s]+(\d+(?:\.\d+)?)/);
+    return m ? `${Math.round(+m[1])} ${Math.round(+m[2])} ${Math.round(+m[3])}` : null;
+  };
+
+  for (const theme of ["light", "dark"] as const) {
+    test(`Ein-Quellen-Regel: Abgeleitetes folgt dem Akzent (${theme})`, async ({ page }) => {
+      await page.goto("/de", { waitUntil: "domcontentloaded" });
+      await page.evaluate((t) => document.documentElement.setAttribute("data-theme", t), theme);
+
+      const werte = await page.evaluate(() => {
+        const cs = getComputedStyle(document.documentElement);
+        const g = (n: string) => cs.getPropertyValue(n).trim();
+        return {
+          akzent: g("--accent-500-rgb"),
+          abgeleitet: {
+            "--glow-btn": g("--glow-btn"),
+            "--glow-orb-accent": g("--glow-orb-accent"),
+            "--glow-section-divider": g("--glow-section-divider"),
+            "--selection-bg": g("--selection-bg"),
+          },
+          focusRing: g("--focus-ring"),
+          akzentHex: g("--accent-500"),
+        };
+      });
+
+      const soll = kanaele(werte.akzent);
+      expect(soll, `--accent-500-rgb nicht lesbar: "${werte.akzent}"`).not.toBeNull();
+
+      for (const [token, wert] of Object.entries(werte.abgeleitet)) {
+        expect(
+          kanaele(wert),
+          `${token} ist "${wert}", erwartet die Akzent-Kanaele ${soll}`
+        ).toBe(soll);
+      }
+
+      // Der Fokusring loest zu einem Hex auf, nicht zu Kanaelen.
+      expect(
+        werte.focusRing.toLowerCase(),
+        `--focus-ring ist "${werte.focusRing}", erwartet den Akzent`
+      ).toBe(werte.akzentHex.toLowerCase());
+    });
+  }
+
+  test("Kanten-Regel: der Primaerbutton bleibt eckig", async ({ page }) => {
+    await page.goto("/de/sicherheit", { waitUntil: "domcontentloaded" });
+    const radius = await page.evaluate(() => {
+      const btn = document.querySelector(".bg-accent-500.px-8");
+      return btn ? getComputedStyle(btn).borderTopLeftRadius : null;
+    });
+    expect(radius, "Primaerbutton nicht gefunden").not.toBeNull();
+    expect(radius, `Primaerbutton hat Radius ${radius}, erwartet 0px`).toBe("0px");
+  });
+});
