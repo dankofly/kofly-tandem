@@ -39,7 +39,7 @@ export default async function AGBPage({ params }: Props) {
       <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden">
         <div className="glow-orb glow-orb-accent w-[500px] h-[500px] -top-40 -right-40 opacity-40 animate-glow-pulse" />
 
-        <div className="relative container-prose">
+        <div className="relative container-page">
           <nav aria-label="Breadcrumb" className="mb-10">
             <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
               <li>
@@ -67,7 +67,7 @@ export default async function AGBPage({ params }: Props) {
 
       {/* Content */}
       <section className="relative pb-20 lg:pb-28">
-        <div className="relative container-prose">
+        <div className="relative container-page">
           <div className="space-y-12">
 
             <div>

@@ -68,7 +68,7 @@ export default async function ClassicflugPage({ params }: Props) {
 
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
         <div className="glow-orb glow-orb-accent w-[500px] h-[500px] -top-40 -right-40 opacity-40 animate-glow-pulse" aria-hidden="true" />
-        <div className="relative container-prose">
+        <div className="relative container-page">
           <nav aria-label="Breadcrumb" className="mb-10">
             <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
               <li><Link href="/" className="hover:text-accent-400 transition-colors">{t("breadcrumbHome")}</Link></li>
@@ -95,7 +95,7 @@ export default async function ClassicflugPage({ params }: Props) {
       </section>
 
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="container-prose">
+        <div className="container-page">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("forWhomTitle")}</h2>
           <div className="mt-5 section-divider !mx-0" />
           <div className="mt-8 space-y-5 text-base text-content-body leading-relaxed font-light">
@@ -106,7 +106,7 @@ export default async function ClassicflugPage({ params }: Props) {
       </section>
 
       <section className="py-16 lg:py-24">
-        <div className="container-prose">
+        <div className="container-page">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("includedTitle")}</h2>
           <div className="mt-5 section-divider !mx-0" />
           <ul className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -123,7 +123,7 @@ export default async function ClassicflugPage({ params }: Props) {
       </section>
 
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="container-prose">
+        <div className="container-page">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("comparisonTitle")}</h2>
           <div className="mt-5 section-divider !mx-0" />
           <PackageComparison current="classic" />
@@ -131,7 +131,7 @@ export default async function ClassicflugPage({ params }: Props) {
       </section>
 
       <section className="py-16 lg:py-24">
-        <div className="container-prose">
+        <div className="container-page">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("faqTitle")}</h2>
           <div className="mt-5 section-divider !mx-0" />
           <div className="mt-10 space-y-4">
