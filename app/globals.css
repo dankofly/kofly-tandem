@@ -80,10 +80,17 @@
   --hero-border: rgba(255, 255, 255, 0.3);
   --hero-border-hover: rgba(255, 255, 255, 0.6);
 
-  /* Accent stays constant */
+  /* Accent, Dark-Theme. Hier unveraendert: auf #0a1a22 erreicht accent-500
+     ein Kontrastverhaeltnis von 5,45:1 und accent-400 von 6,35:1.
+     Frueher stand hier "Accent stays constant". Das galt bis 2026-08-07 und
+     hat im Light-Theme (defaultTheme!) WCAG AA gerissen, siehe Light-Block. */
   --accent-400: #f07942;
   --accent-500: #e86830;
   --accent-600: #d05525;
+  /* Kanalform fuer Tailwind, damit accent-500/20 & Co. weiter funktionieren. */
+  --accent-400-rgb: 240 121 66;
+  --accent-500-rgb: 232 104 48;
+  --accent-600-rgb: 208 85 37;
 }
 
 [data-theme="light"] {
@@ -146,8 +153,25 @@
   --hero-border: rgba(10, 26, 34, 0.25);
   --hero-border-hover: rgba(10, 26, 34, 0.5);
 
+  /* Accent, Light-Theme. Bewusst dunkler als im Dark-Theme.
+     Das vorherige #e86830 erreichte auf den hellen Flaechen nur 3,11:1
+     (accent-400 sogar 2,67:1) und Weiss auf dem Buchen-Button 3,25:1.
+     WCAG AA verlangt 4,5:1 fuer normalen Text. Da defaultTheme "light" ist,
+     betraf das die Standardansicht, nicht einen Nebenpfad.
+     Neue Werte auf bg-primary / -secondary / -tertiary:
+       accent-500 #b04217 -> 5,51 / 5,16 / 4,65 , Weiss darauf 5,77
+       accent-400 #a63a12 -> 6,20 / 5,81 / 5,22
+     accent-400 ist hier dunkler als 500, weil es zu 100 Prozent Hover-Status
+     ist (45x hover:bg-, 118x hover:text-) und Hover im Light-Theme abdunkelt. */
+  --accent-400: #a63a12;
+  --accent-500: #b04217;
+  --accent-600: #96320f;
+  --accent-400-rgb: 166 58 18;
+  --accent-500-rgb: 176 66 23;
+  --accent-600-rgb: 150 50 15;
+
   /* Focus */
-  --focus-ring: #e86830;
+  --focus-ring: #b04217;
 }
 
 html {
