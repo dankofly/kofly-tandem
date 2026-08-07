@@ -813,6 +813,14 @@ textarea,
    im Code. Dadurch fluchteten Header, Inhalt und Footer vertikal nicht, und
    der Mobile-Gutter sprang zwischen 16, 20 und 24 px.
    Neue Breiten bitte hier ergaenzen, nicht inline im JSX.
+
+   REGEL bei der Wahl der Stufe: Ein Modul mit sichtbarer Kante (Rahmen oder
+   eigener Hintergrund) muss diese Kante auf der Container-Breite seiner Seite
+   ziehen, sonst sieht man den Versatz. Ein Modul ohne Kante, oder eines mit
+   Vollbreiten-Hintergrundband, darf seine Textspalte frei verschmaelern
+   (so machen es FAQ und die Video-Galerie auf /ueber-uns).
+   Fuer die Textspalte INNERHALB einer Karte gehoert max-w-prose, nicht
+   container-prose: Letzteres brächte ein zweites padding-inline mit.
    ========================================================================== */
 .container-wide,
 .container-prose,

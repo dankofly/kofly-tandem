@@ -411,3 +411,56 @@ test.describe("Farbkontrast", () => {
     });
   }
 });
+
+/**
+ * Layout-Raster.
+ *
+ * Hintergrund: Bis August 2026 sass die Regional-Box der Startseite auf 768px,
+ * waehrend alle anderen Home-Module auf 1152px liegen. Weil die Box einen
+ * sichtbaren Rahmen hat, war der Versatz von 384px direkt zu sehen. Der Fehler
+ * hat einen kompletten Container-Refactor ueberlebt, weil nur geprueft wurde,
+ * ob gleichnamige Container gleich breit sind, nie ob die Stufe zur Position
+ * passt. Genau das prueft dieser Test.
+ */
+test.describe("Layout-Raster", () => {
+  test("Regional-Kasten fluchtet mit dem WhyUs-Raster", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/de");
+
+    const card = await page
+      .locator('section .glass-card[class*="border-accent-500/20"]')
+      .first()
+      .boundingBox();
+    // Gegen das Kachelraster messen, nicht gegen den Container: Der Container
+    // traegt 24px padding-inline, der Kasten sitzt innerhalb davon. Beide
+    // Elemente muessen auf derselben Ebene verglichen werden.
+    const grid = await page.locator("#erlebnis .grid").first().boundingBox();
+
+    expect(card, "Regional-Kasten nicht gefunden").not.toBeNull();
+    expect(grid, "WhyUs-Raster nicht gefunden").not.toBeNull();
+
+    expect(
+      Math.abs(card!.x - grid!.x),
+      `linke Kante: Kasten ${card!.x}, Raster ${grid!.x}`
+    ).toBeLessThan(1);
+    expect(
+      Math.abs(card!.width - grid!.width),
+      `Breite: Kasten ${card!.width}, Raster ${grid!.width}`
+    ).toBeLessThan(1);
+  });
+
+  test("Textspalte im Regional-Kasten bleibt lesbar", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/de");
+
+    const col = await page
+      .locator('section .glass-card[class*="border-accent-500/20"] .max-w-prose')
+      .first()
+      .boundingBox();
+
+    expect(col, "Textspalte nicht gefunden").not.toBeNull();
+    // 65ch in Inter @16px liegt bei ~570px. Alles ueber 700px waere jenseits
+    // der lesbaren Zeilenlaenge und hiesse, die Begrenzung wurde entfernt.
+    expect(col!.width, `Textspalte ${col!.width}px`).toBeLessThan(700);
+  });
+});
