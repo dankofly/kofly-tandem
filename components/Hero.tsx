@@ -21,7 +21,7 @@ export default async function Hero() {
   return (
     <section
       aria-label={t("ariaLabel")}
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-viewport flex items-center overflow-hidden"
     >
       {/* Preload handled automatically by Next/Image `priority` prop — no manual <link rel="preload"> needed */}
 
