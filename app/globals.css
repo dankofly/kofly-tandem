@@ -237,6 +237,17 @@ textarea,
   box-shadow: 0 0 16px var(--glow-section-divider);
 }
 
+/* Volle Viewporthoehe fuer den Hero.
+   min-h-screen (100vh) rechnet auf iOS Safari die Browserleiste mit. Der Hero
+   wird dadurch hoeher als der sichtbare Bereich und springt, sobald die Leiste
+   beim Scrollen einklappt. dvh misst den tatsaechlich sichtbaren Bereich.
+   Mit @supports, damit aeltere Browser den 100vh-Fallback behalten statt
+   ganz ohne Mindesthoehe dazustehen. */
+.min-h-viewport { min-height: 100vh; }
+@supports (height: 100dvh) {
+  .min-h-viewport { min-height: 100dvh; }
+}
+
 /* Ambient glow orb – reusable, lighter on mobile */
 .glow-orb {
   position: absolute;
