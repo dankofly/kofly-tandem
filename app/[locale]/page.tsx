@@ -60,7 +60,7 @@ export default async function HomePage({ params }: Props) {
           {/* Kasten auf Seitenraster (fluchtet mit WhyUs/Packages), Textspalte
               darin auf lesbares Mass begrenzt. Siehe Regel in globals.css. */}
           <div className="glass-card border-accent-500/20 p-6 sm:p-10 lg:p-12">
-            <div className="max-w-prose mx-auto">
+            <div className="measure mx-auto">
             <p className="text-xs tracking-premium uppercase text-accent-500 font-semibold">
               {tRegional("tagline")}
             </p>

@@ -29,7 +29,7 @@ export default async function AppInfoPage({ params }: Props) {
 
   return (
     <section className="pt-32 pb-28 lg:pt-40 lg:pb-40">
-      <div className="container-prose">
+      <div className="container-page">
         <nav aria-label="Breadcrumb" className="mb-10">
           <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
             <li>

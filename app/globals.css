@@ -73,6 +73,11 @@
   /* Focus */
   --focus-ring: #e86830;
 
+  /* Lesbares Textmass, siehe Layout-Container am Dateiende. Als Variable,
+     damit .measure und die container-page-Regel nicht auseinanderlaufen.
+     ch skaliert mit der Schriftgroesse des jeweiligen Elements. */
+  --measure: 56ch;
+
   /* Hero / Header overlay text */
   --hero-text: #ffffff;
   --hero-text-secondary: rgba(255, 255, 255, 0.85);
@@ -179,6 +184,14 @@ html {
 }
 
 body {
+  /* Riegel gegen versehentlichen Horizontal-Scroll. Die Einblendanimationen
+     starten verschoben (.sr-fade-right = translateX(32px)), und in Sektionen
+     ohne overflow-hidden wuchs dadurch die Dokumentbreite: /ueber-uns war auf
+     390px Viewport 398px breit. clip statt hidden, weil hidden einen
+     Scroll-Container erzeugt und position:sticky brechen wuerde.
+     Auf body, nicht auf html: Overflow des Wurzelelements propagiert an den
+     Viewport und wirkt dort nicht als Clip. */
+  overflow-x: clip;
   color: var(--text-base);
   background: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
@@ -844,10 +857,10 @@ textarea,
    Vollbreiten-Hintergrundband, darf seine Textspalte frei verschmaelern
    (so machen es FAQ und die Video-Galerie auf /ueber-uns).
    Fuer die Textspalte INNERHALB einer Karte gehoert max-w-prose, nicht
-   container-prose: Letzteres brächte ein zweites padding-inline mit.
+   der Seiten-Container: Letzterer braechte ein zweites padding-inline mit.
    ========================================================================== */
 .container-wide,
-.container-prose,
+.container-page,
 .container-cta {
   margin-inline: auto;
   padding-inline: 1.5rem; /* 24px, identisch auf allen Viewports */
@@ -857,8 +870,40 @@ textarea,
 /* Shell und Marketing-Module: Header, Hero, Packages, Reviews, Footer, Medien */
 .container-wide { max-width: 72rem; }  /* 1152px */
 
-/* Fliesstext und Inhaltssektionen aller Unterseiten */
-.container-prose { max-width: 48rem; } /* 768px */
+/* Inhaltssektionen der Unterseiten. Gleiche Breite wie container-wide, damit
+   Ueberschriften, Raster und Shell auf derselben Kante sitzen. Der Unterschied
+   liegt nur in der Mass-Regel unten. */
+.container-page { max-width: 72rem; }  /* 1152px */
 
 /* Zentriertes Abschluss-CTA-Band am Seitenende */
 .container-cta { max-width: 42rem; }   /* 672px */
+
+/* Lesbares Textmass im Seiten-Container.
+   Vorher lagen die Inhaltssektionen bei 768px. Das war fuer Fliesstext zu
+   breit (ca. 74 Zeichen) und fuer Raster zu schmal: dieselbe 4-Spalten-Karte
+   rendert im Footer mit 240px und rendere im Inhalt mit 162px, auf /ueber-uns
+   ein 5er-Raster sogar mit 106px pro Spalte.
+   Jetzt bekommt nur fliessender Text ein Mass. Raster, Tabellen, Medien und
+   Karten nutzen die volle Seitenbreite. In Karten greift die Regel faktisch
+   nie, weil das Mass breiter ist als jede Kartenspalte.
+
+   Mass empirisch gesetzt, nicht aus der Faustformel: 65ch ergab in Inter mit
+   deutschem Text gemessene 81 Zeichen pro Zeile, weil die ch-Einheit die
+   Breite der Null meint und die ueber dem deutschen Buchstabenschnitt liegt.
+   56ch trifft die Zielspanne 45 bis 75. */
+.container-page :is(p, ul, ol, blockquote, dl) {
+  max-width: var(--measure);
+}
+
+/* Dasselbe Mass zum Ansetzen von Hand, z.B. fuer Fliesstext in einer Karte,
+   die selbst die volle Seitenbreite haelt (Regional-Block der Startseite). */
+.measure {
+  max-width: var(--measure);
+}
+
+/* Zentrierte Sektionen brauchen das Mass mittig, sonst klebt der Textblock
+   links waehrend der Text darin zentriert ist. */
+.container-page.text-center :is(p, ul, ol, blockquote, dl),
+.container-page .text-center :is(p, ul, ol, blockquote, dl) {
+  margin-inline: auto;
+}

@@ -106,7 +106,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
           aria-hidden="true"
         />
 
-        <div className="relative container-prose">
+        <div className="relative container-page">
           <nav aria-label="Breadcrumb" className="mb-10">
             <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
               <li>
@@ -206,7 +206,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
 
       {/* Social Proof – Vertrauen vor der Handlung */}
       <section className="-mt-4 pb-4">
-        <div className="container-prose">
+        <div className="container-page">
           <div className="glass-card border-accent-500/20 p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-6">
             <div className="shrink-0 text-center sm:text-left sm:border-r sm:border-edge-secondary/40 sm:pr-6">
               <div
@@ -240,7 +240,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
 
       {/* Warum Lienz */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="container-prose">
+        <div className="container-page">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
             {t("whyTitle")}
           </h2>
@@ -262,7 +262,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
 
       {/* Zwei Startplätze über Lienz */}
       <section className="py-16 lg:py-24">
-        <div className="container-prose">
+        <div className="container-page">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
             {t("launchTitle")}
           </h2>
@@ -297,7 +297,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
 
       {/* Treffpunkt & Anreise in Lienz */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="container-prose">
+        <div className="container-page">
           <div className="glass-card border-accent-500/20 p-6 sm:p-10">
             <h2 className="text-2xl font-bold text-content-primary tracking-tight">
               {t("meetTitle")}
@@ -324,7 +324,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
 
       {/* FAQ */}
       <section className="py-16 lg:py-24">
-        <div className="container-prose">
+        <div className="container-page">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
             {t("faqTitle")}
           </h2>
@@ -347,7 +347,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
 
       {/* E-E-A-T */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="container-prose">
+        <div className="container-page">
           <div className="glass-card border-accent-500/20 p-6 sm:p-10">
             <h2 className="text-2xl font-bold text-content-primary tracking-tight">
               {t("eeatTitle")}
@@ -363,7 +363,7 @@ export default async function TandemflugLienzPage({ params }: Props) {
 
       {/* Cross-Links */}
       <section className="py-12 lg:py-16">
-        <div className="container-prose">
+        <div className="container-page">
           {/* Zettersfeld und Hochstein standen bis 2026-07-27 in keinem
               In-Content-Link der Site und waren nur ueber den Footer
               erreichbar. Die Lienz-Seite ist der natuerliche Einstieg:

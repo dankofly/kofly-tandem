@@ -466,7 +466,7 @@ test.describe("Layout-Raster", () => {
     await page.goto("/de");
 
     const col = await page
-      .locator('section .glass-card[class*="border-accent-500/20"] .max-w-prose')
+      .locator('section .glass-card[class*="border-accent-500/20"] .measure')
       .first()
       .boundingBox();
 
@@ -474,5 +474,52 @@ test.describe("Layout-Raster", () => {
     // 65ch in Inter @16px liegt bei ~570px. Alles ueber 700px waere jenseits
     // der lesbaren Zeilenlaenge und hiesse, die Begrenzung wurde entfernt.
     expect(col!.width, `Textspalte ${col!.width}px`).toBeLessThan(700);
+  });
+
+  test("Fliesstext auf Unterseiten bleibt im lesbaren Band", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    // Gemessen wird die tatsaechliche Zeichenzahl pro Zeile, nicht die Pixel.
+    // 56ch klang nach 56 Zeichen, ergab aber 64 bis 74: die ch-Einheit meint
+    // die Breite der Null, und die liegt ueber dem deutschen Buchstabenschnitt.
+    for (const path of ["/de/sicherheit", "/de/ablauf", "/de/paragleiten"]) {
+      await page.goto(path, { waitUntil: "domcontentloaded" });
+      const worst = await page.evaluate(() => {
+        const ps = [...document.querySelectorAll(".container-page p")].filter(
+          (e) => e.textContent!.trim().length > 150
+        );
+        return ps.reduce((max, e) => {
+          const cs = getComputedStyle(e);
+          const lines = Math.round(
+            e.getBoundingClientRect().height / parseFloat(cs.lineHeight)
+          );
+          return Math.max(max, Math.round(e.textContent!.trim().length / lines));
+        }, 0);
+      });
+      expect(worst, `${path}: ${worst} Zeichen pro Zeile`).toBeLessThanOrEqual(78);
+      expect(worst, `${path}: ${worst} Zeichen pro Zeile`).toBeGreaterThan(0);
+    }
+  });
+
+  test("Inhaltskanten fluchten mit der Shell", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    for (const path of ["/de/sicherheit", "/de/ueber-uns", "/de/tandemflug-lienz"]) {
+      await page.goto(path, { waitUntil: "domcontentloaded" });
+      const edges = await page.evaluate(() => {
+        const set = new Set<number>();
+        document
+          .querySelectorAll(".container-wide, .container-page")
+          .forEach((el) => {
+            if (el.getBoundingClientRect().width === 0) return;
+            set.add(
+              Math.round(
+                el.getBoundingClientRect().left +
+                  parseFloat(getComputedStyle(el).paddingLeft)
+              )
+            );
+          });
+        return [...set];
+      });
+      expect(edges, `${path}: Kanten ${edges.join("/")}`).toHaveLength(1);
+    }
   });
 });

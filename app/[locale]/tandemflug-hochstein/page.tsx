@@ -110,7 +110,7 @@ export default async function TandemflugHochsteinPage({ params }: Props) {
           aria-hidden="true"
         />
 
-        <div className="relative container-prose">
+        <div className="relative container-page">
           <nav aria-label="Breadcrumb" className="mb-10">
             <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
               <li>
@@ -207,7 +207,7 @@ export default async function TandemflugHochsteinPage({ params }: Props) {
 
       {/* Social Proof */}
       <section className="-mt-4 pb-4">
-        <div className="container-prose">
+        <div className="container-page">
           <div className="glass-card border-accent-500/20 p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-6">
             <div className="shrink-0 text-center sm:text-left sm:border-r sm:border-edge-secondary/40 sm:pr-6">
               <div
@@ -241,7 +241,7 @@ export default async function TandemflugHochsteinPage({ params }: Props) {
 
       {/* Warum Hochstein */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="container-prose">
+        <div className="container-page">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
             {t("whyTitle")}
           </h2>
@@ -263,7 +263,7 @@ export default async function TandemflugHochsteinPage({ params }: Props) {
 
       {/* Flugerlebnisse am Hochstein */}
       <section className="py-16 lg:py-24">
-        <div className="container-prose">
+        <div className="container-page">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
             {t("expTitle")}
           </h2>
@@ -295,7 +295,7 @@ export default async function TandemflugHochsteinPage({ params }: Props) {
 
       {/* Ablauf am Hochstein */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="container-prose">
+        <div className="container-page">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
             {t("stepTitle")}
           </h2>
@@ -326,7 +326,7 @@ export default async function TandemflugHochsteinPage({ params }: Props) {
 
       {/* Treffpunkt & Anreise */}
       <section className="py-16 lg:py-24">
-        <div className="container-prose">
+        <div className="container-page">
           <div className="glass-card border-accent-500/20 p-6 sm:p-10">
             <h2 className="text-2xl font-bold text-content-primary tracking-tight">
               {t("meetTitle")}
@@ -362,7 +362,7 @@ export default async function TandemflugHochsteinPage({ params }: Props) {
 
       {/* FAQ */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="container-prose">
+        <div className="container-page">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
             {t("faqTitle")}
           </h2>
@@ -385,7 +385,7 @@ export default async function TandemflugHochsteinPage({ params }: Props) {
 
       {/* E-E-A-T */}
       <section className="py-16 lg:py-24">
-        <div className="container-prose">
+        <div className="container-page">
           <div className="glass-card border-accent-500/20 p-6 sm:p-10">
             <h2 className="text-2xl font-bold text-content-primary tracking-tight">
               {t("eeatTitle")}
@@ -401,7 +401,7 @@ export default async function TandemflugHochsteinPage({ params }: Props) {
 
       {/* Cross-Links */}
       <section className="py-12 lg:py-16 bg-surface-secondary">
-        <div className="container-prose">
+        <div className="container-page">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { href: "/tandemflug-zettersfeld", key: "Zettersfeld" },
