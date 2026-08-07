@@ -31,6 +31,8 @@ export const ROUTES: readonly RouteEntry[] = [
   { path: "/ablauf", changeFrequency: "monthly", priority: 0.8, lastmod: "2026-07-13", indexable: true },
   { path: "/agb", changeFrequency: "yearly", priority: 0.3, lastmod: "2026-02-01", indexable: true },
   { path: "/anreise", changeFrequency: "weekly", priority: 0.8, lastmod: "2026-07-13", indexable: true },
+  // Bewertungs-Bruecke vom QR-Schild am Landeplatz. Utility, kein Suchziel.
+  { path: "/bewerten", changeFrequency: "yearly", priority: 0.3, lastmod: "2026-08-07", indexable: false },
   { path: "/briefing", changeFrequency: "monthly", priority: 0.5, lastmod: "2026-07-13", indexable: true },
   { path: "/buchen", changeFrequency: "monthly", priority: 0.9, lastmod: "2026-07-13", indexable: true },
   { path: "/classicflug", changeFrequency: "weekly", priority: 0.9, lastmod: "2026-07-13", indexable: true },

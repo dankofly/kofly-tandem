@@ -73,7 +73,9 @@
     "briefingTitle": "Pre-flight briefing: het verloop van je tandemvlucht",
     "briefingDescription": "Het complete verloop van je tandemvlucht in Oost-Tirol: ontmoetingspunt, opstijgen, start, vlucht, landing en paklijst. Alles wat je vooraf moet weten.",
     "briefingOgTitle": "Pre-flight briefing voor je tandemvlucht | KOFLY",
-    "briefingOgDescription": "Verloop, uitrusting en paklijst voor je tandem-paraglidingvlucht in de Airpark Lienzer Dolomiten."
+    "briefingOgDescription": "Verloop, uitrusting en paklijst voor je tandem-paraglidingvlucht in de Airpark Lienzer Dolomiten.",
+    "bewertenTitle": "Vlucht beoordelen",
+    "bewertenDescription": "Heb je genoten van je tandemvlucht met KOFLY? Een korte Google-review helpt ons enorm en kost een halve minuut."
   },
   "Navigation": {
     "erlebnis": "Beleving",
@@ -1700,5 +1702,15 @@
     "productName": "Tandemvlucht Hochstein, ontbijt- en panoramavlucht vanaf 2.000 m",
     "productDescription": "Tandem-paraglidingvlucht vanaf de startplaats Hochstein op ongeveer 2.000 m boven Lienz, ideaal als ontbijtvlucht in de zonsopgang. Uitgevoerd door een gediplomeerde Oost-Tiroolse tandempiloot. 5,0 sterren uit 300+ beoordelingen.",
     "otherStartLink": "Startplaats Zettersfeld vergelijken"
+  },
+  "Bewerten": {
+    "overline": "Bedankt voor het vliegen",
+    "title": "Hoe was je vlucht?",
+    "intro": "Fijn dat je met ons boven was. Als de vlucht je is bevallen, zijn we heel blij met een paar regels op Google. Het kost een halve minuut en helpt anderen die nog twijfelen.",
+    "ctaGoogle": "Beoordeel op Google",
+    "ctaNote": "Je hebt een Google-account nodig, verder niets.",
+    "noAccount": "Geen Google-account? Je kunt ons ook beoordelen op",
+    "tripadvisorLink": "Tripadvisor",
+    "backHome": "Terug naar de homepage"
   }
 }

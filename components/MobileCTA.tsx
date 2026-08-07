@@ -1,12 +1,19 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
+/** Seiten mit genau einem gewollten Klick. Dort waere die Buchungsleiste
+ *  ein zweiter, konkurrierender Aufruf und wuerde das Ziel verwaessern. */
+const OHNE_LEISTE = ["/bewerten"];
+
 export default function MobileCTA() {
+  const pathname = usePathname();
   const t = useTranslations("MobileCTA");
   const tNav = useTranslations("Navigation");
   const whatsappUrl = `https://wa.me/436767293888?text=${encodeURIComponent(tNav("whatsappMessage"))}`;
+
+  if (OHNE_LEISTE.includes(pathname)) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-[var(--bg-header-mobile)] backdrop-blur-xl border-t border-edge-faint px-4 py-3 safe-area-bottom">

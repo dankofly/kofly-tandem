@@ -73,7 +73,9 @@
     "briefingTitle": "Pre-Flight Briefing: Ablauf deines Tandemflugs",
     "briefingDescription": "Der komplette Ablauf deines Tandemflugs in Osttirol: Treffpunkt, Auffahrt, Start, Flug, Landung und Packliste. Alles, was du vorher wissen musst.",
     "briefingOgTitle": "Pre-Flight Briefing für deinen Tandemflug | KOFLY",
-    "briefingOgDescription": "Ablauf, Ausrüstung und Packliste für deinen Gleitschirm-Tandemflug im Airpark Lienzer Dolomiten."
+    "briefingOgDescription": "Ablauf, Ausrüstung und Packliste für deinen Gleitschirm-Tandemflug im Airpark Lienzer Dolomiten.",
+    "bewertenTitle": "Flug bewerten",
+    "bewertenDescription": "Hat dir dein Tandemflug mit KOFLY gefallen? Eine kurze Google-Bewertung hilft uns sehr und dauert nur eine halbe Minute."
   },
   "Navigation": {
     "erlebnis": "Erlebnis",
@@ -1700,5 +1702,15 @@
     "productName": "Tandemflug Hochstein, Frühstücks- und Panoramaflug ab 2.000 m",
     "productDescription": "Tandem-Gleitschirmflug vom Startplatz Hochstein auf rund 2.000 m über Lienz, ideal als Frühstücksflug in den Sonnenaufgang. Durchgeführt von einem lizenzierten Osttiroler Tandempiloten. 5,0 Sterne aus 300+ Bewertungen.",
     "otherStartLink": "Startplatz Zettersfeld im Vergleich"
+  },
+  "Bewerten": {
+    "overline": "Danke fürs Fliegen",
+    "title": "Wie war dein Flug?",
+    "intro": "Schön, dass du mit uns oben warst. Wenn dir der Flug gefallen hat, freuen wir uns riesig über ein paar Zeilen auf Google. Das dauert eine halbe Minute und hilft anderen, die noch überlegen.",
+    "ctaGoogle": "Auf Google bewerten",
+    "ctaNote": "Du brauchst ein Google-Konto, sonst nichts.",
+    "noAccount": "Kein Google-Konto? Du kannst uns auch auf",
+    "tripadvisorLink": "Tripadvisor bewerten",
+    "backHome": "Zurück zur Startseite"
   }
 }

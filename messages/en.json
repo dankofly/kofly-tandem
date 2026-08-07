@@ -73,7 +73,9 @@
     "briefingTitle": "Pre-Flight Briefing: How Your Tandem Flight Works",
     "briefingDescription": "The complete sequence of your tandem flight in East Tyrol: meeting point, ride up, take-off, flight, landing and packing list. Everything you need to know.",
     "briefingOgTitle": "Pre-Flight Briefing for your tandem flight | KOFLY",
-    "briefingOgDescription": "Sequence, equipment and packing list for your paragliding tandem flight in the Airpark Lienzer Dolomiten."
+    "briefingOgDescription": "Sequence, equipment and packing list for your paragliding tandem flight in the Airpark Lienzer Dolomiten.",
+    "bewertenTitle": "Rate your flight",
+    "bewertenDescription": "Enjoyed your tandem flight with KOFLY? A short Google review helps us a lot and takes about half a minute."
   },
   "Navigation": {
     "erlebnis": "Experience",
@@ -1700,5 +1702,15 @@
     "productName": "Tandem Paragliding Hochstein, breakfast and panorama flight from 2,000 m",
     "productDescription": "Tandem paragliding flight from the Hochstein launch at around 2,000 m above Lienz, ideal as a breakfast flight into the sunrise. Flown by a licensed East Tyrol tandem pilot. 5.0 stars from 300+ reviews.",
     "otherStartLink": "Compare the Zettersfeld launch site"
+  },
+  "Bewerten": {
+    "overline": "Thanks for flying",
+    "title": "How was your flight?",
+    "intro": "Glad you were up there with us. If you enjoyed the flight, we would love a few lines on Google. It takes half a minute and helps others who are still deciding.",
+    "ctaGoogle": "Review on Google",
+    "ctaNote": "You need a Google account, nothing else.",
+    "noAccount": "No Google account? You can also review us on",
+    "tripadvisorLink": "Tripadvisor",
+    "backHome": "Back to the homepage"
   }
 }
