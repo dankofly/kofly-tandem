@@ -56,8 +56,11 @@ export default async function HomePage({ params }: Props) {
 
       {/* Regional coverage – internal link to /tandemflug-osttirol */}
       <section className="py-16 lg:py-24">
-        <div className="container-prose">
+        <div className="container-wide">
+          {/* Kasten auf Seitenraster (fluchtet mit WhyUs/Packages), Textspalte
+              darin auf lesbares Mass begrenzt. Siehe Regel in globals.css. */}
           <div className="glass-card border-accent-500/20 p-6 sm:p-10 lg:p-12">
+            <div className="max-w-prose mx-auto">
             <p className="text-xs tracking-premium uppercase text-accent-500 font-semibold">
               {tRegional("tagline")}
             </p>
@@ -81,7 +84,7 @@ export default async function HomePage({ params }: Props) {
             </blockquote>
 
             {/* Closing line */}
-            <p className="mt-6 text-sm sm:text-[15px] text-content-muted text-center leading-relaxed max-w-xl mx-auto">
+            <p className="mt-6 text-sm sm:text-[15px] text-content-muted text-center leading-relaxed">
               {tRegional("closing")}
             </p>
 
@@ -126,6 +129,7 @@ export default async function HomePage({ params }: Props) {
                   />
                 </svg>
               </Link>
+            </div>
             </div>
           </div>
         </div>

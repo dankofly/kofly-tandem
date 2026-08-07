@@ -434,9 +434,12 @@ export default async function UeberUnsPage({ params }: Props) {
 
       {/* ══════════════════════════════════════════
           VIDEO GALLERY – YouTube Shorts 9:16
+          Vollbreiten-Band (bg-surface-secondary): legitimiert die breitere
+          Spalte gegenueber den container-prose-Sektionen dieser Seite.
+          Muster wie FAQ.
           ══════════════════════════════════════════ */}
       {hasVideos && (
-        <section className="py-20 lg:py-28 overflow-hidden relative">
+        <section className="py-20 lg:py-28 overflow-hidden relative bg-surface-secondary">
           <div className="glow-orb glow-orb-accent w-[500px] h-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-10 animate-glow-pulse" />
 
           <div className="relative container-wide">
