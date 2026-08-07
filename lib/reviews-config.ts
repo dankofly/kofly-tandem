@@ -43,6 +43,21 @@ export interface Review {
 export const TRIPADVISOR_URL =
   "https://www.tripadvisor.com/Attraction_Review-g230011-d8720066-Reviews-Gleitschirm_Tandemflug_com-Lienz_Tirol_Austrian_Alps.html";
 
+/**
+ * Ziel des Bewertungs-Formulars im Google-Unternehmensprofil.
+ *
+ * Steht hier und nicht im Seiten-Code, weil derselbe Link am gedruckten
+ * QR-Schild am Landeplatz haengt (ops/gbp-kit/review-qr.png) und in der
+ * WhatsApp-Vorlage steht. Die Seite /bewerten leitet darauf weiter, damit
+ * ein Linkwechsel nicht bedeutet, dass Schilder neu gedruckt werden muessen.
+ *
+ * Herkunft der Place-ID: ops/gbp-kit/README.md. Falls Google im Dashboard
+ * unter "Mehr Rezensionen erhalten" einen g.page-Kurzlink anbietet, ist der
+ * vorzuziehen: hier eintragen, QR bleibt gueltig.
+ */
+export const GOOGLE_REVIEW_URL =
+  "https://search.google.com/local/writereview?placeid=ChIJPei3q7tdd0cRoY1vxOQ0cgo";
+
 export const REVIEW_QUOTES: Review[] = [
   {
     name: "Carmen S.",
