@@ -206,39 +206,6 @@ export default async function TandemflugHochsteinPage({ params }: Props) {
       </section>
 
       {/* Social Proof */}
-      <section className="-mt-4 pb-4">
-        <div className="container-page">
-          <div className="glass-card border-accent-500/20 p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-6">
-            <div className="shrink-0 text-center sm:text-left sm:border-r sm:border-edge-secondary/40 sm:pr-6">
-              <div
-                className="flex items-center justify-center sm:justify-start gap-0.5 text-accent-500"
-                aria-hidden="true"
-              >
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <svg key={i} className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M10 1.6l2.47 5.18 5.69.74-4.2 3.9 1.07 5.62L10 14.9l-5.0 2.14 1.07-5.62-4.2-3.9 5.69-.74z" />
-                  </svg>
-                ))}
-              </div>
-              <div className="mt-2 text-sm font-semibold text-content-primary">
-                {t("proofRating")}
-              </div>
-              <div className="mt-1 text-xs text-content-muted font-light">
-                {t("proofBadge")}
-              </div>
-            </div>
-            <figure className="flex-1">
-              <blockquote className="text-sm sm:text-base text-content-body leading-relaxed font-light italic">
-                {t("proofQuote")}
-              </blockquote>
-              <figcaption className="mt-2 text-xs tracking-premium uppercase text-content-muted font-medium not-italic">
-                {t("proofAuthor")}
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
       {/* Warum Hochstein */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
         <div className="container-page">
