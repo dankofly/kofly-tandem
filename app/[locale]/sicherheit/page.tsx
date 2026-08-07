@@ -54,7 +54,7 @@ export default async function SicherheitPage({ params }: Props) {
 
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
         <div className="glow-orb glow-orb-accent w-[500px] h-[500px] -top-40 -right-40 opacity-40 animate-glow-pulse" aria-hidden="true" />
-        <div className="relative max-w-3xl mx-auto px-6">
+        <div className="relative container-prose">
           <nav aria-label="Breadcrumb" className="mb-10">
             <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
               <li><Link href="/" className="hover:text-accent-400 transition-colors">{t("breadcrumbHome")}</Link></li>
@@ -81,7 +81,7 @@ export default async function SicherheitPage({ params }: Props) {
       </section>
 
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("pilotsTitle")}</h2>
           <div className="mt-5 section-divider !mx-0" />
           <div className="mt-8 space-y-5 text-base text-content-body leading-relaxed font-light">
@@ -92,7 +92,7 @@ export default async function SicherheitPage({ params }: Props) {
       </section>
 
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("equipmentTitle")}</h2>
           <div className="mt-5 section-divider !mx-0" />
           <ul className="mt-8 space-y-3">
@@ -109,7 +109,7 @@ export default async function SicherheitPage({ params }: Props) {
       </section>
 
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("weatherTitle")}</h2>
           <div className="mt-5 section-divider !mx-0" />
           <div className="mt-8 space-y-5 text-base text-content-body leading-relaxed font-light">
@@ -120,7 +120,7 @@ export default async function SicherheitPage({ params }: Props) {
       </section>
 
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("requirementsTitle")}</h2>
           <div className="mt-5 section-divider !mx-0" />
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
@@ -135,7 +135,7 @@ export default async function SicherheitPage({ params }: Props) {
       </section>
 
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="glass-card border-accent-500/20 p-6 sm:p-10 border-l-2">
             <h2 className="text-xl sm:text-2xl font-bold text-content-primary tracking-tight">{t("insuranceTitle")}</h2>
             <p className="mt-5 text-base text-content-body leading-relaxed font-light">{t("insuranceText")}</p>
@@ -144,7 +144,7 @@ export default async function SicherheitPage({ params }: Props) {
       </section>
 
       <section id="faq" className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("faqTitle")}</h2>
           <div className="mt-5 section-divider !mx-0" />
           <div className="mt-10 space-y-4">
@@ -160,7 +160,7 @@ export default async function SicherheitPage({ params }: Props) {
 
       {/* Cross-Links: die Seite war bis 2026-07-27 eine Sackgasse (nur /buchen) */}
       <section className="py-12 lg:py-16">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("crosslinkTitle")}</h2>
           <div className="mt-5 section-divider !mx-0" />
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -187,7 +187,7 @@ export default async function SicherheitPage({ params }: Props) {
 
       <section className="relative py-20 lg:py-28 overflow-hidden bg-surface-secondary">
         <div className="glow-orb glow-orb-accent w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 animate-glow-pulse" aria-hidden="true" />
-        <div className="relative max-w-2xl mx-auto px-6 text-center">
+        <div className="relative container-cta text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary">{t("ctaTitle")}</h2>
           <p className="mt-4 text-base text-content-body font-light">{t("ctaP")}</p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">

@@ -123,7 +123,7 @@ export default function ReviewsSlider() {
 
   return (
     <section className="py-20 lg:py-28 bg-surface-secondary overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6 mb-12 text-center">
+      <div className="container-wide mb-12 text-center">
         <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
           Tripadvisor 5.0/5
         </p>

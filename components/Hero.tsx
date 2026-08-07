@@ -67,7 +67,7 @@ export default async function Hero() {
       <div className="glow-orb glow-orb-accent w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] -top-40 -right-40 animate-glow-pulse" aria-hidden="true" />
       <div className="glow-orb glow-orb-sky w-[350px] h-[350px] sm:w-[600px] sm:h-[600px] -bottom-60 -left-40 animate-glow-pulse" style={{ animationDelay: "2s" }} aria-hidden="true" />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-6 text-center sm:text-left">
+      <div className="relative z-10 w-full container-wide text-center sm:text-left">
         {/* Desktop: constrained wrapper so title + buttons share same width */}
         <div className="sm:w-min">
           {/* Slogan */}

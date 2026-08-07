@@ -41,7 +41,7 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="container-wide">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link
@@ -127,7 +127,7 @@ export default function Header() {
       {/* Mobile menu */}
       <div className="lg:hidden mobile-menu" data-open={menuOpen}>
         <div className="bg-[var(--bg-header-mobile)] backdrop-blur-xl border-t border-edge-faint">
-          <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-6" aria-label={t("mobileNavigation")}>
+          <nav className="container-wide py-6" aria-label={t("mobileNavigation")}>
             {navItems.map((item, i) => (
               <Link
                 key={item.href}

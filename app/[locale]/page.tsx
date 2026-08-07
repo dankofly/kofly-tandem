@@ -56,7 +56,7 @@ export default async function HomePage({ params }: Props) {
 
       {/* Regional coverage – internal link to /tandemflug-osttirol */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="glass-card border-accent-500/20 p-6 sm:p-10 lg:p-12">
             <p className="text-xs tracking-premium uppercase text-accent-500 font-semibold">
               {tRegional("tagline")}

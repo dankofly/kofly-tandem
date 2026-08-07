@@ -122,7 +122,7 @@ export default async function AblaufPage({ params }: Props) {
         <div className="glow-orb glow-orb-accent w-[500px] h-[500px] -top-40 -right-40 opacity-40 animate-glow-pulse" />
         <div className="glow-orb glow-orb-sky w-[400px] h-[400px] -bottom-32 -left-32 opacity-30 animate-glow-pulse [animation-delay:2s]" />
 
-        <div className="relative max-w-3xl mx-auto px-6">
+        <div className="relative container-prose">
           <nav aria-label="Breadcrumb" className="mb-10">
             <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
               <li>
@@ -161,7 +161,7 @@ export default async function AblaufPage({ params }: Props) {
 
       {/* -- Sicherheit & Erfahrung -- */}
       <section className="py-20 lg:py-28 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="glass-card border-accent-500/30 p-8 sm:p-10">
             <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
               {t("safetyTagline")}
@@ -205,7 +205,7 @@ export default async function AblaufPage({ params }: Props) {
 
       {/* -- Schritt 01: Kontaktaufnahme -- */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="step-card glass-card card-hover-glow p-8 sm:p-10">
             <div className="flex items-start gap-6">
               <span className="step-num hidden sm:block text-4xl lg:text-5xl font-bold text-accent-500/25 leading-none select-none shrink-0">
@@ -236,7 +236,7 @@ export default async function AblaufPage({ params }: Props) {
 
       {/* -- Schritt 02: Voraussetzungen -- */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="step-card glass-card card-hover-glow p-8 sm:p-10">
             <div className="flex items-start gap-6">
               <span className="step-num hidden sm:block text-4xl lg:text-5xl font-bold text-accent-500/25 leading-none select-none shrink-0">
@@ -265,7 +265,7 @@ export default async function AblaufPage({ params }: Props) {
 
       {/* -- Schritt 03: Flugpaket -- */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="step-card glass-card card-hover-glow p-8 sm:p-10">
             <div className="flex items-start gap-6">
               <span className="step-num hidden sm:block text-4xl lg:text-5xl font-bold text-accent-500/25 leading-none select-none shrink-0">
@@ -314,7 +314,7 @@ export default async function AblaufPage({ params }: Props) {
 
       {/* -- Schritt 04: Gutschein -- */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="step-card glass-card card-hover-glow p-8 sm:p-10">
             <div className="flex items-start gap-6">
               <span className="step-num hidden sm:block text-4xl lg:text-5xl font-bold text-accent-500/25 leading-none select-none shrink-0">
@@ -345,7 +345,7 @@ export default async function AblaufPage({ params }: Props) {
 
       {/* -- Schritt 05: Terminplanung -- */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="step-card glass-card card-hover-glow p-8 sm:p-10">
             <div className="flex items-start gap-6">
               <span className="step-num hidden sm:block text-4xl lg:text-5xl font-bold text-accent-500/25 leading-none select-none shrink-0">
@@ -373,7 +373,7 @@ export default async function AblaufPage({ params }: Props) {
 
       {/* -- Schritt 06: Treffpunkt -- */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="step-card glass-card card-hover-glow p-8 sm:p-10">
             <div className="flex items-start gap-6">
               <span className="step-num hidden sm:block text-4xl lg:text-5xl font-bold text-accent-500/25 leading-none select-none shrink-0">
@@ -404,7 +404,7 @@ export default async function AblaufPage({ params }: Props) {
 
       {/* -- Schritt 07: Vorbereitung -- */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="step-card glass-card card-hover-glow p-8 sm:p-10">
             <div className="flex items-start gap-6">
               <span className="step-num hidden sm:block text-4xl lg:text-5xl font-bold text-accent-500/25 leading-none select-none shrink-0">
@@ -436,7 +436,7 @@ export default async function AblaufPage({ params }: Props) {
         className="py-16 lg:py-24 scroll-mt-20"
         aria-labelledby="nausea-heading"
       >
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <article className="glass-card border-accent-500/20 p-8 sm:p-10">
             <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
               {t("nauseaTagline")}
@@ -565,7 +565,7 @@ export default async function AblaufPage({ params }: Props) {
       <section className="relative py-16 lg:py-24 bg-surface-secondary overflow-hidden">
         <div className="glow-orb glow-orb-accent w-[500px] h-[500px] top-1/2 -right-32 -translate-y-1/2 opacity-30 animate-glow-pulse" />
 
-        <div className="relative max-w-3xl mx-auto px-6">
+        <div className="relative container-prose">
           <div className="step-card flight-card glass-card card-hover-glow border-accent-500/20 p-8 sm:p-10">
             <div className="flex items-start gap-6">
               <span className="step-num hidden sm:block text-4xl lg:text-5xl font-bold text-accent-500/25 leading-none select-none shrink-0">
@@ -604,7 +604,7 @@ export default async function AblaufPage({ params }: Props) {
 
       {/* -- Schritt 09: Landung -- */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="step-card glass-card card-hover-glow p-8 sm:p-10">
             <div className="flex items-start gap-6">
               <span className="step-num hidden sm:block text-4xl lg:text-5xl font-bold text-accent-500/25 leading-none select-none shrink-0">
@@ -643,7 +643,7 @@ export default async function AblaufPage({ params }: Props) {
 
       {/* -- Schritt 10: Bezahlung & Nachbetreuung -- */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="step-card glass-card card-hover-glow p-8 sm:p-10">
             <div className="flex items-start gap-6">
               <span className="step-num hidden sm:block text-4xl lg:text-5xl font-bold text-accent-500/25 leading-none select-none shrink-0">
@@ -716,7 +716,7 @@ export default async function AblaufPage({ params }: Props) {
       <section className="relative py-20 lg:py-28 overflow-hidden">
         <div className="glow-orb glow-orb-accent w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 animate-glow-pulse" />
 
-        <div className="relative max-w-2xl mx-auto px-6 text-center">
+        <div className="relative container-cta text-center">
           <p className="quote-float text-2xl sm:text-3xl font-bold text-content-primary italic">
             {t("closeQuote")}
           </p>

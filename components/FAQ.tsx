@@ -96,7 +96,7 @@ export default function FAQ() {
       {/* Glow orb */}
       <div className="glow-orb glow-orb-sky w-[400px] h-[400px] top-1/2 -left-40 animate-glow-pulse" aria-hidden="true" />
 
-      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 container-prose">
         {/* Header */}
         <ScrollReveal className="text-center mb-10">
           <p className="text-sm tracking-premium uppercase text-accent-500 font-semibold">

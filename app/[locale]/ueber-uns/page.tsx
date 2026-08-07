@@ -139,7 +139,7 @@ export default async function UeberUnsPage({ params }: Props) {
         <div className="glow-orb glow-orb-accent w-[500px] h-[500px] -top-40 -right-40 opacity-40 animate-glow-pulse" aria-hidden="true" />
         <div className="glow-orb glow-orb-sky w-[400px] h-[400px] -bottom-32 -left-32 opacity-30 animate-glow-pulse [animation-delay:2s]" aria-hidden="true" />
 
-        <div className="relative max-w-3xl mx-auto px-6">
+        <div className="relative container-prose">
           {/* Breadcrumb – immediate */}
           <nav aria-label="Breadcrumb" className="hero-enter hero-enter-1 mb-10">
             <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
@@ -221,7 +221,7 @@ export default async function UeberUnsPage({ params }: Props) {
           UNSERE GESCHICHTE
           ══════════════════════════════════════════ */}
       <section className="py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="container-prose">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-16">
               <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
@@ -307,7 +307,7 @@ export default async function UeberUnsPage({ params }: Props) {
         {/* Background orb */}
         <div className="glow-orb glow-orb-sky w-[400px] h-[400px] -top-40 right-0 opacity-10 animate-glow-pulse" />
 
-        <div className="relative max-w-4xl mx-auto px-6">
+        <div className="relative container-prose">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-16">
               <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
@@ -439,7 +439,7 @@ export default async function UeberUnsPage({ params }: Props) {
         <section className="py-20 lg:py-28 overflow-hidden relative">
           <div className="glow-orb glow-orb-accent w-[500px] h-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-10 animate-glow-pulse" />
 
-          <div className="relative max-w-5xl mx-auto px-6">
+          <div className="relative container-wide">
             <ScrollReveal animation="fade-up">
               <div className="text-center mb-12">
                 <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
@@ -480,7 +480,7 @@ export default async function UeberUnsPage({ params }: Props) {
         <div className="glow-orb glow-orb-accent w-[400px] h-[400px] -top-40 -left-40 opacity-10 animate-glow-pulse" />
         <div className="glow-orb glow-orb-sky w-[300px] h-[300px] bottom-0 right-0 opacity-10 animate-glow-pulse [animation-delay:2s]" />
 
-        <div className="relative max-w-4xl mx-auto px-6">
+        <div className="relative container-prose">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-16">
               <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
@@ -558,7 +558,7 @@ export default async function UeberUnsPage({ params }: Props) {
           UNSERE PARTNER
           ══════════════════════════════════════════ */}
       <section className="py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="container-prose">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-16">
               <p className="text-xs tracking-premium uppercase text-accent-500 font-medium">
@@ -605,7 +605,7 @@ export default async function UeberUnsPage({ params }: Props) {
           DIREKT & LOKAL statt Vermittler (GEO / Anti-Broker)
           ══════════════════════════════════════════ */}
       <section className="py-20 lg:py-28 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
             {t("directTitle")}
           </h2>
@@ -639,7 +639,7 @@ export default async function UeberUnsPage({ params }: Props) {
         <div className="glow-orb glow-orb-accent w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 animate-glow-pulse" />
         <div className="glow-orb glow-orb-sky w-[400px] h-[400px] top-0 -right-20 opacity-10 animate-glow-pulse [animation-delay:3s]" />
 
-        <div className="relative max-w-3xl mx-auto px-6 text-center">
+        <div className="relative container-prose text-center">
           <ScrollReveal animation="scale-in">
             <p className="quote-float text-2xl sm:text-3xl font-bold text-content-primary italic">
               {t("ctaHeadline")}
@@ -692,7 +692,7 @@ export default async function UeberUnsPage({ params }: Props) {
       {/* Cross-Links: staerkste Seite nach der Startseite (401 Impressionen,
           18 Klicks / 90 Tage), verlinkte bis 2026-07-27 nur auf /buchen. */}
       <section className="py-12 lg:py-16">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">{t("crosslinkTitle")}</h2>
           <div className="mt-5 section-divider !mx-0" />
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

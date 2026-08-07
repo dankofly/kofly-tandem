@@ -38,7 +38,7 @@ export default function BuchenPage() {
   return (
     <>
       <section className="pt-32 pb-28 lg:pt-40 lg:pb-40">
-        <div className="max-w-2xl mx-auto px-6">
+        <div className="container-prose">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="mb-10">
             <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
