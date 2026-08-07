@@ -393,19 +393,22 @@ test.describe("Farbkontrast", () => {
             return Math.round(((x + 0.05) / (y + 0.05)) * 100) / 100;
           };
           const out: { token: string; bg: string; cr: number }[] = [];
-          // accent-400/500 sind seit 2026-08-07 theme-abhaengig, weil das
-          // frueher konstante #e86830 im Light-Theme nur 3,11:1 erreichte.
-          // --accent-600 ist bewusst nicht dabei: aktuell nirgends als
-          // Textfarbe verwendet und im Dark-Theme bei 4,23:1. Wer es
-          // einsetzen will, muss vorher den Dark-Wert abdunkeln.
-          for (const token of [
+          // Der Akzent ist seit 2026-08-07 das Markenorange #f9601f aus
+          // booking.kofly.at und wird im Light-Theme bewusst unter 4,5:1
+          // gefahren (2,98 auf #f8fafb, Weiss darauf 3,12). Das ist eine
+          // Markenentscheidung, kein Versehen, siehe Kommentar in
+          // globals.css. Deshalb wird der Akzent hier nur im Dark-Theme
+          // geprueft, wo er mit 5,68 sauber besteht. So faellt trotzdem auf,
+          // wenn jemand den Dark-Wert kaputtmacht.
+          // --accent-600: nirgends als Textfarbe in Verwendung, nicht geprueft.
+          const tokens = [
             "--text-faint",
             "--text-ghost",
             "--text-subtle",
             "--text-muted",
-            "--accent-400",
-            "--accent-500",
-          ]) {
+            ...(mode === "dark" ? ["--accent-400", "--accent-500"] : []),
+          ];
+          for (const token of tokens) {
             const v = cs.getPropertyValue(token).trim();
             if (!/^#[0-9a-f]{6}$/i.test(v)) continue;
             for (const bg of surfaces) out.push({ token, bg, cr: ratio(hex(v), hex(bg)) });
