@@ -83,7 +83,7 @@ export default async function GutscheinPage({ params }: Props) {
           className="glow-orb glow-orb-accent w-[500px] h-[500px] -top-40 -right-40 opacity-40 animate-glow-pulse"
           aria-hidden="true"
         />
-        <div className="relative max-w-3xl mx-auto px-6">
+        <div className="relative container-prose">
           <nav aria-label="Breadcrumb" className="mb-10">
             <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
               <li>
@@ -133,7 +133,7 @@ export default async function GutscheinPage({ params }: Props) {
 
       {/* Packages */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
             {t("packagesTitle")}
           </h2>
@@ -160,7 +160,7 @@ export default async function GutscheinPage({ params }: Props) {
 
       {/* How it works */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
             {t("howTitle")}
           </h2>
@@ -189,7 +189,7 @@ export default async function GutscheinPage({ params }: Props) {
 
       {/* Commitment */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="glass-card border-accent-500/20 p-6 sm:p-10 border-l-2">
             <h2 className="text-xl sm:text-2xl font-bold text-content-primary tracking-tight">
               {t("commitmentTitle")}
@@ -203,7 +203,7 @@ export default async function GutscheinPage({ params }: Props) {
 
       {/* FAQ */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
             {t("faqTitle")}
           </h2>
@@ -232,7 +232,7 @@ export default async function GutscheinPage({ params }: Props) {
           className="glow-orb glow-orb-accent w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 animate-glow-pulse"
           aria-hidden="true"
         />
-        <div className="relative max-w-2xl mx-auto px-6 text-center">
+        <div className="relative container-cta text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary">
             {t("ctaTitle")}
           </h2>

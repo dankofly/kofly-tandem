@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-surface-primary border-t border-edge-faint">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16 lg:py-20">
+      <div className="container-wide py-10 sm:py-16 lg:py-20">
 
         {/* ── Mobile: compact layout ── */}
         <div className="sm:hidden space-y-6">

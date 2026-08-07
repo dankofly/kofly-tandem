@@ -156,7 +156,7 @@ export default function StatsBar() {
       <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-edge-subtle to-transparent" />
       <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-edge-subtle to-transparent" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 container-wide">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-y-8 sm:gap-y-12 gap-x-4 sm:gap-x-6">
           {statConfigs.map((stat, i) => (
             <StatItem

@@ -38,7 +38,7 @@ export default function RootNotFound() {
                 display: "inline-block",
                 marginTop: "2rem",
                 padding: "0.75rem 1.5rem",
-                background: "#e85d04",
+                background: "#e86830", /* = accent-500, war #e85d04 (Drift) */
                 color: "#fff",
                 borderRadius: "0.75rem",
                 textDecoration: "none",

@@ -52,7 +52,7 @@ export default async function WhyUs() {
       {/* Glow orb — single, centered, dimmed for calmer composition */}
       <div className="glow-orb glow-orb-accent w-[400px] h-[400px] top-0 left-1/2 -translate-x-1/2 opacity-60 animate-glow-pulse" aria-hidden="true" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="relative z-10 container-wide">
         {/* Header */}
         <ScrollReveal className="text-center mb-10">
           <p className="text-sm tracking-premium uppercase text-accent-500 font-semibold">

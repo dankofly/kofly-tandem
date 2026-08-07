@@ -806,3 +806,27 @@ textarea,
 .theme-asset-dark { display: none; }
 [data-theme="dark"] .theme-asset-light { display: none; }
 [data-theme="dark"] .theme-asset-dark { display: block; }
+
+/* ==========================================================================
+   Layout-Container: die einzige Quelle fuer Inhaltsbreiten.
+   Vorher lagen 153 handgeschriebene Wrapper in 10 Breite/Padding-Varianten
+   im Code. Dadurch fluchteten Header, Inhalt und Footer vertikal nicht, und
+   der Mobile-Gutter sprang zwischen 16, 20 und 24 px.
+   Neue Breiten bitte hier ergaenzen, nicht inline im JSX.
+   ========================================================================== */
+.container-wide,
+.container-prose,
+.container-cta {
+  margin-inline: auto;
+  padding-inline: 1.5rem; /* 24px, identisch auf allen Viewports */
+  width: 100%;
+}
+
+/* Shell und Marketing-Module: Header, Hero, Packages, Reviews, Footer, Medien */
+.container-wide { max-width: 72rem; }  /* 1152px */
+
+/* Fliesstext und Inhaltssektionen aller Unterseiten */
+.container-prose { max-width: 48rem; } /* 768px */
+
+/* Zentriertes Abschluss-CTA-Band am Seitenende */
+.container-cta { max-width: 42rem; }   /* 672px */

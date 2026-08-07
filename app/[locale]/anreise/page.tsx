@@ -74,7 +74,7 @@ export default async function AnreisePage({ params }: Props) {
           aria-hidden="true"
         />
 
-        <div className="relative max-w-3xl mx-auto px-6">
+        <div className="relative container-prose">
           <nav aria-label="Breadcrumb" className="mb-10">
             <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
               <li>
@@ -114,7 +114,7 @@ export default async function AnreisePage({ params }: Props) {
 
       {/* Fahrzeit-Matrix */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("tableTitle")}
             </h2>
@@ -128,7 +128,7 @@ export default async function AnreisePage({ params }: Props) {
 
       {/* Anreise per Auto */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
                 {t("carTitle")}
               </h2>
@@ -168,7 +168,7 @@ export default async function AnreisePage({ params }: Props) {
 
       {/* Anreise mit Bahn & Bus */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
                 {t("trainTitle")}
               </h2>
@@ -208,7 +208,7 @@ export default async function AnreisePage({ params }: Props) {
           className="glow-orb glow-orb-accent w-[350px] h-[350px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 animate-glow-pulse"
           aria-hidden="true"
         />
-        <div className="relative max-w-2xl mx-auto px-6 text-center">
+        <div className="relative container-cta text-center">
           <h2 className="text-xl sm:text-2xl font-bold text-content-primary">
               {t("midCtaTitle")}
             </h2>
@@ -234,7 +234,7 @@ export default async function AnreisePage({ params }: Props) {
 
       {/* Parken & Treffpunkt */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
                 {t("parkingTitle")}
               </h2>
@@ -299,7 +299,7 @@ export default async function AnreisePage({ params }: Props) {
 
       {/* Terminplanung & Wetter */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("schedulingTitle")}
             </h2>
@@ -332,7 +332,7 @@ export default async function AnreisePage({ params }: Props) {
 
       {/* Unterkünfte */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("accommodationTitle")}
             </h2>
@@ -358,7 +358,7 @@ export default async function AnreisePage({ params }: Props) {
 
       {/* FAQ */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("faqTitle")}
             </h2>
@@ -381,7 +381,7 @@ export default async function AnreisePage({ params }: Props) {
 
       {/* Cross-Links */}
       <section className="py-12 lg:py-16 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="grid gap-6 sm:grid-cols-3">
             <Link href="/urlaub" className="block group">
               <div className="glass-card card-hover-glow p-6 h-full">
@@ -438,7 +438,7 @@ export default async function AnreisePage({ params }: Props) {
           className="glow-orb glow-orb-accent w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 animate-glow-pulse"
           aria-hidden="true"
         />
-        <div className="relative max-w-2xl mx-auto px-6 text-center">
+        <div className="relative container-cta text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary">
               {t("ctaTitle")}
             </h2>

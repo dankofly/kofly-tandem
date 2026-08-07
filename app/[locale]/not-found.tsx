@@ -24,7 +24,7 @@ export default function NotFound() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 max-w-lg mx-auto px-6 text-center">
+      <div className="relative z-10 container-cta text-center">
         {/* Big 404 */}
         <p className="text-[8rem] sm:text-[10rem] font-black leading-none tracking-tighter text-accent-500/20 select-none">
           404

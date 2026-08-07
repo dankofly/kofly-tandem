@@ -165,7 +165,7 @@
     "workflowText": "As soon as we have entered your flight, you get your own personal flight page via a link. There you see at a glance the current flight weather, the live status of your flight and your pilot, and you can complete the briefing and the transport contract conveniently in advance. So you arrive relaxed and well prepared at the meeting point.",
     "ctaTitle": "Ready for your flight?",
     "ctaP": "Secure your preferred date, weather-dependent and without obligation.",
-    "ctaBook": "Request a date now"
+    "ctaBook": "Request an appointment"
   },
   "Hero": {
     "ariaLabel": "Tandem paragliding and paragliding in East Tyrol – hero section",
@@ -405,7 +405,7 @@
     "bewertungen": "reviews · Google & Tripadvisor"
   },
   "MobileCTA": {
-    "anfragen": "Enquire now",
+    "anfragen": "Request an appointment",
     "whatsappLabel": "Message on WhatsApp (opens in new tab)",
     "fragMich": "Ask me"
   },
@@ -855,7 +855,7 @@
     "crosslinkAblaufP": "Step by step from meeting point to landing – including preparation tips.",
     "ctaTitle": "Ready for your holiday highlight?",
     "ctaP1": "Secure your tandem flight in Lienz now – or surprise someone with a voucher valid for 30 years by law. Free rebooking in case of bad weather.",
-    "ctaTermin": "Book your slot now",
+    "ctaTermin": "Request an appointment",
     "ctaGutschein": "Give a voucher",
     "ctaWhatsapp": "Or contact us directly via WhatsApp"
   },
@@ -963,7 +963,7 @@
     "crosslinkAblaufP": "Step by step from meeting point to landing – including preparation tips.",
     "ctaTitle": "Directions sorted? Book your tandem flight!",
     "ctaP1": "Now you know how to find us. Secure your flight slot – even last-minute requests welcome. Free rebooking in case of bad weather.",
-    "ctaTermin": "Book your slot now",
+    "ctaTermin": "Request an appointment",
     "ctaGutschein": "Give a voucher",
     "ctaWhatsapp": "Or contact us directly via WhatsApp: +43 676 7293888"
   },
@@ -1073,7 +1073,7 @@
     "crosslinkAblaufP": "Step by step from meeting point to landing – including preparation tips.",
     "ctaTitle": "Ready for your flight above East Tyrol?",
     "ctaP1": "Whether Zettersfeld, Hochstein or Thurntaler – we’ll find the right launch site for your experience.",
-    "ctaTermin": "Book a tandem flight",
+    "ctaTermin": "Request an appointment",
     "ctaGutschein": "Order a voucher",
     "ctaWhatsapp": "Or contact us directly via WhatsApp"
   },
@@ -1161,7 +1161,7 @@
     "ctaHeadline": "Only Flying is More Beautiful…!",
     "ctaText": "We at Gleitschirm-Tandemflug.com have made it our mission to fulfil your dream of flying – in the Airpark Lienz Dolomites, amidst one of the most impressive mountain landscapes in Austria.",
     "ctaSubtext": "An experience for you – young and old – in the safe hands of experienced professional tandem pilots.",
-    "ctaBooking": "Request a Date Now",
+    "ctaBooking": "Request an appointment",
     "ctaVoucher": "Order a Voucher",
     "ctaContactIntro": "You can also reach us directly at any time via",
     "ctaWhatsApp": "WhatsApp",
@@ -1197,7 +1197,7 @@
     "heroSubtitle": "Lienz · Sillian · Matrei · Kals · Defereggen",
     "heroP1": "East Tyrol is one of the most diverse paragliding regions in the Alps – from <b>Lienz</b> and <b>Matrei</b> to <b>Kals am Großglockner</b> and the <b>Defereggen Valley</b>. Our tandem flights launch from <b>Zettersfeld / Steinermandl</b>. On request we also fly from Hochstein and every other flying site in East Tyrol and Upper Carinthia. 268 three-thousand-metre peaks, over 300 flying days a year.",
     "heroP2": "We've been flying tandem since 2006 – <b>5.0★ from 300+ reviews</b> on Tripadvisor and Google. Tandem flights <b>from €150</b>, briefing included. Many guests travel up to an hour to reach us – it's worth it.",
-    "ctaBook": "Request a flight",
+    "ctaBook": "Request an appointment",
     "ctaVoucher": "Order gift voucher",
     "statsFlights": "Tandem flights since 2006",
     "statsFlightAreas": "Launch sites across East Tyrol",
@@ -1433,7 +1433,7 @@
     "heroSubtitle": "Experienced, certified pilots · certified equipment · weather protocol",
     "heroP1": "Tandem paragliding is safe when performed by experienced pilots with certified equipment in the right weather. Those are the three pillars our work stands on.",
     "heroP2": "We only fly when we can fly safely. If the weather doesn't cooperate, we reschedule – free of charge, no discussion. Your safety matters more than our calendar.",
-    "ctaBook": "Request a flight",
+    "ctaBook": "Request an appointment",
     "ctaFaq": "Requirements FAQ",
     "pilotsTitle": "Experienced, certified tandem pilots",
     "pilotsP1": "Our pilots are experienced, certified tandem pilots and have flown for years in the Airpark Lienzer Dolomiten. Daniel Kofler has been tandem flying since 2006, with over 10,000 tandem flights, and is a Speedflying pioneer.",
@@ -1493,7 +1493,7 @@
     "proofQuote": "With Daniel you feel completely safe and in good hands. Would do it again any time.",
     "proofAuthor": "Thomas B., Tripadvisor",
     "heroImageAlt": "Tandem paraglider with orange wing flying right above the old town of Lienz in East Tyrol",
-    "ctaBook": "Request a date",
+    "ctaBook": "Request an appointment",
     "ctaVoucher": "Order a voucher",
     "statFlightsLabel": "tandem flights",
     "statRatingLabel": "300+ reviews",
@@ -1568,7 +1568,7 @@
     "proofQuote": "The launch at Zettersfeld was completely relaxed, the flight over the Dolomites unforgettable. With Daniel you feel absolutely safe.",
     "proofAuthor": "Thomas B., Tripadvisor",
     "heroImageAlt": "Tandem flight with an orange paraglider over Zettersfeld and the Lienz Dolomites in East Tyrol",
-    "ctaBook": "Request a date",
+    "ctaBook": "Request an appointment",
     "ctaVoucher": "Order a voucher",
     "statFlightsLabel": "Panorama",
     "statRatingLabel": "300+ reviews",
@@ -1646,7 +1646,7 @@
     "proofQuote": "The breakfast flight into the sunrise was the most beautiful moment of our holiday. An absolutely safe, professional team.",
     "proofAuthor": "Martina K., Tripadvisor",
     "heroImageAlt": "Tandem flight with a paraglider from Hochstein high above the Lienz valley floor in East Tyrol",
-    "ctaBook": "Request a date",
+    "ctaBook": "Request an appointment",
     "ctaVoucher": "Order a voucher",
     "statHeightLabel": "Launch altitude",
     "statRatingLabel": "300+ reviews",

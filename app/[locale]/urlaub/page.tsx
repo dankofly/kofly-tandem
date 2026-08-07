@@ -85,7 +85,7 @@ export default async function UrlaubPage({ params }: Props) {
           aria-hidden="true"
         />
 
-        <div className="relative max-w-3xl mx-auto px-6">
+        <div className="relative container-prose">
           <nav aria-label="Breadcrumb" className="mb-10">
             <ol className="flex items-center gap-2 text-xs text-content-subtle font-light">
               <li>
@@ -125,7 +125,7 @@ export default async function UrlaubPage({ params }: Props) {
 
       {/* Warum Tandem */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("whyTitle")}
             </h2>
@@ -179,7 +179,7 @@ export default async function UrlaubPage({ params }: Props) {
           className="glow-orb glow-orb-accent w-[350px] h-[350px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 animate-glow-pulse"
           aria-hidden="true"
         />
-        <div className="relative max-w-2xl mx-auto px-6 text-center">
+        <div className="relative container-cta text-center">
           <h2 className="text-xl sm:text-2xl font-bold text-content-primary">
               {t("midCtaTitle")}
             </h2>
@@ -205,7 +205,7 @@ export default async function UrlaubPage({ params }: Props) {
 
       {/* So laufts ab */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
                 {t("processTitle")}
               </h2>
@@ -265,7 +265,7 @@ export default async function UrlaubPage({ params }: Props) {
 
       {/* Zielgruppen */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("targetTitle")}
             </h2>
@@ -302,7 +302,7 @@ export default async function UrlaubPage({ params }: Props) {
 
       {/* Trust / Reviews */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
                 {t("trustTitle")}
               </h2>
@@ -344,7 +344,7 @@ export default async function UrlaubPage({ params }: Props) {
 
       {/* Tips & Highlights */}
       <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("tipsTitle")}
             </h2>
@@ -403,7 +403,7 @@ export default async function UrlaubPage({ params }: Props) {
 
       {/* FAQ */}
       <section className="py-16 lg:py-24 bg-surface-secondary">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary tracking-tight">
               {t("faqTitle")}
             </h2>
@@ -426,7 +426,7 @@ export default async function UrlaubPage({ params }: Props) {
 
       {/* Cross-Links */}
       <section className="py-12 lg:py-16">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="container-prose">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <Link href="/tandemflug-osttirol" className="block group">
               <div className="glass-card card-hover-glow p-6 h-full">
@@ -498,7 +498,7 @@ export default async function UrlaubPage({ params }: Props) {
           className="glow-orb glow-orb-accent w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 animate-glow-pulse"
           aria-hidden="true"
         />
-        <div className="relative max-w-2xl mx-auto px-6 text-center">
+        <div className="relative container-cta text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-content-primary">
               {t("ctaTitle")}
             </h2>

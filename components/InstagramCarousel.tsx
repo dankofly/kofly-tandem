@@ -26,7 +26,7 @@ export default function InstagramCarousel({ reels }: { reels: InstagramReel[] })
         aria-hidden="true"
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="relative z-10 container-wide">
         {/* Header */}
         <ScrollReveal className="text-center mb-14">
           <p className="text-sm tracking-premium uppercase text-accent-500 font-medium">

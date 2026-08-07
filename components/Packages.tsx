@@ -45,7 +45,7 @@ export default async function Packages() {
       {/* Glow orb */}
       <div className="glow-orb glow-orb-accent w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] -bottom-40 left-1/4 animate-glow-pulse" aria-hidden="true" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="relative z-10 container-wide">
         {/* Header */}
         <ScrollReveal className="text-center mb-10">
           <p className="text-sm tracking-premium uppercase text-accent-500 font-semibold">
