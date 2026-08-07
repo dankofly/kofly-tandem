@@ -27,10 +27,13 @@ const config: Config = {
           500: "#4682a9",
           600: "#356d8f",
         },
+        /* Theme-abhaengig, damit das Light-Theme WCAG AA erreicht.
+           Kanalform + <alpha-value>, weil 183 Stellen Opacity-Modifier
+           nutzen (border-accent-500/20 usw.). Werte in globals.css. */
         accent: {
-          400: "#f07942",
-          500: "#e86830",
-          600: "#d05525",
+          400: "rgb(var(--accent-400-rgb) / <alpha-value>)",
+          500: "rgb(var(--accent-500-rgb) / <alpha-value>)",
+          600: "rgb(var(--accent-600-rgb) / <alpha-value>)",
         },
         /* Semantic theme tokens */
         surface: {
