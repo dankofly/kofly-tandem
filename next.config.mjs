@@ -24,7 +24,11 @@ const nextConfig = {
   async headers() {
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      // 'unsafe-eval' entfernt 2026-08-08. Es war seit dem April-Audit als
+      // offen gefuehrt und wurde von nichts im Projekt gebraucht.
+      // 'unsafe-inline' bleibt: Next.js App Router setzt Inline-Skripte fuer
+      // Hydration und Theme, ein Nonce dafuer ist ein eigener Umbau.
+      "script-src 'self' 'unsafe-inline'",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://*.google.com https://*.googleapis.com https://*.gstatic.com",
       "font-src 'self' data:",

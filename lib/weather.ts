@@ -1,5 +1,6 @@
 import { tool } from "ai";
 import { z } from "zod";
+import { fetchMitTimeout } from "@/lib/fetch-timeout";
 
 /**
  * getWeather-Tool für die Kofly KI auf gleitschirm-tandemflug.com.
@@ -25,7 +26,10 @@ export const weatherTool = tool({
   }),
   execute: async () => {
     try {
-      const res = await fetch(FLYABILITY_URL, {
+      // Mit Zeitgrenze: ohne sie wuerde eine haengende Flyability-API den
+      // gesamten Chat-Aufruf blockieren. Der Fehlerpfad unten faengt den
+      // Abbruch bereits ab und verweist auf den WhatsApp-Wetterkanal.
+      const res = await fetchMitTimeout(FLYABILITY_URL, {
         cache: "no-store",
         headers: { origin: "https://gleitschirm-tandemflug.com" },
       });

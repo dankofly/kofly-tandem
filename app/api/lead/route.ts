@@ -43,6 +43,53 @@ type LeadPayload = TerminPayload | GutscheinPayload;
  * Namen liefert also einen leeren Nachnamen. Kontaktkanal ist Telefon/WhatsApp,
  * die E-Mail war reine Reibung (Konkurrenz bucht mit Sofortbestaetigung).
  */
+/**
+ * Maximallaengen der eingehenden Felder.
+ *
+ * Vorher gab es keine. Die Route nahm beliebig lange Strings entgegen und
+ * schob sie in ein Telegram-Kommando, einen Log-Eintrag und eine
+ * Fremd-API weiter.
+ *
+ * Herkunft der Zahlen:
+ *  - EMAIL 254: RFC 5321, Abschnitt 4.5.3.1.3, maximale Laenge eines
+ *    Reverse-Path bzw. einer Adresse. Veroeffentlichter Standard.
+ *  - NACHRICHT 2000: Telegram begrenzt sendMessage auf 4096 Zeichen
+ *    (dokumentiertes Anbieterlimit). Der Rest des Textbausteins mit
+ *    Name, Telefon, Datum und Attribution braucht Platz, deshalb rund
+ *    die Haelfte fuer das freie Feld.
+ *  - Die uebrigen Werte haben keine normative Quelle. Sie sind bewusst
+ *    grosszuegig gewaehlt. Entscheidend ist nicht der genaue Wert,
+ *    sondern dass eine Grenze existiert: das Risiko war unbegrenzte
+ *    Eingabe, und das behebt jede vernuenftige Schranke.
+ *    Praezedenzfall im Projekt: lib/attribution.ts kappt Kampagnenwerte
+ *    auf 200 Zeichen.
+ */
+const FELD_MAX: Record<string, number> = {
+  vorname: 100,
+  nachname: 100,
+  telefon: 32,
+  email: 254,
+  paket: 120,
+  anreise: 32,
+  abreise: 32,
+  nachricht: 2000,
+  personen: 16,
+  gewicht: 16,
+  anlass: 120,
+  lieferung: 60,
+};
+
+/** Kappt alle bekannten String-Felder und meldet, was zu lang war. */
+function pruefeLaengen(body: Record<string, unknown>): string | null {
+  for (const [feld, max] of Object.entries(FELD_MAX)) {
+    const wert = body[feld];
+    if (typeof wert === "string" && wert.length > max) {
+      return `Feld "${feld}" ist zu lang (maximal ${max} Zeichen).`;
+    }
+  }
+  return null;
+}
+
 function validateTermin(data: TerminPayload): string | null {
   if (!data.vorname?.trim()) return "Name ist erforderlich.";
   if (!data.telefon?.trim()) return "Telefon ist erforderlich.";
@@ -60,12 +107,12 @@ function validateGutschein(data: GutscheinPayload): string | null {
   return null;
 }
 
-async function sendTelegram(body: LeadPayload) {
+async function sendTelegram(body: LeadPayload): Promise<boolean> {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) {
     console.warn("[TELEGRAM] Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID");
-    return;
+    return false;
   }
 
   let text: string;
@@ -122,9 +169,12 @@ async function sendTelegram(body: LeadPayload) {
     const result = await res.json();
     if (!result.ok) {
       console.error("[TELEGRAM] API error:", JSON.stringify(result));
+      return false;
     }
+    return true;
   } catch (err) {
     console.error("[TELEGRAM] Failed to send notification", err);
+    return false;
   }
 }
 
@@ -161,12 +211,12 @@ function isISODate(s?: string): boolean {
  * Briefing, Status). Server-zu-Server mit geteiltem Secret, best-effort:
  * Fehler/Timeout brechen NIE den Telegram-Flow oder die User-Response.
  */
-async function forwardToTandemify(d: TerminPayload): Promise<void> {
+async function forwardToTandemify(d: TerminPayload): Promise<boolean> {
   const url = process.env.TANDEMIFY_INTAKE_URL;
   const secret = process.env.INQUIRY_INTAKE_SECRET;
   if (!url || !secret) {
     console.warn("[BRIDGE] TANDEMIFY_INTAKE_URL/INQUIRY_INTAKE_SECRET fehlt, skip");
-    return;
+    return false;
   }
 
   // wishDate robust: gueltiges ISO-Datum aus wunschtermin, sonst anreise.
@@ -208,9 +258,12 @@ async function forwardToTandemify(d: TerminPayload): Promise<void> {
     if (!res.ok) {
       const txt = await res.text().catch(() => "");
       console.error("[BRIDGE] Tandemify intake non-OK:", res.status, txt);
+      return false;
     }
+    return true;
   } catch (err) {
     console.error("[BRIDGE] Tandemify intake failed:", err);
+    return false;
   } finally {
     clearTimeout(timer);
   }
@@ -226,6 +279,12 @@ export async function POST(request: NextRequest) {
         { error: "Ungültiger Anfragetyp." },
         { status: 400 }
       );
+    }
+
+    // Laengen vor allem anderen: begrenzt, was ueberhaupt weiterverarbeitet wird
+    const laengenFehler = pruefeLaengen(body as unknown as Record<string, unknown>);
+    if (laengenFehler) {
+      return NextResponse.json({ error: laengenFehler }, { status: 413 });
     }
 
     // Validate based on type
@@ -244,12 +303,27 @@ export async function POST(request: NextRequest) {
       JSON.stringify(body, null, 2)
     );
 
-    // --- Telegram notification (primaer) ---
-    await sendTelegram(body);
+    // --- Zustellung: Telegram primaer, Bruecke zusaetzlich ---
+    // Beide laufen, auch wenn eine fehlschlaegt. Erfolg wird nur gemeldet,
+    // wenn mindestens ein Empfaenger den Lead tatsaechlich angenommen hat.
+    // Vorher meldete die Route immer success, auch wenn beide still
+    // fehlschlugen: der Gast glaubte dann, seine Anfrage sei angekommen.
+    const [telegramOk, brueckeOk] = await Promise.all([
+      sendTelegram(body),
+      body.type === "termin"
+        ? forwardToTandemify(body as TerminPayload)
+        : Promise.resolve(false),
+    ]);
 
-    // --- Bridge: Terminanfragen zusaetzlich als Inquiry in Tandemify ---
-    if (body.type === "termin") {
-      await forwardToTandemify(body as TerminPayload);
+    if (!telegramOk && !brueckeOk) {
+      console.error("[LEAD] Kein Empfaenger hat den Lead angenommen");
+      return NextResponse.json(
+        {
+          error:
+            "Deine Anfrage konnte gerade nicht zugestellt werden. Bitte schreib uns kurz per WhatsApp an +43 676 7293888.",
+        },
+        { status: 502 }
+      );
     }
 
     return NextResponse.json({

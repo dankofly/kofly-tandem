@@ -204,16 +204,50 @@ export async function updateSlotFilename(
   filename: string | null,
   blobbed = false
 ): Promise<void> {
-  // Immer frisch aus dem Store lesen, nie aus dem unstable_cache:
-  // eine stale Config wuerde beim Zurueckschreiben die Uploads anderer Slots loeschen
-  const slots = await loadImagesConfig();
-  if (slots[slot]) {
+  // Read-Modify-Write mit bedingtem Schreiben.
+  //
+  // Frisch lesen allein reicht nicht: zwischen Lesen und Schreiben kann ein
+  // zweiter Upload denselben Schluessel geaendert haben, und der spaetere
+  // Write ueberschreibt ihn dann kommentarlos. Genau dieser Lost Update ist
+  // hier schon einmal aufgetreten. Netlify Blobs bietet mit onlyIfMatch ein
+  // bedingtes Schreiben ueber den ETag an, das wird jetzt genutzt.
+  //
+  // MAX_VERSUCHE: kein gemessener Wert. Bei zwei Admins, die gleichzeitig
+  // hochladen, genuegt ein Wiederholungsversuch; drei sind Reserve. Der
+  // Wert ist unkritisch, weil jeder Versuch neu liest.
+  const MAX_VERSUCHE = 3;
+  const store = getImagesStore();
+
+  for (let versuch = 1; versuch <= MAX_VERSUCHE; versuch++) {
+    const gelesen = await store.getWithMetadata(CONFIG_KEY, { type: "text" });
+    const slots: ImagesConfig["slots"] = gelesen?.data
+      ? JSON.parse(gelesen.data).slots
+      : await loadImagesConfig();
+
+    if (!slots[slot]) return;
+
     slots[slot].filename = filename;
     slots[slot].blobbed = blobbed;
-    const store = getImagesStore();
-    await store.set(CONFIG_KEY, JSON.stringify({ slots }));
-    revalidateTag("images-config", "max");
+
+    const ergebnis = await store.set(CONFIG_KEY, JSON.stringify({ slots }), {
+      // Beim ersten Schreiben existiert noch kein ETag: dann darf nur
+      // geschrieben werden, wenn der Schluessel wirklich fehlt.
+      ...(gelesen?.etag ? { onlyIfMatch: gelesen.etag } : { onlyIfNew: true }),
+    });
+
+    if (ergebnis.modified) {
+      revalidateTag("images-config", "max");
+      return;
+    }
+    // Nicht geschrieben: jemand war schneller. Neu lesen und nochmal.
+    console.warn(
+      `[IMAGES] Schreibkonflikt bei Slot "${slot}", Versuch ${versuch} von ${MAX_VERSUCHE}`
+    );
   }
+
+  throw new Error(
+    `Bild-Konfiguration konnte nach ${MAX_VERSUCHE} Versuchen nicht geschrieben werden (Schreibkonflikt).`
+  );
 }
 
 export async function saveImageBlob(

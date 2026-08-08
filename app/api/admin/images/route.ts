@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { adminGuard } from "@/lib/admin-auth";
 import {
   getImagesConfig,
   updateSlotFilename,
@@ -8,21 +9,14 @@ import {
 
 export const dynamic = "force-dynamic";
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif"];
 
-function isAuthorized(req: Request): boolean {
-  const auth = req.headers.get("authorization");
-  if (!auth || !ADMIN_PASSWORD) return false;
-  return auth === `Bearer ${ADMIN_PASSWORD}`;
-}
 
 // GET: List all slots with their current images
 export async function GET(req: Request) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const abgelehnt = adminGuard(req);
+  if (abgelehnt) return abgelehnt;
 
   const slots = await getImagesConfig();
   return NextResponse.json(
@@ -33,9 +27,8 @@ export async function GET(req: Request) {
 
 // POST: Upload image and assign to slot
 export async function POST(req: Request) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const abgelehnt = adminGuard(req);
+  if (abgelehnt) return abgelehnt;
 
   const formData = await req.formData();
   const file = formData.get("file") as File | null;
@@ -81,9 +74,8 @@ export async function POST(req: Request) {
 
 // DELETE: Remove image from slot
 export async function DELETE(req: Request) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const abgelehnt = adminGuard(req);
+  if (abgelehnt) return abgelehnt;
 
   const { slot } = await req.json();
 

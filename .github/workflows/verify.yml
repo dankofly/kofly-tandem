@@ -1,0 +1,44 @@
+name: Verify
+
+# Warum: Bis 2026-08-08 gab es keine automatische Pruefung. Die Konsistenz-,
+# Layout-, Kontrast- und Design-System-Guards liefen nur, wenn jemand sie
+# lokal aufgerufen hat. Netlify baut zwar, prueft aber nichts davon.
+#
+# Der Workflow laeuft bei Push auf main und bei jedem Pull Request.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # Liest die Version aus dem engines-Feld in package.json, damit
+          # CI und Produktion nicht auseinanderlaufen.
+          node-version-file: package.json
+          cache: npm
+
+      - name: Abhaengigkeiten installieren
+        run: npm ci
+
+      - name: Konsistenz- und Design-System-Regeln
+        run: npm run verify:consistency
+
+      - name: Playwright-Browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Build und Tests
+        run: npm run verify:seo
+        env:
+          # Ohne diese Variablen laufen die Routen in ihre dokumentierten
+          # Fallback-Pfade, was fuer den Build genuegt. Echte Secrets
+          # gehoeren nicht in CI.
+          ADMIN_PASSWORD: ci-dummy-not-a-real-secret
