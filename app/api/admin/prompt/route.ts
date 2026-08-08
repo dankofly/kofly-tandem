@@ -1,27 +1,20 @@
 import { NextResponse } from "next/server";
 import { getSystemPrompt, saveSystemPrompt } from "@/lib/chat-config";
+import { adminGuard } from "@/lib/admin-auth";
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
-function isAuthorized(req: Request): boolean {
-  const auth = req.headers.get("authorization");
-  if (!auth || !ADMIN_PASSWORD) return false;
-  return auth === `Bearer ${ADMIN_PASSWORD}`;
-}
 
 export async function GET(req: Request) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const abgelehnt = adminGuard(req);
+  if (abgelehnt) return abgelehnt;
 
   const prompt = await getSystemPrompt();
   return NextResponse.json({ prompt });
 }
 
 export async function PUT(req: Request) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const abgelehnt = adminGuard(req);
+  if (abgelehnt) return abgelehnt;
 
   const { prompt } = await req.json();
 

@@ -1,27 +1,20 @@
 import { NextResponse } from "next/server";
 import { getTickerItems, saveTickerItems } from "@/lib/ticker-config";
+import { adminGuard } from "@/lib/admin-auth";
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
-function isAuthorized(req: Request): boolean {
-  const auth = req.headers.get("authorization");
-  if (!auth || !ADMIN_PASSWORD) return false;
-  return auth === `Bearer ${ADMIN_PASSWORD}`;
-}
 
 export async function GET(req: Request) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const abgelehnt = adminGuard(req);
+  if (abgelehnt) return abgelehnt;
 
   const items = await getTickerItems();
   return NextResponse.json({ items });
 }
 
 export async function PUT(req: Request) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const abgelehnt = adminGuard(req);
+  if (abgelehnt) return abgelehnt;
 
   const { items } = await req.json();
 

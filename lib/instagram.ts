@@ -1,3 +1,5 @@
+import { fetchMitTimeout } from "@/lib/fetch-timeout";
+
 export interface InstagramReel {
   id: string;
   caption: string;
@@ -69,7 +71,9 @@ export async function getInstagramReels(
     const fields = "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp";
     const url = `https://graph.instagram.com/${userId}/media?fields=${fields}&limit=50&access_token=${token}`;
 
-    const res = await fetch(url, { next: { revalidate: 3600 } });
+    // Mit Zeitgrenze. Der Fehlerpfad unten faellt bereits auf FALLBACK_REELS
+    // zurueck, ein Abbruch ist also folgenlos fuer den Besucher.
+    const res = await fetchMitTimeout(url, { next: { revalidate: 3600 } });
 
     if (!res.ok) {
       console.error("Instagram API error:", res.status);
