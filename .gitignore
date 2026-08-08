@@ -47,3 +47,8 @@ __pycache__/
 
 # GSC-Automation Screenshots
 ops/gsc/shots/
+
+# Blob-Sicherungen: enthalten den kompletten veraenderbaren Zustand der Site
+# inklusive hochgeladener Bilder. Gehoeren nicht ins Repository, sondern an
+# einen Ort, der ein Repo-Desaster ueberlebt.
+/blob-backups/
