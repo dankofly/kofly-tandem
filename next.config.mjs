@@ -7,6 +7,40 @@ const projectRoot = process.cwd();
 const nextConfig = {
   trailingSlash: false,
   outputFileTracingRoot: projectRoot,
+
+  /**
+   * Weiterleitungen fuer Adressen, die ausserhalb dieses Repositories
+   * verlinkt werden und hier nie existiert haben.
+   *
+   * /classic-media: Die Buchungsstrecke (booking.kofly.at) verlinkt auf der
+   * persoenlichen Flugseite unter "Details ansehen" auf
+   * /de/classic-media. Diese Route gab es hier nie, Gaeste landeten auf der
+   * 404. Ein eigenes Paket-Detail fuer "Classic inkl. Media" existiert
+   * nicht, deshalb geht es auf den Paketvergleich der Startseite, wo alle
+   * vier Pakete samt Preis nebeneinander stehen.
+   *
+   * Der Anker #pakete ist verifiziert: components/Packages.tsx setzt
+   * id="pakete", und die Live-Seite liefert ihn aus.
+   *
+   * permanent: false (307/308). Bewusst nicht permanent: sobald die
+   * Buchungsstrecke ihren Link korrigiert, soll kein Browser und kein
+   * Suchindex diese Umleitung dauerhaft zwischenspeichern.
+   */
+  async redirects() {
+    return [
+      {
+        source: "/:locale(de|en|nl)/classic-media",
+        destination: "/:locale#pakete",
+        permanent: false,
+      },
+      {
+        source: "/classic-media",
+        destination: "/de#pakete",
+        permanent: false,
+      },
+    ];
+  },
+
   turbopack: {
     root: projectRoot,
   },
