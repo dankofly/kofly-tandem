@@ -9,105 +9,131 @@
  * Netlify-UI oder ein fehlerhafter Schreibvorgang waere unumkehrbar
  * gewesen, und das faellt erst auf, wenn die Seite falsche Bilder zeigt.
  *
- * Warum ueber die Netlify-CLI und nicht ueber @netlify/blobs:
- * Das SDK braucht Site-ID UND einen Auth-Token in der Umgebung. Die CLI ist
- * lokal ohnehin angemeldet und bringt beides mit, ohne dass ein Token durch
- * Skripte oder Shell-Historie wandert. In CI funktioniert derselbe Aufruf
- * mit NETLIFY_AUTH_TOKEN.
+ * SICHERHEITSHINWEIS ZUR BAUFORM (2026-08-08):
+ * Eine frueher Fassung dieses Skripts rief die Netlify-CLI ueber eine Shell
+ * auf und setzte den Befehl als String zusammen. Blob-Schluessel stammen
+ * aber aus formData (app/api/admin/images/route.ts nimmt "slot" entgegen
+ * und schreibt daraus den Schluessel). Ein Schluessel mit Metazeichen haette
+ * beim Sichern beliebige Befehle auf dem ausfuehrenden Rechner gestartet.
+ * Besseres Quotieren waere die falsche Antwort gewesen: cmd.exe laesst sich
+ * mit Backslash-Escaping nicht zuverlaessig absichern.
+ *
+ * Deshalb laeuft hier jetzt KEIN Unterprozess mehr. Reines Node ueber
+ * @netlify/blobs. Kein Shell-Aufruf, keine Kommandozusammensetzung, damit
+ * auch keine Injektionsflaeche. Schluessel sind wieder das, was sie sein
+ * sollten: Daten.
+ *
+ * Zugangsdaten, in dieser Reihenfolge:
+ *   1. NETLIFY_AUTH_TOKEN und NETLIFY_SITE_ID (bzw. SITE_ID) aus der Umgebung
+ *   2. .netlify/state.json fuer die Site-ID
+ *   3. die angemeldete Netlify-CLI, deren Token im Benutzerprofil liegt
+ * Der Token wird nie ausgegeben und nie in eine Datei geschrieben.
  *
  * Nutzung:
- *   node ops/blobs-backup.mjs dump    [zielordner]   sichert alle Stores
- *   node ops/blobs-backup.mjs verify  <quellordner>  prueft eine Sicherung
- *   node ops/blobs-backup.mjs restore <quellordner>  spielt sie zurueck
+ *   node ops/blobs-backup.mjs dump    [zielordner]
+ *   node ops/blobs-backup.mjs verify  <quellordner>
+ *   node ops/blobs-backup.mjs restore <quellordner>
  *
  * WICHTIG: "restore" ueberschreibt. Vorher immer "verify" laufen lassen.
  */
-import { exec, execFile } from "child_process";
-import { mkdir, readdir, writeFile } from "fs/promises";
+import { getStore } from "@netlify/blobs";
+import { mkdir, readdir, readFile, writeFile } from "fs/promises";
+import { homedir } from "os";
 import { join } from "path";
-import { promisify } from "util";
-
-const run = promisify(execFile);
-const runShell = promisify(exec);
 
 /** Die Stores, die die Anwendung tatsaechlich benutzt. */
 const STORES = ["images", "chat", "videos", "ticker"];
 
-const IST_WINDOWS = process.platform === "win32";
-const NPX = IST_WINDOWS ? "npx.cmd" : "npx";
-const AUTH = process.env.NETLIFY_AUTH_TOKEN
-  ? ["--auth", process.env.NETLIFY_AUTH_TOKEN]
-  : [];
-
-/**
- * Node 25 startet auf Windows keine .cmd-Dateien mehr ohne Shell
- * (spawn EINVAL). Mit shell:true muss dafuer jedes Argument selbst
- * quotiert werden, sonst zerlegt die Shell Schluessel mit Leerzeichen
- * oder Sonderzeichen.
- */
-function quote(arg) {
-  if (!IST_WINDOWS) return arg;
-  return `"${String(arg).replace(/(["\\])/g, "\\$1")}"`;
-}
-
-async function netlify(args, opts = {}) {
-  const alle = ["--no-install", "netlify", ...args, ...AUTH];
-  if (!IST_WINDOWS) {
-    return run(NPX, alle, { maxBuffer: 64 * 1024 * 1024, ...opts });
-  }
-  // Auf Windows als ein Kommandostring ueber die Shell, weil execFile
-  // eine .cmd nicht mehr direkt starten darf.
-  const kommando = [NPX, ...alle.map(quote)].join(" ");
-  return runShell(kommando, { maxBuffer: 64 * 1024 * 1024, ...opts });
-}
-
-async function schluessel(store) {
+async function jsonOderNull(pfad) {
   try {
-    const { stdout } = await netlify(["blobs:list", store, "--json"]);
-    const daten = JSON.parse(stdout);
-    return (daten.blobs ?? []).map((b) => b.key);
-  } catch (e) {
-    // "store is empty" ist kein Fehler, ein fehlender Login schon.
-    if (/is empty/i.test(e.stdout ?? "") || /is empty/i.test(e.message)) return [];
-    throw new Error(`blobs:list ${store} fehlgeschlagen: ${e.message}`);
+    return JSON.parse(await readFile(pfad, "utf-8"));
+  } catch {
+    return null;
   }
+}
+
+async function siteId() {
+  const ausUmgebung = process.env.NETLIFY_SITE_ID || process.env.SITE_ID;
+  if (ausUmgebung) return ausUmgebung;
+  const state = await jsonOderNull(join(process.cwd(), ".netlify", "state.json"));
+  return state?.siteId ?? null;
+}
+
+async function authToken() {
+  if (process.env.NETLIFY_AUTH_TOKEN) return process.env.NETLIFY_AUTH_TOKEN;
+
+  // Ablageort der angemeldeten CLI, je nach Plattform.
+  const kandidaten = [
+    process.env.APPDATA && join(process.env.APPDATA, "netlify", "Config", "config.json"),
+    join(homedir(), "AppData", "Roaming", "netlify", "Config", "config.json"),
+    join(homedir(), ".config", "netlify", "config.json"),
+    join(homedir(), "Library", "Preferences", "netlify", "config.json"),
+  ].filter(Boolean);
+
+  for (const pfad of kandidaten) {
+    const cfg = await jsonOderNull(pfad);
+    const nutzer = cfg?.users ?? {};
+    for (const eintrag of Object.values(nutzer)) {
+      const t = eintrag?.auth?.token;
+      if (t) return t;
+    }
+  }
+  return null;
+}
+
+async function verbindung() {
+  const [id, token] = await Promise.all([siteId(), authToken()]);
+  if (!id || !token) {
+    console.error(
+      "Abbruch: Zugangsdaten unvollstaendig.\n" +
+        `  Site-ID: ${id ? "gefunden" : "FEHLT"}\n` +
+        `  Token:   ${token ? "gefunden" : "FEHLT"}\n\n` +
+        "Entweder NETLIFY_SITE_ID und NETLIFY_AUTH_TOKEN setzen, oder lokal\n" +
+        "einmal 'npx netlify login' ausfuehren. Es wird bewusst keine leere\n" +
+        "Sicherung geschrieben, die spaeter fuer echt gehalten wird."
+    );
+    process.exit(1);
+  }
+  return (name) => getStore({ name, siteID: id, token, consistency: "strong" });
 }
 
 async function dump(ziel) {
+  const store = await verbindung();
   const stempel = new Date().toISOString().replace(/[:.]/g, "-");
   const ordner = join(ziel ?? "blob-backups", stempel);
 
   let gesamt = 0;
-  const bericht = [];
+  for (const name of STORES) {
+    const { blobs } = await store(name).list();
+    if (blobs.length) await mkdir(join(ordner, name), { recursive: true });
 
-  for (const store of STORES) {
-    const keys = await schluessel(store);
-    if (keys.length) await mkdir(join(ordner, store), { recursive: true });
-
-    for (const key of keys) {
-      // Schluessel koennen Schraegstriche enthalten, deshalb kodieren.
-      const ziel = join(ordner, store, encodeURIComponent(key));
-      await netlify(["blobs:get", store, key, "--output", ziel]);
+    for (const { key } of blobs) {
+      const daten = await store(name).get(key, { type: "arrayBuffer" });
+      if (daten === null) continue;
+      // Schluessel koennen Schraegstriche und Sonderzeichen enthalten.
+      // encodeURIComponent macht daraus einen unbedenklichen Dateinamen.
+      await writeFile(join(ordner, name, encodeURIComponent(key)), Buffer.from(daten));
       gesamt++;
     }
-    bericht.push(`  ${store.padEnd(8)} ${String(keys.length).padStart(3)} Schluessel`);
+    console.log(`  ${name.padEnd(8)} ${String(blobs.length).padStart(3)} Schluessel`);
   }
-
-  console.log(bericht.join("\n"));
 
   if (gesamt === 0) {
     console.error(
-      "\nAbbruch: null Objekte gesichert.\n" +
-        "Entweder ist die Site wirklich leer, oder der Zugriff scheitert.\n" +
-        "Es wird bewusst keine leere Sicherung abgelegt, die spaeter fuer echt gehalten wird."
+      "\nAbbruch: null Objekte gesichert. Entweder ist die Site wirklich leer,\n" +
+        "oder der Zugriff scheitert still. Es wird keine leere Sicherung abgelegt."
     );
     process.exit(1);
   }
 
-  // Kleines Manifest, damit verify nicht nur Dateien zaehlt.
+  await mkdir(ordner, { recursive: true });
   await writeFile(
     join(ordner, "manifest.json"),
-    JSON.stringify({ erstellt: new Date().toISOString(), objekte: gesamt, stores: STORES }, null, 2)
+    JSON.stringify(
+      { erstellt: new Date().toISOString(), objekte: gesamt, stores: STORES },
+      null,
+      2
+    )
   );
 
   console.log(`\n${gesamt} Objekte gesichert nach ${ordner}`);
@@ -120,18 +146,30 @@ async function verify(quelle) {
     process.exit(1);
   }
   let gesamt = 0;
-  for (const store of STORES) {
+  let leere = 0;
+  for (const name of STORES) {
+    let dateien;
     try {
-      const dateien = await readdir(join(quelle, store));
-      console.log(`  ${store.padEnd(8)} ${String(dateien.length).padStart(3)} Dateien`);
-      gesamt += dateien.length;
+      dateien = await readdir(join(quelle, name), { withFileTypes: true });
     } catch {
-      console.log(`  ${store.padEnd(8)}   0 (nicht in dieser Sicherung)`);
+      console.log(`  ${name.padEnd(8)}   0 (nicht in dieser Sicherung)`);
+      continue;
     }
+    for (const d of dateien) {
+      if (!d.isFile()) continue;
+      const inhalt = await readFile(join(quelle, name, d.name));
+      if (inhalt.length === 0) leere++;
+      gesamt++;
+    }
+    console.log(`  ${name.padEnd(8)} ${String(dateien.length).padStart(3)} Dateien`);
   }
-  console.log(`\n${gesamt} Objekte in ${quelle}`);
+  console.log(`\n${gesamt} Objekte in ${quelle}, davon ${leere} leer`);
   if (gesamt === 0) {
     console.error("Diese Sicherung ist leer. Nicht zum Wiederherstellen verwenden.");
+    process.exit(1);
+  }
+  if (leere > 0) {
+    console.error(`${leere} leere Datei(en). Die Sicherung ist unvollstaendig.`);
     process.exit(1);
   }
   return gesamt;
@@ -139,21 +177,22 @@ async function verify(quelle) {
 
 async function restore(quelle) {
   await verify(quelle);
+  const store = await verbindung();
 
   let gesamt = 0;
-  for (const store of STORES) {
+  for (const name of STORES) {
     let dateien;
     try {
-      dateien = await readdir(join(quelle, store));
+      dateien = await readdir(join(quelle, name));
     } catch {
       continue;
     }
     for (const datei of dateien) {
-      const pfad = join(quelle, store, datei);
-      await netlify(["blobs:set", store, decodeURIComponent(datei), "--input", pfad]);
+      const daten = await readFile(join(quelle, name, datei));
+      await store(name).set(decodeURIComponent(datei), daten);
       gesamt++;
     }
-    console.log(`  ${store.padEnd(8)} ${dateien.length} Schluessel zurueckgespielt`);
+    console.log(`  ${name.padEnd(8)} ${dateien.length} Schluessel zurueckgespielt`);
   }
   console.log(`\n${gesamt} Objekte wiederhergestellt aus ${quelle}`);
 }
@@ -175,13 +214,12 @@ try {
         "Verwendung:\n" +
           "  node ops/blobs-backup.mjs dump    [zielordner]\n" +
           "  node ops/blobs-backup.mjs verify  <quellordner>\n" +
-          "  node ops/blobs-backup.mjs restore <quellordner>\n\n" +
-          "Lokal genuegt eine angemeldete Netlify-CLI. In CI zusaetzlich\n" +
-          "NETLIFY_AUTH_TOKEN setzen."
+          "  node ops/blobs-backup.mjs restore <quellordner>"
       );
       process.exit(1);
   }
 } catch (e) {
+  // Fehlermeldung bewusst ohne Objekt-Dump, damit kein Token im Log landet.
   console.error(`\nFehlgeschlagen: ${e.message}`);
   process.exit(1);
 }
